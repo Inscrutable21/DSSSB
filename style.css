@@ -1319,108 +1319,67 @@ body.single-page-mode .book.upright {
 
 /* Mobile & Small Tablets (max-width: 768px) */
 @media (max-width: 768px) {
-  /* Header Layout */
   .app-header {
-    height: 48px;
-    padding: 0 8px;
+    height: 50px;
+    padding: 0 10px;
     gap: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .header-left {
     gap: 6px;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
   }
 
   .book-meta {
-    display: none !important;
+    display: flex;
+    align-items: center;
   }
 
   .badge-exam {
-    display: none !important;
+    font-size: 0.68rem;
+    padding: 2px 6px;
+    white-space: nowrap;
   }
 
-  .deepdive-label-long {
-    display: none !important;
-  }
-
-  .deepdive-label-short {
-    display: inline !important;
-    font-weight: 700;
-  }
-
-  #tocToggleBtn span {
-    font-size: 0.78rem;
-  }
-
-  .btn-icon, .btn-tool, .btn-nav {
-    padding: 6px 10px;
-    font-size: 0.78rem;
-    min-height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Search Box */
   .search-box {
-    flex: 0 1 140px;
+    flex: 1;
+    width: auto;
     min-width: 80px;
-    max-width: 170px;
-    transition: flex 0.2s ease, max-width 0.2s ease;
-  }
-
-  .search-box:focus-within {
-    flex: 1 1 auto;
-    max-width: 220px;
+    max-width: 260px;
   }
 
   .search-box input {
-    font-size: 0.78rem;
-    padding: 5px 22px 5px 26px;
+    font-size: 0.8rem;
+    padding: 5px 24px 5px 28px;
   }
 
   .search-box svg {
-    left: 7px;
-    width: 13px;
-    height: 13px;
+    left: 8px;
+    width: 14px;
+    height: 14px;
   }
 
-  /* Header Right Controls */
-  .header-right {
-    gap: 5px;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
+  .font-controls {
+    display: none;
   }
 
-  #viewModeToggleBtn,
-  .font-controls,
   #fullscreenBtn {
+    display: none;
+  }
+
+  #deepDiveToggleBtn,
+  #audioNarrationBtn {
     display: none !important;
   }
 
-  #audioNarrationBtn {
-    padding: 6px 9px;
-    font-size: 0.78rem;
+  .btn-icon, .btn-tool, .btn-nav {
+    padding: 5px 9px;
+    font-size: 0.8rem;
   }
 
-  #audioStatusText {
-    display: inline;
-  }
-
-  /* Reading Stage: Unconditionally force single page layout on <= 768px */
+  /* Reading Stage */
   .reading-stage {
-    padding: 6px 8px;
-    height: calc(100dvh - 104px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+    padding: 8px 6px;
+    height: calc(100vh - 106px);
   }
 
   .book-wrapper {
@@ -1431,175 +1390,85 @@ body.single-page-mode .book.upright {
     justify-content: center;
   }
 
-  .gap {
-    display: none !important;
-  }
-
-  .left-stack {
-    display: none !important;
-  }
-
-  .right-stack {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    transform: none !important;
-  }
-
-  .left-page {
-    display: none !important;
-  }
-
-  .right-page {
-    width: 100% !important;
-    height: 100% !important;
-    border: 1px solid var(--page-border) !important;
-    border-radius: 6px !important;
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.04) !important;
-  }
-
-  .turning-leaf {
-    left: 0 !important;
-    width: 100% !important;
-  }
-
   .book-hardcover-shadow {
-    width: min(460px, 94vw) !important;
-    height: 100% !important;
-    max-height: calc(100dvh - 116px) !important;
-    margin: 0 auto !important;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35) !important;
-    padding: 4px !important;
-    border-radius: 8px !important;
-    box-sizing: border-box !important;
+    width: min(490px, 96vw) !important;
+    height: min(620px, calc(100vh - 124px)) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
   }
 
   .book.upright {
-    width: 100% !important;
-    height: 100% !important;
-    transform: none !important; /* Flat upright viewing on mobile */
+    width: min(470px, 94vw) !important;
+    height: min(600px, calc(100vh - 134px)) !important;
   }
 
   /* Typesetting adjustments for mobile screen */
   .page-content {
-    padding: 12px 16px !important;
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
+    padding: 12px 14px !important;
+  }
+
+  .left-page .page-content,
+  .right-page .page-content {
+    padding: 12px 14px !important;
   }
 
   .page-running-head {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    gap: 8px !important;
     font-size: 0.65rem !important;
-    margin-bottom: 4px !important;
+    margin-bottom: 5px !important;
     padding-bottom: 2px !important;
-    letter-spacing: 0.4px !important;
-  }
-
-  .page-running-head span:first-child {
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-    flex: 1 !important;
-    text-align: left !important;
-  }
-
-  .page-running-head span:last-child {
-    flex-shrink: 0 !important;
-    font-weight: 700 !important;
   }
 
   .page-footer {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    font-size: 0.7rem !important;
-    margin-top: 3px !important;
-    padding-top: 2px !important;
+    font-size: 0.72rem !important;
+    margin-top: 4px !important;
+    padding-top: 3px !important;
   }
 
   .page-body {
-    flex: 1 !important;
-    font-size: clamp(0.76rem, 2.2vw + 0.3rem, 0.84rem) !important;
+    font-size: 0.82rem !important;
     line-height: 1.36 !important;
-    overflow-y: auto !important;
-    scrollbar-width: none !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-
-  .page-body::-webkit-scrollbar {
-    display: none !important;
   }
 
   .page-body h1 {
-    font-size: clamp(0.98rem, 3.2vw + 0.3rem, 1.12rem) !important;
-    margin-top: 0 !important;
-    margin-bottom: 3px !important;
-    padding-bottom: 2px !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 4px !important;
   }
 
   .page-body h2 {
-    font-size: clamp(0.88rem, 2.6vw + 0.28rem, 0.98rem) !important;
-    margin-top: 3px !important;
-    margin-bottom: 2px !important;
+    font-size: 0.94rem !important;
+    margin-top: 4px !important;
+    margin-bottom: 3px !important;
   }
 
   .page-body h3 {
-    font-size: clamp(0.8rem, 2.4vw + 0.25rem, 0.88rem) !important;
-    margin-top: 3px !important;
+    font-size: 0.84rem !important;
+    margin-top: 4px !important;
     margin-bottom: 2px !important;
-  }
-
-  .page-body p {
-    margin-bottom: 4px !important;
-    text-align: left !important;
-    word-spacing: normal !important;
-    text-justify: auto !important;
-    hyphens: auto !important;
-  }
-
-  .page-body ul, .page-body ol {
-    margin: 2px 0 4px 14px !important;
-    padding: 0 !important;
-  }
-
-  .page-body li {
-    margin-bottom: 2px !important;
-    line-height: 1.3 !important;
   }
 
   .book-table {
-    font-size: clamp(0.66rem, 1.8vw + 0.28rem, 0.74rem) !important;
-    margin: 4px 0 !important;
+    font-size: 0.72rem !important;
+    margin: 5px 0 !important;
   }
 
   .book-table th, 
   .book-table td {
-    padding: 3px 5px !important;
-    line-height: 1.25 !important;
+    padding: 4px 6px !important;
   }
 
-  .book-callout, .case-card, .scenario-card {
-    font-size: 0.92em !important;
-    padding: 5px 8px !important;
-    margin: 4px 0 !important;
-    line-height: 1.3 !important;
+  .book-callout,
+  .case-card,
+  .scenario-card {
+    font-size: 0.78rem !important;
+    padding: 6px 10px !important;
+    margin: 5px 0 !important;
   }
 
   .book-figure {
-    margin: 4px 0 !important;
+    margin: 5px 0 !important;
   }
 
   .book-figure img {
-    height: clamp(80px, 14vh, 105px) !important;
+    height: 105px !important;
   }
 
   .cover-border-box {
@@ -1607,44 +1476,38 @@ body.single-page-mode .book.upright {
   }
 
   .cover-h1 {
-    font-size: clamp(0.94rem, 3vw + 0.3rem, 1.08rem) !important;
-    letter-spacing: 0.4px !important;
-    margin: 4px 0 !important;
+    font-size: 0.98rem !important;
+    letter-spacing: 0.5px !important;
+    margin: 6px 0 !important;
   }
 
   .cover-features-list {
-    font-size: 0.72rem !important;
-    margin: 4px 0 !important;
-    padding: 4px 8px !important;
+    font-size: 0.74rem !important;
+    margin: 6px 0 !important;
+    padding: 6px 10px !important;
   }
 
   .cover-features-list li {
-    padding: 1px 0 !important;
+    padding: 2px 0 !important;
   }
 
   .cover-btn-start {
     font-size: 0.82rem !important;
     padding: 7px 16px !important;
-    margin-top: 5px !important;
+    margin-top: 6px !important;
   }
 
-  /* Bottom Navigation Controls */
+  /* Bottom navigation bar */
   .reading-controls {
-    height: 52px !important;
-    padding: 2px 10px !important;
-    background: var(--header-bg) !important;
-    border-top: 1px solid var(--ui-border) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    height: 56px;
+    padding: 4px 8px;
+    gap: 0;
   }
 
   .controls-container {
-    width: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 8px !important;
+    width: 100%;
+    justify-content: space-between;
+    gap: 4px;
   }
 
   #firstPageBtn,
@@ -1656,64 +1519,42 @@ body.single-page-mode .book.upright {
   }
 
   .btn-nav {
-    flex-shrink: 0 !important;
-    min-width: 66px !important;
-    padding: 6px 12px !important;
-    font-size: 0.82rem !important;
-    font-weight: 700 !important;
-    min-height: 36px !important;
-    border-radius: 6px !important;
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    min-height: 38px;
   }
 
   .page-scrubber {
-    flex: 1 !important;
-    max-width: 180px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 2px !important;
-    align-items: center !important;
+    flex: 1;
+    max-width: 180px;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
   }
 
   .page-scrubber input[type="range"] {
-    width: 100% !important;
-    height: 4px !important;
-    margin: 0 !important;
+    width: 100%;
+    height: 5px;
   }
 
   .page-indicator {
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    max-width: 180px !important;
-    text-align: center !important;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    text-align: center;
   }
 
-  /* TOC Drawer on Mobile */
+  /* TOC drawer on mobile */
   .toc-drawer {
-    width: min(320px, 86vw) !important;
-    height: 100dvh !important;
-    padding: 14px !important;
-  }
-
-  .toc-header h3 {
-    font-size: 1.1rem !important;
-  }
-
-  .toc-item {
-    padding: 8px 10px !important;
-    min-height: 40px !important;
-  }
-
-  .toc-ch-title {
-    font-size: 0.82rem !important;
+    width: min(320px, 86vw);
   }
 
   /* Search dropdown on mobile */
   .search-dropdown {
     position: fixed !important;
-    top: 50px !important;
+    top: 52px !important;
     left: 8px !important;
     right: 8px !important;
     width: auto !important;
@@ -1724,25 +1565,12 @@ body.single-page-mode .book.upright {
   .deepdive-drawer {
     width: 100vw !important;
     max-width: 100vw !important;
-    height: 100dvh !important;
-  }
-
-  .deepdive-header {
-    padding: 10px 14px !important;
-  }
-
-  .deepdive-header h3 {
-    font-size: 1.05rem !important;
-  }
-
-  .deepdive-subtitle {
-    font-size: 0.72rem !important;
+    height: 100vh !important;
   }
 
   .deepdive-nav {
     padding: 6px 10px !important;
     gap: 5px !important;
-    -webkit-overflow-scrolling: touch !important;
   }
 
   .dd-tab {
@@ -1750,128 +1578,65 @@ body.single-page-mode .book.upright {
     padding: 5px 10px !important;
     flex-shrink: 0 !important;
   }
-
-  .deepdive-body {
-    padding: 10px 12px 28px !important;
-  }
-
-  .dd-card {
-    padding: 10px 12px !important;
-    margin-bottom: 10px !important;
-  }
-
-  .dd-card-title {
-    font-size: 0.9rem !important;
-  }
-
-  .statute-quote {
-    font-size: 0.84rem !important;
-    padding: 6px 10px !important;
-  }
-
-  .scenario-item {
-    padding: 8px 10px !important;
-  }
-
-  .scenario-name {
-    font-size: 0.8rem !important;
-  }
-
-  .scenario-facts, .scenario-legal {
-    font-size: 0.76rem !important;
-  }
 }
 
 /* Very Small Phones (max-width: 440px) */
 @media (max-width: 440px) {
+  .badge-exam {
+    display: none;
+  }
+
   #tocToggleBtn span {
     display: none;
   }
 
-  #deepDiveToggleBtn span {
-    font-size: 0.72rem;
-  }
-
-  .search-box {
-    flex: 0 1 100px;
+  #tocToggleBtn {
+    padding: 6px 8px;
   }
 
   .page-scrubber {
-    max-width: 130px !important;
+    max-width: 140px;
   }
 
   .page-indicator {
-    max-width: 130px !important;
-    font-size: 0.68rem !important;
-  }
-}
-
-/* Landscape Mode on Mobile (max-height: 520px and landscape) */
-@media (max-height: 520px) and (orientation: landscape) {
-  .app-header {
-    height: 40px !important;
-    padding: 0 8px !important;
+    max-width: 140px;
+    font-size: 0.67rem;
   }
 
-  .reading-controls {
-    height: 44px !important;
-    padding: 2px 8px !important;
-  }
-
-  .reading-stage {
-    height: calc(100dvh - 84px) !important;
-    padding: 2px 4px !important;
-  }
-
-  .book-hardcover-shadow {
-    height: 100% !important;
-    max-height: calc(100dvh - 90px) !important;
-    width: min(520px, 94vw) !important;
-    padding: 3px !important;
-  }
-
-  .book.upright {
-    height: 100% !important;
-    width: 100% !important;
-  }
-
-  .page-content {
-    padding: 6px 10px !important;
-  }
-
-  .page-running-head {
-    font-size: 0.6rem !important;
-    margin-bottom: 2px !important;
-    padding-bottom: 1px !important;
-  }
-
-  .page-footer {
-    font-size: 0.64rem !important;
-    margin-top: 2px !important;
-    padding-top: 1px !important;
+  .book-table th, .book-table td {
+    padding: 3px 4px !important;
+    font-size: 0.7rem !important;
   }
 
   .page-body {
-    font-size: 0.74rem !important;
-    line-height: 1.28 !important;
+    font-size: 0.8rem !important;
+    line-height: 1.34 !important;
   }
+}
 
-  .page-body h1 {
-    font-size: 0.92rem !important;
-    margin-bottom: 2px !important;
+/* Landscape Mode on Phones (max-height: 520px and landscape) */
+@media (max-height: 520px) and (orientation: landscape) {
+  .app-header {
+    height: 42px;
   }
-
-  .page-body h2 {
-    font-size: 0.82rem !important;
-    margin: 2px 0 !important;
+  .reading-controls {
+    height: 46px;
   }
-
-  .page-body h3 {
+  .reading-stage {
+    height: calc(100vh - 88px);
+    padding: 4px;
+  }
+  .book-hardcover-shadow {
+    height: calc(100vh - 96px) !important;
+  }
+  .book.upright {
+    height: calc(100vh - 104px) !important;
+  }
+  .page-content {
+    padding: 8px 12px !important;
+  }
+  .page-body {
     font-size: 0.76rem !important;
-    margin: 1px 0 !important;
-  }
-
-  .book-figure img {
-    height: 70px !important;
+    line-height: 1.3 !important;
   }
 }

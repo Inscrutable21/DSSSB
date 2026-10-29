@@ -2210,6 +2210,14 @@ document.addEventListener('DOMContentLoaded', () => {
   tocToggleBtn.addEventListener('click', openTOC);
   closeTocBtn.addEventListener('click', closeTOC);
   
+  const tocDeepDiveBtn = document.getElementById('tocDeepDiveBtn');
+  if (tocDeepDiveBtn) {
+    tocDeepDiveBtn.addEventListener('click', () => {
+      closeTOC();
+      openDeepDive();
+    });
+  }
+
   if (deepDiveToggleBtn) {
     deepDiveToggleBtn.addEventListener('click', () => {
       deepDiveDrawer.classList.contains('hidden') ? openDeepDive() : closeDeepDive();
