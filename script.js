@@ -32,9 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const fontSizeIncBtn = document.getElementById('fontSizeIncBtn');
   const fontSizeDecBtn = document.getElementById('fontSizeDecBtn');
   const fullscreenBtn = document.getElementById('fullscreenBtn');
+  const viewModeToggleBtn = document.getElementById('viewModeToggleBtn');
 
   // App State
+  let isSinglePage = (window.innerWidth <= 768);
   let currentSpread = 0;
+  let currentPageIndex = 0;
   let isFlipping = false;
   let isAutoFlip = false;
   let autoFlipInterval = null;
@@ -1161,11 +1164,15 @@ document.addEventListener('DOMContentLoaded', () => {
     { chapter: "Ch 10/11", title: "BSA 2023 Digital Evidence & Examination Index", spreadIndex: 19, page: "39–40" }
   ];
 
-  // Set scrubber max dynamically
-  pageRange.max = spreads.length - 1;
+  // Flat list of individual pages for single-page mode (40 pages)
+  const pages = [];
+  spreads.forEach((spread, sIdx) => {
+    pages.push({ ...spread.left, spreadIndex: sIdx, side: 'left' });
+    pages.push({ ...spread.right, spreadIndex: sIdx, side: 'right' });
+  });
 
   // =========================================================================
-  // RENDER SPREAD & REALISTIC 3D PAGE TURN
+  // RENDER CONTROLLER (Supports both Two-Page Spread & Single-Page View)
   // =========================================================================
   function renderPageContent(pageData, isLeft) {
     return `
@@ -1185,30 +1192,92 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  function updateSpreadUI(index) {
-    currentSpread = index;
-    pageRange.value = index;
-    const spread = spreads[index];
-    const pLeft = spread.left.pageNumber;
-    const pRight = spread.right.pageNumber;
-    pageIndicator.textContent = `Spread ${index + 1} of ${spreads.length} (Pages ${pLeft}–${pRight})`;
+  function renderCurrentView() {
+    if (isSinglePage) {
+      document.body.classList.add('single-page-mode');
+      if (viewModeToggleBtn) viewModeToggleBtn.textContent = '2-Page';
 
-    document.querySelectorAll('.toc-item').forEach((el, idx) => {
-      el.classList.toggle('active', idx === index);
-    });
+      rightPageEl.innerHTML = renderPageContent(pages[currentPageIndex], false);
 
-    prevBtn.disabled = (index === 0);
-    firstPageBtn.disabled = (index === 0);
-    nextBtn.disabled = (index === spreads.length - 1);
-    lastPageBtn.disabled = (index === spreads.length - 1);
+      pageRange.min = 0;
+      pageRange.max = pages.length - 1;
+      pageRange.value = currentPageIndex;
+
+      const pNum = pages[currentPageIndex].pageNumber;
+      pageIndicator.textContent = `Page ${pNum} of ${pages.length}`;
+
+      prevBtn.disabled = (currentPageIndex === 0);
+      firstPageBtn.disabled = (currentPageIndex === 0);
+      nextBtn.disabled = (currentPageIndex === pages.length - 1);
+      lastPageBtn.disabled = (currentPageIndex === pages.length - 1);
+
+      document.querySelectorAll('.toc-item').forEach((el, idx) => {
+        el.classList.toggle('active', idx === Math.floor(currentPageIndex / 2));
+      });
+    } else {
+      document.body.classList.remove('single-page-mode');
+      if (viewModeToggleBtn) viewModeToggleBtn.textContent = '1-Page';
+
+      currentSpread = Math.floor(currentPageIndex / 2);
+      const spread = spreads[currentSpread];
+      leftPageEl.innerHTML = renderPageContent(spread.left, true);
+      rightPageEl.innerHTML = renderPageContent(spread.right, false);
+
+      pageRange.min = 0;
+      pageRange.max = spreads.length - 1;
+      pageRange.value = currentSpread;
+
+      const pLeft = spread.left.pageNumber;
+      const pRight = spread.right.pageNumber;
+      pageIndicator.textContent = `Spread ${currentSpread + 1} of ${spreads.length} (Pages ${pLeft}–${pRight})`;
+
+      prevBtn.disabled = (currentSpread === 0);
+      firstPageBtn.disabled = (currentSpread === 0);
+      nextBtn.disabled = (currentSpread === spreads.length - 1);
+      lastPageBtn.disabled = (currentSpread === spreads.length - 1);
+
+      document.querySelectorAll('.toc-item').forEach((el, idx) => {
+        el.classList.toggle('active', idx === currentSpread);
+      });
+    }
   }
 
-  function renderSpread(index) {
-    if (index < 0 || index >= spreads.length) return;
-    const spread = spreads[index];
-    leftPageEl.innerHTML = renderPageContent(spread.left, true);
-    rightPageEl.innerHTML = renderPageContent(spread.right, false);
-    updateSpreadUI(index);
+  function turnToPage(newIndex) {
+    if (isFlipping || newIndex === currentPageIndex || newIndex < 0 || newIndex >= pages.length) {
+      return;
+    }
+
+    if (Math.abs(newIndex - currentPageIndex) > 1) {
+      currentPageIndex = newIndex;
+      currentSpread = Math.floor(currentPageIndex / 2);
+      renderCurrentView();
+      return;
+    }
+
+    isFlipping = true;
+    const isForward = newIndex > currentPageIndex;
+    const currentPageData = pages[currentPageIndex];
+    const targetPageData = pages[newIndex];
+
+    if (isForward) {
+      leafFront.innerHTML = renderPageContent(currentPageData, false);
+      leafBack.innerHTML = renderPageContent(targetPageData, false);
+      rightPageEl.innerHTML = renderPageContent(targetPageData, false);
+      turningLeaf.className = 'turning-leaf active turn-forward';
+    } else {
+      leafBack.innerHTML = renderPageContent(currentPageData, false);
+      leafFront.innerHTML = renderPageContent(targetPageData, false);
+      rightPageEl.innerHTML = renderPageContent(targetPageData, false);
+      turningLeaf.className = 'turning-leaf active turn-backward';
+    }
+
+    setTimeout(() => {
+      currentPageIndex = newIndex;
+      currentSpread = Math.floor(currentPageIndex / 2);
+      turningLeaf.className = 'turning-leaf';
+      renderCurrentView();
+      isFlipping = false;
+    }, 550);
   }
 
   function turnToSpread(newIndex) {
@@ -1216,9 +1285,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Direct jump if stepping across multiple spreads (e.g. from TOC or slider)
     if (Math.abs(newIndex - currentSpread) > 1) {
-      renderSpread(newIndex);
+      currentSpread = newIndex;
+      currentPageIndex = currentSpread * 2;
+      renderCurrentView();
       return;
     }
 
@@ -1228,49 +1298,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetSpreadData = spreads[newIndex];
 
     if (isForward) {
-      // 1. Leaf front shows outgoing right page
       leafFront.innerHTML = renderPageContent(currentSpreadData.right, false);
-      // 2. Leaf back shows incoming left page
       leafBack.innerHTML = renderPageContent(targetSpreadData.left, true);
-      // 3. Immediately reveal incoming right page underneath
       rightPageEl.innerHTML = renderPageContent(targetSpreadData.right, false);
-
       turningLeaf.className = 'turning-leaf active turn-forward';
 
       setTimeout(() => {
         leftPageEl.innerHTML = renderPageContent(targetSpreadData.left, true);
         turningLeaf.className = 'turning-leaf';
-        updateSpreadUI(newIndex);
+        currentSpread = newIndex;
+        currentPageIndex = currentSpread * 2;
+        renderCurrentView();
         isFlipping = false;
       }, 700);
     } else {
-      // 1. Leaf back shows outgoing left page
       leafBack.innerHTML = renderPageContent(currentSpreadData.left, true);
-      // 2. Leaf front shows incoming right page
       leafFront.innerHTML = renderPageContent(targetSpreadData.right, false);
-      // 3. Immediately reveal incoming left page underneath
       leftPageEl.innerHTML = renderPageContent(targetSpreadData.left, true);
-
       turningLeaf.className = 'turning-leaf active turn-backward';
 
       setTimeout(() => {
         rightPageEl.innerHTML = renderPageContent(targetSpreadData.right, false);
         turningLeaf.className = 'turning-leaf';
-        updateSpreadUI(newIndex);
+        currentSpread = newIndex;
+        currentPageIndex = currentSpread * 2;
+        renderCurrentView();
         isFlipping = false;
       }, 700);
     }
   }
 
   function nextPage() {
-    if (currentSpread < spreads.length - 1) {
-      turnToSpread(currentSpread + 1);
+    if (isSinglePage) {
+      if (currentPageIndex < pages.length - 1) {
+        turnToPage(currentPageIndex + 1);
+      }
+    } else {
+      if (currentSpread < spreads.length - 1) {
+        turnToSpread(currentSpread + 1);
+      }
     }
   }
 
   function prevPage() {
-    if (currentSpread > 0) {
-      turnToSpread(currentSpread - 1);
+    if (isSinglePage) {
+      if (currentPageIndex > 0) {
+        turnToPage(currentPageIndex - 1);
+      }
+    } else {
+      if (currentSpread > 0) {
+        turnToSpread(currentSpread - 1);
+      }
     }
   }
 
@@ -1317,7 +1395,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="toc-page-num">${item.page}</span>
       `;
       li.addEventListener('click', () => {
-        turnToSpread(item.spreadIndex);
+        if (isSinglePage) {
+          turnToPage(item.spreadIndex * 2);
+        } else {
+          turnToSpread(item.spreadIndex);
+        }
         closeTOC();
       });
       tocList.appendChild(li);
@@ -1403,7 +1485,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="search-item-snippet">${res.snippet}</div>
       `;
       item.addEventListener('click', () => {
-        turnToSpread(res.spreadIndex);
+        if (isSinglePage) {
+          turnToPage(res.pageNumber - 1);
+        } else {
+          turnToSpread(res.spreadIndex);
+        }
         searchResultsDropdown.classList.add('hidden');
       });
       searchResultsDropdown.appendChild(item);
@@ -1437,17 +1523,71 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // EVENT LISTENERS
+  // EVENT LISTENERS & GESTURES
   // =========================================================================
   nextBtn.addEventListener('click', nextPage);
   prevBtn.addEventListener('click', prevPage);
-  firstPageBtn.addEventListener('click', () => turnToSpread(0));
-  lastPageBtn.addEventListener('click', () => turnToSpread(spreads.length - 1));
+  firstPageBtn.addEventListener('click', () => {
+    if (isSinglePage) turnToPage(0);
+    else turnToSpread(0);
+  });
+  lastPageBtn.addEventListener('click', () => {
+    if (isSinglePage) turnToPage(pages.length - 1);
+    else turnToSpread(spreads.length - 1);
+  });
   autoFlipBtn.addEventListener('click', toggleAutoFlip);
 
   pageRange.addEventListener('input', (e) => {
-    turnToSpread(parseInt(e.target.value, 10));
+    const val = parseInt(e.target.value, 10);
+    if (isSinglePage) {
+      turnToPage(val);
+    } else {
+      turnToSpread(val);
+    }
   });
+
+  // View Mode Toggle (Single Page vs Two-Page Spread)
+  if (viewModeToggleBtn) {
+    viewModeToggleBtn.addEventListener('click', () => {
+      isSinglePage = !isSinglePage;
+      renderCurrentView();
+    });
+  }
+
+  // Responsive Resize Listener
+  window.addEventListener('resize', () => {
+    const autoSingle = (window.innerWidth <= 768);
+    if (autoSingle !== isSinglePage) {
+      isSinglePage = autoSingle;
+      renderCurrentView();
+    }
+  });
+
+  // Touch Swipe Gesture for Mobile Reading
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  textbook.addEventListener('touchstart', (e) => {
+    if (!e.changedTouches || e.changedTouches.length === 0) return;
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  textbook.addEventListener('touchend', (e) => {
+    if (!e.changedTouches || e.changedTouches.length === 0) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 35) {
+      if (dx < 0) {
+        nextPage();
+      } else {
+        prevPage();
+      }
+    }
+  }, { passive: true });
 
   // Click on book to turn
   textbook.addEventListener('click', (e) => {
@@ -1506,9 +1646,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       toggleAutoFlip();
     } else if (e.key === 'Home') {
-      turnToSpread(0);
+      if (isSinglePage) turnToPage(0);
+      else turnToSpread(0);
     } else if (e.key === 'End') {
-      turnToSpread(spreads.length - 1);
+      if (isSinglePage) turnToPage(pages.length - 1);
+      else turnToSpread(spreads.length - 1);
     } else if (e.key === 'Escape') {
       closeTOC();
       searchResultsDropdown.classList.add('hidden');
@@ -1517,7 +1659,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initialize
+  // Initialize App
   initTOC();
-  renderSpread(0);
+  renderCurrentView();
 });
