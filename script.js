@@ -1341,6 +1341,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderCurrentView() {
     stopAudioNarration();
 
+    if (window.innerWidth <= 768) {
+      isSinglePage = true;
+    }
+
     if (isSinglePage) {
       document.body.classList.add('single-page-mode');
       if (viewModeToggleBtn) viewModeToggleBtn.textContent = '2-Page';

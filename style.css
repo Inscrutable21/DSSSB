@@ -1323,45 +1323,60 @@ body.single-page-mode .book.upright {
   .app-header {
     height: 48px;
     padding: 0 8px;
-    gap: 4px;
+    gap: 6px;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 
   .header-left {
-    gap: 4px;
+    gap: 6px;
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
   }
 
   .book-meta {
-    display: none;
+    display: none !important;
   }
 
   .badge-exam {
-    display: none;
+    display: none !important;
   }
 
-  #tocToggleBtn span,
-  #deepDiveToggleBtn span {
-    font-size: 0.76rem;
+  .deepdive-label-long {
+    display: none !important;
+  }
+
+  .deepdive-label-short {
+    display: inline !important;
+    font-weight: 700;
+  }
+
+  #tocToggleBtn span {
+    font-size: 0.78rem;
   }
 
   .btn-icon, .btn-tool, .btn-nav {
-    padding: 5px 8px;
+    padding: 6px 10px;
     font-size: 0.78rem;
     min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Search Box */
   .search-box {
     flex: 0 1 140px;
     min-width: 80px;
-    max-width: 180px;
+    max-width: 170px;
     transition: flex 0.2s ease, max-width 0.2s ease;
   }
 
   .search-box:focus-within {
     flex: 1 1 auto;
-    max-width: 240px;
+    max-width: 220px;
   }
 
   .search-box input {
@@ -1377,7 +1392,9 @@ body.single-page-mode .book.upright {
 
   /* Header Right Controls */
   .header-right {
-    gap: 4px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
   }
 
@@ -1388,18 +1405,18 @@ body.single-page-mode .book.upright {
   }
 
   #audioNarrationBtn {
-    padding: 5px 8px;
-    font-size: 0.76rem;
+    padding: 6px 9px;
+    font-size: 0.78rem;
   }
 
   #audioStatusText {
     display: inline;
   }
 
-  /* Reading Stage: Optimal single-page presentation */
+  /* Reading Stage: Unconditionally force single page layout on <= 768px */
   .reading-stage {
-    padding: 4px 6px;
-    height: calc(100dvh - 102px);
+    padding: 6px 8px;
+    height: calc(100dvh - 104px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1414,11 +1431,46 @@ body.single-page-mode .book.upright {
     justify-content: center;
   }
 
-  .book-hardcover-shadow {
-    width: min(440px, 96vw) !important;
+  .gap {
+    display: none !important;
+  }
+
+  .left-stack {
+    display: none !important;
+  }
+
+  .right-stack {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
     height: 100% !important;
-    max-height: calc(100dvh - 110px) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38) !important;
+    transform: none !important;
+  }
+
+  .left-page {
+    display: none !important;
+  }
+
+  .right-page {
+    width: 100% !important;
+    height: 100% !important;
+    border: 1px solid var(--page-border) !important;
+    border-radius: 6px !important;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  .turning-leaf {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .book-hardcover-shadow {
+    width: min(460px, 94vw) !important;
+    height: 100% !important;
+    max-height: calc(100dvh - 116px) !important;
+    margin: 0 auto !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35) !important;
     padding: 4px !important;
     border-radius: 8px !important;
     box-sizing: border-box !important;
@@ -1427,23 +1479,12 @@ body.single-page-mode .book.upright {
   .book.upright {
     width: 100% !important;
     height: 100% !important;
-    transform: none !important; /* Flat upright viewing on mobile for maximum readability */
-  }
-
-  body.single-page-mode .left-page {
-    display: none !important;
-  }
-
-  body.single-page-mode .right-page {
-    width: 100% !important;
-    height: 100% !important;
-    border: 1px solid var(--page-border) !important;
-    border-radius: 6px !important;
+    transform: none !important; /* Flat upright viewing on mobile */
   }
 
   /* Typesetting adjustments for mobile screen */
   .page-content {
-    padding: 10px 14px !important;
+    padding: 12px 16px !important;
     height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1452,28 +1493,43 @@ body.single-page-mode .book.upright {
     overflow: hidden !important;
   }
 
-  .left-page .page-content,
-  .right-page .page-content {
-    padding: 10px 14px !important;
-  }
-
   .page-running-head {
-    font-size: 0.64rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 0.65rem !important;
     margin-bottom: 4px !important;
     padding-bottom: 2px !important;
     letter-spacing: 0.4px !important;
   }
 
+  .page-running-head span:first-child {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    flex: 1 !important;
+    text-align: left !important;
+  }
+
+  .page-running-head span:last-child {
+    flex-shrink: 0 !important;
+    font-weight: 700 !important;
+  }
+
   .page-footer {
-    font-size: 0.68rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 0.7rem !important;
     margin-top: 3px !important;
     padding-top: 2px !important;
   }
 
   .page-body {
     flex: 1 !important;
-    font-size: clamp(0.74rem, 2.2vw + 0.3rem, 0.83rem) !important;
-    line-height: 1.34 !important;
+    font-size: clamp(0.76rem, 2.2vw + 0.3rem, 0.84rem) !important;
+    line-height: 1.36 !important;
     overflow-y: auto !important;
     scrollbar-width: none !important;
     -webkit-overflow-scrolling: touch !important;
@@ -1484,27 +1540,30 @@ body.single-page-mode .book.upright {
   }
 
   .page-body h1 {
-    font-size: clamp(0.96rem, 3.2vw + 0.3rem, 1.1rem) !important;
+    font-size: clamp(0.98rem, 3.2vw + 0.3rem, 1.12rem) !important;
     margin-top: 0 !important;
     margin-bottom: 3px !important;
     padding-bottom: 2px !important;
   }
 
   .page-body h2 {
-    font-size: clamp(0.86rem, 2.6vw + 0.28rem, 0.96rem) !important;
+    font-size: clamp(0.88rem, 2.6vw + 0.28rem, 0.98rem) !important;
     margin-top: 3px !important;
     margin-bottom: 2px !important;
   }
 
   .page-body h3 {
-    font-size: clamp(0.78rem, 2.4vw + 0.25rem, 0.86rem) !important;
+    font-size: clamp(0.8rem, 2.4vw + 0.25rem, 0.88rem) !important;
     margin-top: 3px !important;
     margin-bottom: 2px !important;
   }
 
   .page-body p {
-    margin-bottom: 3px !important;
+    margin-bottom: 4px !important;
     text-align: left !important;
+    word-spacing: normal !important;
+    text-justify: auto !important;
+    hyphens: auto !important;
   }
 
   .page-body ul, .page-body ol {
@@ -1518,7 +1577,7 @@ body.single-page-mode .book.upright {
   }
 
   .book-table {
-    font-size: clamp(0.65rem, 1.8vw + 0.28rem, 0.74rem) !important;
+    font-size: clamp(0.66rem, 1.8vw + 0.28rem, 0.74rem) !important;
     margin: 4px 0 !important;
   }
 
@@ -1544,11 +1603,11 @@ body.single-page-mode .book.upright {
   }
 
   .cover-border-box {
-    padding: 8px 10px !important;
+    padding: 10px 12px !important;
   }
 
   .cover-h1 {
-    font-size: clamp(0.92rem, 3vw + 0.3rem, 1.05rem) !important;
+    font-size: clamp(0.94rem, 3vw + 0.3rem, 1.08rem) !important;
     letter-spacing: 0.4px !important;
     margin: 4px 0 !important;
   }
@@ -1564,23 +1623,28 @@ body.single-page-mode .book.upright {
   }
 
   .cover-btn-start {
-    font-size: 0.8rem !important;
-    padding: 6px 14px !important;
-    margin-top: 4px !important;
+    font-size: 0.82rem !important;
+    padding: 7px 16px !important;
+    margin-top: 5px !important;
   }
 
   /* Bottom Navigation Controls */
   .reading-controls {
-    height: 54px !important;
-    padding: 2px 8px !important;
+    height: 52px !important;
+    padding: 2px 10px !important;
     background: var(--header-bg) !important;
     border-top: 1px solid var(--ui-border) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .controls-container {
     width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
     justify-content: space-between !important;
-    gap: 4px !important;
+    gap: 8px !important;
   }
 
   #firstPageBtn,
@@ -1592,19 +1656,21 @@ body.single-page-mode .book.upright {
   }
 
   .btn-nav {
+    flex-shrink: 0 !important;
+    min-width: 66px !important;
     padding: 6px 12px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.82rem !important;
     font-weight: 700 !important;
-    min-height: 38px !important;
+    min-height: 36px !important;
     border-radius: 6px !important;
   }
 
   .page-scrubber {
     flex: 1 !important;
-    max-width: 160px !important;
+    max-width: 180px !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 1px !important;
+    gap: 2px !important;
     align-items: center !important;
   }
 
@@ -1620,7 +1686,7 @@ body.single-page-mode .book.upright {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    max-width: 160px !important;
+    max-width: 180px !important;
     text-align: center !important;
   }
 
