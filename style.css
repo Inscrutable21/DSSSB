@@ -1,0 +1,931 @@
+/* ==========================================================================
+   DSSSB Junior Scientific Assistant (Cyber Forensic) - 3D Digital Textbook
+   Styles: Academic Bookbinding, Upright 3D Transforms, Multi-Theme, Layout
+   ========================================================================== */
+
+:root {
+  --font-title: 'Cinzel', serif;
+  --font-body: 'Crimson Pro', Georgia, serif;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Parchment Theme (Default) */
+  --bg-app: #e9ecef;
+  --bg-app-gradient: radial-gradient(circle at 50% 20%, #f7f9fa 0%, #d5dde5 100%);
+  --book-cover-leather: #3b1d11;
+  --page-bg: #faf7f0;
+  --page-bg-subtle: #f3ede2;
+  --page-border: #4a3728;
+  --text-main: #2b221b;
+  --text-muted: #6b5c50;
+  --text-heading: #1c140e;
+  --accent-color: #8c2d19;
+  --accent-hover: #b23b20;
+  --accent-gold: #c29033;
+  --spine-shadow: rgba(0, 0, 0, 0.45);
+  --page-shadow: rgba(30, 20, 15, 0.3);
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --ui-border: #d0c7b8;
+  --ui-btn-bg: #ffffff;
+  --ui-btn-text: #2b221b;
+  
+  --badge-it: #1d4ed8;
+  --badge-it-bg: #eff6ff;
+  --badge-bns: #b45309;
+  --badge-bns-bg: #fffbeb;
+  --badge-penalty: #b91c1c;
+  --badge-penalty-bg: #fef2f2;
+}
+
+/* Theme: Crisp White Paper */
+body.theme-white {
+  --bg-app: #f1f5f9;
+  --bg-app-gradient: radial-gradient(circle at 50% 20%, #ffffff 0%, #cbd5e1 100%);
+  --book-cover-leather: #0f172a;
+  --page-bg: #ffffff;
+  --page-bg-subtle: #f8fafc;
+  --page-border: #334155;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-heading: #0f172a;
+  --accent-color: #0369a1;
+  --accent-hover: #0284c7;
+  --accent-gold: #b45309;
+  --spine-shadow: rgba(0, 0, 0, 0.35);
+  --page-shadow: rgba(15, 23, 42, 0.25);
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --ui-border: #cbd5e1;
+  --ui-btn-bg: #ffffff;
+  --ui-btn-text: #1e293b;
+}
+
+/* Theme: Dark Forensic Mode */
+body.theme-dark {
+  --bg-app: #0b1120;
+  --bg-app-gradient: radial-gradient(circle at 50% 20%, #1e293b 0%, #030712 100%);
+  --book-cover-leather: #020617;
+  --page-bg: #1e293b;
+  --page-bg-subtle: #131c2e;
+  --page-border: #475569;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-heading: #f8fafc;
+  --accent-color: #38bdf8;
+  --accent-hover: #0284c7;
+  --accent-gold: #f59e0b;
+  --spine-shadow: rgba(0, 0, 0, 0.85);
+  --page-shadow: rgba(0, 0, 0, 0.7);
+  --header-bg: rgba(15, 23, 42, 0.95);
+  --ui-border: #334155;
+  --ui-btn-bg: #1e293b;
+  --ui-btn-text: #f1f5f9;
+
+  --badge-it-bg: #1e3a8a;
+  --badge-it: #93c5fd;
+  --badge-bns-bg: #78350f;
+  --badge-bns: #fcd34d;
+  --badge-penalty-bg: #7f1d1d;
+  --badge-penalty: #fca5a5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-app-gradient);
+  color: var(--text-main);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: text;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ==========================================================================
+   Top Header Navigation Bar
+   ========================================================================== */
+.app-header {
+  height: 54px;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ui-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-icon,
+.btn-tool,
+.btn-nav {
+  font-family: var(--font-ui);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--ui-btn-bg);
+  color: var(--ui-btn-text);
+  border: 1px solid var(--ui-border);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover,
+.btn-tool:hover,
+.btn-nav:hover {
+  background: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+.badge-exam {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.book-title-short {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+/* Search Box */
+.search-box {
+  position: relative;
+  width: 360px;
+  display: flex;
+  align-items: center;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-box input {
+  font-family: var(--font-ui);
+  width: 100%;
+  padding: 6px 30px 6px 32px;
+  background: var(--ui-btn-bg);
+  border: 1px solid var(--ui-border);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(140, 45, 25, 0.15);
+}
+
+.btn-clear {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  width: 100%;
+  max-height: 380px;
+  overflow-y: auto;
+  background: var(--ui-btn-bg);
+  border: 1px solid var(--ui-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 200;
+}
+
+.search-item {
+  font-family: var(--font-ui);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ui-border);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.search-item:hover {
+  background: var(--page-bg-subtle);
+}
+
+.search-item-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-item-snippet {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Main Reading Stage & 3D Upright Book Architecture
+   ========================================================================== */
+.reading-stage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 10px;
+  overflow: hidden;
+  perspective: 1800px;
+}
+
+.book-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 960px;
+}
+
+.book-hardcover-shadow {
+  position: absolute;
+  width: min(940px, 96vw);
+  height: min(600px, 79vh);
+  background: var(--book-cover-leather);
+  border-radius: 10px;
+  box-shadow: 0 30px 60px var(--page-shadow), 0 10px 20px rgba(0, 0, 0, 0.25), inset 0 0 30px rgba(0,0,0,0.7);
+  transform: translateZ(-12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Book Container */
+.book.upright {
+  position: relative;
+  width: min(940px, 95vw);
+  height: min(620px, 80vh);
+  perspective: 1800px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+/* Page Stacks */
+.page-stack {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.left-stack {
+  right: 50%;
+  transform-origin: right center;
+  transform: rotateY(2deg);
+}
+
+.right-stack {
+  left: 50%;
+  transform-origin: left center;
+  transform: rotateY(-2deg);
+}
+
+/* Central Book Spine */
+.gap {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.2));
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Active Readable Pages */
+.page-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--page-bg);
+  border: 1px solid var(--page-border);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-page {
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.right-page {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Inner Page Typesetting & Content Container */
+.page-content {
+  width: 100%;
+  height: 100%;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden !important;
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+
+.page-content::-webkit-scrollbar {
+  display: none;
+}
+
+.left-page .page-content {
+  padding: 16px 18px 16px 22px;
+}
+
+.right-page .page-content {
+  padding: 16px 22px 16px 18px;
+}
+
+/* Header Running Head */
+.page-running-head {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--ui-border);
+  padding-bottom: 3px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  word-break: normal;
+}
+
+/* Content Body Typography */
+.page-body {
+  flex: 1;
+  font-size: 0.86rem;
+  line-height: 1.42;
+  color: var(--text-main);
+  overflow: hidden !important;
+  overflow-wrap: break-word;
+}
+
+.page-body h1, .page-body h2, .page-body h3 {
+  font-family: var(--font-title);
+  color: var(--text-heading);
+  line-height: 1.2;
+}
+
+.page-body h1 {
+  font-size: 1.18rem;
+  color: var(--accent-color);
+  border-bottom: 1px solid var(--accent-color);
+  padding-bottom: 2px;
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.page-body h2 {
+  font-size: 1.02rem;
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+.page-body h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+.page-body p {
+  margin-bottom: 5px;
+  text-align: justify;
+}
+
+.page-body ul, .page-body ol {
+  margin-left: 16px;
+  margin-bottom: 5px;
+}
+
+.page-body li {
+  margin-bottom: 3px;
+}
+
+/* Badges for IT Act, BNS, & Penalties */
+.sec-badge {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.sec-badge.it-act {
+  background: var(--badge-it-bg);
+  color: var(--badge-it);
+  border: 1px solid var(--badge-it);
+}
+
+.sec-badge.bns {
+  background: var(--badge-bns-bg);
+  color: var(--badge-bns);
+  border: 1px solid var(--badge-bns);
+}
+
+.sec-badge.penalty {
+  background: var(--badge-penalty-bg);
+  color: var(--badge-penalty);
+  border: 1px solid var(--badge-penalty);
+}
+
+/* Academic Tables inside Book */
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  margin: 8px 0;
+  background: var(--page-bg-subtle);
+  border: 1px solid var(--ui-border);
+}
+
+.book-table th {
+  background: var(--page-border);
+  color: #fff;
+  padding: 5px 8px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.book-table td {
+  padding: 5px 8px;
+  border: 1px solid var(--ui-border);
+  line-height: 1.3;
+}
+
+/* Academic Callouts / Alerts */
+.book-callout {
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-left: 3px solid var(--accent-color);
+  background: var(--page-bg-subtle);
+  margin: 8px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.book-callout.case {
+  border-left-color: #d97706;
+}
+
+.book-callout strong {
+  color: var(--text-heading);
+}
+
+/* Page Footer with Page Number */
+.page-footer {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-top: 1px solid var(--ui-border);
+  padding-top: 4px;
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   Realistic 3D Content-Bearing Turning Leaf
+   Carries the rendered HTML of outgoing and incoming pages during the turn
+   ========================================================================== */
+.turning-leaf {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 70;
+}
+
+.turning-leaf.active {
+  display: block !important;
+}
+
+.turning-leaf.turn-forward {
+  transform-origin: left center;
+  animation: flipForward3D 0.7s cubic-bezier(0.25, 1, 0.45, 1) forwards;
+}
+
+.turning-leaf.turn-backward {
+  transform-origin: left center;
+  animation: flipBackward3D 0.7s cubic-bezier(0.25, 1, 0.45, 1) forwards;
+}
+
+@keyframes flipForward3D {
+  0% {
+    transform: rotateY(-2deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    transform: rotateY(-90deg) scale(1.015);
+    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.35);
+  }
+  100% {
+    transform: rotateY(-182deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@keyframes flipBackward3D {
+  0% {
+    transform: rotateY(-182deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    transform: rotateY(-90deg) scale(1.015);
+    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.35);
+  }
+  100% {
+    transform: rotateY(-2deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Front & Back Faces of the Turning Leaf */
+.leaf-front,
+.leaf-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--page-bg);
+  border: 1px solid var(--page-border);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.04);
+  backface-visibility: hidden;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.leaf-front {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  transform: rotateY(0deg);
+}
+
+.leaf-back {
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  transform: rotateY(180deg);
+}
+
+/* Page Curvature Lighting Gradient */
+.leaf-front::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.1) 100%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.turning-leaf.turn-forward .leaf-front::after {
+  animation: leafLightForward 0.7s ease-in-out forwards;
+}
+
+@keyframes leafLightForward {
+  0% { opacity: 0; }
+  45% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+.leaf-back::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.18) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.1) 100%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.turning-leaf.turn-forward .leaf-back::after {
+  animation: leafLightBack 0.7s ease-in-out forwards;
+}
+
+@keyframes leafLightBack {
+  0% { opacity: 0; }
+  55% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* ==========================================================================
+   Bottom Navigation & Controls Bar
+   ========================================================================== */
+.reading-controls {
+  height: 60px;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--ui-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  gap: 2px;
+}
+
+.controls-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-primary {
+  background: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.page-scrubber {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-scrubber input[type="range"] {
+  width: 140px;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+.page-indicator {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  min-width: 170px;
+  text-align: center;
+}
+
+.keyboard-hints {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Table of Contents Slide-Out Drawer
+   ========================================================================== */
+.toc-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 100vh;
+  background: var(--ui-btn-bg);
+  border-right: 1px solid var(--ui-border);
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 20px;
+}
+
+.toc-drawer.hidden {
+  transform: translateX(-100%);
+  display: flex !important;
+}
+
+.toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.toc-header h3 {
+  font-family: var(--font-title);
+  color: var(--accent-color);
+  font-size: 1.25rem;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.toc-subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.toc-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.toc-item {
+  font-family: var(--font-ui);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ui-border);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toc-item:hover,
+.toc-item.active {
+  background: var(--page-bg-subtle);
+  color: var(--accent-color);
+}
+
+.toc-ch-num {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-right: 8px;
+}
+
+.toc-ch-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.toc-page-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--ui-border);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+
+/* ==========================================================================
+   Book Cover Styling (Double Page Grand Presentation)
+   ========================================================================== */
+.cover-border-box {
+  border: 2px double var(--accent-gold);
+  border-radius: 6px;
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cover-title-badge {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  border-bottom: 1px solid var(--accent-gold);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.cover-h1 {
+  font-family: var(--font-title);
+  font-size: 1.45rem;
+  color: var(--accent-color);
+  line-height: 1.25;
+  margin: 10px 0;
+}
+
+.cover-features-list {
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 12px 0;
+  list-style-type: none;
+  background: var(--page-bg-subtle);
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px dashed var(--ui-border);
+}
+
+.cover-features-list li {
+  margin-bottom: 4px;
+}
+
+.cover-btn-start {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(140, 45, 25, 0.3);
+  transition: all 0.2s;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.cover-btn-start:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(140, 45, 25, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 820px) {
+  .book-hardcover-shadow { width: 96vw; height: 500px; }
+  .book.upright { width: 94vw; height: 480px; }
+  .search-box { width: 200px; }
+  .book-title-short { display: none; }
+}
