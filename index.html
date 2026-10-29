@@ -17,6 +17,10 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         <span>Chapters</span>
       </button>
+      <button id="deepDiveToggleBtn" class="btn-tool btn-deepdive" title="In-Depth Statutory Analysis & Real-Life Scenarios">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <span>Acts Deep-Dive</span>
+      </button>
       <div class="book-meta">
         <span class="badge-exam">DSSSB JSA (Cyber Forensic)</span>
         <span class="book-title-short">Cyber Crimes, Offences & Penalties</span>
@@ -97,7 +101,7 @@
 
       <button id="nextBtn" class="btn-nav btn-primary" title="Next Page (Right Arrow)">Next →</button>
       <button id="lastPageBtn" class="btn-nav" title="Last Page (End)">Last ⇥</button>
-      <button id="bottomAudioBtn" class="btn-nav" title="Read Aloud Page">Audio 🔊</button>
+      <button id="bottomAudioBtn" class="btn-nav" title="Read Aloud Page">Audio: Play</button>
       <button id="autoFlipBtn" class="btn-nav" title="Toggle Auto Page Turn">Auto-Turn: OFF</button>
     </div>
     <div class="keyboard-hints">
@@ -116,6 +120,35 @@
       <!-- Generated dynamically in script.js -->
     </ul>
   </aside>
+
+  <!-- Deep Dive Statutory Analysis & Scenario Matrix Drawer -->
+  <aside id="deepDiveDrawer" class="deepdive-drawer hidden">
+    <div class="deepdive-header">
+      <div>
+        <h3>Indian Cyber Acts & Real-Life Scenarios Lab</h3>
+        <p class="deepdive-subtitle">Deep Statutory Dissection, Offence Thresholds, Forensic Proof & Judicial Precedents</p>
+      </div>
+      <button id="closeDeepDiveBtn" class="btn-close" aria-label="Close">&times;</button>
+    </div>
+
+    <!-- Section navigation pills -->
+    <div class="deepdive-nav" id="deepDiveTabs">
+      <button class="dd-tab active" data-sec="bns78">BNS §78 (Cyberstalking)</button>
+      <button class="dd-tab" data-sec="it43_66">IT Act §43 vs §66 (Hacking)</button>
+      <button class="dd-tab" data-sec="it66c_66d">IT Act §66C vs §66D (Identity Theft / Fraud)</button>
+      <button class="dd-tab" data-sec="it65">IT Act §65 (Source Code Tampering)</button>
+      <button class="dd-tab" data-sec="it66e_bns77">IT Act §66E vs BNS §77 (Privacy & Voyeurism)</button>
+      <button class="dd-tab" data-sec="it66f">IT Act §66F (Cyber Terrorism)</button>
+      <button class="dd-tab" data-sec="it79">IT Act §79 (Intermediary Safe Harbour)</button>
+      <button class="dd-tab" data-sec="bsa63">BSA §63 (Electronic Evidence Admissibility)</button>
+    </div>
+
+    <!-- Deep Dive Content Viewport -->
+    <div class="deepdive-body" id="deepDiveBody">
+      <!-- Populated dynamically via script.js -->
+    </div>
+  </aside>
+
   <div id="drawerOverlay" class="drawer-overlay hidden"></div>
 
   <!-- Book Script -->

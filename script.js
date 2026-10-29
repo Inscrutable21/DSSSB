@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeTocBtn = document.getElementById('closeTocBtn');
   const drawerOverlay = document.getElementById('drawerOverlay');
   const tocList = document.getElementById('tocList');
+  const deepDiveToggleBtn = document.getElementById('deepDiveToggleBtn');
+  const deepDiveDrawer = document.getElementById('deepDiveDrawer');
+  const closeDeepDiveBtn = document.getElementById('closeDeepDiveBtn');
+  const deepDiveTabs = document.getElementById('deepDiveTabs');
+  const deepDiveBody = document.getElementById('deepDiveBody');
   const searchInput = document.getElementById('searchInput');
   const clearSearchBtn = document.getElementById('clearSearchBtn');
   const searchResultsDropdown = document.getElementById('searchResultsDropdown');
@@ -442,57 +447,82 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
 
-    // Spread 7: Offender Motives & Cyberstalking (Pages 15 & 16)
+    // Spread 7: Cyberstalking & BNS Section 78 In-Depth (Pages 15 & 16)
     {
       spreadId: 7,
       left: {
         pageNumber: 15,
-        runningHead: "Chapter 2: Offender Motives & Intent",
+        runningHead: "Chapter 3: BNS §78 Statutory Scope & Thresholds",
         content: `
-          <h2>2.4 Reasons for Committing Cybercrime</h2>
-          <p>Understanding motives helps forensic investigators profile threats and establish culpability:</p>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li><strong>Financial Gain:</strong> The primary driver behind ransomware, credential theft, payment fraud, and corporate extortion.</li>
-            <li><strong>Revenge & Personal Disputes:</strong> Disgruntled former employees or domestic disputes misusing credentials to damage systems or reputations.</li>
-            <li><strong>Ideological or Political Goals:</strong> Hacktivism to promote causes or disrupt operations. Conduct must be evaluated against statutory terrorism criteria.</li>
-            <li><strong>Espionage:</strong> State-sponsored or corporate espionage targeting intellectual property, defence research, and strategic secrets.</li>
-            <li><strong>Challenge & Recognition:</strong> Thrill-seekers defeating security controls for notoriety. Curiosity does not make unauthorized conduct lawful.</li>
-            <li><strong>Sexual Exploitation & Harassment:</strong> Coercion, stalking, and non-consensual image distribution.</li>
-          </ul>
+          <h1>Chapter 3: Crimes Against Individuals</h1>
+          <h3>3.1 Cyberstalking & BNS Section 78: Statutory Scope & Legal Thresholds</h3>
+          <p>Cyberstalking is the repeated, unwelcome use of electronic communications or social platforms to monitor, pursue, or intimidate an individual.</p>
 
-          <div class="book-callout">
-            <strong>Motivation, Intention, and Authorization are NOT the Same:</strong><br>
-            Under the IT Act, <span class="sec-badge it-act">Section 43</span> handles civil compensation for unauthorized access, while <span class="sec-badge it-act">Section 66</span> criminalizes those same acts when done <em>dishonestly or fraudulently</em>.
+          <div class="case-card" style="margin-bottom: 8px;">
+            <div class="case-card-header">
+              <span>BNS §78 (Formerly IPC §354D)</span>
+              <span class="case-card-badge">Bare Act Statute</span>
+            </div>
+            <strong>Statutory Text:</strong> <em>"Whoever, being a man, monitors the use by a woman of the internet, email or any other form of electronic communication, commits the offence of stalking."</em><br>
+            <strong>Punishment:</strong> 1st Conviction: Up to <strong>3 years + fine</strong> (Bailable); Subsequent: Up to <strong>5 years + fine</strong> (Non-bailable). Triable by any Magistrate.
+          </div>
+
+          <div style="background: var(--page-bg-subtle); padding: 8px 10px; border-left: 3px solid var(--accent-color); margin-bottom: 8px; border-radius: 0 4px 4px 0; font-size: 0.81rem; line-height: 1.34;">
+            <strong style="color: var(--accent-color);">The Instagram / Social Media Legal Threshold:</strong><br>
+            • <em>Does viewing a public Instagram profile constitute stalking?</em> <strong>NO.</strong> Passive viewing of public posts, reels, or stories voluntarily placed in the public domain lacks criminal mens rea and harassment.<br>
+            • <em>At what exact point does it become a crime?</em> It crosses into BNS §78 the moment a man repeatedly contacts a woman after she indicates disinterest (e.g. tells him to stop or blocks him), creates secondary/burner handles to bypass blocks, or engages in covert surveillance of her activity.
+          </div>
+
+          <div style="font-size: 0.8rem; line-height: 1.34;">
+            <strong>Gender-Specific Mandate:</strong> BNS §78 strictly requires a <strong>male accused</strong> and a <strong>female victim</strong>. If a woman stalks a man, §78 cannot be charged; charges must be framed under BNS §351 (Criminal Intimidation), BNS §356 (Defamation), or IT Act §66E/67.<br>
+            <strong>Statutory Defences [§78(2)]:</strong> Lawful crime prevention/detection by police, compliance with any law, or conduct shown to be reasonable and justified in the circumstances.
           </div>
         `
       },
       right: {
         pageNumber: 16,
-        runningHead: "Chapter 3: Crimes Against Individuals - Stalking",
+        runningHead: "Chapter 3: Situational Stalking Matrix & Forensics",
         content: `
-          <h1>Chapter 3: Crimes Against Individuals</h1>
-          <h3>3.1 Cyberstalking & Online Harassment</h3>
-          <p>Cyberstalking is the repeated use of electronic communications, mobile messaging, or internet platforms to monitor, pursue, harass, or intimidate an individual.</p>
+          <h3>3.2 Situational Case Matrix & Forensic Investigation</h3>
+          <p>Practical application of statutory tests to real-world digital interactions:</p>
 
-          <div class="case-card">
-            <div class="case-card-header">
-              <span>BNS §78 (Formerly IPC §354D)</span>
-              <span class="case-card-badge">Statute</span>
-            </div>
-            <strong>Statutory Stalking Elements:</strong> Any man who monitors the use by a woman of the internet, email or other electronic communication commits the offence of stalking.<br>
-            <strong>Statutory Punishment:</strong> 1st Conviction: Up to <strong>3 years + fine</strong>; Subsequent: Up to <strong>5 years + fine</strong>.
+          <table class="book-table" style="margin-bottom: 8px;">
+            <thead>
+              <tr><th>Digital Scenario</th><th>Legal Status</th><th>Statutory Justification</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Browsing Public Profile</strong><br>Viewing public IG reels/stories without sending messages.</td>
+                <td><span style="color:#166534; font-weight:700;">[NOT AN OFFENCE]</span></td>
+                <td>Public domain content. No communication or monitoring with harassment.</td>
+              </tr>
+              <tr>
+                <td><strong>Burner DMs After Block</strong><br>Victim blocks accused; accused creates 5 fake handles to message.</td>
+                <td><span style="color:#991b1b; font-weight:700;">[OFFENCE: BNS §78]</span></td>
+                <td>Clear disinterest communicated. Bypassing blocks demonstrates persistent pursuit.</td>
+              </tr>
+              <tr>
+                <td><strong>Sideloading Stalkerware</strong><br>Covertly installing tracking APK to read chats and GPS.</td>
+                <td><span style="color:#991b1b; font-weight:700;">[BNS §78 + IT §43/66 + §66E]</span></td>
+                <td>Unlawful surveillance + unauthorized computer access + privacy breach.</td>
+              </tr>
+              <tr>
+                <td><strong>Woman Stalking Man</strong><br>Female sends 60 unwanted emails after rejection.</td>
+                <td><span style="color:#92400e; font-weight:700;">[BNS §351 / §356]</span></td>
+                <td>BNS §78 gender-barred. Prosecutable under intimidation/defamation.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="book-callout" style="padding: 6px 10px; margin-top: 4px;">
+            <strong style="color: var(--accent-color);">DSSSB Forensic Investigation Protocol:</strong>
+            <ol style="margin: 4px 0 0 14px; padding: 0; font-size: 0.77rem; line-height: 1.32;">
+              <li><strong>Preservation Notice:</strong> Section 94 BNSS (formerly 91 CrPC) request to Meta/TSP for IPDR, login sessions, and IMEI.</li>
+              <li><strong>IPDR Correlation:</strong> Matching dynamic IP and port to ISP subscriber name and cell tower azimuth.</li>
+              <li><strong>Device Extraction:</strong> Physical acquisition via Cellebrite UFED to extract SQLite databases (<code>msgstore.db</code>) and hidden APKs.</li>
+              <li><strong>Admissibility:</strong> Mandatory Section 63 BSA certificate guaranteeing SHA-256 hash integrity.</li>
+            </ol>
           </div>
-
-          <h3>Technical Manifestations of Stalking:</h3>
-          <ul style="font-size: 0.8rem; line-height: 1.34;">
-            <li><strong>Stalkerware / Spyware Apps:</strong> Covertly installed Android APKs capturing screen, SMS, GPS, and microphone feeds.</li>
-            <li><strong>Doxxing:</strong> Maliciously publishing private home addresses, phone numbers, and identity cards to encourage harassment.</li>
-            <li><strong>Social Media Impersonation:</strong> Creating duplicate profiles to deceive family members or defame the victim.</li>
-          </ul>
-
-          <p style="font-size: 0.78rem; color: var(--text-muted);">
-            <em>Forensic Investigation:</em> Investigators seize the victim's device, extract APK package names using ADB commands, inspect persistent services, and obtain preservation orders (under Section 91 CrPC / BNSS) from telecom service providers for IPDR correlation.
-          </p>
         `
       }
     },
@@ -1224,7 +1254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (bottomAudioBtn) {
       bottomAudioBtn.classList.remove('btn-primary');
-      bottomAudioBtn.textContent = 'Audio 🔊';
+      bottomAudioBtn.textContent = 'Audio: Play';
     }
     document.querySelectorAll('.page-body').forEach(el => el.classList.remove('audio-reading-active'));
   }
@@ -1271,7 +1301,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (bottomAudioBtn) {
         bottomAudioBtn.classList.add('btn-primary');
-        bottomAudioBtn.textContent = 'Stop ⏹';
+        bottomAudioBtn.textContent = 'Audio: Stop';
       }
       activeBody.classList.add('audio-reading-active');
     };
@@ -1537,7 +1567,443 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeTOC() {
     tocDrawer.classList.add('hidden');
-    drawerOverlay.classList.add('hidden');
+    if (deepDiveDrawer && deepDiveDrawer.classList.contains('hidden')) {
+      drawerOverlay.classList.add('hidden');
+    }
+  }
+
+  // =========================================================================
+  // INDIAN CYBER ACTS & REAL-LIFE SCENARIOS LAB DATA & ENGINE
+  // =========================================================================
+  const deepDiveData = {
+    bns78: {
+      title: "BNS Section 78: Stalking in Cyberspace",
+      subtitle: "Bharatiya Nyaya Sanhita 2023 • Formerly Section 354D Indian Penal Code",
+      quote: "Whoever, being a man, monitors the use by a woman of the internet, email or any other form of electronic communication, commits the offence of stalking.",
+      nature: "Cognizable • Bailable (1st Conviction) / Non-Bailable (Subsequent) • Non-Compoundable",
+      forum: "Judicial Magistrate of the First Class / Metropolitan Magistrate",
+      penalty: "1st Conviction: Imprisonment up to 3 years and fine; Subsequent Conviction: Imprisonment up to 5 years and fine.",
+      ingredients: [
+        "1. Gender Requirement: The accused MUST be a man ('Whoever, being a man').",
+        "2. Protected Class: The victim MUST be a woman ('monitors the use by a woman').",
+        "3. Prohibited Conduct: Either (a) repeatedly contacts despite clear indication of disinterest, OR (b) monitors internet, email, or any other electronic communication.",
+        "4. Mens Rea: Intent to foster personal interaction, monitor online movements, or cause harassment/fear.",
+        "5. Statutory Defences (§78(2)): Lawful crime prevention/detection by police, compliance with any law, or reasonable & justified conduct in the circumstances."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: Viewing Public Instagram Profile & Stories",
+          verdict: "Safe",
+          verdictClass: "verdict-safe",
+          facts: "A user visits someone's public Instagram profile multiple times a week, views public reels, and watches public stories. No direct messages (DMs), comments, or calls are made.",
+          legal: "NOT AN OFFENCE. Content willingly shared in the open public domain lacks the statutory element of criminal monitoring or invasion of private communications. Viewing public social media does not satisfy the legal definition of stalking."
+        },
+        {
+          name: "Scenario 2: Creating Burner Accounts After Explicit Block",
+          verdict: "Criminal Offence",
+          verdictClass: "verdict-offence",
+          facts: "A woman tells an acquaintance 'Do not contact me ever again' and blocks his Instagram and WhatsApp accounts. He creates 4 new fake accounts to DM her: 'Why did you block me? Unblock me right now', and spams comments on her friends' posts asking about her.",
+          legal: "OFFENCE UNDER BNS §78(1)(a) & (b). Clear disinterest was explicitly communicated. The creation of secondary burner handles to intentionally circumvent technical blocking controls establishes continuous, unwanted pursuit and monitoring."
+        },
+        {
+          name: "Scenario 3: Sideloading Stalkerware / Spyware on Phone",
+          verdict: "Compound Criminal Offence",
+          verdictClass: "verdict-offence",
+          facts: "A husband or partner secretly installs a stealth monitoring APK (e.g. Cerberus, mSpy) onto the victim's smartphone, allowing him to track real-time GPS locations, clone WhatsApp messages, and record phone calls without her knowledge.",
+          legal: "COMPOUND OFFENCE: BNS §78 (Electronic Stalking) + IT Act §43(a)/§66 (Unauthorized access and extraction of computer data) + IT Act §66E (Violation of bodily and informational privacy)."
+        },
+        {
+          name: "Scenario 4: Woman Stalking a Male Colleague",
+          verdict: "Gender Exemption under BNS §78",
+          verdictClass: "verdict-exempt",
+          facts: "A female employee sends over 50 unsolicited emails, WhatsApp messages, and LinkedIn DMs daily to a male manager who has repeatedly demanded that she cease all non-work communication.",
+          legal: "BNS §78 CANNOT BE CHARGED. BNS §78 is strictly gender-specific ('Whoever, being a man, monitors the use by a woman...'). The male complainant cannot file under §78. Police must register FIR under BNS §351 (Criminal Intimidation), BNS §356 (Defamation), or IT Act §67 if messages are sexually obscene."
+        },
+        {
+          name: "Scenario 5: Police Cyber Cell Surveillance of Suspect",
+          verdict: "Statutory Defence Applied",
+          verdictClass: "verdict-exempt",
+          facts: "An authorized cyber crime officer monitors a female suspect's public social media and messaging channels during an active investigation into a cyber fraud syndicate.",
+          legal: "EXEMPT UNDER BNS §78(2)(a). The statute explicitly provides an absolute defence if the conduct was pursued for the purpose of preventing or detecting crime by an authorized individual."
+        }
+      ],
+      forensics: [
+        "1. Preservation Orders: Issue urgent notice under Section 94 BNSS (formerly 91 CrPC) to Meta Platforms Inc. to preserve IP connection logs, session cookies, registration phone/email, and device IMEIs.",
+        "2. IPDR Correlation: Request Internet Protocol Detail Records from Telecom Service Providers (TSPs) to correlate the dynamic public IP, source port, and UTC timestamp with subscriber billing identity.",
+        "3. Mobile Physical Acquisition: Use Cellebrite UFED / Magnet AXIOM to parse local SQLite databases (wa.db, direct_v2_threads) and extract cached thumbnails and deleted messages.",
+        "4. Evidence Admissibility: Generate SHA-256 cryptographic hashes immediately upon acquisition and issue mandatory Section 63 BSA certificate."
+      ],
+      precedents: "State of Tamil Nadu v. Suhas Katti (2004) — First electronic harassment conviction in India confirming that digital communication logs and ISP subscriber records constitute conclusive legal proof of identity and transmission."
+    },
+    it43_66: {
+      title: "IT Act Section 43 vs 66: Hacking & Unauthorized System Intrusion",
+      subtitle: "Information Technology Act 2000 • Civil Remedy vs Penal Incarceration",
+      quote: "Section 43: Penalty and compensation for damage to computer... Section 66: If any person, dishonestly or fraudulently, does any act referred to in section 43...",
+      nature: "Section 43: Civil Contravention (Strict Liability) • Section 66: Criminal Offence (Cognizable, Bailable, Non-Compoundable)",
+      forum: "Section 43: State Adjudicating Officer (Secretary IT) • Section 66: Metropolitan Magistrate / Judicial Magistrate First Class",
+      penalty: "Section 43: Compensation up to ₹1 Crore (payable to victim); Section 66: Imprisonment up to 3 years and/or fine up to ₹5 Lakh.",
+      ingredients: [
+        "1. Section 43 acts: Unauthorized access, downloading, virus insertion, system damage, disruption, denial of access, or tampering.",
+        "2. Strict Liability in §43: No criminal intent (mens rea) is required. Even unauthorized accidental access triggers civil liability.",
+        "3. Section 66 Criminality: The identical physical acts of Section 43 become criminal ONLY when done 'dishonestly' (intent to cause wrongful gain or wrongful loss) or 'fraudulently' (intent to defraud).",
+        "4. Section 46 Powers: State Adjudicating Officer holds all powers of a Civil Court including summoning witnesses, compelling documents, and awarding damages."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: Internal Employee Exceeds Database Access",
+          verdict: "Civil Contravention (§43(a))",
+          verdictClass: "verdict-exempt",
+          facts: "A database administrator queries customer records outside his assigned project out of personal curiosity. He does not copy, sell, or destroy the data.",
+          legal: "CONTRAVENTION UNDER §43(a). Unauthorized access occurred without permission. However, without evidence of dishonest gain or fraudulent intent, Section 66 criminal charges will not stand."
+        },
+        {
+          name: "Scenario 2: Ransomware Attack Locking Corporate Servers",
+          verdict: "Criminal Offence (§43 read with §66 + §66F + BNS §308)",
+          verdictClass: "verdict-offence",
+          facts: "An attacker penetrates an enterprise network via spear-phishing, deploys encryptor malware across 200 servers, and demands 50 Bitcoin to provide the decryption keys.",
+          legal: "CRIMINAL OFFENCE under Section 43(c)/(d) read with Section 66 (system damage and disruption done dishonestly) + Section 66F (Cyberterrorism, if critical services are hit) + BNS Section 308 (Extortion)."
+        },
+        {
+          name: "Scenario 3: Ethical Hacker Scanning External Server Without Permission",
+          verdict: "Civil Violation (§43(a))",
+          verdictClass: "verdict-exempt",
+          facts: "A cybersecurity researcher runs vulnerability scans (Nmap, Burp Suite) against a bank's web server without any prior written authorization or bug bounty program agreement.",
+          legal: "CONTRAVENTION UNDER §43(a). Indian law does not recognize uninvited 'good-faith' security testing. Scanning without authorization is legally unauthorized access regardless of researcher intentions."
+        }
+      ],
+      forensics: [
+        "1. Volatile Memory Dump: Capture RAM using LiME or FTK Imager before shutdown to preserve active network connections and running malware injects.",
+        "2. Forensic Imaging: Create bit-stream disk images (RAW/E01) using write-blockers to preserve filesystem MFT and inodes.",
+        "3. Event Log Analysis: Parse Windows Security Event Logs (Event ID 4624/4625 for logon, 4672 for admin privileges, 7045 for service creation).",
+        "4. Network PCAP: Inspect firewall and NetFlow logs for Command & Control (C2) beaconing and data exfiltration spikes."
+      ],
+      precedents: "State of Maharashtra v. Vishal Jain (2012) — Established that Section 43 is a strict liability civil compensatory remedy, whereas Section 66 requires strict proof of dishonest or fraudulent mens rea beyond reasonable doubt."
+    },
+    it66c_66d: {
+      title: "IT Act Section 66C vs 66D: Identity Theft vs Cheating by Personation",
+      subtitle: "Information Technology Act 2000 • Digital Credential Theft vs Active Impersonation Fraud",
+      quote: "Section 66C: Identity theft by fraudulently using unique identification features... Section 66D: Cheating by personation by using computer resource...",
+      nature: "Cognizable • Bailable • Non-Compoundable",
+      forum: "Judicial Magistrate First Class / Metropolitan Magistrate",
+      penalty: "Section 66C: Imprisonment up to 3 years and fine up to ₹1 Lakh; Section 66D: Imprisonment up to 3 years and fine up to ₹1 Lakh (often paired with BNS §318(4) carrying up to 7 years).",
+      ingredients: [
+        "1. Section 66C Targets: Passwords, digital signatures, electronic biometric identifiers, PIN codes, OTPs, or unique identification numbers.",
+        "2. Section 66D Focus: Deceptive personation — pretending to be someone else (e.g. bank official, CBI officer, company director) through any computer system to deceive the victim.",
+        "3. Simultaneous Application: In modern phishing and cyber fraud syndicates, Sections 66C and 66D are invoked together."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: SIM Swap & Banking OTP Interception",
+          verdict: "Criminal Offence (§66C + §66D + BNS §318)",
+          verdictClass: "verdict-offence",
+          facts: "Fraudsters obtain a duplicate SIM card of the victim using forged ID, intercept the net-banking OTP, and transfer ₹15 lakh to mule accounts.",
+          legal: "COMPOUND OFFENCE: Section 66C (fraudulent use of unique electronic identifier OTP) + Section 66D (cheating by personating the account owner) + BNS Section 318(4) (Cheating and dishonestly inducing delivery of property)."
+        },
+        {
+          name: "Scenario 2: Deepfake Video Call Impersonating Corporate CFO",
+          verdict: "Criminal Offence (§66D + BNS §336 + BNS §318)",
+          verdictClass: "verdict-offence",
+          facts: "Attackers use synthetic AI voice and video cloning to impersonate a company's CFO during a video conference, instructing finance personnel to execute an emergency wire transfer.",
+          legal: "OFFENCE UNDER SECTION 66D. Using a computer resource to generate synthetic persona to induce financial transfer constitutes cheating by personation and cyber forgery."
+        }
+      ],
+      forensics: [
+        "1. Telecom CDR/SDR Analysis: Retrieve Subscriber Detail Record (SDR) and Call Detail Record (CDR) for the forged SIM replacement timestamp.",
+        "2. Bank Server Access Logs: Extract IP addresses, User-Agent strings, and device fingerprints used during the unauthorized net-banking session.",
+        "3. Mule Account KYC: Follow the trail of fund hops across intermediary bank accounts and fast-track freezing under NCRP / 1930 portal.",
+        "4. Section 63 BSA Compliance: Procure banker's verification certificates for core banking transaction ledgers."
+      ],
+      precedents: "National Cyber Crime Reporting Portal (NCRP) & Standard Operating Procedures issued by MHA mandate freezing mule accounts within the golden hour to maximize victim asset recovery."
+    },
+    it65: {
+      title: "IT Act Section 65: Tampering with Computer Source Documents",
+      subtitle: "Information Technology Act 2000 • Code Integrity & Firmware Protection",
+      quote: "Whoever knowingly or intentionally conceals, destroys or alters or intentionally or knowingly causes another to conceal, destroy, or alter any computer source code used for a computer, computer programme, computer system or computer network, when the source code is required to be kept or maintained by law...",
+      nature: "Cognizable • Bailable • Non-Compoundable",
+      forum: "Judicial Magistrate First Class / Metropolitan Magistrate",
+      penalty: "Imprisonment up to 3 years and/or fine up to ₹2 Lakh.",
+      ingredients: [
+        "1. Computer Source Code: Defined as the listing of programmes, computer commands, design and layout, and programme analysis of computer resources.",
+        "2. Act: Concealing, destroying, altering, or causing another to conceal, destroy, or alter.",
+        "3. Requirement of Law: The source code is required to be kept or maintained by law for the time being in force.",
+        "4. Mens Rea: Knowingly or intentionally doing the prohibited act."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: Reprogramming Embedded Firmware on Mobile Handsets",
+          verdict: "Criminal Offence (§65 IT Act)",
+          verdictClass: "verdict-offence",
+          facts: "An engineer uses specialized flasher boxes and software to alter Electronic Serial Numbers (ESN) and firmware inside network-locked CDMA/GSM handsets to run on unauthorized networks.",
+          legal: "CRIMINAL OFFENCE UNDER SECTION 65. Under the landmark Andhra Pradesh High Court precedent, machine-readable binary code and firmware inside ROM chips legally constitute 'computer source code'."
+        },
+        {
+          name: "Scenario 2: Disgruntled Developer Wipes Git Repositories on Departure",
+          verdict: "Criminal Offence (§65 + §66 IT Act)",
+          verdictClass: "verdict-offence",
+          facts: "Before resigning, a software developer force-pushes an empty commit history and wipes production repository branches that the company is legally required to archive for tax/audit compliance.",
+          legal: "CRIMINAL OFFENCE: Section 65 (intentional destruction of mandatory corporate source code) + Section 66 (system damage and data wiping)."
+        }
+      ],
+      forensics: [
+        "1. Version Control Forensics: Extract Git reflogs and commit hashes to prove deliberate deletion versus accidental branch merging.",
+        "2. Binary Diffing: Compare altered ROM/firmware against original OEM checksums using Ghidra / IDA Pro reverse engineering tools.",
+        "3. Non-Destructive Acquisition: Dump EEPROM/NAND chips using JTAG or chip-off techniques without overwriting hardware registers."
+      ],
+      precedents: "Syed Asifuddin v. State of Andhra Pradesh (2005 CriLJ 4314) — Landmark ruling holding that 'computer source code' under Section 65 includes machine-readable binary microcode and firmware burned into hardware chips."
+    },
+    it66e_bns77: {
+      title: "IT Act Section 66E vs BNS Section 77: Bodily Privacy & Voyeurism",
+      subtitle: "Privacy Violations in Cyberspace • Gender Neutral IT Act vs Gender Specific BNS",
+      quote: "Section 66E IT Act: Capturing, publishing or transmitting image of a private area of any person without consent... Section 77 BNS: Any man who watches or captures the image of a woman engaging in a private act...",
+      nature: "Section 66E: Bailable; BNS §77: 1st Conviction Bailable, Subsequent Conviction Non-Bailable",
+      forum: "Judicial Magistrate First Class / Metropolitan Magistrate",
+      penalty: "Section 66E: Imprisonment up to 3 years and/or fine up to ₹2 Lakh; BNS §77: 1st Conviction: 1-3 years + fine; Subsequent: 3-7 years + fine.",
+      ingredients: [
+        "1. Section 66E is Gender-Neutral: Protects ANY person (male, female, or transgender). Covers capturing, publishing, or transmitting images of private areas (genitals, buttocks, female breasts) without consent under circumstances violating privacy.",
+        "2. BNS §77 (Voyeurism) is Gender-Specific: Only a man can be the accused, and only a woman can be the victim. Covers watching or capturing images of a woman engaging in private acts where privacy is expected.",
+        "3. Section 77(2) Dissemination: Even if a woman originally consented to the image being captured, sharing or disseminating it to any third party constitutes voyeurism."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: Hidden Spy Camera in Changing Room / Hotel",
+          verdict: "Compound Offence (§66E IT Act + BNS §77 + BNS §79)",
+          verdictClass: "verdict-offence",
+          facts: "A hotel employee installs a pinhole spy camera disguised as a smoke detector inside a guest washroom, recording guests without their consent.",
+          legal: "COMPOUND CRIMINAL OFFENCE: Section 66E IT Act (Capturing images of private areas) + BNS Section 77 (Voyeurism) + BNS Section 79 (Insulting modesty of woman)."
+        },
+        {
+          name: "Scenario 2: Dissemination of Intimate Images Without Consent ('Revenge Porn')",
+          verdict: "Criminal Offence (§66E + §67A IT Act + BNS §77(2))",
+          verdictClass: "verdict-offence",
+          facts: "After a breakup, an ex-partner uploads consensual private intimate photos of the victim to pornography forums and WhatsApp groups without her permission.",
+          legal: "CRIMINAL OFFENCE: Section 66E IT Act (transmission without consent) + Section 67A IT Act (sexually explicit content transmission) + BNS Section 77(2) (dissemination of private act images)."
+        }
+      ],
+      forensics: [
+        "1. Hardware Inspection: Recover micro-SD cards, Wi-Fi streaming IP addresses, and MAC addresses from hidden optical camera modules.",
+        "2. Cloud Sync Tracing: Inspect victim and suspect cloud storage (Google Photos, iCloud, Mega.nz) for uploaded image metadata (EXIF tags, geolocation, camera serial numbers).",
+        "3. Perceptual Hashing: Use PhotoDNA or pHash algorithms to track spread and facilitate takedown requests across hosting platforms."
+      ],
+      precedents: "Justice K.S. Puttaswamy (Retd.) v. Union of India (2017) — 9-Judge Supreme Court bench unanimously declared privacy a Fundamental Right under Article 21, establishing informational self-determination."
+    },
+    it66f: {
+      title: "IT Act Section 66F: Cyber Terrorism & Critical Infrastructure Attacks",
+      subtitle: "Information Technology Act 2000 • Highest Penalty in Indian Cyber Law",
+      quote: "Whoever with intent to threaten the unity, integrity, security or sovereignty of India or strike terror in the people... denies authorized access, penetrates computer resources without authorization, or introduces contaminants...",
+      nature: "Cognizable • Non-Bailable • Non-Compoundable",
+      forum: "Court of Session / Special NIA Court",
+      penalty: "IMPRISONMENT FOR LIFE (Mandatory statutory maximum punishment).",
+      ingredients: [
+        "1. Specific Mens Rea: Intent to threaten unity, integrity, security, or sovereignty of India, OR strike terror in the people or any section thereof.",
+        "2. Prohibited Acts: (A) Denying access to authorized persons; (B) Penetrating systems without authorization; (C) Introducing computer contaminants causing death, injury, damage to property, disruption of essential supplies/services, or affecting Critical Information Infrastructure (CII under Section 70).",
+        "3. Espionage / Confidential Data: Knowingly accessing restricted information that may advantage a foreign nation or harm national security."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: Defacing a Government Portal with Political Slogans",
+          verdict: "Section 66 IT Act, NOT Cyberterrorism",
+          verdictClass: "verdict-safe",
+          facts: "A teenage hacker defaces an municipal corporation website homepage to post an anti-corruption slogan. No critical databases or essential public services are harmed.",
+          legal: "DOES NOT CONSTITUTE CYBERTERRORISM. While illegal under Section 43/66 (Hacking), it lacks the statutory mens rea required under Section 66F (intent to threaten national sovereignty or strike terror)."
+        },
+        {
+          name: "Scenario 2: Ransomware Attack Paralyzing National Power Grid or Hospital Network",
+          verdict: "CYBERTERRORISM UNDER SECTION 66F",
+          verdictClass: "verdict-offence",
+          facts: "A sophisticated state-sponsored threat group infects the Supervisory Control and Data Acquisition (SCADA) network of the National Power Grid, causing widespread blackout across three states.",
+          legal: "SECTION 66F CYBERTERRORISM. Disrupting essential public utilities and penetrating Critical Information Infrastructure satisfies all statutory elements. Carries mandatory punishment of Life Imprisonment."
+        }
+      ],
+      forensics: [
+        "1. APT Attribution: Analyze Advanced Persistent Threat (APT) TTPs (Tactics, Techniques, and Procedures) mapped to MITRE ATT&CK framework.",
+        "2. Industrial Control Forensics: Inspect PLC ladder logic, Modbus/DNP3 network packet captures, and firmware binaries.",
+        "3. Inter-Agency Coordination: Immediate reporting to CERT-In (under Section 70B within 6 hours) and National Critical Information Infrastructure Protection Centre (NCIIPC)."
+      ],
+      precedents: "AIIMS Delhi Cyber Incident (2022) — Extensive multi-agency investigation involving CERT-In, NIA, and Interpol into foreign ransomware actors targeting critical healthcare infrastructure."
+    },
+    it79: {
+      title: "IT Act Section 79: Intermediary Immunity & Safe Harbour Doctrine",
+      subtitle: "Information Technology Act 2000 • Liability of Platforms, Social Media & ISPs",
+      quote: "An intermediary shall not be liable for any third party information, data, or communication link made available or hosted by him...",
+      nature: "Statutory Defense / Legal Safe Harbour",
+      forum: "All Civil and Criminal Courts",
+      penalty: "Loss of immunity exposes intermediary to criminal liability as a conspirator or abettor under IT Act and BNS.",
+      ingredients: [
+        "1. Intermediary Definition: Any entity that receives, stores, transmits, or provides services with respect to electronic records (e.g. WhatsApp, Google, ISPs, web hosts, e-commerce).",
+        "2. Safe Harbour Conditions (§79(2)): (a) Function is limited to providing access to communication system; (b) Intermediary does not initiate transmission; (c) Does not select the receiver; (d) Does not select or modify information.",
+        "3. Loss of Immunity (§79(3)): Intermediary loses safe harbour if it conspires, abets, aids, or fails to expeditiously remove unlawful content upon receiving actual knowledge.",
+        "4. The 36-Hour Takedown Rule: Under Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules 2021, platforms must remove prohibited content within 36 hours of receipt of court order or government direction."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: Unlawful Defamatory Post on Social Media Platform",
+          verdict: "Platform Immune Under Safe Harbour",
+          verdictClass: "verdict-safe",
+          facts: "A user posts a defamatory statement against a public figure on Twitter/X. The public figure demands that the police arrest Twitter executives.",
+          legal: "SAFE HARBOUR PROTECTS PLATFORM. Under Shreya Singhal (2015), an intermediary cannot be held criminally liable for third-party user posts unless it fails to take down the post after receiving a formal court order or government notification."
+        },
+        {
+          name: "Scenario 2: Platform Ignores Court Order to Remove Child Sexual Abuse Material",
+          verdict: "Loss of Safe Harbour & Criminal Prosecution",
+          verdictClass: "verdict-offence",
+          facts: "A High Court orders a video hosting platform to delete an infringing and illegal CSAM video. The platform fails to act within the mandatory 36-hour statutory window.",
+          legal: "SAFE HARBOUR LOST. The platform loses immunity under Section 79(3)(b) and becomes liable for prosecution as an abettor under Section 67B IT Act and POCSO Act."
+        }
+      ],
+      forensics: [
+        "1. Grievance Redressal Logs: Audit timestamps of user complaints, automated takedown notices, and Grievance Officer action reports.",
+        "2. Server Log Preservation: Verify if the platform complied with CERT-In directions requiring maintenance of user connection logs for 180 days.",
+        "3. First Originator Traceability: Examine technical viability of tracing initial originator of messages under Rule 4(2) of IT Rules 2021."
+      ],
+      precedents: "Shreya Singhal v. Union of India (2015 5 SCC 1) — Held that 'actual knowledge' under Section 79(3)(b) requires a court order or authorized government notification, preventing intermediaries from having to adjudicate content disputes themselves."
+    },
+    bsa63: {
+      title: "BSA Section 63: Admissibility of Electronic Records",
+      subtitle: "Bharatiya Sakshya Adhiniyam 2023 • Formerly Section 65B Indian Evidence Act 1872",
+      quote: "Any information contained in an electronic record which is printed on a paper, stored, recorded or copied in optical or magnetic media... shall be deemed to be also a document...",
+      nature: "Mandatory Condition Precedent for Trial Admissibility",
+      forum: "All Criminal and Civil Trial Courts in India",
+      penalty: "Failure to produce valid certificate renders electronic evidence completely inadmissible in trial.",
+      ingredients: [
+        "1. Primary vs Secondary Electronic Evidence: If the original physical device (e.g. suspect's phone or server hard disk) is produced in the witness box, Section 63 is NOT required. Section 63 applies whenever secondary copies (printouts, CDs, pen drives, forensic images) are submitted.",
+        "2. Mandatory Nature: Without a valid Section 63 certificate signed by a person in official charge of the computer device, secondary electronic evidence cannot be read in evidence.",
+        "3. Four Statutory Conditions: (a) Computer produced record during regular lawful use; (b) Information fed into computer in ordinary course of activity; (c) Computer operating properly throughout; (d) Duplicate accurately reproduces original.",
+        "4. Mandatory Cryptographic Hash: Must include cryptographic hash value (SHA-256 / MD5) to prove zero bit-level alteration."
+      ],
+      scenarios: [
+        {
+          name: "Scenario 1: Submitting WhatsApp Screenshots Printed on Paper Without Certificate",
+          verdict: "INADMISSIBLE IN EVIDENCE",
+          verdictClass: "verdict-offence",
+          facts: "A complainant brings colour printouts of incriminating WhatsApp chats to court, but does not submit the smartphone or a Section 63 BSA certificate.",
+          legal: "EVIDENCE REJECTED. Under the Supreme Court's 3-Judge Bench ruling in Arjun Panditrao (2020), secondary electronic records without a contemporaneous Section 63 certificate cannot be admitted or relied upon."
+        },
+        {
+          name: "Scenario 2: Forensic Examiner Produces Bit-Stream Image with Hash Certificate",
+          verdict: "FULLY ADMISSIBLE",
+          verdictClass: "verdict-safe",
+          facts: "A Cyber Forensic Examiner extracts an E01 forensic disk image using a Tableau write-blocker, records the SHA-256 hash at 10:00 AM, verifies the identical hash at 4:00 PM, and signs a Section 63 certificate.",
+          legal: "FULLY ADMISSIBLE. The process guarantees mathematical integrity and satisfies all statutory criteria under BSA Section 63."
+        }
+      ],
+      forensics: [
+        "1. Write-Blocker Verification: Document physical bridge make/model and ensure read-only status in hardware logs.",
+        "2. Dual Hash Verification: Calculate MD5 and SHA-256 simultaneously before and after forensic extraction.",
+        "3. Chain of Custody: Record every transfer of custody, locker number, and tamper-evident seal serial number.",
+        "4. Certificate Execution: Sign certificate specifying device model, OS, acquisition software version, and examiner credentials."
+      ],
+      precedents: "Arjun Panditrao Khotkar v. Kailash Kushanrao Gorantyal (2020 7 SCC 1) — Landmark 3-judge bench decision resolving judicial conflict, holding that production of a certificate is an absolute condition precedent for admitting secondary electronic evidence."
+    }
+  };
+
+  function renderDeepDive(key) {
+    if (!deepDiveBody || !deepDiveData[key]) return;
+    const sec = deepDiveData[key];
+
+    // Update active tab styling
+    if (deepDiveTabs) {
+      deepDiveTabs.querySelectorAll('.dd-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.sec === key);
+      });
+    }
+
+    let scenariosHtml = '';
+    sec.scenarios.forEach(sc => {
+      scenariosHtml += `
+        <div class="scenario-item">
+          <div class="scenario-header">
+            <span class="scenario-name">${sc.name}</span>
+            <span class="verdict-tag ${sc.verdictClass}">${sc.verdict}</span>
+          </div>
+          <div class="scenario-facts"><strong>Facts:</strong> ${sc.facts}</div>
+          <div class="scenario-legal"><strong>Statutory Reason:</strong> ${sc.legal}</div>
+        </div>
+      `;
+    });
+
+    let ingredientsHtml = '';
+    sec.ingredients.forEach(ing => {
+      ingredientsHtml += `<li>${ing}</li>`;
+    });
+
+    let forensicsHtml = '';
+    sec.forensics.forEach(fn => {
+      forensicsHtml += `<li>${fn}</li>`;
+    });
+
+    deepDiveBody.innerHTML = `
+      <div class="dd-card">
+        <div class="dd-card-title">
+          <span>${sec.title}</span>
+        </div>
+        <div style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px;">
+          ${sec.subtitle}
+        </div>
+        <div class="statute-quote">"${sec.quote}"</div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin: 10px 0; font-size: 0.8rem;">
+          <div style="background: var(--page-bg-subtle); padding: 8px; border-radius: 4px;">
+            <strong>Nature:</strong> ${sec.nature}
+          </div>
+          <div style="background: var(--page-bg-subtle); padding: 8px; border-radius: 4px;">
+            <strong>Forum:</strong> ${sec.forum}
+          </div>
+        </div>
+        <div style="background: var(--page-bg-subtle); padding: 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 10px;">
+          <strong style="color: var(--badge-penalty);">Statutory Punishment:</strong> ${sec.penalty}
+        </div>
+
+        <strong style="font-size: 0.86rem; color: var(--accent-color);">Essential Statutory Ingredients:</strong>
+        <ul class="ingredient-list">
+          ${ingredientsHtml}
+        </ul>
+      </div>
+
+      <div class="dd-card">
+        <div class="dd-card-title">
+          <span>Real-Life Situations & Statutory Verdict Matrix</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">
+          Practical application of legal thresholds to modern real-world scenarios:
+        </p>
+        <div class="scenario-grid">
+          ${scenariosHtml}
+        </div>
+      </div>
+
+      <div class="dd-card">
+        <div class="dd-card-title">
+          <span>Forensic Evidence & Investigation Checklist</span>
+        </div>
+        <ul class="forensic-checklist">
+          ${forensicsHtml}
+        </ul>
+      </div>
+
+      <div class="dd-card" style="border-left: 3px solid var(--accent-gold);">
+        <div class="dd-card-title" style="color: var(--accent-gold);">
+          <span>Landmark Judicial Precedent</span>
+        </div>
+        <div style="font-size: 0.82rem; line-height: 1.4;">
+          ${sec.precedents}
+        </div>
+      </div>
+    `;
+
+    deepDiveBody.scrollTop = 0;
+  }
+
+  function openDeepDive(sectionKey) {
+    if (deepDiveDrawer) deepDiveDrawer.classList.remove('hidden');
+    if (drawerOverlay) drawerOverlay.classList.remove('hidden');
+    renderDeepDive(sectionKey || 'bns78');
+  }
+
+  function closeDeepDive() {
+    if (deepDiveDrawer) deepDiveDrawer.classList.add('hidden');
+    if (tocDrawer && tocDrawer.classList.contains('hidden')) {
+      if (drawerOverlay) drawerOverlay.classList.add('hidden');
+    }
   }
 
   // =========================================================================
@@ -1739,7 +2205,37 @@ document.addEventListener('DOMContentLoaded', () => {
   // Drawer Controls
   tocToggleBtn.addEventListener('click', openTOC);
   closeTocBtn.addEventListener('click', closeTOC);
-  drawerOverlay.addEventListener('click', closeTOC);
+  
+  if (deepDiveToggleBtn) {
+    deepDiveToggleBtn.addEventListener('click', () => {
+      deepDiveDrawer.classList.contains('hidden') ? openDeepDive() : closeDeepDive();
+    });
+  }
+  if (closeDeepDiveBtn) {
+    closeDeepDiveBtn.addEventListener('click', closeDeepDive);
+  }
+
+  drawerOverlay.addEventListener('click', () => {
+    closeTOC();
+    closeDeepDive();
+  });
+
+  if (deepDiveTabs) {
+    deepDiveTabs.addEventListener('click', (e) => {
+      const tabBtn = e.target.closest('.dd-tab');
+      if (tabBtn && tabBtn.dataset.sec) {
+        renderDeepDive(tabBtn.dataset.sec);
+      }
+    });
+  }
+
+  // Audio Controls
+  if (audioNarrationBtn) {
+    audioNarrationBtn.addEventListener('click', toggleAudioNarration);
+  }
+  if (bottomAudioBtn) {
+    bottomAudioBtn.addEventListener('click', toggleAudioNarration);
+  }
 
   // Search Controls
   searchInput.addEventListener('input', (e) => {
@@ -1785,9 +2281,12 @@ document.addEventListener('DOMContentLoaded', () => {
       else turnToSpread(spreads.length - 1);
     } else if (e.key === 'Escape') {
       closeTOC();
+      closeDeepDive();
       searchResultsDropdown.classList.add('hidden');
     } else if (e.altKey && e.key.toLowerCase() === 't') {
       tocDrawer.classList.contains('hidden') ? openTOC() : closeTOC();
+    } else if (e.altKey && e.key.toLowerCase() === 'd') {
+      deepDiveDrawer.classList.contains('hidden') ? openDeepDive() : closeDeepDive();
     }
   });
 
