@@ -150,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">04. Crimes Against Property & Systems:</strong> IPR, source code tampering (*Syed Asifuddin*), ransomware (*AIIMS Delhi*) and DDoS.</li>
             <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">05. Cyberterrorism & Society:</strong> Section 66F, speech & defamation (*Shreya Singhal*), and Right to Privacy (*Puttaswamy*).</li>
             <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">06. Indian Cyber Law Framework:</strong> UNCITRAL Model Law, IT Act 2000 structure, and Section 75 extra-territorial jurisdiction.</li>
-            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">07. IT Act Offences & Penalties:</strong> Master statutory table (§43 to §74), civil adjudication vs criminal prosecution, and safe harbour (*Baazee.com*).</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">07. IT Act Offences & Penalties:</strong> Master statutory table (Section 43 to Section 74), civil adjudication vs criminal prosecution, and safe harbour (*Baazee.com*).</li>
             <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">08. Digital Signatures & PKI:</strong> Asymmetric cryptography, RSA key pairs, SHA-256 hash algorithms and Certifying Authorities.</li>
-            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">09. Authorities & Investigation Powers:</strong> CCA, CERT-In, Police Inspector search powers (§78/§80), and chain of custody.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">09. Authorities & Investigation Powers:</strong> CCA, CERT-In, Police Inspector search powers (Section 78/Section 80), and chain of custody.</li>
             <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">10. BNS 2023 & Electronic Evidence:</strong> BNS penal mapping, Section 63 BSA 2023 certificate, and *Arjun Panditrao* doctrine.</li>
           </ul>
         `
@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <tr><td><strong>Cybercrime</strong></td><td>Describes unlawful digital conduct</td><td>Stealing bank credentials, ransomware deployment</td></tr>
               <tr><td><strong>Cybersecurity</strong></td><td>Protects systems, networks, and data</td><td>Implementing MFA, firewalls, threat patching</td></tr>
               <tr><td><strong>Cyber Forensics</strong></td><td>Preserves, extracts & analyzes evidence</td><td>Acquiring bit-stream images, RAM parsing</td></tr>
-              <tr><td><strong>Cyber Law</strong></td><td>Defines offences, rights & penalties</td><td>Prosecution under IT Act §66C, §66D & BNS</td></tr>
+              <tr><td><strong>Cyber Law</strong></td><td>Defines offences, rights & penalties</td><td>Prosecution under IT Act Section 66C, Section 66D & BNS</td></tr>
             </tbody>
           </table>
 
@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>Attacks targeting government databases, defence networks, or critical infrastructure.</p>
 
           <div class="book-callout case">
-            <span class="sec-badge it-act">IT Act §66F</span>
+            <span class="sec-badge it-act">IT Act Section 66F</span>
             <strong>Cyberterrorism:</strong> An attack on a government portal is not automatically cyberterrorism. Section 66F requires intent to threaten the unity, integrity, security or sovereignty of India, or strike terror, carrying punishment up to <strong>imprisonment for life</strong>.
           </div>
         `
@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
       spreadId: 7,
       left: {
         pageNumber: 15,
-        runningHead: "Chapter 3: BNS §78 Statutory Scope & Thresholds",
+        runningHead: "Chapter 3: BNS Section 78 Statutory Scope & Thresholds",
         content: `
           <h1>Chapter 3: Crimes Against Individuals</h1>
           <h3>3.1 Cyberstalking & BNS Section 78: Statutory Scope & Legal Thresholds</h3>
@@ -460,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div class="case-card" style="margin-bottom: 8px;">
             <div class="case-card-header">
-              <span>BNS §78 (Formerly IPC §354D)</span>
+              <span>BNS Section 78 (Formerly IPC Section 354D)</span>
               <span class="case-card-badge">Bare Act Statute</span>
             </div>
             <strong>Statutory Text:</strong> <em>"Whoever, being a man, monitors the use by a woman of the internet, email or any other form of electronic communication, commits the offence of stalking."</em><br>
@@ -470,12 +470,12 @@ document.addEventListener('DOMContentLoaded', () => {
           <div style="background: var(--page-bg-subtle); padding: 8px 10px; border-left: 3px solid var(--accent-color); margin-bottom: 8px; border-radius: 0 4px 4px 0; font-size: 0.81rem; line-height: 1.34;">
             <strong style="color: var(--accent-color);">The Instagram / Social Media Legal Threshold:</strong><br>
             • <em>Does viewing a public Instagram profile constitute stalking?</em> <strong>NO.</strong> Passive viewing of public posts, reels, or stories voluntarily placed in the public domain lacks criminal mens rea and harassment.<br>
-            • <em>At what exact point does it become a crime?</em> It crosses into BNS §78 the moment a man repeatedly contacts a woman after she indicates disinterest (e.g. tells him to stop or blocks him), creates secondary/burner handles to bypass blocks, or engages in covert surveillance of her activity.
+            • <em>At what exact point does it become a crime?</em> It crosses into BNS Section 78 the moment a man repeatedly contacts a woman after she indicates disinterest (e.g. tells him to stop or blocks him), creates secondary/burner handles to bypass blocks, or engages in covert surveillance of her activity.
           </div>
 
           <div style="font-size: 0.8rem; line-height: 1.34;">
-            <strong>Gender-Specific Mandate:</strong> BNS §78 strictly requires a <strong>male accused</strong> and a <strong>female victim</strong>. If a woman stalks a man, §78 cannot be charged; charges must be framed under BNS §351 (Criminal Intimidation), BNS §356 (Defamation), or IT Act §66E/67.<br>
-            <strong>Statutory Defences [§78(2)]:</strong> Lawful crime prevention/detection by police, compliance with any law, or conduct shown to be reasonable and justified in the circumstances.
+            <strong>Gender-Specific Mandate:</strong> BNS Section 78 strictly requires a <strong>male accused</strong> and a <strong>female victim</strong>. If a woman stalks a man, Section 78 cannot be charged; charges must be framed under BNS Section 351 (Criminal Intimidation), BNS Section 356 (Defamation), or IT Act Section 66E/67.<br>
+            <strong>Statutory Defences [Section 78(2)]:</strong> Lawful crime prevention/detection by police, compliance with any law, or conduct shown to be reasonable and justified in the circumstances.
           </div>
         `
       },
@@ -498,18 +498,18 @@ document.addEventListener('DOMContentLoaded', () => {
               </tr>
               <tr>
                 <td><strong>Burner DMs After Block</strong><br>Victim blocks accused; accused creates 5 fake handles to message.</td>
-                <td><span style="color:#991b1b; font-weight:700;">[OFFENCE: BNS §78]</span></td>
+                <td><span style="color:#991b1b; font-weight:700;">[OFFENCE: BNS Section 78]</span></td>
                 <td>Clear disinterest communicated. Bypassing blocks demonstrates persistent pursuit.</td>
               </tr>
               <tr>
                 <td><strong>Sideloading Stalkerware</strong><br>Covertly installing tracking APK to read chats and GPS.</td>
-                <td><span style="color:#991b1b; font-weight:700;">[BNS §78 + IT §43/66 + §66E]</span></td>
+                <td><span style="color:#991b1b; font-weight:700;">[BNS Section 78 + IT Act Section 43/66 + Section 66E]</span></td>
                 <td>Unlawful surveillance + unauthorized computer access + privacy breach.</td>
               </tr>
               <tr>
                 <td><strong>Woman Stalking Man</strong><br>Female sends 60 unwanted emails after rejection.</td>
-                <td><span style="color:#92400e; font-weight:700;">[BNS §351 / §356]</span></td>
-                <td>BNS §78 gender-barred. Prosecutable under intimidation/defamation.</td>
+                <td><span style="color:#92400e; font-weight:700;">[BNS Section 351 / Section 356]</span></td>
+                <td>BNS Section 78 gender-barred. Prosecutable under intimidation/defamation.</td>
               </tr>
             </tbody>
           </table>
@@ -538,10 +538,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>Indian law draws strict statutory boundaries across electronic sexual offences:</p>
 
           <ul style="font-size: 0.8rem; line-height: 1.34;">
-            <li><span class="sec-badge it-act">IT Act §67</span>: Transmitting <strong>obscene</strong> material (1st: 3 yrs + ₹5L; Sub: 5 yrs + ₹10L).</li>
-            <li><span class="sec-badge it-act">IT Act §67A</span>: <strong>Sexually explicit acts</strong> (1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L).</li>
-            <li><span class="sec-badge it-act">IT Act §67B</span>: <strong>Child Sexual Abuse Material (CSAM)</strong> (1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L, read with POCSO Act).</li>
-            <li><span class="sec-badge bns">BNS §77</span> <strong>Voyeurism:</strong> Non-consensual dissemination of private images.</li>
+            <li><span class="sec-badge it-act">IT Act Section 67</span>: Transmitting <strong>obscene</strong> material (1st: 3 yrs + ₹5L; Sub: 5 yrs + ₹10L).</li>
+            <li><span class="sec-badge it-act">IT Act Section 67A</span>: <strong>Sexually explicit acts</strong> (1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L).</li>
+            <li><span class="sec-badge it-act">IT Act Section 67B</span>: <strong>Child Sexual Abuse Material (CSAM)</strong> (1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L, read with POCSO Act).</li>
+            <li><span class="sec-badge bns">BNS Section 77</span> <strong>Voyeurism:</strong> Non-consensual dissemination of private images.</li>
           </ul>
 
           <div class="case-card">
@@ -592,9 +592,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>Using digital deception to obtain money, property, or confidential credentials:</p>
           
           <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li><span class="sec-badge it-act">IT Act §66C</span>: <strong>Identity Theft:</strong> Fraudulently using another person's electronic signature, password, or unique identification feature (imprisonment up to 3 years and fine up to ₹1 lakh).</li>
-            <li><span class="sec-badge it-act">IT Act §66D</span>: <strong>Cheating by Personation:</strong> Cheating by impersonating someone using any communication device or computer resource (imprisonment up to 3 years and fine up to ₹1 lakh).</li>
-            <li><span class="sec-badge bns">BNS §318</span>: <strong>Cheating:</strong> General criminal cheating provisions applicable to fraud schemes.</li>
+            <li><span class="sec-badge it-act">IT Act Section 66C</span>: <strong>Identity Theft:</strong> Fraudulently using another person's electronic signature, password, or unique identification feature (imprisonment up to 3 years and fine up to ₹1 lakh).</li>
+            <li><span class="sec-badge it-act">IT Act Section 66D</span>: <strong>Cheating by Personation:</strong> Cheating by impersonating someone using any communication device or computer resource (imprisonment up to 3 years and fine up to ₹1 lakh).</li>
+            <li><span class="sec-badge bns">BNS Section 318</span>: <strong>Cheating:</strong> General criminal cheating provisions applicable to fraud schemes.</li>
           </ul>
 
           <div class="scenario-card">
@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </ul>
 
           <div class="book-callout">
-            <span class="sec-badge it-act">IT Act §65</span>
+            <span class="sec-badge it-act">IT Act Section 65</span>
             <strong>Tampering with Computer Source Documents:</strong> Concealing, destroying, or altering computer source code required to be maintained by law is punishable with imprisonment up to <strong>3 years, or fine up to ₹2 lakh, or both</strong>.
           </div>
 
@@ -673,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </ul>
 
           <div class="book-callout">
-            <span class="sec-badge it-act">IT Act §43(c) & §66</span> Introducing computer contaminants or viruses triggers civil damages under §43 and criminal liability under §66.
+            <span class="sec-badge it-act">IT Act Section 43(c) & Section 66</span> Introducing computer contaminants or viruses triggers civil damages under Section 43 and criminal liability under Section 66.
           </div>
         `
       }
@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
             1. CERT-In and Delhi Police Cyber Cell immediately isolated the infected VLAN.<br>
             2. Volatile RAM dumps and disk images were acquired before remediation.<br>
             3. Restored systems from clean, offline immutable tape backups without paying ransom.<br>
-            <strong>Statutory Charges:</strong> Invoked <span class="sec-badge it-act">IT Act §66F</span> (Cyberterrorism on Critical Information Infrastructure) and extortion under criminal law.
+            <strong>Statutory Charges:</strong> Invoked <span class="sec-badge it-act">IT Act Section 66F</span> (Cyberterrorism on Critical Information Infrastructure) and extortion under criminal law.
           </div>
         `
       },
@@ -717,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </ul>
 
           <div class="book-callout">
-            <span class="sec-badge it-act">IT Act §43(f) & §66</span> Denying access to authorized persons is a civil wrong under Section 43(f) and punishable criminally under Section 66.
+            <span class="sec-badge it-act">IT Act Section 43(f) & Section 66</span> Denying access to authorized persons is a civil wrong under Section 43(f) and punishable criminally under Section 66.
           </div>
         `
       }
@@ -755,7 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>The convergence of cyberspace and terrorism to commit acts that threaten national security or strike terror in the public.</p>
 
           <div class="book-callout case">
-            <span class="sec-badge it-act">IT Act §66F</span> <strong>Statutory Elements of Cyberterrorism:</strong><br>
+            <span class="sec-badge it-act">IT Act Section 66F</span> <strong>Statutory Elements of Cyberterrorism:</strong><br>
             Punishes anyone who, with intent to threaten the unity, integrity, security or sovereignty of India, or strike terror in people:<br>
             1. Denies access to authorized persons, or attempts to penetrate or access computer resources without authorization.<br>
             2. Introduces computer contaminants resulting in death, destruction of property, or damage to critical infrastructure.<br>
@@ -894,37 +894,37 @@ document.addEventListener('DOMContentLoaded', () => {
             </thead>
             <tbody>
               <tr>
-                <td><span class="sec-badge it-act">§43</span></td>
+                <td><span class="sec-badge it-act">Section 43</span></td>
                 <td>Damage to computer system without permission</td>
                 <td>Compensation up to ₹1 crore (Civil Adjudication)</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§65</span></td>
+                <td><span class="sec-badge it-act">Section 65</span></td>
                 <td>Tampering with computer source documents</td>
                 <td>Imprisonment up to 3 years and/or fine up to ₹2 lakh</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§66</span></td>
-                <td>Computer related offences (Dishonest §43)</td>
+                <td><span class="sec-badge it-act">Section 66</span></td>
+                <td>Computer related offences (Dishonest Section 43)</td>
                 <td>Imprisonment up to 3 years and/or fine up to ₹5 lakh</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§66B</span></td>
+                <td><span class="sec-badge it-act">Section 66B</span></td>
                 <td>Receiving stolen computer resource</td>
                 <td>Imprisonment up to 3 years and/or fine up to ₹1 lakh</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§66C</span></td>
+                <td><span class="sec-badge it-act">Section 66C</span></td>
                 <td>Identity theft (passwords/signatures)</td>
                 <td>Imprisonment up to 3 years and/or fine up to ₹1 lakh</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§66D</span></td>
+                <td><span class="sec-badge it-act">Section 66D</span></td>
                 <td>Cheating by personation using computer</td>
                 <td>Imprisonment up to 3 years and/or fine up to ₹1 lakh</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§66E</span></td>
+                <td><span class="sec-badge it-act">Section 66E</span></td>
                 <td>Violation of bodily privacy</td>
                 <td>Imprisonment up to 3 years and/or fine up to ₹2 lakh</td>
               </tr>
@@ -944,37 +944,37 @@ document.addEventListener('DOMContentLoaded', () => {
             </thead>
             <tbody>
               <tr>
-                <td><span class="sec-badge it-act">§66F</span></td>
+                <td><span class="sec-badge it-act">Section 66F</span></td>
                 <td>Cyberterrorism</td>
                 <td><strong>Imprisonment for Life</strong></td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§67</span></td>
+                <td><span class="sec-badge it-act">Section 67</span></td>
                 <td>Publishing/transmitting obscene content</td>
                 <td>1st: 3 yrs + ₹5L; Sub: 5 yrs + ₹10L</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§67A</span></td>
+                <td><span class="sec-badge it-act">Section 67A</span></td>
                 <td>Sexually explicit acts transmission</td>
                 <td>1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§67B</span></td>
+                <td><span class="sec-badge it-act">Section 67B</span></td>
                 <td>Child sexual abuse material (CSAM)</td>
                 <td>1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§70</span></td>
+                <td><span class="sec-badge it-act">Section 70</span></td>
                 <td>Unauthorized access to Protected System</td>
                 <td>Imprisonment up to 10 years and fine</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§72</span></td>
+                <td><span class="sec-badge it-act">Section 72</span></td>
                 <td>Breach of confidentiality and privacy</td>
                 <td>Imprisonment up to 2 years and/or fine up to ₹1 lakh</td>
               </tr>
               <tr>
-                <td><span class="sec-badge it-act">§72A</span></td>
+                <td><span class="sec-badge it-act">Section 72A</span></td>
                 <td>Disclosure of info in breach of contract</td>
                 <td>Imprisonment up to 3 years and/or fine up to ₹5 lakh</td>
               </tr>
@@ -1010,7 +1010,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="book-callout" style="margin-top: 4px;">
-            <span class="sec-badge it-act">IT Act §79</span> <strong>Safe Harbour Conditions:</strong> Platform is immune if its role is limited to transmission and it exercises statutory <strong>due diligence</strong> (takedown within 24–36 hrs upon court order).
+            <span class="sec-badge it-act">IT Act Section 79</span> <strong>Safe Harbour Conditions:</strong> Platform is immune if its role is limited to transmission and it exercises statutory <strong>due diligence</strong> (takedown within 24–36 hrs upon court order).
           </div>
         `
       },
@@ -1115,32 +1115,32 @@ document.addEventListener('DOMContentLoaded', () => {
             </thead>
             <tbody>
               <tr>
-                <td><span class="sec-badge bns">§77</span> Voyeurism</td>
+                <td><span class="sec-badge bns">Section 77</span> Voyeurism</td>
                 <td>Capturing or transmitting non-consensual private images</td>
                 <td>1st: 3 yrs; Sub: 7 yrs + fine</td>
               </tr>
               <tr>
-                <td><span class="sec-badge bns">§78</span> Stalking</td>
+                <td><span class="sec-badge bns">Section 78</span> Stalking</td>
                 <td>Monitoring woman's internet/email/electronic comms</td>
                 <td>1st: 3 yrs; Sub: 5 yrs + fine</td>
               </tr>
               <tr>
-                <td><span class="sec-badge bns">§308</span> Extortion</td>
+                <td><span class="sec-badge bns">Section 308</span> Extortion</td>
                 <td>Digital blackmail, ransomware extortion threats</td>
                 <td>Up to 7 years + fine</td>
               </tr>
               <tr>
-                <td><span class="sec-badge bns">§318</span> Cheating</td>
+                <td><span class="sec-badge bns">Section 318</span> Cheating</td>
                 <td>Online fraud, investment scams, crypto fraud</td>
                 <td>Up to 7 years + fine</td>
               </tr>
               <tr>
-                <td><span class="sec-badge bns">§336</span> Forgery</td>
+                <td><span class="sec-badge bns">Section 336</span> Forgery</td>
                 <td>Falsifying electronic documents, altered PDFs</td>
                 <td>Up to 7 years + fine</td>
               </tr>
               <tr>
-                <td><span class="sec-badge bns">§351</span> Intimidation</td>
+                <td><span class="sec-badge bns">Section 351</span> Intimidation</td>
                 <td>Threatening emails, social media abuse</td>
                 <td>Up to 7 years + fine</td>
               </tr>
@@ -1186,22 +1186,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div style="background: var(--page-bg-subtle); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--ui-border); font-size: 0.8rem; line-height: 1.4; margin-bottom: 8px;">
             <strong>Essential Statutory Numbers to Remember:</strong><br>
-            • Civil compensation for unauthorized access: <span class="sec-badge it-act">§43</span><br>
-            • Dishonest / fraudulent computer offences: <span class="sec-badge it-act">§66</span><br>
-            • Identity theft: <span class="sec-badge it-act">§66C</span> • Cheating by personation: <span class="sec-badge it-act">§66D</span><br>
-            • Cyberterrorism: <span class="sec-badge it-act">§66F</span> (Life Imprisonment)<br>
-            • Stalking: <span class="sec-badge bns">BNS §78</span> • Voyeurism: <span class="sec-badge bns">BNS §77</span><br>
-            • Minimum Police Investigating Rank: <strong>Inspector (§78)</strong><br>
+            • Civil compensation for unauthorized access: <span class="sec-badge it-act">Section 43</span><br>
+            • Dishonest / fraudulent computer offences: <span class="sec-badge it-act">Section 66</span><br>
+            • Identity theft: <span class="sec-badge it-act">Section 66C</span> • Cheating by personation: <span class="sec-badge it-act">Section 66D</span><br>
+            • Cyberterrorism: <span class="sec-badge it-act">Section 66F</span> (Life Imprisonment)<br>
+            • Stalking: <span class="sec-badge bns">BNS Section 78</span> • Voyeurism: <span class="sec-badge bns">BNS Section 77</span><br>
+            • Minimum Police Investigating Rank: <strong>Inspector (Section 78)</strong><br>
             • Electronic Evidence Certificate: <strong>Section 63 BSA</strong>
           </div>
 
           <div class="book-callout">
             <strong>Landmark Decisions Master Summary:</strong><br>
             • <em>Suhas Katti (2004):</em> First Section 67 IT Act conviction (Yahoo groups).<br>
-            • <em>Syed Asifuddin (2005):</em> Firmware ESN tampering is §65 source code tampering.<br>
+            • <em>Syed Asifuddin (2005):</em> Firmware ESN tampering is Section 65 source code tampering.<br>
             • <em>Shreya Singhal (2015):</em> Section 66A struck down as unconstitutional.<br>
             • <em>Puttaswamy (2017):</em> Privacy is Fundamental Right (Art. 21) & 3-fold test.<br>
-            • <em>Baazee.com (2005):</em> Intermediary safe harbour catalyst (§79).<br>
+            • <em>Baazee.com (2005):</em> Intermediary safe harbour catalyst (Section 79).<br>
             • <em>Arjun Panditrao (2020):</em> Mandatory certificate for secondary e-evidence.
           </div>
         `
@@ -1218,18 +1218,18 @@ document.addEventListener('DOMContentLoaded', () => {
     { chapter: "Ch 01", title: "Cybercrime vs Forensics & The CIA Triad", spreadIndex: 4, page: "9–10" },
     { chapter: "Ch 02", title: "Classification of Cybercrimes by Victim", spreadIndex: 5, page: "11–12" },
     { chapter: "Ch 02", title: "Cyber-Dependent vs Conventional Crime", spreadIndex: 6, page: "13–14" },
-    { chapter: "Ch 02/03", title: "Offender Motives & Cyberstalking (§78 BNS)", spreadIndex: 7, page: "15–16" },
+    { chapter: "Ch 02/03", title: "Offender Motives & Cyberstalking (Section 78 BNS)", spreadIndex: 7, page: "15–16" },
     { chapter: "Ch 03", title: "Suhas Katti Ruling & Syed Asifuddin Case", spreadIndex: 8, page: "17–18" },
     { chapter: "Ch 03", title: "Cyber Fraud & Cosmos Bank Heist Study", spreadIndex: 9, page: "19–20" },
-    { chapter: "Ch 04", title: "IPR in Cyberspace (§65) & Malware Ecosystem", spreadIndex: 10, page: "21–22" },
+    { chapter: "Ch 04", title: "IPR in Cyberspace (Section 65) & Malware Ecosystem", spreadIndex: 10, page: "21–22" },
     { chapter: "Ch 04", title: "AIIMS Delhi Incident Study & Denial of Service", spreadIndex: 11, page: "23–24" },
-    { chapter: "Ch 04/05", title: "Hacking (§43/66) & Cyberterrorism (§66F)", spreadIndex: 12, page: "25–26" },
-    { chapter: "Ch 05", title: "Shreya Singhal (§66A) & Puttaswamy (Privacy)", spreadIndex: 13, page: "27–28" },
-    { chapter: "Ch 06", title: "IT Act 2000 Origins, Scope & Jurisdiction (§75)", spreadIndex: 14, page: "29–30" },
+    { chapter: "Ch 04/05", title: "Hacking (Section 43/66) & Cyberterrorism (Section 66F)", spreadIndex: 12, page: "25–26" },
+    { chapter: "Ch 05", title: "Shreya Singhal (Section 66A) & Puttaswamy (Privacy)", spreadIndex: 13, page: "27–28" },
+    { chapter: "Ch 06", title: "IT Act 2000 Origins, Scope & Jurisdiction (Section 75)", spreadIndex: 14, page: "29–30" },
     { chapter: "Ch 07", title: "IT Act Master Penalties Table (Sections 43–66E)", spreadIndex: 15, page: "31–32" },
-    { chapter: "Ch 07/08", title: "Baazee.com Precedent & Intermediary Liability (§79)", spreadIndex: 16, page: "33–34" },
+    { chapter: "Ch 07/08", title: "Baazee.com Precedent & Intermediary Liability (Section 79)", spreadIndex: 16, page: "33–34" },
     { chapter: "Ch 08/09", title: "Digital Signatures, PKI & Authorities (CCA/CERT)", spreadIndex: 17, page: "35–36" },
-    { chapter: "Ch 09/10", title: "Police Powers (§78/80) & BNS 2023 Penal Mapping", spreadIndex: 18, page: "37–38" },
+    { chapter: "Ch 09/10", title: "Police Powers (Section 78/80) & BNS 2023 Penal Mapping", spreadIndex: 18, page: "37–38" },
     { chapter: "Ch 10/11", title: "Arjun Panditrao Ruling & Master Exam Checklist", spreadIndex: 19, page: "39–40" }
   ];
 
@@ -1588,7 +1588,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "2. Protected Class: The victim MUST be a woman ('monitors the use by a woman').",
         "3. Prohibited Conduct: Either (a) repeatedly contacts despite clear indication of disinterest, OR (b) monitors internet, email, or any other electronic communication.",
         "4. Mens Rea: Intent to foster personal interaction, monitor online movements, or cause harassment/fear.",
-        "5. Statutory Defences (§78(2)): Lawful crime prevention/detection by police, compliance with any law, or reasonable & justified conduct in the circumstances."
+        "5. Statutory Defences (Section 78(2)): Lawful crime prevention/detection by police, compliance with any law, or reasonable & justified conduct in the circumstances."
       ],
       scenarios: [
         {
@@ -1603,28 +1603,28 @@ document.addEventListener('DOMContentLoaded', () => {
           verdict: "Criminal Offence",
           verdictClass: "verdict-offence",
           facts: "A woman tells an acquaintance 'Do not contact me ever again' and blocks his Instagram and WhatsApp accounts. He creates 4 new fake accounts to DM her: 'Why did you block me? Unblock me right now', and spams comments on her friends' posts asking about her.",
-          legal: "OFFENCE UNDER BNS §78(1)(a) & (b). Clear disinterest was explicitly communicated. The creation of secondary burner handles to intentionally circumvent technical blocking controls establishes continuous, unwanted pursuit and monitoring."
+          legal: "OFFENCE UNDER BNS Section 78(1)(a) & (b). Clear disinterest was explicitly communicated. The creation of secondary burner handles to intentionally circumvent technical blocking controls establishes continuous, unwanted pursuit and monitoring."
         },
         {
           name: "Scenario 3: Sideloading Stalkerware / Spyware on Phone",
           verdict: "Compound Criminal Offence",
           verdictClass: "verdict-offence",
           facts: "A husband or partner secretly installs a stealth monitoring APK (e.g. Cerberus, mSpy) onto the victim's smartphone, allowing him to track real-time GPS locations, clone WhatsApp messages, and record phone calls without her knowledge.",
-          legal: "COMPOUND OFFENCE: BNS §78 (Electronic Stalking) + IT Act §43(a)/§66 (Unauthorized access and extraction of computer data) + IT Act §66E (Violation of bodily and informational privacy)."
+          legal: "COMPOUND OFFENCE: BNS Section 78 (Electronic Stalking) + IT Act Section 43(a)/Section 66 (Unauthorized access and extraction of computer data) + IT Act Section 66E (Violation of bodily and informational privacy)."
         },
         {
           name: "Scenario 4: Woman Stalking a Male Colleague",
-          verdict: "Gender Exemption under BNS §78",
+          verdict: "Gender Exemption under BNS Section 78",
           verdictClass: "verdict-exempt",
           facts: "A female employee sends over 50 unsolicited emails, WhatsApp messages, and LinkedIn DMs daily to a male manager who has repeatedly demanded that she cease all non-work communication.",
-          legal: "BNS §78 CANNOT BE CHARGED. BNS §78 is strictly gender-specific ('Whoever, being a man, monitors the use by a woman...'). The male complainant cannot file under §78. Police must register FIR under BNS §351 (Criminal Intimidation), BNS §356 (Defamation), or IT Act §67 if messages are sexually obscene."
+          legal: "BNS Section 78 CANNOT BE CHARGED. BNS Section 78 is strictly gender-specific ('Whoever, being a man, monitors the use by a woman...'). The male complainant cannot file under Section 78. Police must register FIR under BNS Section 351 (Criminal Intimidation), BNS Section 356 (Defamation), or IT Act Section 67 if messages are sexually obscene."
         },
         {
           name: "Scenario 5: Police Cyber Cell Surveillance of Suspect",
           verdict: "Statutory Defence Applied",
           verdictClass: "verdict-exempt",
           facts: "An authorized cyber crime officer monitors a female suspect's public social media and messaging channels during an active investigation into a cyber fraud syndicate.",
-          legal: "EXEMPT UNDER BNS §78(2)(a). The statute explicitly provides an absolute defence if the conduct was pursued for the purpose of preventing or detecting crime by an authorized individual."
+          legal: "EXEMPT UNDER BNS Section 78(2)(a). The statute explicitly provides an absolute defence if the conduct was pursued for the purpose of preventing or detecting crime by an authorized individual."
         }
       ],
       forensics: [
@@ -1644,31 +1644,31 @@ document.addEventListener('DOMContentLoaded', () => {
       penalty: "Section 43: Compensation up to ₹1 Crore (payable to victim); Section 66: Imprisonment up to 3 years and/or fine up to ₹5 Lakh.",
       ingredients: [
         "1. Section 43 acts: Unauthorized access, downloading, virus insertion, system damage, disruption, denial of access, or tampering.",
-        "2. Strict Liability in §43: No criminal intent (mens rea) is required. Even unauthorized accidental access triggers civil liability.",
+        "2. Strict Liability in Section 43: No criminal intent (mens rea) is required. Even unauthorized accidental access triggers civil liability.",
         "3. Section 66 Criminality: The identical physical acts of Section 43 become criminal ONLY when done 'dishonestly' (intent to cause wrongful gain or wrongful loss) or 'fraudulently' (intent to defraud).",
         "4. Section 46 Powers: State Adjudicating Officer holds all powers of a Civil Court including summoning witnesses, compelling documents, and awarding damages."
       ],
       scenarios: [
         {
           name: "Scenario 1: Internal Employee Exceeds Database Access",
-          verdict: "Civil Contravention (§43(a))",
+          verdict: "Civil Contravention (Section 43(a))",
           verdictClass: "verdict-exempt",
           facts: "A database administrator queries customer records outside his assigned project out of personal curiosity. He does not copy, sell, or destroy the data.",
-          legal: "CONTRAVENTION UNDER §43(a). Unauthorized access occurred without permission. However, without evidence of dishonest gain or fraudulent intent, Section 66 criminal charges will not stand."
+          legal: "CONTRAVENTION UNDER Section 43(a). Unauthorized access occurred without permission. However, without evidence of dishonest gain or fraudulent intent, Section 66 criminal charges will not stand."
         },
         {
           name: "Scenario 2: Ransomware Attack Locking Corporate Servers",
-          verdict: "Criminal Offence (§43 read with §66 + §66F + BNS §308)",
+          verdict: "Criminal Offence (Section 43 read with Section 66 + Section 66F + BNS Section 308)",
           verdictClass: "verdict-offence",
           facts: "An attacker penetrates an enterprise network via spear-phishing, deploys encryptor malware across 200 servers, and demands 50 Bitcoin to provide the decryption keys.",
           legal: "CRIMINAL OFFENCE under Section 43(c)/(d) read with Section 66 (system damage and disruption done dishonestly) + Section 66F (Cyberterrorism, if critical services are hit) + BNS Section 308 (Extortion)."
         },
         {
           name: "Scenario 3: Ethical Hacker Scanning External Server Without Permission",
-          verdict: "Civil Violation (§43(a))",
+          verdict: "Civil Violation (Section 43(a))",
           verdictClass: "verdict-exempt",
           facts: "A cybersecurity researcher runs vulnerability scans (Nmap, Burp Suite) against a bank's web server without any prior written authorization or bug bounty program agreement.",
-          legal: "CONTRAVENTION UNDER §43(a). Indian law does not recognize uninvited 'good-faith' security testing. Scanning without authorization is legally unauthorized access regardless of researcher intentions."
+          legal: "CONTRAVENTION UNDER Section 43(a). Indian law does not recognize uninvited 'good-faith' security testing. Scanning without authorization is legally unauthorized access regardless of researcher intentions."
         }
       ],
       forensics: [
@@ -1685,7 +1685,7 @@ document.addEventListener('DOMContentLoaded', () => {
       quote: "Section 66C: Identity theft by fraudulently using unique identification features... Section 66D: Cheating by personation by using computer resource...",
       nature: "Cognizable • Bailable • Non-Compoundable",
       forum: "Judicial Magistrate First Class / Metropolitan Magistrate",
-      penalty: "Section 66C: Imprisonment up to 3 years and fine up to ₹1 Lakh; Section 66D: Imprisonment up to 3 years and fine up to ₹1 Lakh (often paired with BNS §318(4) carrying up to 7 years).",
+      penalty: "Section 66C: Imprisonment up to 3 years and fine up to ₹1 Lakh; Section 66D: Imprisonment up to 3 years and fine up to ₹1 Lakh (often paired with BNS Section 318(4) carrying up to 7 years).",
       ingredients: [
         "1. Section 66C Targets: Passwords, digital signatures, electronic biometric identifiers, PIN codes, OTPs, or unique identification numbers.",
         "2. Section 66D Focus: Deceptive personation — pretending to be someone else (e.g. bank official, CBI officer, company director) through any computer system to deceive the victim.",
@@ -1694,14 +1694,14 @@ document.addEventListener('DOMContentLoaded', () => {
       scenarios: [
         {
           name: "Scenario 1: SIM Swap & Banking OTP Interception",
-          verdict: "Criminal Offence (§66C + §66D + BNS §318)",
+          verdict: "Criminal Offence (Section 66C + Section 66D + BNS Section 318)",
           verdictClass: "verdict-offence",
           facts: "Fraudsters obtain a duplicate SIM card of the victim using forged ID, intercept the net-banking OTP, and transfer ₹15 lakh to mule accounts.",
           legal: "COMPOUND OFFENCE: Section 66C (fraudulent use of unique electronic identifier OTP) + Section 66D (cheating by personating the account owner) + BNS Section 318(4) (Cheating and dishonestly inducing delivery of property)."
         },
         {
           name: "Scenario 2: Deepfake Video Call Impersonating Corporate CFO",
-          verdict: "Criminal Offence (§66D + BNS §336 + BNS §318)",
+          verdict: "Criminal Offence (Section 66D + BNS Section 336 + BNS Section 318)",
           verdictClass: "verdict-offence",
           facts: "Attackers use synthetic AI voice and video cloning to impersonate a company's CFO during a video conference, instructing finance personnel to execute an emergency wire transfer.",
           legal: "OFFENCE UNDER SECTION 66D. Using a computer resource to generate synthetic persona to induce financial transfer constitutes cheating by personation and cyber forgery."
@@ -1731,14 +1731,14 @@ document.addEventListener('DOMContentLoaded', () => {
       scenarios: [
         {
           name: "Scenario 1: Reprogramming Embedded Firmware on Mobile Handsets",
-          verdict: "Criminal Offence (§65 IT Act)",
+          verdict: "Criminal Offence (Section 65 IT Act)",
           verdictClass: "verdict-offence",
           facts: "An engineer uses specialized flasher boxes and software to alter Electronic Serial Numbers (ESN) and firmware inside network-locked CDMA/GSM handsets to run on unauthorized networks.",
           legal: "CRIMINAL OFFENCE UNDER SECTION 65. Under the landmark Andhra Pradesh High Court precedent, machine-readable binary code and firmware inside ROM chips legally constitute 'computer source code'."
         },
         {
           name: "Scenario 2: Disgruntled Developer Wipes Git Repositories on Departure",
-          verdict: "Criminal Offence (§65 + §66 IT Act)",
+          verdict: "Criminal Offence (Section 65 + Section 66 IT Act)",
           verdictClass: "verdict-offence",
           facts: "Before resigning, a software developer force-pushes an empty commit history and wipes production repository branches that the company is legally required to archive for tax/audit compliance.",
           legal: "CRIMINAL OFFENCE: Section 65 (intentional destruction of mandatory corporate source code) + Section 66 (system damage and data wiping)."
@@ -1755,25 +1755,25 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "IT Act Section 66E vs BNS Section 77: Bodily Privacy & Voyeurism",
       subtitle: "Privacy Violations in Cyberspace • Gender Neutral IT Act vs Gender Specific BNS",
       quote: "Section 66E IT Act: Capturing, publishing or transmitting image of a private area of any person without consent... Section 77 BNS: Any man who watches or captures the image of a woman engaging in a private act...",
-      nature: "Section 66E: Bailable; BNS §77: 1st Conviction Bailable, Subsequent Conviction Non-Bailable",
+      nature: "Section 66E: Bailable; BNS Section 77: 1st Conviction Bailable, Subsequent Conviction Non-Bailable",
       forum: "Judicial Magistrate First Class / Metropolitan Magistrate",
-      penalty: "Section 66E: Imprisonment up to 3 years and/or fine up to ₹2 Lakh; BNS §77: 1st Conviction: 1-3 years + fine; Subsequent: 3-7 years + fine.",
+      penalty: "Section 66E: Imprisonment up to 3 years and/or fine up to ₹2 Lakh; BNS Section 77: 1st Conviction: 1-3 years + fine; Subsequent: 3-7 years + fine.",
       ingredients: [
         "1. Section 66E is Gender-Neutral: Protects ANY person (male, female, or transgender). Covers capturing, publishing, or transmitting images of private areas (genitals, buttocks, female breasts) without consent under circumstances violating privacy.",
-        "2. BNS §77 (Voyeurism) is Gender-Specific: Only a man can be the accused, and only a woman can be the victim. Covers watching or capturing images of a woman engaging in private acts where privacy is expected.",
+        "2. BNS Section 77 (Voyeurism) is Gender-Specific: Only a man can be the accused, and only a woman can be the victim. Covers watching or capturing images of a woman engaging in private acts where privacy is expected.",
         "3. Section 77(2) Dissemination: Even if a woman originally consented to the image being captured, sharing or disseminating it to any third party constitutes voyeurism."
       ],
       scenarios: [
         {
           name: "Scenario 1: Hidden Spy Camera in Changing Room / Hotel",
-          verdict: "Compound Offence (§66E IT Act + BNS §77 + BNS §79)",
+          verdict: "Compound Offence (Section 66E IT Act + BNS Section 77 + BNS Section 79)",
           verdictClass: "verdict-offence",
           facts: "A hotel employee installs a pinhole spy camera disguised as a smoke detector inside a guest washroom, recording guests without their consent.",
           legal: "COMPOUND CRIMINAL OFFENCE: Section 66E IT Act (Capturing images of private areas) + BNS Section 77 (Voyeurism) + BNS Section 79 (Insulting modesty of woman)."
         },
         {
           name: "Scenario 2: Dissemination of Intimate Images Without Consent ('Revenge Porn')",
-          verdict: "Criminal Offence (§66E + §67A IT Act + BNS §77(2))",
+          verdict: "Criminal Offence (Section 66E + Section 67A IT Act + BNS Section 77(2))",
           verdictClass: "verdict-offence",
           facts: "After a breakup, an ex-partner uploads consensual private intimate photos of the victim to pornography forums and WhatsApp groups without her permission.",
           legal: "CRIMINAL OFFENCE: Section 66E IT Act (transmission without consent) + Section 67A IT Act (sexually explicit content transmission) + BNS Section 77(2) (dissemination of private act images)."
@@ -1830,8 +1830,8 @@ document.addEventListener('DOMContentLoaded', () => {
       penalty: "Loss of immunity exposes intermediary to criminal liability as a conspirator or abettor under IT Act and BNS.",
       ingredients: [
         "1. Intermediary Definition: Any entity that receives, stores, transmits, or provides services with respect to electronic records (e.g. WhatsApp, Google, ISPs, web hosts, e-commerce).",
-        "2. Safe Harbour Conditions (§79(2)): (a) Function is limited to providing access to communication system; (b) Intermediary does not initiate transmission; (c) Does not select the receiver; (d) Does not select or modify information.",
-        "3. Loss of Immunity (§79(3)): Intermediary loses safe harbour if it conspires, abets, aids, or fails to expeditiously remove unlawful content upon receiving actual knowledge.",
+        "2. Safe Harbour Conditions (Section 79(2)): (a) Function is limited to providing access to communication system; (b) Intermediary does not initiate transmission; (c) Does not select the receiver; (d) Does not select or modify information.",
+        "3. Loss of Immunity (Section 79(3)): Intermediary loses safe harbour if it conspires, abets, aids, or fails to expeditiously remove unlawful content upon receiving actual knowledge.",
         "4. The 36-Hour Takedown Rule: Under Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules 2021, platforms must remove prohibited content within 36 hours of receipt of court order or government direction."
       ],
       scenarios: [
