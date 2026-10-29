@@ -1,8 +1,9 @@
 /**
  * DSSSB Junior Scientific Assistant (Cyber Forensic)
  * 3D Interactive Digital Textbook Controller
- * Fully paginated: 40 pages (20 spreads) with natural textbook flow,
- * zero clipping, zero scrollbars, zero emojis, and content-bearing 3D turns.
+ * Fully paginated: 40 pages (20 spreads) with in-depth statutory coverage,
+ * landmark Indian court jurisprudence, real-world Indian cyber crime situations,
+ * laboratory photographs/diagrams, and built-in Web Speech Audio Narration.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const fontSizeDecBtn = document.getElementById('fontSizeDecBtn');
   const fullscreenBtn = document.getElementById('fullscreenBtn');
   const viewModeToggleBtn = document.getElementById('viewModeToggleBtn');
+  const audioNarrationBtn = document.getElementById('audioNarrationBtn');
+  const bottomAudioBtn = document.getElementById('bottomAudioBtn');
+  const audioStatusText = document.getElementById('audioStatusText');
 
   // App State
   let isSinglePage = (window.innerWidth <= 768);
@@ -41,12 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let isFlipping = false;
   let isAutoFlip = false;
   let autoFlipInterval = null;
+  let isSpeaking = false;
+  let currentUtterance = null;
   let currentThemeIndex = 0;
   const themes = ['theme-parchment', 'theme-white', 'theme-dark'];
   let currentFontSizePercent = 100;
 
   // =========================================================================
-  // 20 SPREADS (40 PAGES) FULLY PAGINATED TEXTBOOK DATABASE
+  // 20 SPREADS (40 PAGES) IN-DEPTH MULTIMEDIA TEXTBOOK DATABASE
   // =========================================================================
   const spreads = [
     // Spread 0: Front Cover & Frontispiece (Pages 1 & 2)
@@ -59,29 +65,29 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="cover-border-box">
             <div>
               <div class="cover-title-badge">Government of NCT of Delhi</div>
-              <div style="font-family: var(--font-title); font-size: 0.92rem; font-weight: 700; color: var(--text-heading); margin-bottom: 8px;">
+              <div style="font-family: var(--font-title); font-size: 0.92rem; font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">
                 Delhi Subordinate Services Selection Board
               </div>
-              <div style="margin: 8px 0;">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--accent-gold); display: inline-block;"><path d="M12 2v20M5 7l7-3 7 3M2 13l3-6 3 6a3 3 0 0 1-6 0zm14 0l3-6 3 6a3 3 0 0 1-6 0zM5 22h14"></path></svg>
+              <div style="margin: 6px 0;">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--accent-gold); display: inline-block;"><path d="M12 2v20M5 7l7-3 7 3M2 13l3-6 3 6a3 3 0 0 1-6 0zm14 0l3-6 3 6a3 3 0 0 1-6 0zM5 22h14"></path></svg>
               </div>
-              <h2 style="font-family: var(--font-title); font-size: 1.2rem; color: var(--accent-color); margin-bottom: 2px;">
+              <h2 style="font-family: var(--font-title); font-size: 1.15rem; color: var(--accent-color); margin-bottom: 2px;">
                 Junior Scientific Assistant
               </h2>
-              <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-heading); margin-bottom: 8px;">
+              <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">
                 (Cyber Forensic Discipline)
               </div>
             </div>
 
             <ul class="cover-features-list">
-              <li><strong>Cybersecurity Fundamentals:</strong> Architecture, CIA Triad, threat profiles.</li>
-              <li><strong>Indian Cyber Law:</strong> IT Act 2000, Section 43 civil vs Section 66 criminal.</li>
-              <li><strong>Bharatiya Nyaya Sanhita 2023:</strong> New criminal code integration.</li>
-              <li><strong>Digital Signatures & PKI:</strong> Asymmetric cryptography & authorities.</li>
-              <li><strong>Forensics & Evidence:</strong> 5 investigation stages & BSA 2023 standards.</li>
+              <li><strong>In-Depth Technical Mastery:</strong> Memory volatility, hex carving, write-blockers, SHA-256 validation.</li>
+              <li><strong>Landmark Indian Jurisprudence:</strong> *Suhas Katti*, *Shreya Singhal*, *Puttaswamy*, *Arjun Panditrao*.</li>
+              <li><strong>Real-Life Incident Forensics:</strong> Cosmos Bank switch heist, AIIMS Delhi ransomware crisis.</li>
+              <li><strong>Bharatiya Sakshya Adhiniyam 2023:</strong> Section 61, 62, 63 electronic evidence protocols.</li>
+              <li><strong>Multimedia Learning:</strong> Laboratory photographs, network schematics & audio narration.</li>
             </ul>
 
-            <div style="font-size: 0.76rem; color: var(--text-muted); border-top: 1px solid var(--ui-border); padding-top: 6px;">
+            <div style="font-size: 0.74rem; color: var(--text-muted); border-top: 1px solid var(--ui-border); padding-top: 5px;">
               Department of Forensic Science Services • Crime Branch Reference<br>
               <strong>2026 Academic Forensic Edition</strong>
             </div>
@@ -98,18 +104,18 @@ document.addEventListener('DOMContentLoaded', () => {
               <h1 class="cover-h1">
                 CYBER CRIMES AND RELATED OFFENCES & PENALTIES
               </h1>
-              <div style="font-size: 0.88rem; color: var(--text-muted); font-style: italic; margin-bottom: 8px;">
-                Complete Theory Textbook, Statutory Analysis & Practical Forensic Guide
+              <div style="font-size: 0.86rem; color: var(--text-muted); font-style: italic; margin-bottom: 8px;">
+                Authoritative Treatise, Statutory Analysis & Real-World Forensic Case Studies
               </div>
               <div style="height: 2px; width: 50px; background: var(--accent-gold); margin: 0 auto 10px;"></div>
             </div>
 
-            <div class="book-callout" style="text-align: left; margin: 0 0 8px 0; font-size: 0.82rem;">
-              <strong>Pedagogical Approach:</strong> Structured like an academic textbook and analytical journal—not shallow multiple-choice questions. Understand what happens in a cybercrime, why it happens, how technology works, what Indian law dictates, and how offences are forensically investigated.
+            <div class="book-callout" style="text-align: left; margin: 0 0 8px 0; font-size: 0.8rem;">
+              <strong>Pedagogical Standard:</strong> Structured for aspiring forensic scientists and cyber investigators. Move beyond baseline definitions into technical forensic workflows, actual Indian courtroom rulings, hardware acquisition procedures, and real-life banking cyber incidents.
             </div>
 
-            <div style="background: var(--page-bg-subtle); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--ui-border); font-size: 0.78rem; text-align: left; line-height: 1.35;">
-              <strong>Includes:</strong> 10 Core Syllabus Chapters • Statutory Penalties Master Table • Section 66A Invalidation (*Shreya Singhal*) • *Puttaswamy* Privacy Jurisprudence • BNS 2023 Offence Cross-Reference.
+            <div style="background: var(--page-bg-subtle); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--ui-border); font-size: 0.76rem; text-align: left; line-height: 1.35;">
+              <strong>Features:</strong> 10 Comprehensive Chapters • 8 Landmark Court Briefs • 3 Real-Life Situational Case Studies • Built-in Audio Read-Aloud • Evidence Hardware Photographs.
             </div>
 
             <div>
@@ -130,19 +136,19 @@ document.addEventListener('DOMContentLoaded', () => {
         runningHead: "Syllabus Roadmap & Architecture",
         content: `
           <h1>Complete Syllabus Roadmap</h1>
-          <p>The syllabus is divided into 10 interconnected chapters for progressive conceptual mastery:</p>
+          <p>The syllabus is divided into 10 interconnected chapters for progressive conceptual and forensic mastery:</p>
           
-          <ul style="font-size: 0.82rem; line-height: 1.4; list-style-type: none; margin-left: 0;">
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">01. Introduction to Cybercrime:</strong> Meaning, characteristics, history, scope and key terminology.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">02. Classification & Motivations:</strong> Types of cybercrime, conventional vs cybercrime, motives and offenders.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">03. Crimes Against Individuals:</strong> Cyberstalking, online sexual offences, phishing, fraud, identity theft and forgery.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">04. Crimes Against Property & Systems:</strong> IPR violations, computer vandalism, malware, ransomware, spam and system attacks.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">05. Cyberterrorism & Society:</strong> National security, privacy, cyber defamation, hate speech and critical infrastructure.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">06. Indian Cyber Law Framework:</strong> Origins, objectives, provisions and critical analysis of the IT Act, 2000.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">07. IT Act Offences & Penalties:</strong> Detailed study of statutory offences, punishments, liabilities and exceptions.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">08. Digital & Electronic Signatures:</strong> Cryptography, certificates, authentication, legal validity and signature offences.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">09. Authorities & Statutory Powers:</strong> CCA, Certifying Authorities, CERT-In, adjudication and institutions.</li>
-            <li style="margin-bottom: 5px;"><strong style="color: var(--accent-color);">10. Cybercrimes under BNS 2023:</strong> Bharatiya Nyaya Sanhita criminal provisions, electronic evidence and practical legal application.</li>
+          <ul style="font-size: 0.8rem; line-height: 1.36; list-style-type: none; margin-left: 0;">
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">01. Introduction to Cybercrime:</strong> Meaning, characteristics, history, hardware roles and digital evidence basics.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">02. Classification & Motivations:</strong> Cyber-dependent vs cyber-enabled, victim classification, mens rea and offender profiling.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">03. Crimes Against Individuals:</strong> Cyberstalking (*Suhas Katti*), online obscenity, deepfakes, phishing and banking fraud.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">04. Crimes Against Property & Systems:</strong> IPR, source code tampering (*Syed Asifuddin*), ransomware (*AIIMS Delhi*) and DDoS.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">05. Cyberterrorism & Society:</strong> Section 66F, speech & defamation (*Shreya Singhal*), and Right to Privacy (*Puttaswamy*).</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">06. Indian Cyber Law Framework:</strong> UNCITRAL Model Law, IT Act 2000 structure, and Section 75 extra-territorial jurisdiction.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">07. IT Act Offences & Penalties:</strong> Master statutory table (§43 to §74), civil adjudication vs criminal prosecution, and safe harbour (*Baazee.com*).</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">08. Digital Signatures & PKI:</strong> Asymmetric cryptography, RSA key pairs, SHA-256 hash algorithms and Certifying Authorities.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">09. Authorities & Investigation Powers:</strong> CCA, CERT-In, Police Inspector search powers (§78/§80), and chain of custody.</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--accent-color);">10. BNS 2023 & Electronic Evidence:</strong> BNS penal mapping, Section 63 BSA 2023 certificate, and *Arjun Panditrao* doctrine.</li>
           </ul>
         `
       },
@@ -151,15 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
         runningHead: "Chapter 1: What is Cybercrime?",
         content: `
           <h1>Chapter 1: Introduction to Cybercrime</h1>
-          <h3>1.1 What is Cybercrime?</h3>
-          <p>Imagine that someone steals 50,000 rupees from a person's physical wallet. This is a traditional theft involving physical property and direct contact.</p>
-          <p>Now imagine that a criminal sends a fraudulent bank website link, tricks the person into entering online banking credentials, and transfers 50,000 rupees to another account. Both cases involve the unlawful loss of money, but the second involves a computer network, digital deception, and intangible electronic ledger entries.</p>
+          <h3>1.1 The Technical Concept of Cybercrime</h3>
+          <p>Traditional criminal law (IPC / BNS) originated to protect tangible physical property, bodily integrity, and territorial spaces. A physical theft requires an offender to physically take movable property out of a person's possession.</p>
+          <p>In digital crimes, the asset stolen is intangible electronic data, bits, cryptographic keys, or account access tokens. The victim does not necessarily lose possession of the original bytes—the perpetrator makes an exact duplicate copy, often operating thousands of kilometres away across multiple router hops.</p>
           
           <div class="book-callout">
-            <strong>Legal Definition:</strong> Cybercrime refers broadly to unlawful activities in which computers, digital devices, communication networks or information systems act as the <em>target</em>, <em>instrument</em>, or <em>environment/facilitator</em> of the offence.
+            <strong>Legal Definition:</strong> Cybercrime is an umbrella term encompassing any unlawful activity where computers, communication devices, or electronic networks serve as the <strong>target</strong> of the intrusion, the <strong>instrument</strong> of commission, or the <strong>environment/facilitator</strong> of the offence.
           </div>
 
-          <p>Cybercrime is an <strong>umbrella term</strong>, not one single monolithic offence under Indian law. Different acts are punished under different statutory provisions across the IT Act 2000 and the Bharatiya Nyaya Sanhita 2023.</p>
+          <p>Under Indian jurisprudence, cybercrime is not codified as a single standalone crime. It is addressed through specific statutory provisions in the <strong>Information Technology Act, 2000</strong> and substantive offences under the <strong>Bharatiya Nyaya Sanhita, 2023</strong>.</p>
         `
       }
     },
@@ -172,24 +178,24 @@ document.addEventListener('DOMContentLoaded', () => {
         runningHead: "Chapter 1: Roles of a Computer",
         content: `
           <h2>1.2 Three Fundamental Roles of a Computer</h2>
-          <p>To analyze any digital offence, forensic investigators classify the computer's role into three functional categories:</p>
+          <p>Forensic examination begins by determining the precise operational role played by the computer system:</p>
 
-          <div style="background: var(--page-bg-subtle); padding: 8px 12px; border-left: 3px solid var(--accent-color); margin-bottom: 10px; border-radius: 0 4px 4px 0;">
+          <div style="background: var(--page-bg-subtle); padding: 7px 11px; border-left: 3px solid var(--accent-color); margin-bottom: 8px; border-radius: 0 4px 4px 0; font-size: 0.81rem;">
             <strong style="color: var(--accent-color);">1. Computer as a Target:</strong><br>
-            The criminal attacks the system itself. Objectives include breaching confidentiality, corrupting databases, or denying service.<br>
-            <em>Examples:</em> Unauthorized server intrusion, database wiping, distributed denial-of-service (DDoS), or ransomware encryption.
+            The hardware, operating system, or stored database is the intended victim. Objectives include compromising confidentiality, corrupting databases, or sabotaging service availability.<br>
+            <em>Forensic Focus:</em> Kernel rootkit analysis, event log tampering, memory shellcode extraction, crash dump analysis.
           </div>
 
-          <div style="background: var(--page-bg-subtle); padding: 8px 12px; border-left: 3px solid var(--accent-gold); margin-bottom: 10px; border-radius: 0 4px 4px 0;">
+          <div style="background: var(--page-bg-subtle); padding: 7px 11px; border-left: 3px solid var(--accent-gold); margin-bottom: 8px; border-radius: 0 4px 4px 0; font-size: 0.81rem;">
             <strong style="color: var(--accent-gold);">2. Computer as an Instrument:</strong><br>
-            A device or online communication service is used as a weapon or tool to commit an offence against someone else.<br>
-            <em>Examples:</em> Sending phishing emails, creating forged digital contracts, identity theft, or executing online financial frauds.
+            A device or communication network is utilized as a weapon or tool to execute an offence against a remote victim.<br>
+            <em>Forensic Focus:</em> Browser cache extraction, outgoing SMTP email headers, MAC spoofing logs, keystroke injector logs.
           </div>
 
-          <div style="background: var(--page-bg-subtle); padding: 8px 12px; border-left: 3px solid #15803d; border-radius: 0 4px 4px 0;">
+          <div style="background: var(--page-bg-subtle); padding: 7px 11px; border-left: 3px solid #15803d; border-radius: 0 4px 4px 0; font-size: 0.81rem;">
             <strong style="color: #15803d;">3. Computer as an Environment / Facilitator:</strong><br>
-            Digital platforms provide the virtual setting or infrastructure for illegal coordination, storage, or black markets.<br>
-            <em>Examples:</em> Dark web marketplaces for illicit contraband, encrypted communication groups for conspiracy.
+            Online platforms provide the virtual venue or repository for illegal operations, illicit markets, or conspiracy.<br>
+            <em>Forensic Focus:</em> Tor dark web node analysis, cryptocurrency blockchain ledger tracing, encrypted messaging database parsing.
           </div>
         `
       },
@@ -198,17 +204,17 @@ document.addEventListener('DOMContentLoaded', () => {
         runningHead: "Chapter 1: Characteristics (Part I)",
         content: `
           <h2>1.3 Important Characteristics of Cybercrime</h2>
-          <p>Cybercrime possesses distinctive attributes that fundamentally differentiate it from conventional physical crimes:</p>
+          <p>Cybercrime exhibits distinctive characteristics that differentiate it from physical crimes:</p>
           
-          <h3>A. Borderless Nature</h3>
-          <p>The internet does not respect municipal or national boundaries. An attacker in Country A initiates an attack via a compromised proxy server in Country B to target a banking system in India.</p>
-          <p>The crime involves multiple sovereign jurisdictions. Investigators require international cooperation (MLAT) to obtain server logs, account information, and evidence. India's IT Act addresses offences with foreign connections through <strong>Section 75</strong>.</p>
+          <h3>A. Borderless Nature & Sovereignty Conflicts</h3>
+          <p>The TCP/IP internet protocol has no concept of political borders. A cybercriminal in Russia may bounce command-and-control packets through a compromised VPN proxy in Germany to breach a critical power grid server in New Delhi.</p>
+          <p>The crime simultaneously involves three sovereign nations. Obtaining ISP logs requires formal <strong>Mutual Legal Assistance Treaties (MLAT)</strong> or Letters Rogatory. India's IT Act addresses extraterritorial acts under <strong>Section 75</strong> provided the target computer system is located in India.</p>
 
-          <h3>B. Speed and Automation</h3>
-          <p>Traditional criminals must approach victims individually. Cybercriminals automate operations and contact thousands of people in seconds. A single phishing script can distribute fraudulent messages to hundreds of thousands of accounts simultaneously.</p>
+          <h3>B. Speed, Automation & Attack Multipliers</h3>
+          <p>Physical burglaries require physical travel, reconnaissance, and manual effort. A cybercriminal uses automated scripts, credential-stuffing tools, and distributed botnets to scan millions of open ports and distribute hundreds of thousands of phishing links within seconds.</p>
 
-          <h3>C. Concealment of Identity</h3>
-          <p>Offenders attempt to conceal their identities using fake accounts, compromised systems, proxy networks, and VPNs. However, online anonymity is rarely absolute: investigators trace network records, transaction trails, account metadata, and device forensics.</p>
+          <h3>C. Digital Concealment & Anti-Forensics</h3>
+          <p>Perpetrators deploy TOR onion routing, proxy chains, burner SIMs, and anti-forensic wiper utilities. Forensic analysts counter this via IPDR analysis, packet header correlation, and timeline sequencing.</p>
         `
       }
     },
@@ -218,26 +224,25 @@ document.addEventListener('DOMContentLoaded', () => {
       spreadId: 3,
       left: {
         pageNumber: 7,
-        runningHead: "Chapter 1: Characteristics (Part II)",
+        runningHead: "Chapter 1: Digital Evidence & Hardware Imaging",
         content: `
-          <h3>D. Digital and Electronic Evidence</h3>
-          <p>Traditional crimes leave physical traces like fingerprints or eyewitnesses. Cybercrimes leave electronic evidence:</p>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li>IP addresses, network flow records, and firewall logs.</li>
-            <li>Browser history, session cache, and tracking cookies.</li>
-            <li>Email transmission headers and messaging audit trails.</li>
-            <li>File system metadata, timestamps (MAC times), and unallocated space.</li>
-            <li>Device storage and deleted-file recovery remnants.</li>
-            <li>Financial transaction logs and cryptocurrency ledger records.</li>
-            <li>System authentication and access control logs.</li>
-          </ul>
+          <h3>D. Digital & Electronic Evidence in Practice</h3>
+          <p>Unlike physical evidence (fingerprints, blood spatter), digital evidence is intangible, fragile, and easily altered by simple system boot sequences:</p>
 
-          <div class="book-callout">
-            <strong>Forensic Evidentiary Standard:</strong> Digital evidence is intangible and fragile. Investigators must prove authenticity, integrity, preservation, and legal admissibility under the Bharatiya Sakshya Adhiniyam, 2023.
+          <div class="book-figure">
+            <img src="assets/evidence_hardware.jpg" alt="Physical Write-Blocker Setup">
+            <div class="book-figure-caption">
+              <span>Figure 1.1: Physical Write-Blocker & Forensic Bridge</span>
+              <span>Bit-Stream Duplicate Acquisition</span>
+            </div>
           </div>
 
-          <h3>E. Scalability & Attribution Challenges</h3>
-          <p>Malicious scripts can infect thousands of systems simultaneously. An IP address identifies a network connection, not necessarily the specific human sitting at the keyboard. Forensics must distinguish between device identification and personal culpability.</p>
+          <div style="font-size: 0.8rem; line-height: 1.35; margin-top: 4px;">
+            <strong>The Forensic Golden Rules of Digital Seizure:</strong><br>
+            • <em>Volatile Memory First:</em> If a system is running, capture volatile RAM (passwords, decryption keys, running malware) before cutting power.<br>
+            • <em>Hardware Write-Blocking:</em> Connect suspect drives via a certified hardware write-blocker (Figure 1.1) which intercepts and drops all ATA/SATA write commands while permitting bit-for-bit read access.<br>
+            • <em>Cryptographic Hashing:</em> Immediately compute MD5 and SHA-256 hashes of the master physical drive and verify they match the forensic clone (E01/DD image).
+          </div>
         `
       },
       right: {
@@ -245,24 +250,24 @@ document.addEventListener('DOMContentLoaded', () => {
         runningHead: "Chapter 1: Historical Timeline",
         content: `
           <h2>1.4 Historical Development of Cybercrime</h2>
-          <p>Cybercrime evolved directly alongside computing and telecommunications:</p>
+          <p>Cybercrime evolved directly alongside computing architecture and telecommunications:</p>
 
           <table class="book-table">
             <thead>
-              <tr><th>Period</th><th>Major Developments & Evolution</th></tr>
+              <tr><th>Period</th><th>Dominant Threats & Historical Milestones</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>1960s–1970s</strong></td><td>Mainframe computer misuse, unauthorized terminal access, early telecommunications manipulation (phreaking).</td></tr>
-              <tr><td><strong>1980s</strong></td><td>Personal-computer malware (Brain, Morris Worm), software piracy, computer fraud, early computer-crime statutes.</td></tr>
-              <tr><td><strong>1990s</strong></td><td>Public internet expansion, email-based attacks, Nigerian 419 advance-fee scams, commercial website defacement.</td></tr>
-              <tr><td><strong>2000s</strong></td><td>Botnets, commercialized phishing, automated credit card skimming, identity theft, organized transnational cyber syndicates.</td></tr>
-              <tr><td><strong>2010s</strong></td><td>Ransomware cryptoware, massive corporate data breaches, mobile payment fraud, dark web cryptocurrency extortion.</td></tr>
-              <tr><td><strong>2020s</strong></td><td>AI-assisted deepfakes, automated social engineering, critical infrastructure sabotage, complex supply-chain intrusions.</td></tr>
+              <tr><td><strong>1960s–1970s</strong></td><td>Phone phreaking (John Draper / Captain Crunch), mainframe terminal unauthorized time-sharing misuse.</td></tr>
+              <tr><td><strong>1980s</strong></td><td>Personal computer malware (Brain virus 1986, Morris Worm 1988), early federal computer fraud statutes.</td></tr>
+              <tr><td><strong>1990s</strong></td><td>Expansion of the World Wide Web, commercial defacements, Nigerian 419 advance-fee frauds, email spoofing.</td></tr>
+              <tr><td><strong>2000s</strong></td><td>Organized cyber syndicates, banking trojans (Zeus), automated credit card skimming, enactment of India's IT Act 2000.</td></tr>
+              <tr><td><strong>2010s</strong></td><td>Ransomware-as-a-Service (WannaCry 2017), state-sponsored APT espionage, mobile payment fraud, dark web cryptocurrency.</td></tr>
+              <tr><td><strong>2020s</strong></td><td>AI deepfake audio/video clones, critical infrastructure cyber-sabotage, supply-chain attacks, BNS 2023 legal integration.</td></tr>
             </tbody>
           </table>
 
           <div class="book-callout">
-            <strong>Historical Insight:</strong> These eras overlap significantly. Computer fraud and unauthorized access existed in corporate networks decades before the public World Wide Web emerged.
+            <strong>Historical Insight:</strong> The shift from solitary thrill-seeking hackers in the 1980s to transnational state-sponsored cyber syndicates in the 2020s prompted India to enact Section 66F (Cyberterrorism) in the 2008 IT Amendment.
           </div>
         `
       }
@@ -276,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         runningHead: "Chapter 1: Cybercrime vs Cybersecurity vs Forensics",
         content: `
           <h2>1.5 Cybercrime vs Cybersecurity vs Forensics</h2>
-          <p>These core disciplines interact closely but have distinct objectives and methodologies:</p>
+          <p>These four disciplines form the foundation of modern cyber enforcement:</p>
 
           <table class="book-table">
             <thead>
@@ -290,9 +295,17 @@ document.addEventListener('DOMContentLoaded', () => {
             </tbody>
           </table>
 
-          <div class="book-callout">
-            <strong>The Role of the Cyber Forensic Specialist:</strong><br>
-            While cybersecurity focuses on <em>preventing</em> intrusions and cyber law focuses on <em>punishing</em> offenders, Cyber Forensics bridges technology and law. The forensic analyst extracts digital remnants, validates evidence integrity with cryptographic hashes (SHA-256), and constructs court-admissible forensic audit reports.
+          <div class="book-figure">
+            <img src="assets/forensic_lab.jpg" alt="Cyber Forensic Science Laboratory">
+            <div class="book-figure-caption">
+              <span>Figure 1.2: Digital Forensic Examination Lab</span>
+              <span>Hex Inspection & Memory Analysis</span>
+            </div>
+          </div>
+
+          <div style="font-size: 0.78rem; line-height: 1.34; margin-top: 4px;">
+            <strong>5 Golden Stages of Forensic Examination:</strong><br>
+            1. <em>Identification</em> (Locating potential evidence) &bull; 2. <em>Preservation</em> (Chain of custody & write-blockers) &bull; 3. <em>Extraction</em> (Bit-stream cloning) &bull; 4. <em>Analysis</em> (Artifact parsing) &bull; 5. <em>Presentation</em> (Court-admissible Section 63 BSA certificate).
           </div>
         `
       },
@@ -458,24 +471,28 @@ document.addEventListener('DOMContentLoaded', () => {
         runningHead: "Chapter 3: Crimes Against Individuals - Stalking",
         content: `
           <h1>Chapter 3: Crimes Against Individuals</h1>
-          <h3>3.1 Cyberstalking</h3>
-          <p>Cyberstalking is the use of electronic communications or digital networks to repeatedly monitor, contact, threaten, or harass an individual.</p>
+          <h3>3.1 Cyberstalking & Online Harassment</h3>
+          <p>Cyberstalking is the repeated use of electronic communications, mobile messaging, or internet platforms to monitor, pursue, harass, or intimidate an individual.</p>
 
-          <h3>How Cyberstalking Manifests:</h3>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li>Repeated unwanted digital messages across social platforms and email.</li>
-            <li>Covertly tracking internet browsing or GPS location data.</li>
-            <li>Creating fake profiles to impersonate or approach the victim's contacts.</li>
-            <li>Sending intimidating or threatening communications.</li>
-          </ul>
-
-          <div class="book-callout">
-            <span class="sec-badge bns">BNS §78</span> <strong>Stalking under Indian Law:</strong><br>
-            BNS Section 78 specifically covers a man monitoring a woman's use of the internet, email, or other electronic communication without lawful justification.<br>
-            <strong>Statutory Punishment:</strong> First conviction up to <strong>3 years imprisonment + fine</strong>; second or subsequent conviction up to <strong>5 years + fine</strong>.
+          <div class="case-card">
+            <div class="case-card-header">
+              <span>BNS §78 (Formerly IPC §354D)</span>
+              <span class="case-card-badge">Statute</span>
+            </div>
+            <strong>Statutory Stalking Elements:</strong> Any man who monitors the use by a woman of the internet, email or other electronic communication commits the offence of stalking.<br>
+            <strong>Statutory Punishment:</strong> 1st Conviction: Up to <strong>3 years + fine</strong>; Subsequent: Up to <strong>5 years + fine</strong>.
           </div>
 
-          <p style="font-size: 0.8rem; color: var(--text-muted);"><em>Forensic Perspective:</em> Investigators examine chat logs, account creation IPs, device MAC addresses, timestamp correlations, and platform preservation requests.</p>
+          <h3>Technical Manifestations of Stalking:</h3>
+          <ul style="font-size: 0.8rem; line-height: 1.34;">
+            <li><strong>Stalkerware / Spyware Apps:</strong> Covertly installed Android APKs capturing screen, SMS, GPS, and microphone feeds.</li>
+            <li><strong>Doxxing:</strong> Maliciously publishing private home addresses, phone numbers, and identity cards to encourage harassment.</li>
+            <li><strong>Social Media Impersonation:</strong> Creating duplicate profiles to deceive family members or defame the victim.</li>
+          </ul>
+
+          <p style="font-size: 0.78rem; color: var(--text-muted);">
+            <em>Forensic Investigation:</em> Investigators seize the victim's device, extract APK package names using ADB commands, inspect persistent services, and obtain preservation orders (under Section 91 CrPC / BNSS) from telecom service providers for IPDR correlation.
+          </p>
         `
       }
     },
@@ -485,50 +502,56 @@ document.addEventListener('DOMContentLoaded', () => {
       spreadId: 8,
       left: {
         pageNumber: 17,
-        runningHead: "Chapter 3: Unlawful Sexual Content & Deepfakes",
+        runningHead: "Chapter 3: Suhas Katti Landmark Case & Obscenity",
         content: `
-          <h3>3.2 Cyber Pornography & Unlawful Sexual Content</h3>
-          <p>Indian law draws strict statutory distinctions between different categories of electronic sexual content:</p>
+          <h3>3.2 Unlawful Sexual Content & Landmark Precedent</h3>
+          <p>Indian law draws strict statutory boundaries across electronic sexual offences:</p>
 
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li><span class="sec-badge it-act">IT Act §67</span>: Publishing or transmitting <strong>obscene</strong> electronic material (First: 3 yrs + ₹5L; Sub: 5 yrs + ₹10L).</li>
-            <li><span class="sec-badge it-act">IT Act §67A</span>: Publishing or transmitting material depicting <strong>sexually explicit acts</strong> (First: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L).</li>
-            <li><span class="sec-badge it-act">IT Act §67B</span>: Material depicting <strong>children</strong> in sexually explicit acts (First: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L, read with POCSO Act Sections 13–15).</li>
-            <li><span class="sec-badge bns">BNS §77</span> <strong>Voyeurism:</strong> Non-consensual dissemination of private images. Expressly recognizes that consent to capture does NOT imply consent to share.</li>
+          <ul style="font-size: 0.8rem; line-height: 1.34;">
+            <li><span class="sec-badge it-act">IT Act §67</span>: Transmitting <strong>obscene</strong> material (1st: 3 yrs + ₹5L; Sub: 5 yrs + ₹10L).</li>
+            <li><span class="sec-badge it-act">IT Act §67A</span>: <strong>Sexually explicit acts</strong> (1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L).</li>
+            <li><span class="sec-badge it-act">IT Act §67B</span>: <strong>Child Sexual Abuse Material (CSAM)</strong> (1st: 5 yrs + ₹10L; Sub: 7 yrs + ₹10L, read with POCSO Act).</li>
+            <li><span class="sec-badge bns">BNS §77</span> <strong>Voyeurism:</strong> Non-consensual dissemination of private images.</li>
           </ul>
 
-          <div class="book-callout case">
-            <strong>Deepfake-Enabled Abuse:</strong> Synthetic media using AI to fabricate a person's likeness or voice. In August 2026, the Ministry of Electronics & IT (MeitY) reiterated that existing provisions of the IT Act (Sections 66D, 66E, 67, 67A) and BNS apply directly to deepfake harms.
+          <div class="case-card">
+            <div class="case-card-header">
+              <span>State of Tamil Nadu v. Suhas Katti (2004)</span>
+              <span class="case-card-badge">Landmark Ruling</span>
+            </div>
+            <strong>Court:</strong> ACMM Court, Egmore, Chennai (C.C. No. 4680/2004).<br>
+            <strong>Facts:</strong> Accused posted obscene messages about a divorced woman in a Yahoo Group along with her mobile phone number, leading to abusive calls.<br>
+            <strong>Forensic Evidence:</strong> Chennai Cyber Crime Police traced the originating IP address via Yahoo Inc. and VSNL gateway logs to a cyber café where the accused was physically identified.<br>
+            <strong>Ratio:</strong> India's <strong>first conviction under Section 67 IT Act</strong>. Held that server logs corroborating timestamp and subscriber identity form conclusive legal proof of transmission.
           </div>
         `
       },
       right: {
         pageNumber: 18,
-        runningHead: "Chapter 3: Cyber Forgery & Electronic Records",
+        runningHead: "Chapter 3: Syed Asifuddin Landmark Case & Forgery",
         content: `
-          <h3>3.3 Cyber Forgery</h3>
-          <p>Forgery means creating a false document or electronic record with intent to cause damage or commit fraud.</p>
-          
-          <div class="book-callout">
-            <span class="sec-badge bns">BNS §336</span> <strong>Forgery:</strong> Falsifying electronic records (e.g., manipulated digital receipts, fabricated invoices, altered salary certificates). Under Section 336(3), forgery intended for cheating carries up to <strong>7 years imprisonment + fine</strong>.
+          <h3>3.3 Cyber Forgery & Source Code Tampering</h3>
+          <p>Electronic forgery involves fabricating or altering digital records with fraudulent intent under <strong>BNS Section 336</strong>.</p>
+
+          <div class="case-card">
+            <div class="case-card-header">
+              <span>Syed Asifuddin v. State of Andhra Pradesh (2005)</span>
+              <span class="case-card-badge">Landmark Ruling</span>
+            </div>
+            <strong>Court:</strong> High Court of Andhra Pradesh (2005 CriLJ 4314).<br>
+            <strong>Facts:</strong> Tata Indicom CDMA handsets were locked to their network with exclusive Electronic Serial Numbers (ESN). The accused used specialized software to reprogram and alter the ESN chips, enabling handsets to operate on Reliance Infocomm networks.<br>
+            <strong>Legal Question:</strong> Does machine-readable firmware inside an integrated circuit chip constitute "computer source code" under Section 65 IT Act?<br>
+            <strong>Ratio Decidendi:</strong> The High Court held that "source code" is not limited to high-level human-readable code. Machine-readable binary code, firmware, and ESN numbers burned into ROM chips fall under <strong>Section 65 IT Act</strong>. Tampering with embedded firmware is a punishable criminal offence.
           </div>
 
-          <p>In electronic environments, forgery encompasses:</p>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li>Altering digital signatures or certificate attributes.</li>
-            <li>Manipulating PDF metadata, dates, or financial entries.</li>
-            <li>Fabricating official email headers to deceive business partners.</li>
-            <li>Altering server configuration files to mask illicit activity.</li>
-          </ul>
-
-          <p style="font-size: 0.82rem; color: var(--text-muted);">
-            <em>Forensic Detection:</em> Analysts verify file structure metadata, check internal PDF creation/modification dates against operating system MAC times, and validate digital cryptographic hashes.
-          </p>
+          <div class="book-callout">
+            <strong>Forensic Impact:</strong> <em>Syed Asifuddin</em> established that jailbreaking, unlocking, or altering hardware firmware without authorization constitutes illegal tampering with computer source code under Indian criminal law.
+          </div>
         `
       }
     },
 
-    // Spread 9: Fraud, Impersonation & Phishing (Pages 19 & 20)
+    // Spread 9: Fraud, Impersonation & Real-World Case Study (Pages 19 & 20)
     {
       spreadId: 9,
       left: {
@@ -544,29 +567,33 @@ document.addEventListener('DOMContentLoaded', () => {
             <li><span class="sec-badge bns">BNS §318</span>: <strong>Cheating:</strong> General criminal cheating provisions applicable to fraud schemes.</li>
           </ul>
 
-          <div class="book-callout">
-            <strong>Key Legal Distinction:</strong> If an offender creates a fake profile using a victim's real photograph and name to borrow money from friends, both Section 66C (identity theft) and Section 66D (cheating by personation) apply simultaneously alongside BNS cheating sections.
+          <div class="scenario-card">
+            <div class="scenario-title">Real-Life Investigation: SIM-Swap & Reverse-Charge UPI Fraud</div>
+            <strong>Modus Operandi:</strong> Fraudsters bribe telecom retail staff to issue a duplicate SIM card using forged Aadhaar KYC documents. The victim's original SIM loses network connectivity. The criminals immediately install UPI banking apps, intercept dynamic OTP verification codes, and drain savings accounts via rapid peer-to-peer transfers.<br>
+            <strong>Forensic Trail:</strong> Analysts cross-verify Telecom Point of Sale (PoS) agent logs, IMEI change timestamps, IPDR connections, and mule bank account transaction hops.
           </div>
         `
       },
       right: {
         pageNumber: 20,
-        runningHead: "Chapter 3: Phishing & E-Banking Frauds",
+        runningHead: "Chapter 3: Cosmos Bank Cyber Heist Case Study",
         content: `
-          <h3>3.5 Phishing and E-Banking Frauds</h3>
-          <p>Phishing uses deceptive emails, spoofed portals, or messaging links to manipulate individuals into disclosing sensitive authentication data.</p>
+          <h3>3.5 Real-Life Case Study: Cosmos Bank Cyber Heist</h3>
+          <p>The largest cyber banking theft in Indian financial history occurred in Pune in August 2018:</p>
 
-          <h3>Phishing Variants:</h3>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li><strong>Spear Phishing:</strong> Highly customized attacks targeting specific executives.</li>
-            <li><strong>Whaling:</strong> Attacks directed at senior C-suite leadership.</li>
-            <li><strong>Smishing & Vishing:</strong> SMS-based and voice-based telephone fraud.</li>
-            <li><strong>Reverse-Charge UPI Frauds:</strong> Tricking victims into clicking "Pay" instead of "Receive".</li>
-            <li><strong>SIM Swapping:</strong> Fraudulently reissuing a victim's mobile number to intercept bank OTPs.</li>
-          </ul>
+          <div class="book-figure">
+            <img src="assets/banking_cyber_heist.jpg" alt="Cosmos Bank ATM Switch Compromise Analysis">
+            <div class="book-figure-caption">
+              <span>Figure 3.1: ATM Switch Proxy Compromise</span>
+              <span>ISO 8583 Malicious Packet Injection</span>
+            </div>
+          </div>
 
-          <div class="book-callout case">
-            <strong>Statutory Alignment:</strong> Phishing violates multiple provisions: IT Act §43/66 (unauthorized access), §66C (identity credential theft), §66D (personation), and BNS cheating.
+          <div class="scenario-card" style="margin-top: 4px;">
+            <div class="scenario-title">The Pune Cosmos Bank Incident (₹94 Crores Lost)</div>
+            <strong>Attack Vector:</strong> Threat actors infiltrated the cooperative bank's network via spear-phishing and installed malware on a server connecting the ATM Switch to the Central Payment Gateway. They created a rogue proxy switch.<br>
+            <strong>Mechanism:</strong> The malware severed communication between the ATM switch and the Core Banking Server (CBS). When cloned debit cards were swiped across 28 countries, the rogue proxy generated fake "00 - Approved" ISO 8583 authorization responses, bypassing balance checks completely.<br>
+            <strong>Forensic Takeaway:</strong> Banking networks require hardware segregation, mutual TLS authentication between switches, and real-time reconciliation between switch transactions and core ledger balances.
           </div>
         `
       }
@@ -627,21 +654,20 @@ document.addEventListener('DOMContentLoaded', () => {
       spreadId: 11,
       left: {
         pageNumber: 23,
-        runningHead: "Chapter 4: Ransomware & Extortion",
+        runningHead: "Chapter 4: AIIMS Delhi Ransomware Case Study",
         content: `
-          <h3>4.3 Ransomware and Cyber Extortion</h3>
-          <p>Ransomware is malicious software that encrypts user files or locks systems, demanding payment (typically in cryptocurrency) for decryption keys.</p>
+          <h3>4.3 Ransomware & Critical Infrastructure Attacks</h3>
+          <p>Ransomware encrypts critical databases using hybrid cryptography (RSA + AES), demanding cryptocurrency ransom for decryption keys.</p>
 
-          <h3>Evolution of Ransomware Tactics:</h3>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li><strong>Locker Ransomware:</strong> Locks basic system user-interface access without encrypting underlying files.</li>
-            <li><strong>Crypto Ransomware:</strong> Employs strong asymmetric encryption (e.g., RSA-4096 + AES-256) to encrypt files in place.</li>
-            <li><strong>Double Extortion:</strong> Exfiltrates sensitive databases before encryption, threatening public disclosure if ransom is unpaid.</li>
-            <li><strong>Triple Extortion:</strong> Adds DDoS attacks against the victim's clients or directly contacts customers to force payment.</li>
-          </ul>
-
-          <div class="book-callout case">
-            <strong>Statutory Offence Profile:</strong> Ransomware triggers <span class="sec-badge it-act">IT Act §43/66</span> (damage to computer systems) and <span class="sec-badge bns">BNS §308</span> (extortion). Indian CERT-In guidelines mandate reporting ransomware incidents within 6 hours.
+          <div class="scenario-card">
+            <div class="scenario-title">Real-Life Incident: AIIMS New Delhi Ransomware Attack (Nov 2022)</div>
+            <strong>Context:</strong> India's premier public medical institution suffered a catastrophic ransomware breach that crippled its e-Hospital servers, patient registration, billing, lab reports, and appointment portals for nearly two weeks.<br>
+            <strong>Technical Findings:</strong> Attackers gained unauthorized access via misconfigured remote access protocols and lateral movement. Approximately 5 physical servers hosting critical patient databases were encrypted. Threat actors demanded an estimated ₹200 crore ransom in cryptocurrency.<br>
+            <strong>Forensic Incident Response:</strong><br>
+            1. CERT-In and Delhi Police Cyber Cell immediately isolated the infected VLAN.<br>
+            2. Volatile RAM dumps and disk images were acquired before remediation.<br>
+            3. Restored systems from clean, offline immutable tape backups without paying ransom.<br>
+            <strong>Statutory Charges:</strong> Invoked <span class="sec-badge it-act">IT Act §66F</span> (Cyberterrorism on Critical Information Infrastructure) and extortion under criminal law.
           </div>
         `
       },
@@ -719,50 +745,56 @@ document.addEventListener('DOMContentLoaded', () => {
       spreadId: 13,
       left: {
         pageNumber: 27,
-        runningHead: "Chapter 5: Cyber Defamation & Shreya Singhal",
+        runningHead: "Chapter 5: Shreya Singhal Landmark Ruling",
         content: `
-          <h3>5.2 Cyber Defamation & Section 66A</h3>
-          <p>Publishing false and derogatory statements online to injure a person's reputation:</p>
+          <h3>5.2 Cyber Defamation & Section 66A Invalidation</h3>
+          <p>Online speech balances individual reputation against constitutional free expression:</p>
 
-          <div class="book-callout case">
-            <strong>Landmark Ruling: <em>Shreya Singhal v. Union of India (2015)</em>:</strong><br>
-            The Supreme Court struck down <strong>Section 66A</strong> of the IT Act in its entirety as unconstitutional.<br>
-            <em>Reasoning:</em> The section criminalized sending "offensive" or "annoying" electronic messages without clear definition, violating Article 19(1)(a) freedom of speech. It suffered from overbreadth and vagueness.
+          <div class="case-card">
+            <div class="case-card-header">
+              <span>Shreya Singhal v. Union of India (2015)</span>
+              <span class="case-card-badge">Supreme Court</span>
+            </div>
+            <strong>Bench:</strong> J. Chelameswar & Rohinton F. Nariman, JJ. (AIR 2015 SC 1523).<br>
+            <strong>Background:</strong> Two young women were arrested under Section 66A IT Act for posting comments on Facebook questioning the total shutdown of Mumbai following a politician's demise.<br>
+            <strong>Ratio Decidendi:</strong> The Supreme Court <strong>struck down Section 66A in its entirety as unconstitutional</strong>. The Court held:<br>
+            1. The section suffered from <em>overbreadth and vagueness</em>—terms like "grossly offensive" or "annoyance" had no statutory definition.<br>
+            2. It produced an unconstitutional <em>chilling effect</em> on legitimate speech under Article 19(1)(a).<br>
+            3. Section 69A (website blocking) was upheld with mandatory procedural safeguards.
           </div>
 
-          <p>Online defamation is currently prosecuted under:</p>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li><span class="sec-badge bns">BNS §356</span>: General criminal defamation provisions.</li>
-            <li><span class="sec-badge bns">BNS §197</span>: Unlawful statements creating public mischief or communal discord.</li>
-          </ul>
-
-          <p style="font-size: 0.82rem; color: var(--text-muted);">
-            <em>DSSSB Alert:</em> Police officers cannot register an FIR under Section 66A today; invoking it is a contempt of Supreme Court directives.
-          </p>
+          <div class="case-card" style="margin-top: 4px;">
+            <div class="case-card-header">
+              <span>SMC Pneumatics (India) Pvt. Ltd. v. Jogesh Kwatra (2001)</span>
+              <span class="case-card-badge">Delhi High Court</span>
+            </div>
+            <strong>Significance:</strong> India's <strong>first case of cyber defamation</strong>. The Delhi High Court granted an ex-parte injunction restraining a disgruntled employee from transmitting defamatory, derogatory emails about the company and its managing director.
+          </div>
         `
       },
       right: {
         pageNumber: 28,
-        runningHead: "Chapter 5: Right to Privacy in Cyberspace",
+        runningHead: "Chapter 5: Puttaswamy Landmark Privacy Ruling",
         content: `
-          <h3>5.3 Privacy, Surveillance & Data Protection</h3>
-          <p>Digital privacy balances individual rights against legitimate state surveillance interests.</p>
+          <h3>5.3 Privacy & Digital Surveillance Jurisprudence</h3>
+          <p>Digital privacy is the constitutional shield against arbitrary electronic surveillance and algorithmic overreach:</p>
 
-          <div class="book-callout case">
-            <strong>Landmark Ruling: <em>K.S. Puttaswamy v. Union of India (2017)</em>:</strong><br>
-            A 9-judge Constitution Bench held that the <strong>Right to Privacy is a Fundamental Right</strong> under Article 21.<br>
-            Any state intrusion or digital surveillance must satisfy a 3-fold test:<br>
-            1. <strong>Legality:</strong> Must have backing of a valid law.<br>
-            2. <strong>Need / Legitimate Aim:</strong> Must serve a recognized state interest.<br>
-            3. <strong>Proportionality:</strong> The least intrusive method must be employed.
+          <div class="case-card">
+            <div class="case-card-header">
+              <span>Justice K.S. Puttaswamy (Retd.) v. Union of India (2017)</span>
+              <span class="case-card-badge">9-Judge Bench</span>
+            </div>
+            <strong>Citation:</strong> (2017) 10 SCC 1.<br>
+            <strong>Ratio Decidendi:</strong> A unanimous 9-judge Constitution Bench declared that the <strong>Right to Privacy is a Fundamental Right</strong> intrinsically guaranteed under Article 21 (Life & Personal Liberty) and Part III of the Constitution.<br>
+            <strong>The Three-Fold Proportionality Test:</strong> Any state intrusion, interception, or electronic surveillance must satisfy:<br>
+            1. <em>Legality:</em> Authorized by an enacted statutory law (not executive discretion).<br>
+            2. <em>Legitimate Aim:</em> Must pursue a recognized state objective (e.g. national security, crime prevention).<br>
+            3. <em>Proportionality:</em> The measure must be strictly proportional to the object and use the least intrusive technique.
           </div>
 
-          <p>Digital privacy is safeguarded statutory under:</p>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li><span class="sec-badge it-act">IT Act §66E</span>: Violation of bodily privacy (publishing images of private areas).</li>
-            <li><span class="sec-badge it-act">IT Act §72 & §72A</span>: Breach of confidentiality and lawful contract disclosure.</li>
-            <li>Digital Personal Data Protection (DPDP) Act, 2023.</li>
-          </ul>
+          <div class="book-callout">
+            <strong>Legislative Consequence:</strong> <em>Puttaswamy</em> led directly to the enactment of the <strong>Digital Personal Data Protection (DPDP) Act, 2023</strong>, mandating data fiduciary accountability and consent architectures.
+          </div>
         `
       }
     },
@@ -931,20 +963,25 @@ document.addEventListener('DOMContentLoaded', () => {
       spreadId: 16,
       left: {
         pageNumber: 33,
-        runningHead: "Chapter 7: Intermediary Liability & Section 79",
+        runningHead: "Chapter 7: Baazee.com Case & Section 79",
         content: `
-          <h3>7.2 Intermediary Liability & Safe Harbour</h3>
-          <p>An intermediary includes telecom providers, network service providers, internet service providers, search engines, and social media platforms.</p>
+          <h3>7.2 Intermediary Safe Harbour & Landmark Precedent</h3>
+          <p>An intermediary includes telecom service providers, ISPs, search engines, and e-commerce platforms.</p>
 
-          <div class="book-callout">
-            <span class="sec-badge it-act">IT Act §79</span> <strong>Safe Harbour Protection:</strong><br>
-            An intermediary is not liable for third-party information or communication links hosted by it, provided:<br>
-            1. Its function is limited to providing access or transmission.<br>
-            2. It does not initiate the transmission, select the receiver, or modify the content.<br>
-            3. It observes statutory <strong>due diligence</strong> under central government rules.
+          <div class="case-card">
+            <div class="case-card-header">
+              <span>Avnish Bajaj v. State (N.C.T.) of Delhi (2005)</span>
+              <span class="case-card-badge">Landmark Ruling</span>
+            </div>
+            <strong>Context:</strong> Baazee.com (eBay India) MMS pornography listing case (2005 3 CompLJ 364 Del).<br>
+            <strong>Facts:</strong> An independent user listed an obscene MMS video for sale on Baazee.com. Police arrested CEO Avnish Bajaj under Section 67 IT Act and Section 292 IPC.<br>
+            <strong>Ratio:</strong> The Delhi High Court quashed the criminal case against the CEO, noting that IPC did not recognize corporate criminal liability without express statutory mens rea. The Court held that an intermediary cannot be criminally prosecuted solely because an unauthorized user posted illicit content without the platform's knowledge.<br>
+            <strong>Catalyst:</strong> This ruling forced Parliament to enact the comprehensive <strong>Section 79 Safe Harbour amendment in 2008</strong>.
           </div>
 
-          <p><strong>Loss of Exemption:</strong> The intermediary loses protection if it conspired in the offence or fails to expeditiously remove unlawful content upon receiving actual knowledge via court order or authorized notification.</p>
+          <div class="book-callout" style="margin-top: 4px;">
+            <span class="sec-badge it-act">IT Act §79</span> <strong>Safe Harbour Conditions:</strong> Platform is immune if its role is limited to transmission and it exercises statutory <strong>due diligence</strong> (takedown within 24–36 hrs upon court order).
+          </div>
         `
       },
       right: {
@@ -1088,26 +1125,25 @@ document.addEventListener('DOMContentLoaded', () => {
       spreadId: 19,
       left: {
         pageNumber: 39,
-        runningHead: "Chapter 10: Electronic Evidence under BSA 2023",
+        runningHead: "Chapter 10: Arjun Panditrao & Section 63 BSA",
         content: `
-          <h2>10.2 Digital Evidence under BSA 2023</h2>
-          <p>The Bharatiya Sakshya Adhiniyam, 2023 replaces the Indian Evidence Act, 1872:</p>
+          <h2>10.2 Electronic Evidence & Landmark Admissibility</h2>
+          <p>The Bharatiya Sakshya Adhiniyam (BSA), 2023 fundamentally governs electronic records:</p>
 
-          <div class="book-callout">
-            <strong>From Section 65B (IEA) to Section 63 (BSA):</strong><br>
-            Under the BSA, <strong>Section 61</strong> affirms that electronic records have the same legal effect as paper documents. <strong>Section 63</strong> governs the admissibility of electronic records (corresponding to former Section 65B).
+          <div class="case-card">
+            <div class="case-card-header">
+              <span>Arjun Panditrao Khotkar v. Kailash Gorantyal (2020)</span>
+              <span class="case-card-badge">Supreme Court</span>
+            </div>
+            <strong>Bench:</strong> 3-Judge Bench (2020 7 SCC 1).<br>
+            <strong>Ratio Decidendi:</strong> The Supreme Court authoritatively settled the electronic evidence controversy (affirming *Anvar P.V.* and overruling *Shafhi Mohammad*):<br>
+            1. Producing the statutory certificate (formerly Section 65B(4) IEA, now <strong>Section 63 BSA 2023</strong>) is a <strong>mandatory condition precedent</strong> for admitting secondary electronic evidence (printouts, CDs, hard drive clones, CCTV files).<br>
+            2. If the original primary device cannot be produced in court, secondary evidence is strictly inadmissible without this statutory certificate.<br>
+            3. If a custodian refuses to provide the certificate, trial courts must exercise powers under Section 91 CrPC/BNSS to compel production.
           </div>
 
-          <h3>Requirements of Electronic Certificate (Section 63):</h3>
-          <ul style="font-size: 0.82rem; line-height: 1.38;">
-            <li>Identifying the electronic record and describing the manner of production.</li>
-            <li>Giving particulars of the device involved in production.</li>
-            <li>Certifying that the computer was operating properly during relevant periods.</li>
-            <li>Signed by the person in lawful management or an authorized expert.</li>
-          </ul>
-
-          <div class="book-callout case">
-            <strong>Key Landmark: <em>Arjun Panditrao Khotkar (2020)</em>:</strong> Producing the statutory certificate is a mandatory condition precedent for the admissibility of secondary electronic evidence.
+          <div class="book-callout" style="margin-top: 4px;">
+            <strong>Section 63 BSA Mandatory Requirements:</strong> Certificate must identify the record, describe production manner, certify proper computer operation, and be signed by an authorized custodian or cyber forensic expert.
           </div>
         `
       },
@@ -1118,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <h1>Chapter 11: Comprehensive Revision Notes</h1>
           <p>High-yield exam checklist for DSSSB Junior Scientific Assistant (Cyber Forensic):</p>
 
-          <div style="background: var(--page-bg-subtle); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--ui-border); font-size: 0.8rem; line-height: 1.4; margin-bottom: 10px;">
+          <div style="background: var(--page-bg-subtle); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--ui-border); font-size: 0.8rem; line-height: 1.4; margin-bottom: 8px;">
             <strong>Essential Statutory Numbers to Remember:</strong><br>
             • Civil compensation for unauthorized access: <span class="sec-badge it-act">§43</span><br>
             • Dishonest / fraudulent computer offences: <span class="sec-badge it-act">§66</span><br>
@@ -1130,10 +1166,13 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="book-callout">
-            <strong>Landmark Decisions:</strong><br>
-            • <em>Shreya Singhal (2015):</em> §66A struck down.<br>
-            • <em>Puttaswamy (2017):</em> Privacy is Fundamental Right (Art. 21).<br>
-            • <em>Arjun Panditrao (2020):</em> Mandatory certificate for e-evidence.
+            <strong>Landmark Decisions Master Summary:</strong><br>
+            • <em>Suhas Katti (2004):</em> First Section 67 IT Act conviction (Yahoo groups).<br>
+            • <em>Syed Asifuddin (2005):</em> Firmware ESN tampering is §65 source code tampering.<br>
+            • <em>Shreya Singhal (2015):</em> Section 66A struck down as unconstitutional.<br>
+            • <em>Puttaswamy (2017):</em> Privacy is Fundamental Right (Art. 21) & 3-fold test.<br>
+            • <em>Baazee.com (2005):</em> Intermediary safe harbour catalyst (§79).<br>
+            • <em>Arjun Panditrao (2020):</em> Mandatory certificate for secondary e-evidence.
           </div>
         `
       }
@@ -1150,18 +1189,18 @@ document.addEventListener('DOMContentLoaded', () => {
     { chapter: "Ch 02", title: "Classification of Cybercrimes by Victim", spreadIndex: 5, page: "11–12" },
     { chapter: "Ch 02", title: "Cyber-Dependent vs Conventional Crime", spreadIndex: 6, page: "13–14" },
     { chapter: "Ch 02/03", title: "Offender Motives & Cyberstalking (§78 BNS)", spreadIndex: 7, page: "15–16" },
-    { chapter: "Ch 03", title: "Pornography (§67), Deepfakes & Cyber Forgery", spreadIndex: 8, page: "17–18" },
-    { chapter: "Ch 03", title: "Cyber Fraud (§66D) & Phishing / Banking Fraud", spreadIndex: 9, page: "19–20" },
+    { chapter: "Ch 03", title: "Suhas Katti Ruling & Syed Asifuddin Case", spreadIndex: 8, page: "17–18" },
+    { chapter: "Ch 03", title: "Cyber Fraud & Cosmos Bank Heist Study", spreadIndex: 9, page: "19–20" },
     { chapter: "Ch 04", title: "IPR in Cyberspace (§65) & Malware Ecosystem", spreadIndex: 10, page: "21–22" },
-    { chapter: "Ch 04", title: "Ransomware Extortion & Denial of Service (DDoS)", spreadIndex: 11, page: "23–24" },
+    { chapter: "Ch 04", title: "AIIMS Delhi Incident Study & Denial of Service", spreadIndex: 11, page: "23–24" },
     { chapter: "Ch 04/05", title: "Hacking (§43/66) & Cyberterrorism (§66F)", spreadIndex: 12, page: "25–26" },
-    { chapter: "Ch 05", title: "Cyber Defamation (Shreya Singhal) & Privacy", spreadIndex: 13, page: "27–28" },
+    { chapter: "Ch 05", title: "Shreya Singhal (§66A) & Puttaswamy (Privacy)", spreadIndex: 13, page: "27–28" },
     { chapter: "Ch 06", title: "IT Act 2000 Origins, Scope & Jurisdiction (§75)", spreadIndex: 14, page: "29–30" },
     { chapter: "Ch 07", title: "IT Act Master Penalties Table (Sections 43–66E)", spreadIndex: 15, page: "31–32" },
-    { chapter: "Ch 07/08", title: "Penalties (66F–72A) & Intermediary Liability (§79)", spreadIndex: 16, page: "33–34" },
+    { chapter: "Ch 07/08", title: "Baazee.com Precedent & Intermediary Liability (§79)", spreadIndex: 16, page: "33–34" },
     { chapter: "Ch 08/09", title: "Digital Signatures, PKI & Authorities (CCA/CERT)", spreadIndex: 17, page: "35–36" },
     { chapter: "Ch 09/10", title: "Police Powers (§78/80) & BNS 2023 Penal Mapping", spreadIndex: 18, page: "37–38" },
-    { chapter: "Ch 10/11", title: "BSA 2023 Digital Evidence & Examination Index", spreadIndex: 19, page: "39–40" }
+    { chapter: "Ch 10/11", title: "Arjun Panditrao Ruling & Master Exam Checklist", spreadIndex: 19, page: "39–40" }
   ];
 
   // Flat list of individual pages for single-page mode (40 pages)
@@ -1170,6 +1209,83 @@ document.addEventListener('DOMContentLoaded', () => {
     pages.push({ ...spread.left, spreadIndex: sIdx, side: 'left' });
     pages.push({ ...spread.right, spreadIndex: sIdx, side: 'right' });
   });
+
+  // =========================================================================
+  // AUDIO NARRATION CONTROLLER (Web Speech API)
+  // =========================================================================
+  function stopAudioNarration() {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    isSpeaking = false;
+    if (audioNarrationBtn) {
+      audioNarrationBtn.classList.remove('active');
+      if (audioStatusText) audioStatusText.textContent = 'Listen';
+    }
+    if (bottomAudioBtn) {
+      bottomAudioBtn.classList.remove('btn-primary');
+      bottomAudioBtn.textContent = 'Audio 🔊';
+    }
+    document.querySelectorAll('.page-body').forEach(el => el.classList.remove('audio-reading-active'));
+  }
+
+  function toggleAudioNarration() {
+    if (!('speechSynthesis' in window)) {
+      alert('Speech synthesis is not supported in this browser.');
+      return;
+    }
+
+    if (isSpeaking) {
+      stopAudioNarration();
+      return;
+    }
+
+    let activeBody = null;
+    if (isSinglePage) {
+      activeBody = rightPageEl.querySelector('.page-body');
+    } else {
+      activeBody = leftPageEl.querySelector('.page-body') || rightPageEl.querySelector('.page-body');
+    }
+
+    if (!activeBody) return;
+
+    const textToRead = activeBody.innerText || activeBody.textContent;
+    if (!textToRead || textToRead.trim().length === 0) return;
+
+    window.speechSynthesis.cancel();
+    currentUtterance = new SpeechSynthesisUtterance(textToRead);
+    currentUtterance.rate = 0.95;
+    currentUtterance.pitch = 1.0;
+
+    const voices = window.speechSynthesis.getVoices();
+    const naturalVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('David')));
+    if (naturalVoice) {
+      currentUtterance.voice = naturalVoice;
+    }
+
+    currentUtterance.onstart = () => {
+      isSpeaking = true;
+      if (audioNarrationBtn) {
+        audioNarrationBtn.classList.add('active');
+        if (audioStatusText) audioStatusText.textContent = 'Stop';
+      }
+      if (bottomAudioBtn) {
+        bottomAudioBtn.classList.add('btn-primary');
+        bottomAudioBtn.textContent = 'Stop ⏹';
+      }
+      activeBody.classList.add('audio-reading-active');
+    };
+
+    currentUtterance.onend = () => {
+      stopAudioNarration();
+    };
+
+    currentUtterance.onerror = () => {
+      stopAudioNarration();
+    };
+
+    window.speechSynthesis.speak(currentUtterance);
+  }
 
   // =========================================================================
   // RENDER CONTROLLER (Supports both Two-Page Spread & Single-Page View)
@@ -1193,6 +1309,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderCurrentView() {
+    stopAudioNarration();
+
     if (isSinglePage) {
       document.body.classList.add('single-page-mode');
       if (viewModeToggleBtn) viewModeToggleBtn.textContent = '2-Page';
@@ -1247,6 +1365,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    stopAudioNarration();
+
     if (Math.abs(newIndex - currentPageIndex) > 1) {
       currentPageIndex = newIndex;
       currentSpread = Math.floor(currentPageIndex / 2);
@@ -1284,6 +1404,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isFlipping || newIndex === currentSpread || newIndex < 0 || newIndex >= spreads.length) {
       return;
     }
+
+    stopAudioNarration();
 
     if (Math.abs(newIndex - currentSpread) > 1) {
       currentSpread = newIndex;
@@ -1363,10 +1485,12 @@ document.addEventListener('DOMContentLoaded', () => {
       autoFlipBtn.style.color = '#fff';
       autoFlipInterval = setInterval(() => {
         if (!isFlipping) {
-          if (currentSpread < spreads.length - 1) {
-            nextPage();
+          if (isSinglePage) {
+            if (currentPageIndex < pages.length - 1) nextPage();
+            else turnToPage(0);
           } else {
-            turnToSpread(0);
+            if (currentSpread < spreads.length - 1) nextPage();
+            else turnToSpread(0);
           }
         }
       }, 5000);
@@ -1536,6 +1660,14 @@ document.addEventListener('DOMContentLoaded', () => {
     else turnToSpread(spreads.length - 1);
   });
   autoFlipBtn.addEventListener('click', toggleAutoFlip);
+
+  // Audio Narration Listeners
+  if (audioNarrationBtn) {
+    audioNarrationBtn.addEventListener('click', toggleAudioNarration);
+  }
+  if (bottomAudioBtn) {
+    bottomAudioBtn.addEventListener('click', toggleAudioNarration);
+  }
 
   pageRange.addEventListener('input', (e) => {
     const val = parseInt(e.target.value, 10);

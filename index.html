@@ -33,6 +33,10 @@
 
     <!-- Action Tools -->
     <div class="header-right">
+      <button id="audioNarrationBtn" class="btn-tool btn-audio" title="Read Aloud (Text-to-Speech)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+        <span id="audioStatusText">Listen</span>
+      </button>
       <button id="viewModeToggleBtn" class="btn-tool" title="Toggle 1-Page / 2-Page View">1-Page</button>
       <div class="font-controls">
         <button id="fontSizeDecBtn" class="btn-tool" title="Decrease font size">A-</button>
@@ -93,6 +97,7 @@
 
       <button id="nextBtn" class="btn-nav btn-primary" title="Next Page (Right Arrow)">Next →</button>
       <button id="lastPageBtn" class="btn-nav" title="Last Page (End)">Last ⇥</button>
+      <button id="bottomAudioBtn" class="btn-nav" title="Read Aloud Page">Audio 🔊</button>
       <button id="autoFlipBtn" class="btn-nav" title="Toggle Auto Page Turn">Auto-Turn: OFF</button>
     </div>
     <div class="keyboard-hints">
