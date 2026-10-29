@@ -2262,6 +2262,29 @@ document.addEventListener('DOMContentLoaded', () => {
   fontSizeDecBtn.addEventListener('click', () => adjustFontSize(-4));
   fullscreenBtn.addEventListener('click', toggleFullscreen);
 
+  if (viewModeToggleBtn) {
+    viewModeToggleBtn.addEventListener('click', () => {
+      isSinglePage = !isSinglePage;
+      renderCurrentView();
+    });
+  }
+
+  // Dynamic Window Resize Listener for Responsive Mobile View
+  let resizeDebounceTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeDebounceTimer);
+    resizeDebounceTimer = setTimeout(() => {
+      const isMobile = (window.innerWidth <= 768);
+      if (isMobile && !isSinglePage) {
+        isSinglePage = true;
+        renderCurrentView();
+      } else if (!isMobile && isSinglePage) {
+        isSinglePage = false;
+        renderCurrentView();
+      }
+    }, 150);
+  });
+
   // Keyboard Shortcuts
   document.addEventListener('keydown', (e) => {
     if (e.target === searchInput) return;
