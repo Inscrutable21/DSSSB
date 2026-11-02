@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DSSSB Cyber Forensic Theory Study Guide — 3D Digital Textbook</title>
+  <title>DSSSB Cyber Forensic 2-Book Digital Textbook & Practical Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2.3">
+  <link rel="stylesheet" href="style.css?v=2.4">
 </head>
 <body class="theme-parchment">
   <!-- Top App Navigation Bar -->
@@ -17,39 +17,67 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         <span>Chapters</span>
       </button>
+
+      <!-- 2-Book Segmented Quick Switcher -->
+      <div class="book-switcher" id="bookSwitcher" role="tablist" aria-label="Select Textbook">
+        <button class="book-tab-btn active" id="bookBtn1" data-book-id="book1" title="Read Book 1: Cyber Crimes & Penalties (Alt+1)">
+          <span class="book-tab-icon">📖</span>
+          <span class="book-tab-label">Book 1: Cyber Law</span>
+        </button>
+        <button class="book-tab-btn" id="bookBtn2" data-book-id="book2" title="Read Book 2: Digital Forensics & Investigation (Alt+2)">
+          <span class="book-tab-icon">🔬</span>
+          <span class="book-tab-label">Book 2: Forensics</span>
+        </button>
+      </div>
+
       <div class="book-meta">
-        <span class="badge-exam">DSSSB JSA (Cyber Forensic)</span>
-        <span class="book-title-short">Cyber Crimes, Offences & Penalties</span>
+        <span class="badge-exam" id="headerExamBadge">DSSSB JSA (Cyber Forensic) — Book 1</span>
+        <span class="book-title-short" id="headerBookTitle">Cyber Crimes, Offences & Penalties</span>
       </div>
     </div>
 
-    <!-- Search input -->
+    <!-- Search input (Universal Cross-Book Search) -->
     <div class="search-box">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <input type="text" id="searchInput" placeholder="Search sections, penalties, topics (e.g. 66F, BNS 78, PKI)..." autocomplete="off">
+      <input type="text" id="searchInput" placeholder="Search sections, SOPs, carving, hashes across books..." autocomplete="off">
       <button id="clearSearchBtn" class="btn-clear hidden" title="Clear search">&times;</button>
       <div id="searchResultsDropdown" class="search-dropdown hidden"></div>
     </div>
 
     <!-- Action Tools -->
     <div class="header-right">
-      <button id="deepDiveToggleBtn" class="btn-tool btn-deepdive" title="In-Depth Statutory Analysis & Real-Life Scenarios">
+      <button id="libraryModalBtn" class="btn-tool btn-library" title="Open 2-Book Library Shelf (Alt+B)" aria-label="Bookshelf">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          <line x1="9" y1="7" x2="15" y2="7"></line>
+          <line x1="9" y1="11" x2="15" y2="11"></line>
+        </svg>
+        <span>Bookshelf</span>
+      </button>
+
+      <button id="deepDiveToggleBtn" class="btn-tool btn-deepdive" title="In-Depth Statutory Analysis & Practical Scenarios">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
         <span class="deepdive-label-long">Acts Deep-Dive</span>
         <span class="deepdive-label-short">Acts Lab</span>
       </button>
+
       <button id="audioNarrationBtn" class="btn-tool btn-audio" title="Read Aloud (Text-to-Speech)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
         <span id="audioStatusText">Listen</span>
       </button>
+
       <button id="viewModeToggleBtn" class="btn-tool" title="Toggle 1-Page / 2-Page View">1-Page</button>
+
       <div class="font-controls">
         <button id="fontSizeDecBtn" class="btn-tool" title="Decrease font size">A-</button>
         <button id="fontSizeIncBtn" class="btn-tool" title="Increase font size">A+</button>
       </div>
+
       <div class="theme-controls">
         <button id="themeToggleBtn" class="btn-tool" title="Change Theme (Paper / Dark / Classic)">Theme</button>
       </div>
+
       <button id="fullscreenBtn" class="btn-icon" title="Toggle Fullscreen">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
       </button>
@@ -106,7 +134,7 @@
       <button id="autoFlipBtn" class="btn-nav" title="Toggle Auto Page Turn">Auto-Turn: OFF</button>
     </div>
     <div class="keyboard-hints">
-      <span>Keys: <b>←</b> Prev Page | <b>→</b> Next Page | <b>Space</b> Auto-Turn | <b>Esc</b> Close Menu</span>
+      <span>Keys: <b>←</b> Prev | <b>→</b> Next | <b>Alt+1/2</b> Switch Book | <b>Alt+B</b> Bookshelf | <b>Alt+T</b> Chapters | <b>Space</b> Auto-Turn</span>
     </div>
   </footer>
 
@@ -119,7 +147,7 @@
     <div class="toc-subtitle">DSSSB JSA (Cyber Forensic) 10-Chapter Theory Guide</div>
     <div style="padding: 8px 12px 2px;">
       <button id="tocDeepDiveBtn" class="btn-tool btn-deepdive" style="width: 100%; justify-content: center; font-weight: 700; padding: 7px 10px; font-size: 0.8rem;">
-        Acts Deep-Dive & Scenarios Lab
+        Open Interactive Lab & Case Studies
       </button>
     </div>
     <ul class="toc-list" id="tocList">
@@ -127,7 +155,7 @@
     </ul>
   </aside>
 
-  <!-- Deep Dive Statutory Analysis & Scenario Matrix Drawer -->
+  <!-- Deep Dive Statutory Analysis & Forensic Lab Drawer -->
   <aside id="deepDiveDrawer" class="deepdive-drawer hidden">
     <div class="deepdive-header">
       <div>
@@ -137,16 +165,9 @@
       <button id="closeDeepDiveBtn" class="btn-close" aria-label="Close">&times;</button>
     </div>
 
-    <!-- Section navigation pills -->
+    <!-- Section navigation pills (Populated dynamically per active book) -->
     <div class="deepdive-nav" id="deepDiveTabs">
-      <button class="dd-tab active" data-sec="bns78">BNS Section 78 (Cyberstalking)</button>
-      <button class="dd-tab" data-sec="it43_66">IT Act Section 43 vs 66 (Hacking)</button>
-      <button class="dd-tab" data-sec="it66c_66d">IT Act Section 66C vs 66D (Identity Theft / Fraud)</button>
-      <button class="dd-tab" data-sec="it65">IT Act Section 65 (Source Code Tampering)</button>
-      <button class="dd-tab" data-sec="it66e_bns77">IT Act Section 66E vs BNS Section 77 (Privacy & Voyeurism)</button>
-      <button class="dd-tab" data-sec="it66f">IT Act Section 66F (Cyber Terrorism)</button>
-      <button class="dd-tab" data-sec="it79">IT Act Section 79 (Intermediary Safe Harbour)</button>
-      <button class="dd-tab" data-sec="bsa63">BSA Section 63 (Electronic Evidence Admissibility)</button>
+      <!-- Populated dynamically via script.js -->
     </div>
 
     <!-- Deep Dive Content Viewport -->
@@ -155,9 +176,87 @@
     </div>
   </aside>
 
+  <!-- 2-Book Interactive Bookshelf Modal -->
+  <div id="bookshelfModal" class="bookshelf-modal hidden" role="dialog" aria-modal="true" aria-labelledby="shelfModalTitle">
+    <div class="bookshelf-card">
+      <div class="bookshelf-header">
+        <div>
+          <div class="bookshelf-badge">DSSSB Cyber Forensic Library</div>
+          <h2 id="shelfModalTitle">Select Textbook to Read</h2>
+          <p class="bookshelf-subtitle">Choose between Cyber Law & Offences or Digital Forensics & Investigation SOPs</p>
+        </div>
+        <button id="closeBookshelfBtn" class="btn-close" aria-label="Close Bookshelf">&times;</button>
+      </div>
+
+      <div class="bookshelf-grid">
+        <!-- Book 1 Card -->
+        <div class="book-card-item active-reading" id="shelfCardBook1" data-book-id="book1">
+          <div class="book-card-spine spine-book1"></div>
+          <div class="book-card-cover cover-book1">
+            <div class="card-badge">Book 1 • Law & Penalties</div>
+            <h3 class="card-title">CYBER CRIMES, OFFENCES & PENALTIES</h3>
+            <p class="card-subtitle">Information Technology Act 2000 • Bharatiya Nyaya Sanhita 2023 • Bharatiya Sakshya Adhiniyam 2023</p>
+            <div class="card-meta">
+              <span>10 Chapters</span> • <span>20 Spreads</span> • <span>40 Pages</span>
+            </div>
+            <div class="card-topics">
+              <span class="topic-tag">Hacking Sec 43/66</span>
+              <span class="topic-tag">Cyberstalking BNS 78</span>
+              <span class="topic-tag">AIIMS Ransomware</span>
+              <span class="topic-tag">Cosmos Bank Heist</span>
+              <span class="topic-tag">BSA 63 Certificates</span>
+            </div>
+            <div class="card-action">
+              <span class="active-badge"><span class="pulse-dot"></span> Currently Reading</span>
+              <button class="btn-card-open" data-book-id="book1">Read Book 1 &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 2 Card -->
+        <div class="book-card-item" id="shelfCardBook2" data-book-id="book2">
+          <div class="book-card-spine spine-book2"></div>
+          <div class="book-card-cover cover-book2">
+            <div class="card-badge badge-teal">Book 2 • Official Syllabus</div>
+            <h3 class="card-title title-teal">DIGITAL FORENSICS: OFFICIAL EXAMINATION TREATISE</h3>
+            <p class="card-subtitle">Branches • Crime Scenes • Documentation • Chain of Custody • SOPs • Acquisition Tools • Data Sources • Hashes • Carving • Analytical Techniques • Tools</p>
+            <div class="card-meta">
+              <span>11 Official Topics</span> • <span>20 Spreads</span> • <span>40 Pages</span>
+            </div>
+            <div class="card-topics">
+              <span class="topic-tag">Branches of Forensics</span>
+              <span class="topic-tag">Crime Scene SOPs</span>
+              <span class="topic-tag">Documentation & CoC</span>
+              <span class="topic-tag">Acquisition Tools</span>
+              <span class="topic-tag">Hard Drives & Mobile</span>
+              <span class="topic-tag">Hash Generation</span>
+              <span class="topic-tag">Recovery & Carving</span>
+              <span class="topic-tag">Analytical Techniques</span>
+              <span class="topic-tag">Evaluation Tools</span>
+            </div>
+            <div class="card-action">
+              <span class="active-badge hidden"><span class="pulse-dot"></span> Currently Reading</span>
+              <button class="btn-card-open btn-teal" data-book-id="book2">Read Book 2 &rarr;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bookshelf-footer">
+        <span>💡 Tip: You can switch between books at any time using the <b>Book Switcher</b> in the top navigation, pressing <b>Alt+1</b> / <b>Alt+2</b>, or <b>Alt+B</b> for Bookshelf.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Overlay -->
+  <div id="toastNotification" class="toast-notification hidden"></div>
+
   <div id="drawerOverlay" class="drawer-overlay hidden"></div>
 
-  <!-- Book Script -->
-  <script src="script.js?v=2.3"></script>
+  <!-- Book Datasets -->
+  <script src="book1_data.js?v=2.4"></script>
+  <script src="book2_data.js?v=2.4"></script>
+  <!-- Main Application Script -->
+  <script src="script.js?v=2.4"></script>
 </body>
 </html>
