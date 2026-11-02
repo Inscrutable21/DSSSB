@@ -942,6 +942,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const selection = window.getSelection().toString();
     if (selection.length > 0) return;
     if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+    if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+    // If user clicked inside page-body content (reading, scrolling, dragging scrollbar), don't flip
+    // Allow page turn if clicked on page margins, running-head, footer, or outer book edges
+    if (e.target.closest('.page-body')) {
+      const rect = textbook.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      if (clickX >= rect.width * 0.07 && clickX <= rect.width * 0.93) {
+        return;
+      }
+    }
 
     const rect = textbook.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
