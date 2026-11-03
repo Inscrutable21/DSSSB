@@ -18,7 +18,7 @@
         <span>Chapters</span>
       </button>
 
-      <!-- 3-Book Segmented Quick Switcher -->
+      <!-- 4-Book Segmented Quick Switcher -->
       <div class="book-switcher" id="bookSwitcher" role="tablist" aria-label="Select Textbook">
         <button class="book-tab-btn active" id="bookBtn1" data-book-id="book1" title="Read Book 1: Cyber Crimes & Penalties (Alt+1)">
           <span class="book-tab-icon">📖</span>
@@ -31,6 +31,10 @@
         <button class="book-tab-btn" id="bookBtn3" data-book-id="book3" title="Read Book 3: Memory (RAM) Forensics (Alt+3)">
           <span class="book-tab-icon">⚡</span>
           <span class="book-tab-label">Book 3: RAM Forensics</span>
+        </button>
+        <button class="book-tab-btn" id="bookBtn4" data-book-id="book4" title="Read Book 4: Mobile Forensics (Alt+4)">
+          <span class="book-tab-icon">📱</span>
+          <span class="book-tab-label">Book 4: Mobile</span>
         </button>
       </div>
 
@@ -50,7 +54,7 @@
 
     <!-- Action Tools -->
     <div class="header-right">
-      <button id="libraryModalBtn" class="btn-tool btn-library" title="Open 2-Book Library Shelf (Alt+B)" aria-label="Bookshelf">
+      <button id="libraryModalBtn" class="btn-tool btn-library" title="Open 4-Book Library Shelf (Alt+B)" aria-label="Bookshelf">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
           <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
@@ -138,7 +142,7 @@
       <button id="autoFlipBtn" class="btn-nav" title="Toggle Auto Page Turn">Auto-Turn: OFF</button>
     </div>
     <div class="keyboard-hints">
-      <span>Keys: <b>←</b> Prev | <b>→</b> Next | <b>Alt+1/2/3</b> Switch Book | <b>Alt+B</b> Bookshelf | <b>Alt+T</b> Chapters | <b>Space</b> Auto-Turn</span>
+      <span>Keys: <b>←</b> Prev | <b>→</b> Next | <b>Alt+1/2/3/4</b> Switch Book | <b>Alt+B</b> Bookshelf | <b>Alt+T</b> Chapters | <b>Space</b> Auto-Turn</span>
     </div>
   </footer>
 
@@ -272,10 +276,38 @@
             </div>
           </div>
         </div>
+
+        <!-- Book 4 Card -->
+        <div class="book-card-item" id="shelfCardBook4" data-book-id="book4">
+          <div class="book-card-spine spine-book4"></div>
+          <div class="book-card-cover cover-book4">
+            <div class="card-badge badge-emerald">Book 4 • Mobile Forensics</div>
+            <h3 class="card-title title-emerald">MOBILE DEVICE FORENSICS & CDR ANALYSIS</h3>
+            <p class="card-subtitle">Android Architecture • iOS Security • Logical & Physical Acquisition • Rooting & Jailbreaking • App Sandboxing • BFU vs AFU • Pagers & Wearables • CDR & Cell Tower Triangulation</p>
+            <div class="card-meta">
+              <span>25 Extracted Topics</span> • <span>20 Spreads</span> • <span>40 Pages</span>
+            </div>
+            <div class="card-topics">
+              <span class="topic-tag">Faraday Bags & BFU</span>
+              <span class="topic-tag">Logical vs Physical</span>
+              <span class="topic-tag">ADB & Android Debugging</span>
+              <span class="topic-tag">ART & Sandboxing</span>
+              <span class="topic-tag">iOS Secure Enclave</span>
+              <span class="topic-tag">syslog & logcat</span>
+              <span class="topic-tag">Pagers & POCSAG</span>
+              <span class="topic-tag">Smartwatches & Heart Rate</span>
+              <span class="topic-tag">CDR Tower Triangulation</span>
+            </div>
+            <div class="card-action">
+              <span class="active-badge hidden"><span class="pulse-dot"></span> Currently Reading</span>
+              <button class="btn-card-open btn-emerald" data-book-id="book4">Read Book 4 &rarr;</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="bookshelf-footer">
-        <span>💡 Tip: You can switch between books at any time using the <b>Book Switcher</b> in the top navigation, pressing <b>Alt+1</b> / <b>Alt+2</b> / <b>Alt+3</b>, or <b>Alt+B</b> for Bookshelf.</span>
+        <span>💡 Tip: You can switch between books at any time using the <b>Book Switcher</b> in the top navigation, pressing <b>Alt+1</b> / <b>Alt+2</b> / <b>Alt+3</b> / <b>Alt+4</b>, or <b>Alt+B</b> for Bookshelf.</span>
       </div>
     </div>
   </div>
@@ -286,10 +318,11 @@
   <div id="drawerOverlay" class="drawer-overlay hidden"></div>
 
   <!-- Book Datasets -->
-  <script src="book1_data.js?v=2.5"></script>
-  <script src="book2_data.js?v=2.5"></script>
-  <script src="book3_data.js?v=2.5"></script>
+  <script src="book1_data.js?v=2.7"></script>
+  <script src="book2_data.js?v=2.7"></script>
+  <script src="book3_data.js?v=2.7"></script>
+  <script src="book4_data.js?v=2.7"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=2.5"></script>
+  <script src="script.js?v=2.7"></script>
 </body>
 </html>

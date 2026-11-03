@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bookBtn1 = document.getElementById('bookBtn1');
   const bookBtn2 = document.getElementById('bookBtn2');
   const bookBtn3 = document.getElementById('bookBtn3');
+  const bookBtn4 = document.getElementById('bookBtn4');
   const libraryModalBtn = document.getElementById('libraryModalBtn');
   const bookshelfModal = document.getElementById('bookshelfModal');
   const closeBookshelfBtn = document.getElementById('closeBookshelfBtn');
@@ -58,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const books = {
     book1: window.book1Data,
     book2: window.book2Data,
-    book3: window.book3Data
+    book3: window.book3Data,
+    book4: window.book4Data
   };
 
   // State
@@ -80,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const bookPositions = {
     book1: { currentSpread: 0, currentPageIndex: 0 },
     book2: { currentSpread: 0, currentPageIndex: 0 },
-    book3: { currentSpread: 0, currentPageIndex: 0 }
+    book3: { currentSpread: 0, currentPageIndex: 0 },
+    book4: { currentSpread: 0, currentPageIndex: 0 }
   };
 
   let isSinglePage = (window.innerWidth <= 768);
@@ -156,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bookBtn1) bookBtn1.classList.toggle('active', activeBookId === 'book1');
     if (bookBtn2) bookBtn2.classList.toggle('active', activeBookId === 'book2');
     if (bookBtn3) bookBtn3.classList.toggle('active', activeBookId === 'book3');
+    if (bookBtn4) bookBtn4.classList.toggle('active', activeBookId === 'book4');
 
     // Update Deep-Dive / Lab Button Label
     if (deepDiveToggleBtn) {
@@ -189,7 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderCurrentView();
 
-    const bookIcon = (activeBookId === 'book2') ? '🔬' : '📖';
+    document.body.setAttribute('data-active-book', activeBookId);
+
+    const bookIcon = (activeBookId === 'book2') ? '🔬' : (activeBookId === 'book3') ? '⚡' : (activeBookId === 'book4') ? '📱' : '📖';
     showNotification(`Opened ${currentBook.shortTitle}`, bookIcon);
   }
 
@@ -215,6 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const card1 = document.getElementById('shelfCardBook1');
     const card2 = document.getElementById('shelfCardBook2');
     const card3 = document.getElementById('shelfCardBook3');
+    const card4 = document.getElementById('shelfCardBook4');
 
     if (card1) {
       const isAct1 = (activeBookId === 'book1');
@@ -235,6 +242,13 @@ document.addEventListener('DOMContentLoaded', () => {
       card3.classList.toggle('active-reading', isAct3);
       const b3 = card3.querySelector('.active-badge');
       if (b3) b3.classList.toggle('hidden', !isAct3);
+    }
+
+    if (card4) {
+      const isAct4 = (activeBookId === 'book4');
+      card4.classList.toggle('active-reading', isAct4);
+      const b4 = card4.querySelector('.active-badge');
+      if (b4) b4.classList.toggle('hidden', !isAct4);
     }
   }
 
@@ -773,9 +787,18 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     results.slice(0, 16).forEach(res => {
-      const isBook2 = (res.bookId === 'book2');
-      const tagLabel = isBook2 ? 'Book 2 • Forensics' : 'Book 1 • Law';
-      const tagStyle = isBook2 ? 'background: rgba(14, 116, 144, 0.12); color: #0284c7; border: 1px solid #0284c7;' : 'background: rgba(140, 45, 25, 0.1); color: var(--accent-color); border: 1px solid var(--accent-color);';
+      let tagLabel = 'Book 1 • Law';
+      let tagStyle = 'background: rgba(140, 45, 25, 0.1); color: var(--accent-color); border: 1px solid var(--accent-color);';
+      if (res.bookId === 'book2') {
+        tagLabel = 'Book 2 • Forensics';
+        tagStyle = 'background: rgba(14, 116, 144, 0.12); color: #0284c7; border: 1px solid #0284c7;';
+      } else if (res.bookId === 'book3') {
+        tagLabel = 'Book 3 • RAM';
+        tagStyle = 'background: rgba(124, 58, 237, 0.12); color: #7c3aed; border: 1px solid #7c3aed;';
+      } else if (res.bookId === 'book4') {
+        tagLabel = 'Book 4 • Mobile';
+        tagStyle = 'background: rgba(16, 185, 129, 0.12); color: #059669; border: 1px solid #059669;';
+      }
 
       html += `
         <div class="search-result-item" data-book-id="${res.bookId}" data-spread="${res.spreadIndex}" data-page="${res.pageNumber}">
@@ -883,6 +906,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (bookBtn3) {
     bookBtn3.addEventListener('click', () => switchBook('book3'));
+  }
+  if (bookBtn4) {
+    bookBtn4.addEventListener('click', () => switchBook('book4'));
   }
 
   // Bookshelf Modal Controls
@@ -1071,6 +1097,8 @@ document.addEventListener('DOMContentLoaded', () => {
       switchBook('book2');
     } else if (e.altKey && e.key === '3') {
       switchBook('book3');
+    } else if (e.altKey && e.key === '4') {
+      switchBook('book4');
     }
   });
 

@@ -281,13 +281,13 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 960px;
+  max-width: 1020px;
 }
 
 .book-hardcover-shadow {
   position: absolute;
-  width: min(940px, 96vw);
-  height: min(600px, 79vh);
+  width: min(1000px, 96vw);
+  height: min(680px, 83vh);
   background: var(--book-cover-leather);
   border-radius: 10px;
   box-shadow: 0 30px 60px var(--page-shadow), 0 10px 20px rgba(0, 0, 0, 0.25), inset 0 0 30px rgba(0,0,0,0.7);
@@ -298,8 +298,8 @@ body {
 /* Book Container */
 .book.upright {
   position: relative;
-  width: min(940px, 95vw);
-  height: min(620px, 80vh);
+  width: min(1000px, 95vw);
+  height: min(680px, 83vh);
   perspective: 1800px;
   perspective-origin: 50% 50%;
   transform-style: preserve-3d;
@@ -410,33 +410,55 @@ body {
 .page-body {
   flex: 1 1 auto;
   min-height: 0;
-  font-size: 0.86rem;
-  line-height: 1.42;
+  font-size: 0.83rem;
+  line-height: 1.39;
   color: var(--text-main);
   overflow-y: auto !important;
   overflow-x: hidden !important;
   overflow-wrap: break-word;
   scrollbar-width: thin;
-  scrollbar-color: rgba(2, 132, 199, 0.45) transparent;
-  padding-right: 5px;
+  scrollbar-color: rgba(100, 116, 139, 0.45) rgba(0, 0, 0, 0.04);
+  padding-right: 6px;
+  scroll-behavior: smooth;
 }
 
 .page-body::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 .page-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 4px;
 }
 
 .page-body::-webkit-scrollbar-thumb {
-  background: rgba(2, 132, 199, 0.4);
+  background: rgba(100, 116, 139, 0.4);
   border-radius: 4px;
 }
 
 .page-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(2, 132, 199, 0.75);
+  background: rgba(100, 116, 139, 0.75);
+}
+
+body[data-active-book="book2"] .page-body {
+  scrollbar-color: rgba(2, 132, 199, 0.5) rgba(0, 0, 0, 0.04);
+}
+body[data-active-book="book2"] .page-body::-webkit-scrollbar-thumb {
+  background: rgba(2, 132, 199, 0.5);
+}
+
+body[data-active-book="book3"] .page-body {
+  scrollbar-color: rgba(124, 58, 237, 0.5) rgba(0, 0, 0, 0.04);
+}
+body[data-active-book="book3"] .page-body::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.5);
+}
+
+body[data-active-book="book4"] .page-body {
+  scrollbar-color: rgba(5, 150, 105, 0.5) rgba(0, 0, 0, 0.04);
+}
+body[data-active-book="book4"] .page-body::-webkit-scrollbar-thumb {
+  background: rgba(5, 150, 105, 0.5);
 }
 
 .page-body h1, .page-body h2, .page-body h3 {
@@ -601,6 +623,38 @@ body {
   border-top: 1px solid var(--ui-border);
   display: flex;
   justify-content: space-between;
+}
+
+/* Custom Forensic Visual SVG Diagrams */
+.forensic-diagram {
+  margin: 6px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--ui-border);
+  background: var(--page-bg-subtle);
+  padding: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.forensic-diagram svg {
+  width: 100%;
+  height: auto;
+  max-height: 140px;
+  display: block;
+  margin: 0 auto;
+}
+
+.forensic-diagram .diagram-caption {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-top: 4px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
 /* Landmark Case Law Structured Card */
@@ -1716,6 +1770,14 @@ body.single-page-mode .book.upright {
   color: #0284c7;
 }
 
+.book-tab-btn[data-book-id="book3"].active {
+  color: #7c3aed;
+}
+
+.book-tab-btn[data-book-id="book4"].active {
+  color: #059669;
+}
+
 .book-tab-icon {
   font-size: 0.92rem;
 }
@@ -1846,6 +1908,11 @@ body.single-page-mode .book.upright {
   box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.3);
 }
 
+.spine-book4 {
+  background: linear-gradient(90deg, #064e3b 0%, #059669 50%, #022c22 100%);
+  box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.3);
+}
+
 .book-card-cover {
   padding: 16px 18px;
   flex: 1;
@@ -1878,6 +1945,12 @@ body.single-page-mode .book.upright {
   border-color: #7c3aed;
 }
 
+.card-badge.badge-emerald {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border-color: #059669;
+}
+
 .card-title {
   font-family: var(--font-title);
   font-size: 1.05rem;
@@ -1892,6 +1965,10 @@ body.single-page-mode .book.upright {
 
 .card-title.title-purple {
   color: #6d28d9;
+}
+
+.card-title.title-emerald {
+  color: #047857;
 }
 
 .card-subtitle {
@@ -1989,6 +2066,14 @@ body.single-page-mode .book.upright {
 
 .btn-card-open.btn-purple:hover {
   background: #6d28d9;
+}
+
+.btn-card-open.btn-emerald {
+  background: #059669;
+}
+
+.btn-card-open.btn-emerald:hover {
+  background: #047857;
 }
 
 .btn-card-open.btn-teal:hover {
