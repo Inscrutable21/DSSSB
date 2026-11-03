@@ -1841,6 +1841,11 @@ body.single-page-mode .book.upright {
   box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.3);
 }
 
+.spine-book3 {
+  background: linear-gradient(90deg, #4c1d95 0%, #7c3aed 50%, #2e1065 100%);
+  box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.3);
+}
+
 .book-card-cover {
   padding: 16px 18px;
   flex: 1;
@@ -1867,6 +1872,12 @@ body.single-page-mode .book.upright {
   border-color: #0284c7;
 }
 
+.card-badge.badge-purple {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+  border-color: #7c3aed;
+}
+
 .card-title {
   font-family: var(--font-title);
   font-size: 1.05rem;
@@ -1877,6 +1888,10 @@ body.single-page-mode .book.upright {
 
 .card-title.title-teal {
   color: #0369a1;
+}
+
+.card-title.title-purple {
+  color: #6d28d9;
 }
 
 .card-subtitle {
@@ -1966,6 +1981,14 @@ body.single-page-mode .book.upright {
 
 .btn-card-open.btn-teal {
   background: #0284c7;
+}
+
+.btn-card-open.btn-purple {
+  background: #7c3aed;
+}
+
+.btn-card-open.btn-purple:hover {
+  background: #6d28d9;
 }
 
 .btn-card-open.btn-teal:hover {

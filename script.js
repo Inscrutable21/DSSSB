@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Book Switcher & Bookshelf Modal Elements
   const bookBtn1 = document.getElementById('bookBtn1');
   const bookBtn2 = document.getElementById('bookBtn2');
+  const bookBtn3 = document.getElementById('bookBtn3');
   const libraryModalBtn = document.getElementById('libraryModalBtn');
   const bookshelfModal = document.getElementById('bookshelfModal');
   const closeBookshelfBtn = document.getElementById('closeBookshelfBtn');
@@ -56,7 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Multi-Book Registry
   const books = {
     book1: window.book1Data,
-    book2: window.book2Data
+    book2: window.book2Data,
+    book3: window.book3Data
   };
 
   // State
@@ -77,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Stored reading positions per book
   const bookPositions = {
     book1: { currentSpread: 0, currentPageIndex: 0 },
-    book2: { currentSpread: 0, currentPageIndex: 0 }
+    book2: { currentSpread: 0, currentPageIndex: 0 },
+    book3: { currentSpread: 0, currentPageIndex: 0 }
   };
 
   let isSinglePage = (window.innerWidth <= 768);
@@ -152,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Header Switcher Tabs
     if (bookBtn1) bookBtn1.classList.toggle('active', activeBookId === 'book1');
     if (bookBtn2) bookBtn2.classList.toggle('active', activeBookId === 'book2');
+    if (bookBtn3) bookBtn3.classList.toggle('active', activeBookId === 'book3');
 
     // Update Deep-Dive / Lab Button Label
     if (deepDiveToggleBtn) {
@@ -210,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateBookshelfModalCards() {
     const card1 = document.getElementById('shelfCardBook1');
     const card2 = document.getElementById('shelfCardBook2');
+    const card3 = document.getElementById('shelfCardBook3');
 
     if (card1) {
       const isAct1 = (activeBookId === 'book1');
@@ -223,6 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
       card2.classList.toggle('active-reading', isAct2);
       const b2 = card2.querySelector('.active-badge');
       if (b2) b2.classList.toggle('hidden', !isAct2);
+    }
+
+    if (card3) {
+      const isAct3 = (activeBookId === 'book3');
+      card3.classList.toggle('active-reading', isAct3);
+      const b3 = card3.querySelector('.active-badge');
+      if (b3) b3.classList.toggle('hidden', !isAct3);
     }
   }
 
@@ -869,6 +881,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bookBtn2) {
     bookBtn2.addEventListener('click', () => switchBook('book2'));
   }
+  if (bookBtn3) {
+    bookBtn3.addEventListener('click', () => switchBook('book3'));
+  }
 
   // Bookshelf Modal Controls
   if (libraryModalBtn) {
@@ -1054,6 +1069,8 @@ document.addEventListener('DOMContentLoaded', () => {
       switchBook('book1');
     } else if (e.altKey && e.key === '2') {
       switchBook('book2');
+    } else if (e.altKey && e.key === '3') {
+      switchBook('book3');
     }
   });
 
