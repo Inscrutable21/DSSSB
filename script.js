@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bookBtn2 = document.getElementById('bookBtn2');
   const bookBtn3 = document.getElementById('bookBtn3');
   const bookBtn4 = document.getElementById('bookBtn4');
+  const bookBtn5 = document.getElementById('bookBtn5');
   const libraryModalBtn = document.getElementById('libraryModalBtn');
   const bookshelfModal = document.getElementById('bookshelfModal');
   const closeBookshelfBtn = document.getElementById('closeBookshelfBtn');
@@ -60,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     book1: window.book1Data,
     book2: window.book2Data,
     book3: window.book3Data,
-    book4: window.book4Data
+    book4: window.book4Data,
+    book5: window.book5Data
   };
 
   // State
@@ -83,7 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     book1: { currentSpread: 0, currentPageIndex: 0 },
     book2: { currentSpread: 0, currentPageIndex: 0 },
     book3: { currentSpread: 0, currentPageIndex: 0 },
-    book4: { currentSpread: 0, currentPageIndex: 0 }
+    book4: { currentSpread: 0, currentPageIndex: 0 },
+    book5: { currentSpread: 0, currentPageIndex: 0 }
   };
 
   let isSinglePage = (window.innerWidth <= 768);
@@ -160,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bookBtn2) bookBtn2.classList.toggle('active', activeBookId === 'book2');
     if (bookBtn3) bookBtn3.classList.toggle('active', activeBookId === 'book3');
     if (bookBtn4) bookBtn4.classList.toggle('active', activeBookId === 'book4');
+    if (bookBtn5) bookBtn5.classList.toggle('active', activeBookId === 'book5');
 
     // Update Deep-Dive / Lab Button Label
     if (deepDiveToggleBtn) {
@@ -195,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.body.setAttribute('data-active-book', activeBookId);
 
-    const bookIcon = (activeBookId === 'book2') ? '🔬' : (activeBookId === 'book3') ? '⚡' : (activeBookId === 'book4') ? '📱' : '📖';
+    const bookIcon = (activeBookId === 'book2') ? '🔬' : (activeBookId === 'book3') ? '⚡' : (activeBookId === 'book4') ? '📱' : (activeBookId === 'book5') ? '🛡️' : '📖';
     showNotification(`Opened ${currentBook.shortTitle}`, bookIcon);
   }
 
@@ -222,6 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const card2 = document.getElementById('shelfCardBook2');
     const card3 = document.getElementById('shelfCardBook3');
     const card4 = document.getElementById('shelfCardBook4');
+    const card5 = document.getElementById('shelfCardBook5');
 
     if (card1) {
       const isAct1 = (activeBookId === 'book1');
@@ -249,6 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
       card4.classList.toggle('active-reading', isAct4);
       const b4 = card4.querySelector('.active-badge');
       if (b4) b4.classList.toggle('hidden', !isAct4);
+    }
+
+    if (card5) {
+      const isAct5 = (activeBookId === 'book5');
+      card5.classList.toggle('active-reading', isAct5);
+      const b5 = card5.querySelector('.active-badge');
+      if (b5) b5.classList.toggle('hidden', !isAct5);
     }
   }
 
@@ -798,6 +810,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (res.bookId === 'book4') {
         tagLabel = 'Book 4 • Mobile';
         tagStyle = 'background: rgba(16, 185, 129, 0.12); color: #059669; border: 1px solid #059669;';
+      } else if (res.bookId === 'book5') {
+        tagLabel = 'Book 5 • InfoSec';
+        tagStyle = 'background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid #d97706;';
       }
 
       html += `
@@ -909,6 +924,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (bookBtn4) {
     bookBtn4.addEventListener('click', () => switchBook('book4'));
+  }
+  if (bookBtn5) {
+    bookBtn5.addEventListener('click', () => switchBook('book5'));
   }
 
   // Bookshelf Modal Controls
@@ -1099,6 +1117,8 @@ document.addEventListener('DOMContentLoaded', () => {
       switchBook('book3');
     } else if (e.altKey && e.key === '4') {
       switchBook('book4');
+    } else if (e.altKey && e.key === '5') {
+      switchBook('book5');
     }
   });
 
