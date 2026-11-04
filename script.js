@@ -1119,9 +1119,393 @@ document.addEventListener('DOMContentLoaded', () => {
       switchBook('book4');
     } else if (e.altKey && e.key === '5') {
       switchBook('book5');
+    } else if (e.altKey && e.key.toLowerCase() === 'q') {
+      if (mcqModal.classList.contains('hidden')) {
+        openMCQModal();
+      } else {
+        closeMCQModal();
+      }
+    }
+  });
+
+  // ==========================================================================
+  // 1,000 MCQ Practice & Examination Engine Controller
+  // ==========================================================================
+  const mcqModalBtn = document.getElementById('mcqModalBtn');
+  const mcqModal = document.getElementById('mcqModal');
+  const closeMcqBtn = document.getElementById('closeMcqBtn');
+  const mcqBookTabs = document.querySelectorAll('.mcq-tab');
+  const mcqQNumber = document.getElementById('mcqQNumber');
+  const mcqQText = document.getElementById('mcqQText');
+  const mcqOptionsContainer = document.getElementById('mcqOptionsContainer');
+  const mcqExplanationBox = document.getElementById('mcqExplanationBox');
+  const mcqVerdictBadge = document.getElementById('mcqVerdictBadge');
+  const mcqExplanationText = document.getElementById('mcqExplanationText');
+  const mcqPrevBtn = document.getElementById('mcqPrevBtn');
+  const mcqNextBtn = document.getElementById('mcqNextBtn');
+  const mcqRandomBtn = document.getElementById('mcqRandomBtn');
+  const mcqResetBtn = document.getElementById('mcqResetBtn');
+  const mcqQuestionCounter = document.getElementById('mcqQuestionCounter');
+  const mcqScoreCorrect = document.getElementById('mcqScoreCorrect');
+  const mcqScoreAttempted = document.getElementById('mcqScoreAttempted');
+  const mcqScorePercent = document.getElementById('mcqScorePercent');
+  const mcqProgressFill = document.getElementById('mcqProgressFill');
+  const mcqJumpSelect = document.getElementById('mcqJumpSelect');
+  const mcqSearchInput = document.getElementById('mcqSearchInput');
+  const mcqModePracticeBtn = document.getElementById('mcqModePracticeBtn');
+  const mcqModeTestBtn = document.getElementById('mcqModeTestBtn');
+  const mcqFontDecBtn = document.getElementById('mcqFontDecBtn');
+  const mcqFontIncBtn = document.getElementById('mcqFontIncBtn');
+  const mcqFontSizeLabel = document.getElementById('mcqFontSizeLabel');
+  const mcqBookPill = document.getElementById('mcqBookPill');
+  const mcqBody = document.getElementById('mcqBody');
+
+  // Datasets per book
+  const mcqDatasets = {
+    book1: window.book1MCQs || [],
+    book2: window.book2MCQs || [],
+    book3: window.book3MCQs || [],
+    book4: window.book4MCQs || [],
+    book5: window.book5MCQs || []
+  };
+
+  // State
+  let mcqActiveBook = activeBookId || 'book1';
+  let mcqCurrentIndex = 0;
+  let mcqMode = 'practice'; // 'practice' or 'test'
+  let mcqFontScale = 1.05;
+
+  try {
+    const savedScale = localStorage.getItem('dsssb_mcq_font_scale');
+    if (savedScale) mcqFontScale = parseFloat(savedScale) || 1.05;
+  } catch (e) {}
+
+  function applyMCQFontScale(scale) {
+    mcqFontScale = Math.min(1.6, Math.max(0.85, Math.round(scale * 100) / 100));
+    document.documentElement.style.setProperty('--mcq-scale', mcqFontScale);
+    if (mcqFontSizeLabel) {
+      mcqFontSizeLabel.textContent = `${Math.round(mcqFontScale * 100)}%`;
+    }
+    try {
+      localStorage.setItem('dsssb_mcq_font_scale', mcqFontScale.toFixed(2));
+    } catch (e) {}
+  }
+  applyMCQFontScale(mcqFontScale);
+  
+  // User answers per book: { book1: { [index]: selectedOptionIndex } }
+  const mcqUserAnswers = {
+    book1: {},
+    book2: {},
+    book3: {},
+    book4: {},
+    book5: {}
+  };
+
+  function openMCQModal() {
+    mcqActiveBook = activeBookId;
+    updateMCQTabs();
+    populateMCQJumpSelect();
+    renderMCQQuestion();
+    mcqModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMCQModal() {
+    mcqModal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function updateMCQTabs() {
+    mcqBookTabs.forEach(tab => {
+      const bookId = tab.dataset.mcqBook;
+      tab.classList.toggle('active', bookId === mcqActiveBook);
+    });
+  }
+
+  function switchMCQBook(bookId) {
+    if (!mcqDatasets[bookId] || mcqDatasets[bookId].length === 0) return;
+    mcqActiveBook = bookId;
+    mcqCurrentIndex = 0;
+    updateMCQTabs();
+    populateMCQJumpSelect();
+    renderMCQQuestion();
+    showToast(`Switched Quiz to Book ${bookId.replace('book', '')} (200 Questions)`);
+  }
+
+  function populateMCQJumpSelect(filter = '') {
+    const list = mcqDatasets[mcqActiveBook] || [];
+    mcqJumpSelect.innerHTML = '';
+    const cleanFilter = filter.toLowerCase().trim();
+
+    list.forEach((q, idx) => {
+      if (cleanFilter && !q.question.toLowerCase().includes(cleanFilter)) {
+        return;
+      }
+      const opt = document.createElement('option');
+      opt.value = idx;
+      const snippet = q.question.length > 55 ? q.question.substring(0, 55) + '...' : q.question;
+      opt.textContent = `Q${idx + 1}: ${snippet}`;
+      if (idx === mcqCurrentIndex) opt.selected = true;
+      mcqJumpSelect.appendChild(opt);
+    });
+  }
+
+  function updateMCQScoreAndProgress() {
+    const list = mcqDatasets[mcqActiveBook] || [];
+    const answers = mcqUserAnswers[mcqActiveBook] || {};
+    let correct = 0;
+    let attempted = 0;
+
+    Object.keys(answers).forEach(idxStr => {
+      const idx = parseInt(idxStr, 10);
+      const userAns = answers[idx];
+      if (userAns !== undefined && list[idx]) {
+        attempted++;
+        if (userAns === list[idx].answer) {
+          correct++;
+        }
+      }
+    });
+
+    const percent = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+    mcqScoreCorrect.textContent = correct;
+    mcqScoreAttempted.textContent = attempted;
+    mcqScorePercent.textContent = `${percent}%`;
+
+    // Progress bar across the 200 questions
+    const progressPercent = list.length > 0 ? ((mcqCurrentIndex + 1) / list.length) * 100 : 0;
+    mcqProgressFill.style.width = `${progressPercent}%`;
+
+    mcqQuestionCounter.textContent = `Question ${mcqCurrentIndex + 1} of ${list.length}`;
+    if (mcqJumpSelect.value != mcqCurrentIndex) {
+      mcqJumpSelect.value = mcqCurrentIndex;
+    }
+  }
+
+  function renderMCQQuestion() {
+    const list = mcqDatasets[mcqActiveBook] || [];
+    if (list.length === 0) {
+      mcqQText.textContent = 'No questions loaded for this book.';
+      mcqOptionsContainer.innerHTML = '';
+      mcqExplanationBox.classList.add('hidden');
+      return;
+    }
+
+    if (mcqCurrentIndex < 0) mcqCurrentIndex = 0;
+    if (mcqCurrentIndex >= list.length) mcqCurrentIndex = list.length - 1;
+
+    const q = list[mcqCurrentIndex];
+    mcqQNumber.textContent = `Question ${q.id} of 200`;
+    mcqQText.textContent = q.question;
+
+    const bookPillTitles = {
+      book1: 'Book 1 • Cyber Law & Penalties',
+      book2: 'Book 2 • Digital Forensics SOPs',
+      book3: 'Book 3 • Memory Forensics (RAM)',
+      book4: 'Book 4 • Mobile Forensics & CDR',
+      book5: 'Book 5 • InfoSec, Crypto & VAPT'
+    };
+    if (mcqBookPill) {
+      mcqBookPill.textContent = bookPillTitles[mcqActiveBook] || `Book ${mcqActiveBook.replace('book', '')}`;
+    }
+
+    const userAns = mcqUserAnswers[mcqActiveBook][mcqCurrentIndex];
+    const isAnswered = (userAns !== undefined);
+
+    // Build 4 option buttons
+    mcqOptionsContainer.innerHTML = '';
+    const letters = ['A', 'B', 'C', 'D'];
+
+    q.options.forEach((optText, optIdx) => {
+      const btn = document.createElement('button');
+      btn.className = 'mcq-option-btn';
+      btn.setAttribute('data-option-index', optIdx);
+
+      const badge = document.createElement('span');
+      badge.className = 'option-badge';
+      badge.textContent = letters[optIdx];
+
+      const text = document.createElement('span');
+      text.className = 'option-text';
+      text.textContent = optText;
+
+      btn.appendChild(badge);
+      btn.appendChild(text);
+
+      if (isAnswered) {
+        btn.classList.add('disabled');
+        if (mcqMode === 'practice') {
+          if (optIdx === q.answer) {
+            btn.classList.add('correct');
+            badge.textContent = '✓';
+          } else if (optIdx === userAns) {
+            btn.classList.add('wrong');
+            badge.textContent = '✕';
+          }
+        } else {
+          // Test mode
+          if (optIdx === userAns) {
+            btn.classList.add('selected');
+          }
+        }
+      } else {
+        btn.addEventListener('click', () => handleMCQSelect(optIdx));
+      }
+
+      mcqOptionsContainer.appendChild(btn);
+    });
+
+    // Explanation Box Handling
+    if (isAnswered && mcqMode === 'practice') {
+      const isCorrect = (userAns === q.answer);
+      mcqExplanationBox.classList.remove('hidden');
+      mcqExplanationBox.classList.toggle('is-wrong', !isCorrect);
+      mcqVerdictBadge.textContent = isCorrect ? '✓ Correct Answer' : '✕ Incorrect';
+      mcqExplanationText.textContent = q.explanation;
+    } else {
+      mcqExplanationBox.classList.add('hidden');
+    }
+
+    updateMCQScoreAndProgress();
+
+    // Scroll MCQ body back to top on question change
+    if (mcqBody) {
+      mcqBody.scrollTop = 0;
+    }
+  }
+
+  function handleMCQSelect(selectedIdx) {
+    const list = mcqDatasets[mcqActiveBook] || [];
+    if (!list[mcqCurrentIndex]) return;
+
+    mcqUserAnswers[mcqActiveBook][mcqCurrentIndex] = selectedIdx;
+    renderMCQQuestion();
+  }
+
+  function nextMCQ() {
+    const list = mcqDatasets[mcqActiveBook] || [];
+    if (mcqCurrentIndex < list.length - 1) {
+      mcqCurrentIndex++;
+      renderMCQQuestion();
+    } else {
+      showToast('You have reached the end of the 200 questions!');
+    }
+  }
+
+  function prevMCQ() {
+    if (mcqCurrentIndex > 0) {
+      mcqCurrentIndex--;
+      renderMCQQuestion();
+    }
+  }
+
+  function randomMCQ() {
+    const list = mcqDatasets[mcqActiveBook] || [];
+    if (list.length > 0) {
+      mcqCurrentIndex = Math.floor(Math.random() * list.length);
+      renderMCQQuestion();
+    }
+  }
+
+  function resetMCQBook() {
+    if (confirm(`Reset your test progress and answers for Book ${mcqActiveBook.replace('book', '')}?`)) {
+      mcqUserAnswers[mcqActiveBook] = {};
+      mcqCurrentIndex = 0;
+      renderMCQQuestion();
+      showToast(`Progress for Book ${mcqActiveBook.replace('book', '')} has been reset.`);
+    }
+  }
+
+  // Event Listeners for MCQ Controls
+  if (mcqModalBtn) {
+    mcqModalBtn.addEventListener('click', openMCQModal);
+  }
+  if (closeMcqBtn) {
+    closeMcqBtn.addEventListener('click', closeMCQModal);
+  }
+
+  mcqBookTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const bookId = tab.dataset.mcqBook;
+      if (bookId) switchMCQBook(bookId);
+    });
+  });
+
+  if (mcqPrevBtn) mcqPrevBtn.addEventListener('click', prevMCQ);
+  if (mcqNextBtn) mcqNextBtn.addEventListener('click', nextMCQ);
+  if (mcqRandomBtn) mcqRandomBtn.addEventListener('click', randomMCQ);
+  if (mcqResetBtn) mcqResetBtn.addEventListener('click', resetMCQBook);
+
+  if (mcqJumpSelect) {
+    mcqJumpSelect.addEventListener('change', (e) => {
+      mcqCurrentIndex = parseInt(e.target.value, 10) || 0;
+      renderMCQQuestion();
+    });
+  }
+
+  if (mcqSearchInput) {
+    mcqSearchInput.addEventListener('input', (e) => {
+      populateMCQJumpSelect(e.target.value);
+    });
+  }
+
+  if (mcqFontIncBtn) {
+    mcqFontIncBtn.addEventListener('click', () => {
+      applyMCQFontScale(mcqFontScale + 0.1);
+    });
+  }
+
+  if (mcqFontDecBtn) {
+    mcqFontDecBtn.addEventListener('click', () => {
+      applyMCQFontScale(mcqFontScale - 0.1);
+    });
+  }
+
+
+  if (mcqModePracticeBtn) {
+    mcqModePracticeBtn.addEventListener('click', () => {
+      mcqMode = 'practice';
+      mcqModePracticeBtn.classList.add('active');
+      mcqModeTestBtn.classList.remove('active');
+      renderMCQQuestion();
+      showToast('Practice Mode: Instant answers and detailed explanations');
+    });
+  }
+
+  if (mcqModeTestBtn) {
+    mcqModeTestBtn.addEventListener('click', () => {
+      mcqMode = 'test';
+      mcqModeTestBtn.classList.add('active');
+      mcqModePracticeBtn.classList.remove('active');
+      renderMCQQuestion();
+      showToast('Test Mode: Explanations hidden until review');
+    });
+  }
+
+  // Keyboard navigation when modal is open
+  document.addEventListener('keydown', (e) => {
+    if (mcqModal.classList.contains('hidden')) return;
+
+    if (e.target === mcqSearchInput) return;
+
+    if (e.key === 'Escape') {
+      closeMCQModal();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      nextMCQ();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevMCQ();
+    } else if (e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4') {
+      const optIdx = parseInt(e.key, 10) - 1;
+      const userAns = mcqUserAnswers[mcqActiveBook][mcqCurrentIndex];
+      if (userAns === undefined) {
+        handleMCQSelect(optIdx);
+      }
     }
   });
 
   // Initialize App with active book
   switchBook(activeBookId, 0);
 });
+

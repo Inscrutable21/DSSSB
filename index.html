@@ -58,6 +58,11 @@
 
     <!-- Action Tools -->
     <div class="header-right">
+      <button id="mcqModalBtn" class="btn-tool btn-mcq" title="1,000 MCQ Practice & Examination Engine (Alt+Q)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+        <span>📝 1,000 MCQs</span>
+      </button>
+
       <button id="libraryModalBtn" class="btn-tool btn-library" title="Open 5-Book Library Shelf (Alt+B)" aria-label="Bookshelf">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
@@ -344,18 +349,144 @@
     </div>
   </div>
 
+  <!-- 1,000 MCQ Practice & Examination Modal -->
+  <div id="mcqModal" class="mcq-modal hidden" role="dialog" aria-modal="true" aria-labelledby="mcqModalTitle">
+    <div class="mcq-container">
+      <!-- Modal Header -->
+      <div class="mcq-header">
+        <div class="mcq-header-left">
+          <div class="mcq-badge">DSSSB Cyber Forensics Examination Series</div>
+          <h2 id="mcqModalTitle">1,000 Practice & Examination MCQs</h2>
+          <p class="mcq-subtitle">200 High-Yield Questions Per Book • Instant Explanations & Performance Tracking</p>
+        </div>
+        <div class="mcq-header-right">
+          <button id="closeMcqBtn" class="btn-close" aria-label="Close Quiz">&times;</button>
+        </div>
+      </div>
+
+      <!-- Book Selector Tabs inside MCQ Modal -->
+      <div class="mcq-book-tabs">
+        <button class="mcq-tab active" data-mcq-book="book1">
+          <span class="tab-badge">Book 1</span>
+          <span class="tab-name">Cyber Law & Penalties (200)</span>
+        </button>
+        <button class="mcq-tab" data-mcq-book="book2">
+          <span class="tab-badge badge-teal">Book 2</span>
+          <span class="tab-name">Digital Forensics (200)</span>
+        </button>
+        <button class="mcq-tab" data-mcq-book="book3">
+          <span class="tab-badge badge-purple">Book 3</span>
+          <span class="tab-name">Memory Forensics (200)</span>
+        </button>
+        <button class="mcq-tab" data-mcq-book="book4">
+          <span class="tab-badge badge-emerald">Book 4</span>
+          <span class="tab-name">Mobile & CDR (200)</span>
+        </button>
+        <button class="mcq-tab" data-mcq-book="book5">
+          <span class="tab-badge badge-amber">Book 5</span>
+          <span class="tab-name">InfoSec & VAPT (200)</span>
+        </button>
+      </div>
+
+      <!-- Toolbar: Mode, Filter, Search, Jump -->
+      <div class="mcq-toolbar">
+        <div class="mcq-toolbar-left">
+          <span id="mcqQuestionCounter" class="mcq-counter">Question 1 of 200</span>
+          <div class="mcq-score-badge">Score: <span id="mcqScoreCorrect">0</span>/<span id="mcqScoreAttempted">0</span> (<span id="mcqScorePercent">0%</span>)</div>
+        </div>
+        <div class="mcq-toolbar-right">
+          <div class="mcq-mode-toggle">
+            <button id="mcqModePracticeBtn" class="btn-mode active" title="Instant answers & explanations">Practice Mode</button>
+            <button id="mcqModeTestBtn" class="btn-mode" title="Timed test with score report">Test Mode</button>
+          </div>
+          <!-- Font Size Scaler for Readability -->
+          <div class="mcq-font-controls" title="Scale MCQ Reading Font Size">
+            <button id="mcqFontDecBtn" class="btn-tool btn-font" title="Smaller font size">A-</button>
+            <span id="mcqFontSizeLabel" class="mcq-font-size-label">100%</span>
+            <button id="mcqFontIncBtn" class="btn-tool btn-font" title="Larger font size">A+</button>
+          </div>
+          <div class="mcq-jump-box">
+            <label for="mcqJumpSelect">Jump:</label>
+            <select id="mcqJumpSelect"></select>
+          </div>
+          <div class="mcq-search-box">
+            <input type="text" id="mcqSearchInput" placeholder="Filter questions...">
+          </div>
+          <button id="mcqResetBtn" class="btn-tool" title="Reset progress for this book">Reset</button>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="mcq-progress-bar">
+        <div id="mcqProgressFill" class="mcq-progress-fill" style="width: 0.5%;"></div>
+      </div>
+
+      <!-- Question Card Body -->
+      <div class="mcq-body" id="mcqBody">
+        <div class="mcq-card">
+          <!-- Question Box -->
+          <div class="mcq-q-box">
+            <div class="mcq-q-meta">
+              <span id="mcqQNumber" class="q-number-pill">Question 1</span>
+              <span id="mcqBookPill" class="mcq-book-pill">Book 1 • Cyber Law</span>
+            </div>
+            <div id="mcqQText" class="q-text">Loading question...</div>
+          </div>
+
+          <!-- Options Section Header -->
+          <div class="mcq-options-header">
+            <span class="options-title">Select the correct option:</span>
+            <span class="mcq-key-hint">Keyboard shortcut: Press <b>1</b>, <b>2</b>, <b>3</b>, or <b>4</b></span>
+          </div>
+
+          <!-- 4 Options -->
+          <div class="mcq-options" id="mcqOptionsContainer">
+            <!-- Dynamically populated option buttons -->
+          </div>
+
+          <!-- Explanation Box -->
+          <div id="mcqExplanationBox" class="mcq-explanation hidden">
+            <div class="explanation-title">
+              <span id="mcqVerdictBadge" class="verdict-pill">Correct</span>
+              <span class="explanation-heading">💡 Detailed Concept & Examination Notes</span>
+            </div>
+            <div id="mcqExplanationText" class="explanation-text"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer Navigation -->
+      <div class="mcq-footer">
+        <div class="mcq-footer-left">
+          <button id="mcqPrevBtn" class="btn-nav">&larr; Previous</button>
+          <button id="mcqNextBtn" class="btn-nav">Next &rarr;</button>
+          <button id="mcqRandomBtn" class="btn-tool">🎲 Random</button>
+        </div>
+        <div class="mcq-footer-right">
+          <span class="mcq-shortcut-hint">Shortcuts: <b>1-4</b> (Select option) • <b>&larr; / &rarr;</b> (Navigate) • <b>Alt+Q</b> (Toggle) • <b>Esc</b> (Close)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Overlay -->
   <div id="toastNotification" class="toast-notification hidden"></div>
 
   <div id="drawerOverlay" class="drawer-overlay hidden"></div>
 
   <!-- Book Datasets -->
-  <script src="book1_data.js?v=2.8"></script>
-  <script src="book2_data.js?v=2.8"></script>
-  <script src="book3_data.js?v=2.8"></script>
-  <script src="book4_data.js?v=2.8"></script>
-  <script src="book5_data.js?v=2.8"></script>
+  <script src="book1_data.js?v=3.0"></script>
+  <script src="book2_data.js?v=3.0"></script>
+  <script src="book3_data.js?v=3.0"></script>
+  <script src="book4_data.js?v=3.0"></script>
+  <script src="book5_data.js?v=3.0"></script>
+  <!-- MCQ Datasets (200 Questions Per Book = 1,000 MCQs Total) -->
+  <script src="book1_mcqs.js?v=3.0"></script>
+  <script src="book2_mcqs.js?v=3.0"></script>
+  <script src="book3_mcqs.js?v=3.0"></script>
+  <script src="book4_mcqs.js?v=3.0"></script>
+  <script src="book5_mcqs.js?v=3.0"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=2.8"></script>
+  <script src="script.js?v=3.0"></script>
 </body>
 </html>
