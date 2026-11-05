@@ -2402,6 +2402,7 @@ var mcqs = [
 ];
 
 if (typeof window !== 'undefined') {
+  window.book1MCQs = mcqs;
   window.mcqs = mcqs;
 }
 if (typeof module !== 'undefined' && module.exports) {
