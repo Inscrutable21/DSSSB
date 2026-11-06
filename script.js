@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnLabel) {
       const qStart = currentSpread * 10 + 1;
       const qEnd = Math.min(currentSpread * 10 + 10, 200);
-      btnLabel.textContent = `🎯 Test Q${qStart}–Q${qEnd}`;
+      btnLabel.textContent = `🎯 Q${qStart}–Q${qEnd}`;
     }
   }
 
