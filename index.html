@@ -20,23 +20,23 @@
 
       <!-- 5-Book Segmented Quick Switcher -->
       <div class="book-switcher" id="bookSwitcher" role="tablist" aria-label="Select Textbook">
-        <button class="book-tab-btn active" id="bookBtn1" data-book-id="book1" title="Read Book 1: Cyber Crimes & Penalties (Alt+1)">
+        <button class="book-tab-btn active" id="bookBtn1" data-book-id="book1" title="Read Book 1: Cyber Law & Crimes (Alt+1)">
           <span class="book-tab-icon">📖</span>
-          <span class="book-tab-label">Book 1: Cyber Law</span>
+          <span class="book-tab-label">Book 1: Law</span>
         </button>
-        <button class="book-tab-btn" id="bookBtn2" data-book-id="book2" title="Read Book 2: Digital Forensics & Investigation (Alt+2)">
+        <button class="book-tab-btn" id="bookBtn2" data-book-id="book2" title="Read Book 2: Digital Forensics SOPs (Alt+2)">
           <span class="book-tab-icon">🔬</span>
           <span class="book-tab-label">Book 2: Forensics</span>
         </button>
-        <button class="book-tab-btn" id="bookBtn3" data-book-id="book3" title="Read Book 3: Memory (RAM) Forensics (Alt+3)">
+        <button class="book-tab-btn" id="bookBtn3" data-book-id="book3" title="Read Book 3: RAM & Memory Forensics (Alt+3)">
           <span class="book-tab-icon">⚡</span>
-          <span class="book-tab-label">Book 3: RAM Forensics</span>
+          <span class="book-tab-label">Book 3: RAM</span>
         </button>
-        <button class="book-tab-btn" id="bookBtn4" data-book-id="book4" title="Read Book 4: Mobile Forensics (Alt+4)">
+        <button class="book-tab-btn" id="bookBtn4" data-book-id="book4" title="Read Book 4: Mobile & Telecom Forensics (Alt+4)">
           <span class="book-tab-icon">📱</span>
           <span class="book-tab-label">Book 4: Mobile</span>
         </button>
-        <button class="book-tab-btn" id="bookBtn5" data-book-id="book5" title="Read Book 5: InfoSec & VAPT (Alt+5)">
+        <button class="book-tab-btn" id="bookBtn5" data-book-id="book5" title="Read Book 5: InfoSec, Crypto & VAPT (Alt+5)">
           <span class="book-tab-icon">🛡️</span>
           <span class="book-tab-label">Book 5: InfoSec</span>
         </button>
@@ -58,9 +58,14 @@
 
     <!-- Action Tools -->
     <div class="header-right">
+      <button id="testSpreadBtn" class="btn-tool btn-test-spread" title="Practice Questions for this Spread (Alt+T)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline><path d="M9 11l3 3L22 4"></path></svg>
+        <span id="testSpreadBtnLabel">🎯 Test Q1–Q10</span>
+      </button>
+
       <button id="mcqModalBtn" class="btn-tool btn-mcq" title="1,000 MCQ Practice & Examination Engine (Alt+Q)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-        <span>📝 1,000 MCQs</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+        <span>1,000 MCQs</span>
       </button>
 
       <button id="libraryModalBtn" class="btn-tool btn-library" title="Open 5-Book Library Shelf (Alt+B)" aria-label="Bookshelf">
@@ -405,6 +410,11 @@
             <span id="mcqFontSizeLabel" class="mcq-font-size-label">100%</span>
             <button id="mcqFontIncBtn" class="btn-tool btn-font" title="Larger font size">A+</button>
           </div>
+          <div class="mcq-spread-filter-box">
+            <label for="mcqSpreadFilterSelect">Topic/Spread:</label>
+            <select id="mcqSpreadFilterSelect" class="mcq-spread-select" title="Filter questions by Spread / Topic"></select>
+          </div>
+
           <div class="mcq-jump-box">
             <label for="mcqJumpSelect">Jump:</label>
             <select id="mcqJumpSelect"></select>
@@ -429,6 +439,11 @@
             <div class="mcq-q-meta">
               <span id="mcqQNumber" class="q-number-pill">Question 1</span>
               <span id="mcqBookPill" class="mcq-book-pill">Book 1 • Cyber Law</span>
+              <span id="mcqSpreadSourceBadge" class="mcq-spread-source-badge" title="Source spread in notes">📍 Spread 1 • P. 1–2</span>
+              <button id="mcqViewInNotesBtn" class="btn-notes-jump" title="Jump to this topic in the reading notes (Press N or V)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <span>📖 View in Notes</span>
+              </button>
             </div>
             <div id="mcqQText" class="q-text">Loading question...</div>
           </div>
@@ -451,6 +466,11 @@
               <span class="explanation-heading">💡 Detailed Concept & Examination Notes</span>
             </div>
             <div id="mcqExplanationText" class="explanation-text"></div>
+            <div class="mcq-notes-link-box">
+              <button id="mcqExplanationNotesBtn" class="mcq-notes-link-btn" title="Jump to notes for this question">
+                📖 Open Full Notes & Diagram in <span id="mcqExplSpreadNum">Spread 1</span> (Pages <span id="mcqExplPageRange">1–2</span>) &rarr;
+              </button>
+            </div>
           </div>
         </div>
       </div>

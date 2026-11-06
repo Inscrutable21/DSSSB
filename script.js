@@ -345,6 +345,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // RENDER CONTROLLER (Two-Page Spread & Single-Page View)
   // =========================================================================
   function renderPageContent(pageData, isLeft) {
+    const qStart = currentSpread * 10 + 1;
+    const qEnd = Math.min(currentSpread * 10 + 10, 200);
+    const ctaBanner = !isLeft ? `
+      <div class="spread-quiz-cta-banner">
+        <div class="spread-quiz-cta-info">
+          <span class="spread-quiz-icon">🎯</span>
+          <div>
+            <div class="spread-quiz-title">Test Your Mastery on this Topic</div>
+            <div class="spread-quiz-subtitle">10 high-yield DSSSB exam questions (Q${qStart}–Q${qEnd}) map directly to this spread.</div>
+          </div>
+        </div>
+        <button class="btn-spread-cta-action" onclick="window.openMCQForCurrentSpread()">
+          Practice Questions (Q${qStart}–Q${qEnd}) &rarr;
+        </button>
+      </div>
+    ` : '';
+
     return `
       <div class="page-content">
         <div class="page-running-head">
@@ -353,6 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="page-body">
           ${pageData.content}
+          ${ctaBanner}
         </div>
         <div class="page-footer">
           <span>${currentBook.shortTitle}</span>
@@ -415,6 +433,16 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.toc-item').forEach((el, idx) => {
         el.classList.toggle('active', idx === currentSpread);
       });
+    }
+    updateSpreadTestButton();
+  }
+
+  function updateSpreadTestButton() {
+    const btnLabel = document.getElementById('testSpreadBtnLabel');
+    if (btnLabel) {
+      const qStart = currentSpread * 10 + 1;
+      const qEnd = Math.min(currentSpread * 10 + 10, 200);
+      btnLabel.textContent = `🎯 Test Q${qStart}–Q${qEnd}`;
     }
   }
 
@@ -1119,6 +1147,8 @@ document.addEventListener('DOMContentLoaded', () => {
       switchBook('book4');
     } else if (e.altKey && e.key === '5') {
       switchBook('book5');
+    } else if (e.altKey && e.key.toLowerCase() === 'm') {
+      openMCQForCurrentSpread();
     } else if (e.altKey && e.key.toLowerCase() === 'q') {
       if (mcqModal.classList.contains('hidden')) {
         openMCQModal();
@@ -1159,6 +1189,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const mcqFontSizeLabel = document.getElementById('mcqFontSizeLabel');
   const mcqBookPill = document.getElementById('mcqBookPill');
   const mcqBody = document.getElementById('mcqBody');
+  const testSpreadBtn = document.getElementById('testSpreadBtn');
+  const testSpreadBtnLabel = document.getElementById('testSpreadBtnLabel');
+  const mcqSpreadFilterSelect = document.getElementById('mcqSpreadFilterSelect');
+  const mcqSpreadSourceBadge = document.getElementById('mcqSpreadSourceBadge');
+  const mcqViewInNotesBtn = document.getElementById('mcqViewInNotesBtn');
+  const mcqExplanationNotesBtn = document.getElementById('mcqExplanationNotesBtn');
+  const mcqExplSpreadNum = document.getElementById('mcqExplSpreadNum');
+  const mcqExplPageRange = document.getElementById('mcqExplPageRange');
 
   // Datasets per book
   const mcqDatasets = {
@@ -1201,9 +1239,91 @@ document.addEventListener('DOMContentLoaded', () => {
     book5: {}
   };
 
+  let mcqCurrentSpreadFilter = 'all';
+
+  function openMCQForCurrentSpread() {
+    openMCQForSpread(currentSpread);
+  }
+  window.openMCQForCurrentSpread = openMCQForCurrentSpread;
+
+  function openMCQForSpread(targetSpreadIdx) {
+    mcqActiveBook = activeBookId;
+    mcqCurrentSpreadFilter = targetSpreadIdx.toString();
+    mcqCurrentIndex = Math.max(0, Math.min(targetSpreadIdx * 10, 199));
+    updateMCQTabs();
+    populateMCQSpreadFilterSelect();
+    if (mcqSpreadFilterSelect) {
+      mcqSpreadFilterSelect.value = mcqCurrentSpreadFilter;
+    }
+    populateMCQJumpSelect('', mcqCurrentSpreadFilter);
+    renderMCQQuestion();
+    mcqModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    showToast(`🎯 Testing Spread ${targetSpreadIdx + 1} (Questions Q${targetSpreadIdx * 10 + 1}–Q${targetSpreadIdx * 10 + 10})`);
+  }
+  window.openMCQForSpread = openMCQForSpread;
+
+  function jumpToNotesFromMCQ() {
+    const list = mcqDatasets[mcqActiveBook] || [];
+    const q = list[mcqCurrentIndex];
+    if (!q) return;
+    const targetSpread = Math.floor((q.id - 1) / 10);
+    const pLeft = targetSpread * 2 + 1;
+    const pRight = targetSpread * 2 + 2;
+
+    if (activeBookId !== mcqActiveBook) {
+      switchBook(mcqActiveBook);
+    }
+    closeMCQModal();
+    turnToSpread(targetSpread);
+
+    setTimeout(() => {
+      const activeBodies = document.querySelectorAll('.page-body');
+      activeBodies.forEach(b => {
+        b.style.transition = 'box-shadow 0.4s ease, outline 0.4s ease';
+        b.style.outline = '3px solid #0ea5e9';
+        setTimeout(() => { b.style.outline = 'none'; }, 2200);
+      });
+    }, 350);
+
+    showToast(`📖 Jumped to Notes: Spread ${targetSpread + 1} (Pages ${pLeft}–${pRight}) for Q${q.id}!`);
+  }
+  window.jumpToNotesFromMCQ = jumpToNotesFromMCQ;
+
+  function populateMCQSpreadFilterSelect() {
+    if (!mcqSpreadFilterSelect) return;
+    const bookObj = books[mcqActiveBook] || currentBook;
+    mcqSpreadFilterSelect.innerHTML = '';
+
+    const allOpt = document.createElement('option');
+    allOpt.value = 'all';
+    allOpt.textContent = '📚 All 200 Questions (Full Book)';
+    mcqSpreadFilterSelect.appendChild(allOpt);
+
+    for (let s = 0; s < 20; s++) {
+      const opt = document.createElement('option');
+      opt.value = s.toString();
+      const pL = s * 2 + 1;
+      const pR = s * 2 + 2;
+      const qStart = s * 10 + 1;
+      const qEnd = s * 10 + 10;
+      let title = '';
+      if (bookObj.tocData && bookObj.tocData[s]) {
+        title = bookObj.tocData[s].title;
+      }
+      opt.textContent = `Spread ${s + 1} (P. ${pL}–${pR}): Q${qStart}–Q${qEnd} • ${title}`;
+      if (mcqCurrentSpreadFilter === s.toString()) {
+        opt.selected = true;
+      }
+      mcqSpreadFilterSelect.appendChild(opt);
+    }
+  }
+
   function openMCQModal() {
     mcqActiveBook = activeBookId;
+    mcqCurrentSpreadFilter = 'all';
     updateMCQTabs();
+    populateMCQSpreadFilterSelect();
     populateMCQJumpSelect();
     renderMCQQuestion();
     mcqModal.classList.remove('hidden');
@@ -1232,12 +1352,17 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast(`Switched Quiz to Book ${bookId.replace('book', '')} (200 Questions)`);
   }
 
-  function populateMCQJumpSelect(filter = '') {
+  function populateMCQJumpSelect(filter = '', spreadFilter = null) {
     const list = mcqDatasets[mcqActiveBook] || [];
     mcqJumpSelect.innerHTML = '';
     const cleanFilter = filter.toLowerCase().trim();
+    const effectiveSpread = (spreadFilter !== null) ? spreadFilter : mcqCurrentSpreadFilter;
 
     list.forEach((q, idx) => {
+      if (effectiveSpread !== 'all') {
+        const sIdx = parseInt(effectiveSpread, 10);
+        if (Math.floor(idx / 10) !== sIdx) return;
+      }
       if (cleanFilter && !q.question.toLowerCase().includes(cleanFilter)) {
         return;
       }
@@ -1297,6 +1422,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const q = list[mcqCurrentIndex];
     mcqQNumber.textContent = `Question ${q.id} of 200`;
     mcqQText.textContent = q.question;
+
+    const spreadIdx = Math.floor((q.id - 1) / 10);
+    const pLeft = spreadIdx * 2 + 1;
+    const pRight = spreadIdx * 2 + 2;
+    const bookObj = books[mcqActiveBook] || currentBook;
+    const tocTitle = (bookObj.tocData && bookObj.tocData[spreadIdx]) ? bookObj.tocData[spreadIdx].title : '';
+
+    if (mcqSpreadSourceBadge) {
+      mcqSpreadSourceBadge.textContent = `📍 Spread ${spreadIdx + 1} • P. ${pLeft}–${pRight}`;
+      mcqSpreadSourceBadge.title = `Source Notes: Spread ${spreadIdx + 1} (${tocTitle})`;
+    }
+
+    if (mcqExplSpreadNum) mcqExplSpreadNum.textContent = `Spread ${spreadIdx + 1}`;
+    if (mcqExplPageRange) mcqExplPageRange.textContent = `${pLeft}–${pRight}`;
 
     const bookPillTitles = {
       book1: 'Book 1 • Cyber Law & Penalties',
@@ -1417,11 +1556,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Event Listeners for MCQ Controls
+  if (testSpreadBtn) {
+    testSpreadBtn.addEventListener('click', openMCQForCurrentSpread);
+  }
+
   if (mcqModalBtn) {
     mcqModalBtn.addEventListener('click', openMCQModal);
   }
   if (closeMcqBtn) {
     closeMcqBtn.addEventListener('click', closeMCQModal);
+  }
+
+  if (mcqViewInNotesBtn) {
+    mcqViewInNotesBtn.addEventListener('click', jumpToNotesFromMCQ);
+  }
+  if (mcqExplanationNotesBtn) {
+    mcqExplanationNotesBtn.addEventListener('click', jumpToNotesFromMCQ);
+  }
+
+  if (mcqSpreadFilterSelect) {
+    mcqSpreadFilterSelect.addEventListener('change', (e) => {
+      mcqCurrentSpreadFilter = e.target.value;
+      if (mcqCurrentSpreadFilter === 'all') {
+        populateMCQJumpSelect();
+        renderMCQQuestion();
+      } else {
+        const s = parseInt(mcqCurrentSpreadFilter, 10);
+        mcqCurrentIndex = s * 10;
+        populateMCQJumpSelect('', mcqCurrentSpreadFilter);
+        renderMCQQuestion();
+      }
+    });
   }
 
   mcqBookTabs.forEach(tab => {
@@ -1490,6 +1655,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (e.key === 'Escape') {
       closeMCQModal();
+    } else if (e.key.toLowerCase() === 'n' || e.key.toLowerCase() === 'v') {
+      e.preventDefault();
+      jumpToNotesFromMCQ();
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       nextMCQ();

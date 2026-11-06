@@ -109,24 +109,39 @@ body {
    Top Header Navigation Bar
    ========================================================================== */
 .app-header {
-  height: 54px;
+  height: 52px;
   background: var(--header-bg);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--ui-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 10px;
   position: relative;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  gap: 8px;
+  white-space: nowrap;
 }
 
-.header-left,
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Hide redundant title in navbar to prevent collision with search & action tools */
+.book-meta {
+  display: none !important;
+}
+
 .header-right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+  flex-shrink: 0;
 }
 
 .btn-icon,
@@ -174,12 +189,15 @@ body {
   color: var(--text-heading);
 }
 
-/* Search Box */
+/* Search Box - flexible and responsive */
 .search-box {
   position: relative;
-  width: 360px;
+  flex: 0 1 200px;
+  min-width: 90px;
+  max-width: 220px;
   display: flex;
   align-items: center;
+  margin: 0 4px;
 }
 
 .search-box svg {
@@ -2855,3 +2873,221 @@ body.theme-paper .explanation-text {
 }
 
 
+
+
+/* ==========================================================================
+   Two-Way Interactive Study & MCQ Practice System
+   ========================================================================== */
+
+/* Header 'Test This Spread' Button */
+.btn-test-spread {
+  background: linear-gradient(135deg, #0284c7, #0369a1) !important;
+  color: #ffffff !important;
+  border: 1px solid #0284c7 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+  transition: all 0.2s ease;
+  height: 32px !important;
+  padding: 0 10px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+  font-size: 0.78rem !important;
+}
+
+.btn-test-spread:hover {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.38);
+}
+
+/* Spread CTA Banner on Right Pages */
+.spread-quiz-cta-banner {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(5, 150, 105, 0.08));
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  border-left: 4px solid #0ea5e9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.spread-quiz-cta-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 240px;
+}
+
+.spread-quiz-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.spread-quiz-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: -0.01em;
+}
+
+.spread-quiz-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.btn-spread-cta-action {
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: #ffffff;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-spread-cta-action:hover {
+  background: linear-gradient(135deg, #10b981, #059669);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(5, 150, 105, 0.35);
+}
+
+/* MCQ Question Card: Source Spread & View Notes Button */
+.mcq-spread-source-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #0284c7;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.28);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-notes-jump {
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-notes-jump:hover {
+  background: #6366f1;
+  color: #ffffff;
+  border-color: #6366f1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+}
+
+/* MCQ Explanation Link to Notes */
+.mcq-notes-link-box {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.mcq-notes-link-btn {
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: #38bdf8;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.mcq-notes-link-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(14, 165, 233, 0.35);
+}
+
+/* MCQ Topic / Spread Filter Select in Toolbar */
+.mcq-spread-filter-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.mcq-spread-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #1e293b;
+  color: #f1f5f9;
+  border: 1px solid #334155;
+  font-size: 0.8rem;
+  outline: none;
+  max-width: 210px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.mcq-spread-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+/* Responsive Navbar Rules */
+@media (max-width: 1400px) {
+  .header-right .btn-library span,
+  .header-right .btn-audio span {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .header-right .btn-deepdive span.deepdive-label-long {
+    display: none;
+  }
+  .header-right .btn-deepdive span.deepdive-label-short {
+    display: inline !important;
+  }
+  .search-box {
+    flex: 0 1 140px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .book-tab-label {
+    display: none;
+  }
+  .book-tab-btn {
+    padding: 4px 6px;
+  }
+}
