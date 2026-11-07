@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3.0">
+  <link rel="stylesheet" href="style.css?v=3.1">
 </head>
 <body class="theme-parchment">
   <!-- Top App Navigation Bar -->
@@ -55,12 +55,12 @@
 
     <!-- Action Tools -->
     <div class="header-right">
-      <button id="testSpreadBtn" class="btn-tool btn-test-spread" title="Practice Questions for this Spread (Alt+T)">
+      <button id="testSpreadBtn" class="btn-tool btn-test-spread" title="Practice Questions for this Spread (Alt+T)" onclick="if(window.openMCQForCurrentSpread)window.openMCQForCurrentSpread();">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline><path d="M9 11l3 3L22 4"></path></svg>
         <span id="testSpreadBtnLabel">🎯 Q1–Q10</span>
       </button>
 
-      <button id="mcqModalBtn" class="btn-tool btn-mcq" title="1,000 MCQ Practice & Examination Engine (Alt+Q)">
+      <button id="mcqModalBtn" class="btn-tool btn-mcq" title="1,000 MCQ Practice & Examination Engine (Alt+Q)" onclick="if(window.openMCQModal)window.openMCQModal();">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
         <span>1,000 MCQs</span>
       </button>
@@ -492,18 +492,18 @@
   <div id="drawerOverlay" class="drawer-overlay hidden"></div>
 
   <!-- Book Datasets -->
-  <script src="book1_data.js?v=3.0"></script>
-  <script src="book2_data.js?v=3.0"></script>
-  <script src="book3_data.js?v=3.0"></script>
-  <script src="book4_data.js?v=3.0"></script>
-  <script src="book5_data.js?v=3.0"></script>
+  <script src="book1_data.js?v=3.1"></script>
+  <script src="book2_data.js?v=3.1"></script>
+  <script src="book3_data.js?v=3.1"></script>
+  <script src="book4_data.js?v=3.1"></script>
+  <script src="book5_data.js?v=3.1"></script>
   <!-- MCQ Datasets (200 Questions Per Book = 1,000 MCQs Total) -->
-  <script src="book1_mcqs.js?v=3.0"></script>
-  <script src="book2_mcqs.js?v=3.0"></script>
-  <script src="book3_mcqs.js?v=3.0"></script>
-  <script src="book4_mcqs.js?v=3.0"></script>
-  <script src="book5_mcqs.js?v=3.0"></script>
+  <script src="book1_mcqs.js?v=3.1"></script>
+  <script src="book2_mcqs.js?v=3.1"></script>
+  <script src="book3_mcqs.js?v=3.1"></script>
+  <script src="book4_mcqs.js?v=3.1"></script>
+  <script src="book5_mcqs.js?v=3.1"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=3.0"></script>
+  <script src="script.js?v=3.1"></script>
 </body>
 </html>

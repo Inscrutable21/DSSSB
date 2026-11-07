@@ -128,6 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2400);
   }
 
+  function showToast(message, icon = '🎯') {
+    showNotification(message, icon);
+  }
+  window.showNotification = showNotification;
+  window.showToast = showToast;
+
   // =========================================================================
   // BOOK SWITCHER ENGINE
   // =========================================================================
@@ -1247,9 +1253,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.openMCQForCurrentSpread = openMCQForCurrentSpread;
 
   function openMCQForSpread(targetSpreadIdx) {
-    mcqActiveBook = activeBookId;
-    mcqCurrentSpreadFilter = targetSpreadIdx.toString();
-    mcqCurrentIndex = Math.max(0, Math.min(targetSpreadIdx * 10, 199));
+    const sIdx = parseInt(targetSpreadIdx, 10) || 0;
+    mcqActiveBook = activeBookId || 'book1';
+    mcqCurrentSpreadFilter = sIdx.toString();
+    mcqCurrentIndex = Math.max(0, Math.min(sIdx * 10, 199));
     updateMCQTabs();
     populateMCQSpreadFilterSelect();
     if (mcqSpreadFilterSelect) {
@@ -1257,9 +1264,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     populateMCQJumpSelect('', mcqCurrentSpreadFilter);
     renderMCQQuestion();
-    mcqModal.classList.remove('hidden');
+    if (mcqModal) {
+      mcqModal.classList.remove('hidden');
+    }
     document.body.style.overflow = 'hidden';
-    showToast(`🎯 Testing Spread ${targetSpreadIdx + 1} (Questions Q${targetSpreadIdx * 10 + 1}–Q${targetSpreadIdx * 10 + 10})`);
+    if (typeof showToast === 'function') {
+      showToast(`🎯 Testing Spread ${sIdx + 1} (Questions Q${sIdx * 10 + 1}–Q${sIdx * 10 + 10})`);
+    }
   }
   window.openMCQForSpread = openMCQForSpread;
 
@@ -1320,20 +1331,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openMCQModal() {
-    mcqActiveBook = activeBookId;
+    mcqActiveBook = activeBookId || 'book1';
     mcqCurrentSpreadFilter = 'all';
     updateMCQTabs();
     populateMCQSpreadFilterSelect();
     populateMCQJumpSelect();
     renderMCQQuestion();
-    mcqModal.classList.remove('hidden');
+    if (mcqModal) {
+      mcqModal.classList.remove('hidden');
+    }
     document.body.style.overflow = 'hidden';
   }
+  window.openMCQModal = openMCQModal;
 
   function closeMCQModal() {
-    mcqModal.classList.add('hidden');
+    if (mcqModal) {
+      mcqModal.classList.add('hidden');
+    }
     document.body.style.overflow = '';
   }
+  window.closeMCQModal = closeMCQModal;
 
   function updateMCQTabs() {
     mcqBookTabs.forEach(tab => {
