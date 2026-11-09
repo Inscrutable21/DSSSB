@@ -1,5 +1,19 @@
 // Book 5 Data: Information Security, Applied Cryptography & VAPT
 window.book5Data = {
+  "id": "book5",
+  "title": "Book 5: InfoSec, Crypto & VAPT",
+  "shortTitle": "InfoSec, Crypto & VAPT",
+  "fullTitle": "INFORMATION SECURITY, APPLIED CRYPTOGRAPHY & PENETRATION TESTING",
+  "badge": "DSSSB JSA (Cyber Forensic) — Book 5",
+  "category": "InfoSec & Penetration Testing",
+  "description": "Comprehensive Examination of CIA Triad, Modern Symmetric & Asymmetric Ciphers, Hashing, CVSS v3.1 Scoring, Network Reconnaissance, and VAPT Methodologies.",
+  "stats": "20 Spreads • 40 Pages • 200 MCQs Aligned",
+  "coverClass": "book5-theme",
+  "tocSubtitle": "DSSSB JSA InfoSec & VAPT 20-Spread Theory Guide",
+  "labBtnLong": "InfoSec Lab",
+  "labBtnShort": "InfoSec Lab",
+  "labDrawerTitle": "Information Security, Applied Cryptography & VAPT Lab",
+  "labDrawerSubtitle": "OpenSSL AES/RSA, Hashes, Steghide, CVSS v3.1, Nmap & Metasploit Exploits",
   "deepDiveTabs": [
     {
       "id": "lab-sec1",

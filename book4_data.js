@@ -1,5 +1,19 @@
 // Book 4 Data: Mobile & Telecom Forensics
 window.book4Data = {
+  "id": "book4",
+  "title": "Book 4: Mobile & Telecom Forensics",
+  "shortTitle": "Mobile & Telecom Forensics",
+  "fullTitle": "MOBILE DEVICE FORENSICS, CELLULAR PROTOCOLS & CDR ANALYSIS",
+  "badge": "DSSSB JSA (Cyber Forensic) — Book 4",
+  "category": "Mobile & CDR Forensics",
+  "description": "Comprehensive Examination of Android & iOS Architectures, SQLite Artifacts, Cellular Call Detail Records (CDR), and Physical/Logical Extractions.",
+  "stats": "20 Spreads • 40 Pages • 200 MCQs Aligned",
+  "coverClass": "book4-theme",
+  "tocSubtitle": "DSSSB JSA Mobile Forensics 20-Spread Theory Guide",
+  "labBtnLong": "Mobile Lab",
+  "labBtnShort": "Mobile Lab",
+  "labDrawerTitle": "Mobile Forensics & Cellular Analysis Lab",
+  "labDrawerSubtitle": "ADB Physical Extraction, iOS Manifests, SQLite DBs & CDR Tower Dumps",
   "deepDiveTabs": [
     {
       "id": "lab-m1",

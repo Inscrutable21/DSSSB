@@ -1,5 +1,19 @@
 // Book 3 Data: Memory (RAM) Forensics & Volatility Analysis
 window.book3Data = {
+  "id": "book3",
+  "title": "Book 3: RAM & Memory Forensics",
+  "shortTitle": "RAM & Memory Forensics",
+  "fullTitle": "VOLATILE MEMORY FORENSICS & MALWARE ARTIFACT ANALYSIS",
+  "badge": "DSSSB JSA (Cyber Forensic) — Book 3",
+  "category": "RAM Analysis & Volatility",
+  "description": "Comprehensive Guide to Volatile Memory Acquisition, Windows/Linux Kernel Structures, Volatility 3, and Process Injection Hunting.",
+  "stats": "20 Spreads • 40 Pages • 200 MCQs Aligned",
+  "coverClass": "book3-theme",
+  "tocSubtitle": "DSSSB JSA Memory Forensics 20-Spread Theory Guide",
+  "labBtnLong": "Memory Lab",
+  "labBtnShort": "RAM Lab",
+  "labDrawerTitle": "Volatile Memory & Volatility 3 Practical Lab",
+  "labDrawerSubtitle": "Live RAM Acquisition, Kernel Structs, Heap/Stack & Malfind Analysis",
   "deepDiveTabs": [
     {
       "key": "mem_intro",

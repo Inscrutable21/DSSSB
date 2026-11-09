@@ -1,10 +1,18 @@
 /**
  * DSSSB Junior Scientific Assistant (Cyber Forensic)
- * 3D Interactive Digital Textbook Controller — 2-Book Multi-Curriculum Engine
- * Fully paginated:
- *   • Book 1: Cyber Crimes, Offences & Penalties (IT Act 2000, BNS 2023, BSA 2023)
- *   • Book 2: Digital Forensics & Electronic Evidence (SOPs, Acquisition, Carving, Hashing, Tools)
+ * 3D Interactive Digital Textbook Controller — 5-Book Multi-Curriculum Engine
  */
+
+// Early global stubs for instant onclick responsiveness
+window.openMCQForSpread = window.openMCQForSpread || function(sIdx) {
+  console.log('Early openMCQForSpread call queued for spread', sIdx);
+};
+window.openMCQForCurrentSpread = window.openMCQForCurrentSpread || function() {
+  console.log('Early openMCQForCurrentSpread call queued');
+};
+window.openMCQModal = window.openMCQModal || function() {
+  console.log('Early openMCQModal call queued');
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
@@ -351,19 +359,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // RENDER CONTROLLER (Two-Page Spread & Single-Page View)
   // =========================================================================
   function renderPageContent(pageData, isLeft) {
+    if (!pageData) return '';
     const qStart = currentSpread * 10 + 1;
     const qEnd = Math.min(currentSpread * 10 + 10, 200);
-    const ctaBanner = !isLeft ? `
+    const hasExistingBanner = pageData.content && pageData.content.includes('spread-quiz-cta-banner');
+    const ctaBanner = (!isLeft && !hasExistingBanner) ? `
       <div class="spread-quiz-cta-banner">
         <div class="spread-quiz-cta-info">
-          <span class="spread-quiz-icon">🎯</span>
+          <span class="spread-quiz-icon" style="font-size: 1.1rem; margin-right: 8px;">🎯</span>
           <div>
-            <div class="spread-quiz-title">Test Your Mastery on this Topic</div>
-            <div class="spread-quiz-subtitle">10 high-yield DSSSB exam questions (Q${qStart}–Q${qEnd}) map directly to this spread.</div>
+            <div class="spread-quiz-title" style="font-size: 0.86rem; color: var(--text-heading); font-weight: 700;">Test Your Mastery: Spread ${currentSpread + 1}</div>
+            <div class="spread-quiz-subtitle" style="font-size: 0.74rem; color: var(--text-muted);">Practice all 10 targeted exam questions (Q${qStart}–Q${qEnd}) for this spread.</div>
           </div>
         </div>
-        <button class="btn-spread-cta-action" onclick="window.openMCQForCurrentSpread()">
-          Practice Questions (Q${qStart}–Q${qEnd}) &rarr;
+        <button class="btn-tool btn-mcq btn-spread-cta-action" data-spread-idx="${currentSpread}" onclick="window.openMCQForSpread(${currentSpread})" style="font-size: 0.8rem; padding: 6px 14px;">
+          Start Quiz (Q${qStart}–Q${qEnd}) &rarr;
         </button>
       </div>
     ` : '';
@@ -379,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ${ctaBanner}
         </div>
         <div class="page-footer">
-          <span>${currentBook.shortTitle}</span>
+          <span>${currentBook.shortTitle || 'DSSSB Cyber Forensic'}</span>
           <span>Page ${pageData.pageNumber}</span>
         </div>
       </div>
@@ -649,18 +659,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (deepDiveTabs && deepDiveTabsConfig) {
       deepDiveTabs.innerHTML = '';
       deepDiveTabsConfig.forEach((tab, idx) => {
+        const tabKey = tab.key || tab.id;
         const btn = document.createElement('button');
         btn.className = `dd-tab ${idx === 0 ? 'active' : ''}`;
-        btn.dataset.sec = tab.key;
+        btn.dataset.sec = tabKey;
         btn.textContent = tab.label;
         btn.addEventListener('click', () => {
-          renderDeepDive(tab.key);
+          renderDeepDive(tabKey);
         });
         deepDiveTabs.appendChild(btn);
       });
 
       if (deepDiveTabsConfig.length > 0) {
-        renderDeepDive(deepDiveTabsConfig[0].key);
+        renderDeepDive(deepDiveTabsConfig[0].key || deepDiveTabsConfig[0].id);
       }
     }
   }
@@ -1104,8 +1115,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('click', (e) => {
-    if (!searchInput.contains(e.target) && !searchResultsDropdown.contains(e.target)) {
-      searchResultsDropdown.classList.add('hidden');
+    if (searchInput && searchResultsDropdown && searchInput.contains && searchResultsDropdown.contains) {
+      if (!searchInput.contains(e.target) && !searchResultsDropdown.contains(e.target)) {
+        searchResultsDropdown.classList.add('hidden');
+      }
     }
   });
 
@@ -1264,8 +1277,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     populateMCQJumpSelect('', mcqCurrentSpreadFilter);
     renderMCQQuestion();
-    if (mcqModal) {
-      mcqModal.classList.remove('hidden');
+    const modal = mcqModal || document.getElementById('mcqModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
     }
     document.body.style.overflow = 'hidden';
     if (typeof showToast === 'function') {
@@ -1337,16 +1352,20 @@ document.addEventListener('DOMContentLoaded', () => {
     populateMCQSpreadFilterSelect();
     populateMCQJumpSelect();
     renderMCQQuestion();
-    if (mcqModal) {
-      mcqModal.classList.remove('hidden');
+    const modal = mcqModal || document.getElementById('mcqModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
     }
     document.body.style.overflow = 'hidden';
   }
   window.openMCQModal = openMCQModal;
 
   function closeMCQModal() {
-    if (mcqModal) {
-      mcqModal.classList.add('hidden');
+    const modal = mcqModal || document.getElementById('mcqModal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
     }
     document.body.style.overflow = '';
   }
@@ -1583,6 +1602,52 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeMcqBtn) {
     closeMcqBtn.addEventListener('click', closeMCQModal);
   }
+  if (mcqModal) {
+    mcqModal.addEventListener('click', (e) => {
+      if (e.target === mcqModal) {
+        closeMCQModal();
+      }
+    });
+  }
+
+  // Global capture-phase event delegation for all quiz and practice trigger buttons
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-spread-cta-action, .btn-mcq, .btn-test-spread, #testSpreadBtn, #mcqModalBtn, [onclick*="openMCQForSpread"], [onclick*="openMCQForCurrentSpread"], [onclick*="openMCQModal"]');
+    if (!btn) return;
+
+    // Do not intercept clicks on buttons inside the MCQ modal container (like option buttons, nav, etc.)
+    if (btn.closest('.mcq-container') && !btn.classList.contains('btn-jump-notes')) {
+      return;
+    }
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    // 1,000 MCQs modal button
+    const onclickStr = btn.getAttribute ? (btn.getAttribute('onclick') || '') : '';
+    if (btn.id === 'mcqModalBtn' || onclickStr.includes('openMCQModal')) {
+      openMCQModal();
+      return;
+    }
+
+    // Determine target spread index
+    let sIdx = null;
+    const spreadAttr = btn.getAttribute ? btn.getAttribute('data-spread-idx') : null;
+    if (spreadAttr !== null && spreadAttr !== '') {
+      sIdx = parseInt(spreadAttr, 10);
+    } else {
+      const match = onclickStr.match(/openMCQForSpread\s*\(\s*(\d+)\s*\)/);
+      if (match) {
+        sIdx = parseInt(match[1], 10);
+      }
+    }
+
+    if (sIdx === null || isNaN(sIdx)) {
+      sIdx = currentSpread;
+    }
+
+    openMCQForSpread(sIdx);
+  }, true);
 
   if (mcqViewInNotesBtn) {
     mcqViewInNotesBtn.addEventListener('click', jumpToNotesFromMCQ);
