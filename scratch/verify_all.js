@@ -84,8 +84,9 @@ books.forEach((bId, bIndex) => {
     allOk = false;
   }
 
-  if (!data.spreads || data.spreads.length !== 20) {
-    console.error(`FAIL: ${bId} has ${data.spreads ? data.spreads.length : 0} spreads (expected 20)`);
+  const expectedSpreads = (bId === 'book4' || bId === 'book5') ? 40 : 20;
+  if (!data.spreads || data.spreads.length !== expectedSpreads) {
+    console.error(`FAIL: ${bId} has ${data.spreads ? data.spreads.length : 0} spreads (expected ${expectedSpreads})`);
     allOk = false;
   }
 
@@ -113,7 +114,7 @@ books.forEach((bId, bIndex) => {
     }
   });
 
-  console.log(`  Spreads: 20/20 | MCQs: 200/200 | Banners in HTML: ${bannerCountTotal}/20`);
+  console.log(`  Spreads: ${data.spreads.length}/${expectedSpreads} | MCQs: 200/200 | Banners in HTML: ${bannerCountTotal}`);
 });
 
 console.log('\n=== TESTING MODAL OPEN/CLOSE STATE ===');

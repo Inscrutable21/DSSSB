@@ -1261,7 +1261,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let mcqCurrentSpreadFilter = 'all';
 
   function openMCQForCurrentSpread() {
-    openMCQForSpread(currentSpread);
+    const isMultiPage = (activeBookId === 'book4' || activeBookId === 'book5');
+    const targetIdx = isMultiPage ? Math.floor(currentSpread / 2) : currentSpread;
+    openMCQForSpread(targetIdx);
   }
   window.openMCQForCurrentSpread = openMCQForCurrentSpread;
 
@@ -1284,7 +1286,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.body.style.overflow = 'hidden';
     if (typeof showToast === 'function') {
-      showToast(`🎯 Testing Spread ${sIdx + 1} (Questions Q${sIdx * 10 + 1}–Q${sIdx * 10 + 10})`);
+      const isMultiPage = (mcqActiveBook === 'book4' || mcqActiveBook === 'book5');
+      const label = isMultiPage ? `Topic ${sIdx + 1}` : `Spread ${sIdx + 1}`;
+      showToast(`🎯 Testing ${label} (Questions Q${sIdx * 10 + 1}–Q${sIdx * 10 + 10})`);
     }
   }
   window.openMCQForSpread = openMCQForSpread;
@@ -1293,7 +1297,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const list = mcqDatasets[mcqActiveBook] || [];
     const q = list[mcqCurrentIndex];
     if (!q) return;
-    const targetSpread = Math.floor((q.id - 1) / 10);
+    const isMultiPage = (mcqActiveBook === 'book4' || mcqActiveBook === 'book5');
+    const topicIdx = Math.floor((q.id - 1) / 10);
+    const targetSpread = isMultiPage ? (topicIdx * 2) : topicIdx;
     const pLeft = targetSpread * 2 + 1;
     const pRight = targetSpread * 2 + 2;
 
@@ -1312,7 +1318,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, 350);
 
-    showToast(`📖 Jumped to Notes: Spread ${targetSpread + 1} (Pages ${pLeft}–${pRight}) for Q${q.id}!`);
+    const label = isMultiPage ? `Topic ${topicIdx + 1}` : `Spread ${targetSpread + 1}`;
+    showToast(`📖 Jumped to Notes: ${label} (Pages ${pLeft}–${pRight}) for Q${q.id}!`);
   }
   window.jumpToNotesFromMCQ = jumpToNotesFromMCQ;
 
@@ -1326,18 +1333,24 @@ document.addEventListener('DOMContentLoaded', () => {
     allOpt.textContent = '📚 All 200 Questions (Full Book)';
     mcqSpreadFilterSelect.appendChild(allOpt);
 
-    for (let s = 0; s < 20; s++) {
+    const isMultiPage = (mcqActiveBook === 'book4' || mcqActiveBook === 'book5');
+    const topicCount = 20;
+
+    for (let s = 0; s < topicCount; s++) {
       const opt = document.createElement('option');
       opt.value = s.toString();
-      const pL = s * 2 + 1;
-      const pR = s * 2 + 2;
+      const pL = isMultiPage ? (s * 4 + 1) : (s * 2 + 1);
+      const pR = isMultiPage ? (s * 4 + 4) : (s * 2 + 2);
       const qStart = s * 10 + 1;
       const qEnd = s * 10 + 10;
       let title = '';
-      if (bookObj.tocData && bookObj.tocData[s]) {
-        title = bookObj.tocData[s].title;
+      const tocIdx = isMultiPage ? (s * 2) : s;
+      if (bookObj.tocData && bookObj.tocData[tocIdx]) {
+        title = bookObj.tocData[tocIdx].title;
       }
-      opt.textContent = `Spread ${s + 1} (P. ${pL}–${pR}): Q${qStart}–Q${qEnd} • ${title}`;
+      opt.textContent = isMultiPage
+        ? `Topic ${s + 1} (P. ${pL}–${pR}): Q${qStart}–Q${qEnd} • ${title}`
+        : `Spread ${s + 1} (P. ${pL}–${pR}): Q${qStart}–Q${qEnd} • ${title}`;
       if (mcqCurrentSpreadFilter === s.toString()) {
         opt.selected = true;
       }

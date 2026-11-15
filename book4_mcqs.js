@@ -1,2409 +1,2604 @@
-var book4MCQs = [
+// Book 4 MCQs: Mobile Forensics & Telecom Analysis
+// 200 High-Yield DSSSB Pattern Questions (10 Questions per Topic across 20 Topics)
+window.book4MCQs = [
   {
     "id": 1,
-    "question": "Why must an active mobile smartphone seized at a crime scene be immediately shielded in a Faraday bag or container?",
+    "topic": "Basics of Mobile Devices",
+    "question": "In mobile smartphone architecture, what is the primary operational distinction between the Application Processor (AP) and the Baseband Processor (BP)?",
     "options": [
-      "To isolate the mobile radio hardware from cellular, Wi-Fi, Bluetooth, and satellite signals, preventing remote wiping or synchronization",
-      "To discharge the internal capacitive touch screen controllers and prevent inadvertent screen lockouts",
-      "To accelerate the internal flash memory wear leveling background garbage collection cycles",
-      "To prevent magnetic flux lines from corrupting the master boot record partition table"
+      "The AP executes the mobile operating system (Android/iOS) and user apps, while the BP operates an independent Real-Time Operating System (RTOS) managing cellular radio communications",
+      "The AP manages cellular tower handovers while the BP executes the Linux kernel and user interface",
+      "The AP is responsible strictly for battery charging power management, while the BP handles all internal flash storage",
+      "The AP and BP share identical instruction sets and execute the same unified operating system kernel simultaneously"
     ],
     "answer": 0,
-    "explanation": "A Faraday enclosure blocks incoming radio frequency (RF) transmissions, preventing suspects or remote triggers from issuing remote wipe (erase) commands via 'Find My' or Google 'Find My Device'."
+    "explanation": "Modern smartphones use a dual-processor architecture: The Application Processor (AP) runs the user OS (Android/iOS) and applications, while the Baseband Processor (BP) runs a proprietary Real-Time Operating System (RTOS) controlling radio transceivers, SIM interactions, and cellular protocols."
   },
   {
     "id": 2,
-    "question": "Why is connecting a portable power bank to a seized smartphone inside a Faraday enclosure critically recommended during transit?",
+    "topic": "Mobile Hardware Architecture",
+    "question": "Which high-speed non-volatile flash storage standard, featuring full-duplex serial data lanes, has largely replaced legacy eMMC in modern flagship mobile devices?",
     "options": [
-      "To ensure that the mobile device automatically establishes an encrypted Bluetooth connection to police radio",
-      "To prevent battery exhaustion which forces an AFU (After First Unlock) device to power down into BFU (Before First Unlock) state",
-      "To continuously regenerate cryptographic SHA-256 integrity digests across the NAND flash storage bus",
-      "To force the smartphone operating system to unlock its bootloader without wiping user partition data"
+      "Universal Flash Storage (UFS)",
+      "CompactFlash Type II",
+      "Serial ATA (SATA III)",
+      "Parallel NAND IDE"
     ],
-    "answer": 1,
-    "explanation": "If an unlocked or AFU smartphone loses battery power, it reboots into BFU mode, purging sensitive decryption keys from RAM and Secure Enclave, making data extraction drastically more difficult or impossible."
+    "answer": 0,
+    "explanation": "Universal Flash Storage (UFS 2.x, 3.x, 4.0) has superseded embedded MultiMediaCard (eMMC). Unlike half-duplex parallel eMMC, UFS uses full-duplex differential serial signaling with command queuing (SCSI architecture), significantly increasing read/write throughput."
   },
   {
     "id": 3,
-    "question": "In mobile device forensics, what defines the 'Before First Unlock' (BFU) device security state?",
+    "topic": "Mobile Cellular Identifiers",
+    "question": "What does the 15-digit International Mobile Equipment Identity (IMEI) uniquely identify in cellular telecommunications?",
     "options": [
-      "The device has been unlocked at least once and Class C encryption keys remain resident in volatile memory",
-      "The device has had its bootloader officially unlocked by an authorized manufacturer development tool",
-      "The device has booted but the user passcode has never been entered; encryption keys for user data remain purged from RAM",
-      "The device has been placed into low-level Qualcomm Emergency Download Mode (EDL 9008)"
+      "The physical mobile hardware device transceiver itself, independent of the subscriber or SIM card",
+      "The cellular network subscriber identity account issued by the mobile carrier",
+      "The ICCID serial number printed on the physical SIM card chip",
+      "The temporary localized encryption session key established with the serving cell tower"
     ],
-    "answer": 2,
-    "explanation": "In BFU state (after power-on or reboot before passcode entry), sensitive file system encryption keys have not been derived or loaded into memory. Only minimal system services and emergency dialer functions are active."
+    "answer": 0,
+    "explanation": "The IMEI uniquely identifies the physical mobile device hardware (the radio transceiver). It remains with the handset regardless of which SIM card is inserted or which subscriber uses it."
   },
   {
     "id": 4,
-    "question": "In mobile device forensics, what defines the 'After First Unlock' (AFU) device security state?",
+    "topic": "Mobile Cellular Identifiers",
+    "question": "In the 15-digit IMEI structure (AA-BBBBBB-CCCCCC-D), what do the first 8 digits (Type Allocation Code - TAC) represent?",
     "options": [
-      "The device has undergone a permanent factory hardware reset with all user data partitions zeroed",
-      "The device is executing in unauthenticated bootloader recovery mode awaiting signed firmware flashing",
-      "The device has completed automated cellular tower registration across all local base station controllers",
-      "The user has entered the correct passcode once since boot; Class C encryption keys remain derived and resident in memory"
+      "The specific device manufacturer, brand, and exact marketing hardware model",
+      "The individual manufacturing serial number assigned to that single unit",
+      "The country code and mobile network operator of the subscriber",
+      "The Luhn checksum algorithm verification check digit"
     ],
-    "answer": 3,
-    "explanation": "In AFU state, the device was unlocked with the passcode at least once. Even if currently locked, Class C (CompleteUntilFirstUserAuthentication) keys remain resident in RAM/SEP, enabling forensic tools to extract substantial data."
+    "answer": 0,
+    "explanation": "The first 8 digits of the IMEI constitute the Type Allocation Code (TAC), which identifies the specific device manufacturer, brand, and exact hardware model approved by the GSMA."
   },
   {
     "id": 5,
-    "question": "What hardware-level physical acquisition technique involves desoldering the eMMC, eMCP, or UFS NAND flash memory chip from the smartphone motherboard?",
+    "topic": "Mobile Cellular Identifiers",
+    "question": "What is the primary operational function of the International Mobile Subscriber Identity (IMSI) stored on a SIM card?",
     "options": [
-      "Chip-Off Extraction",
-      "JTAG (Joint Test Action Group) Boundary Scan",
-      "ISP (In-System Programming) Wire Tap",
-      "EDL (Qualcomm Emergency Download) Acquisition"
+      "Uniquely identifying an individual cellular network subscriber within the carrier's core network registers (HLR/HSS)",
+      "Identifying the physical hardware manufacturing serial number of the handset transceiver",
+      "Providing the dialable telephone number dialed by external callers",
+      "Storing the geographical coordinates of the user's home location"
     ],
     "answer": 0,
-    "explanation": "Chip-off involves physically removing (desoldering) the flash storage chip from the circuit board and placing it into an external specialized socket/reader to read raw flash blocks directly."
+    "explanation": "The IMSI (typically 15 digits) uniquely identifies the subscriber account in the mobile network. It is stored on the SIM and referenced in the Home Location Register (HLR) / Home Subscriber Server (HSS)."
   },
   {
     "id": 6,
-    "question": "What hardware extraction method connects microscopic wires directly to circuit board test points (CLK, CMD, DAT0, VCC, GND) without desoldering the flash chip?",
+    "topic": "Mobile Cellular Identifiers",
+    "question": "The IMSI consists of three distinct standardized components. What are they?",
     "options": [
-      "Chip-Off Extraction",
-      "In-System Programming (ISP)",
-      "Qualcomm Emergency Download Mode (EDL)",
-      "DFU (Device Firmware Upgrade) Mode"
+      "Mobile Country Code (MCC), Mobile Network Code (MNC), and Mobile Subscriber Identification Number (MSIN)",
+      "Type Allocation Code (TAC), Serial Number (SNR), and Check Digit (CD)",
+      "Country Code (CC), National Destination Code (NDC), and Subscriber Number (SN)",
+      "Issuer Identification Number (IIN), Individual Account ID, and Parity Bit"
     ],
-    "answer": 1,
-    "explanation": "ISP (In-System Programming) attaches fine jumper wires to eMMC/UFS test points on the circuit board, reading data directly from the flash chip while it remains mounted on the motherboard."
+    "answer": 0,
+    "explanation": "An IMSI comprises: (1) MCC (Mobile Country Code, 3 digits, e.g., 404/405 for India); (2) MNC (Mobile Network Code, 2–3 digits, identifying carrier); and (3) MSIN (Mobile Subscriber Identification Number, identifying subscriber)."
   },
   {
     "id": 7,
-    "question": "What hardware debugging standard governed by IEEE 1149.1 utilizes specific circuit board test pins (TDI, TDO, TCK, TMS, TRST) to communicate directly with the processor?",
+    "topic": "Mobile Cellular Identifiers",
+    "question": "What is the MSISDN in cellular telecommunications forensics?",
     "options": [
-      "ISP (In-System Programming)",
-      "UART (Universal Asynchronous Receiver-Transmitter)",
-      "JTAG (Joint Test Action Group)",
-      "I2C (Inter-Integrated Circuit)"
+      "The actual public telephone directory number (Mobile Station International Subscriber Directory Number) used to route incoming calls",
+      "The internal hardware serial number of the baseband modem chip",
+      "The cryptographic challenge-response key used for SIM authentication",
+      "The cell tower azimuth bearing recorded in telecom switches"
     ],
-    "answer": 2,
-    "explanation": "JTAG (IEEE 1149.1 boundary-scan) taps into test pins on the PCB to instruct the processor to dump raw flash memory contents without running the device's operating system."
+    "answer": 0,
+    "explanation": "MSISDN (Mobile Station International Subscriber Directory Number) is the actual telephone number dialed to reach a mobile user (e.g., +91 98XXXXXXXX). It is mapped to the internal IMSI in the HLR."
   },
   {
     "id": 8,
-    "question": "What proprietary low-level boot mode implemented in Qualcomm Snapdragon chipsets allows examiners to bypass bootloader locks using programmer firehose loaders (MBN/ELF)?",
+    "topic": "SIM Card Architecture",
+    "question": "What is the Integrated Circuit Card Identifier (ICCID) in mobile forensics?",
     "options": [
-      "Fastboot Recovery Download Mode",
-      "MediaTek BootROM (BROM) Mode",
-      "Samsung Odin Download Mode",
-      "Emergency Download Mode"
+      "The globally unique 19-to-20 digit serial number engraved on and stored inside the physical SIM card chip",
+      "The 4-digit user PIN code required to unlock the SIM card upon reboot",
+      "The carrier network identifier used to calculate roaming tariffs",
+      "The electronic IMEI equivalent used strictly in dual-SIM handsets"
     ],
-    "answer": 3,
-    "explanation": "Qualcomm EDL (Emergency Download Mode, presenting as Qualcomm HS-USB QDLoader 9008) is a primary bootloader recovery mode that allows raw sector reading/writing when authenticated with a chip-specific Firehose programmer. (EDL / Qualcomm HS-USB QDLoader 9008)"
+    "answer": 0,
+    "explanation": "The ICCID is the globally unique 19-to-20 digit physical serial number of the SIM card chip itself (starting with 89 for telecommunications), etched on the plastic card and read during forensic triage."
   },
   {
     "id": 9,
-    "question": "What low-level hardware vulnerability on Apple devices (A5 through A11 Bionic chipsets) allows unpatchable physical acquisition via DFU mode?",
+    "topic": "Cellular Network Generations",
+    "question": "Which cellular generation first replaced circuit-switched voice cores entirely with an all-IP packet-switched network architecture?",
     "options": [
-      "checkm8 (SecureROM BootROM exploit)",
-      "EternalBlue (SMBv1 buffer overflow)",
-      "Stagefright (libstagefright media parser exploit)",
-      "Baton Drop (UEFI boot manager revocation bypass)"
+      "4G (LTE - Long Term Evolution)",
+      "2G (GSM)",
+      "3G (UMTS / WCDMA)",
+      "2.5G (GPRS)"
     ],
     "answer": 0,
-    "explanation": "checkm8 is an unpatchable, read-only BootROM (SecureROM) exploit affecting Apple devices from iPhone 4S to iPhone X (A5-A11 chips). It executes arbitrary code in DFU mode, enabling physical memory and keychain dumping."
+    "explanation": "4G LTE eliminated legacy circuit-switched telephony entirely, migrating to an all-IP packet-switched architecture called the Evolved Packet Core (EPC), routing voice via Voice over LTE (VoLTE)."
   },
   {
     "id": 10,
-    "question": "What is the operational distinction between 'Logical Acquisition' and 'Physical Acquisition' in mobile device forensics?",
+    "topic": "Cellular Location Updates",
+    "question": "In cellular network architecture, what centralized database stores permanent subscriber profile information, subscribed services, and current general location area?",
     "options": [
-      "Logical extraction extracts encrypted hardware master keys; physical extraction captures only unencrypted text documents",
-      "Logical extraction queries device APIs to extract active files and records; physical extraction copies raw bit-for-bit flash memory sectors including unallocated space",
-      "Logical extraction requires desoldering flash memory chips; physical extraction is performed strictly over wireless Wi-Fi",
-      "Logical extraction permanently alters device firmware; physical extraction operates in complete hardware read-only isolation"
+      "Home Location Register (HLR) / Home Subscriber Server (HSS)",
+      "Visitor Location Register (VLR)",
+      "Equipment Identity Register (EIR)",
+      "Base Transceiver Station (BTS)"
     ],
-    "answer": 1,
-    "explanation": "Logical extraction extracts visible data (contacts, SMS, call logs) by interacting with the OS API or backup services. Physical extraction dumps the raw flash partitions (bit-by-bit), enabling carving of deleted databases and records."
+    "answer": 0,
+    "explanation": "The Home Location Register (HLR in 2G/3G) or Home Subscriber Server (HSS in 4G) is the master administrative database holding permanent subscriber identities, credentials, service profiles, and current VLR location pointers."
   },
   {
     "id": 11,
-    "question": "What is 'Advanced Logical' (or File System) extraction in mobile device forensics?",
+    "topic": "Mobile Forensic Challenges",
+    "question": "Why does powering down a modern smartphone seized at a crime scene pose a severe forensic risk to the investigator?",
     "options": [
-      "Performing a chip-off hardware desoldering pass using high-temperature infrared rework stations",
-      "Extracting SIM card subscriber data using an external smart card reader",
-      "Extracting the full accessible directory tree, active application databases, system logs, and shared preferences, but without raw unallocated flash sectors",
-      "Capturing cellular tower signaling data over the air using software-defined radio receivers"
+      "The device transitions from an After-First-Unlock (AFU) state to a Before-First-Unlock (BFU) state, evicting cryptographic keys from RAM and preventing extraction without the user passcode",
+      "Powering down a smartphone permanently erases all flash memory partitions through hardware TRIM commands",
+      "Smartphone batteries instantly discharge when powered off, destroying internal real-time clock oscillators",
+      "Cellular carriers automatically send a remote wipe command when a registered device loses connection to the network"
     ],
-    "answer": 2,
-    "explanation": "File System (Advanced Logical) acquisition extracts all accessible files and directories from the phone's file systems (including SQLite databases, plist files, logs, and caches), providing far more depth than standard logical backup."
+    "answer": 0,
+    "explanation": "Powering off an encrypted device transitions it from AFU (where Class C keys remain decrypted in RAM) to BFU (where all encryption keys are purged). Without the passcode, forensic tools cannot decrypt the file system."
   },
   {
     "id": 12,
-    "question": "What standard command-line utility in the Android SDK provides administrative communication with an Android device over USB when USB Debugging is enabled?",
+    "topic": "Mobile Evidence Preservation",
+    "question": "What is the primary operational hazard of relying solely on 'Airplane Mode' to isolate a seized mobile smartphone?",
     "options": [
-      "Fastboot CLI Utility",
-      "Odin Download Tool",
-      "TWRP Recovery Daemon",
-      "ADB (Android Debug Bridge)"
+      "Airplane mode leaves Wi-Fi and Bluetooth capable of being re-enabled automatically or by nearby trusted beacons, permitting remote wipe signals",
+      "Airplane mode permanently locks the baseband processor, preventing subsequent forensic extraction",
+      "Airplane mode alters the file system timestamps of all incoming SMS messages",
+      "Airplane mode causes the device to rapidly overheat and trigger hardware thermal shutdown"
     ],
-    "answer": 3,
-    "explanation": "ADB (Android Debug Bridge) is the client-server utility used to communicate with Android devices, execute shell commands, pull/push files, and initiate backups over USB when Developer Options and USB Debugging are active."
+    "answer": 0,
+    "explanation": "In modern operating systems (iOS and Android), toggling Airplane Mode may leave Wi-Fi, Bluetooth, or GPS active, or automatically reconnect when near known networks, allowing remote wipe commands (Find My) to execute."
   },
   {
     "id": 13,
-    "question": "What file is generated on a host PC and transferred to an Android device when a user authorizes 'Allow USB Debugging' with an RSA fingerprint prompt?",
+    "topic": "Faraday Shielding",
+    "question": "What physical forensic tool is used to isolate a mobile device from external radio frequency signals (Cellular, Wi-Fi, Bluetooth, GPS)?",
     "options": [
-      "adbkey.pub",
-      "super_user.pem",
-      "android_root.crt",
-      "fastboot_auth.bin"
+      "A Faraday bag or RF-shielded enclosure",
+      "An anti-static ESD grounding wrist strap",
+      "A lead-lined X-ray inspection container",
+      "A write-blocking USB hardware bridge"
     ],
     "answer": 0,
-    "explanation": "Android requires cryptographic authentication for ADB. The host computer generates an RSA key pair; when the user taps 'Allow', the host's public key ('adbkey.pub') is added to the device's '/data/misc/adb/adb_keys'. (stored in %USERPROFILE%\\.android\\ on Windows)"
+    "explanation": "A Faraday bag (or RF-shielded box) uses conductive metallic mesh shielding to block all incoming and outgoing electromagnetic signals, preventing remote wipe, geofencing triggers, or incoming calls."
   },
   {
     "id": 14,
-    "question": "What ADB command creates a full device application backup archive on modern Android devices without requiring root access?",
+    "topic": "Mobile Forensic Challenges",
+    "question": "In solid-state mobile storage (eMMC/UFS), how does the background TRIM command impact digital forensic data recovery?",
     "options": [
-      "adb dump-memory --full /evidence/ram.bin",
-      "adb backup -apk -shared -all -f backup.ab",
-      "adb pull /data/data/ /evidence/all_data/",
-      "adb shell dd if=/dev/block/bootdevice/by-name/userdata"
+      "It proactively wipes and zeroes out blocks marked as deleted in the flash translation layer (FTL), making deleted file recovery from unallocated space nearly impossible",
+      "It encrypts all deleted database records using a disposable hardware AES key",
+      "It automatically uploads copies of deleted records to the manufacturer's cloud backup",
+      "It forces deleted files to be permanently appended to the system logcat buffer"
     ],
-    "answer": 1,
-    "explanation": "'adb backup -apk -shared -all -f backup.ab' generates an encrypted or uncompressed Android Backup archive (.ab) containing app data and shared storage, subject to individual app 'allowBackup' manifest flags."
+    "answer": 0,
+    "explanation": "TRIM informs the flash storage controller that deleted blocks are no longer needed. The Flash Translation Layer (FTL) garbage collection zeroes or reclaims those blocks, eliminating unallocated space recovery."
   },
   {
     "id": 15,
-    "question": "What is the file format of an uncompressed Android Backup archive (.ab) created via ADB?",
+    "topic": "Mobile Resource Constraints",
+    "question": "During on-scene mobile triage, what critical hardware constraint must be mitigated immediately to prevent abrupt device shutdown and extraction corruption?",
     "options": [
-      "A standard Microsoft Windows Virtual Hard Disk (VHDX) dynamic image",
-      "A compressed Apple Property List binary container (bplist)",
-      "A TAR archive prefixed with a 24-byte proprietary Android backup header (with optional zlib or AES encryption)",
-      "An unformatted raw bitstream dump identical to Unix dd images"
+      "Battery power depletion, mitigated by immediately connecting a certified portable external power bank inside the RF shield",
+      "Internal flash memory overheating, mitigated by submerging the device in liquid nitrogen",
+      "Baseband modem buffer exhaustion, mitigated by disconnecting the front display assembly",
+      "SIM card cache overflow, mitigated by dialing emergency service numbers"
     ],
-    "answer": 2,
-    "explanation": "Android backup files (.ab) consist of a 24-byte header (e.g. 'ANDROID BACKUP\\n1\\n...'), followed by zlib-compressed tar stream data containing application folders, shared preferences, and databases."
+    "answer": 0,
+    "explanation": "Mobile devices consume significant battery power during extraction. If the battery dies during acquisition, the device enters BFU lock, memory is lost, and partial extraction images may be corrupted. External power must be maintained."
   },
   {
     "id": 16,
-    "question": "Why do modern Android applications frequently exclude their databases from 'adb backup' extractions?",
+    "topic": "Remote Wipe Mechanisms",
+    "question": "What communication channel allows enterprise administrators or users to trigger a remote wipe even if Wi-Fi and standard data are disabled, provided cellular signal exists?",
     "options": [
-      "Android SELinux permanently revokes read permissions for all third-party software",
-      "Google Play Protect dynamically overwrites SQLite databases with pseudo-random characters",
-      "The device hardware encryption engine wipes application data whenever ADB is connected",
-      "The application manifest explicitly specifies 'android:allowBackup=\"false\"' in AndroidManifest.xml"
+      "Over-the-Air (OTA) binary SMS (Silent SMS / WAP Push messages)",
+      "Unencrypted Bluetooth Low Energy beacon broadcasting",
+      "NFC peer-to-peer radio frequency resonance",
+      "High-frequency acoustic ultrasonic audio signals"
     ],
-    "answer": 3,
-    "explanation": "Developers set 'android:allowBackup=\"false\"' in their AndroidManifest.xml to protect sensitive user data. When set, ADB backup completely skips the app's internal database directory ('/data/data/<package>/')."
+    "answer": 0,
+    "explanation": "Mobile Device Management (MDM) platforms and carrier protocols can transmit binary WAP Push / Silent SMS over cellular signaling channels that execute remote wipe commands even when data traffic is throttled."
   },
   {
     "id": 17,
-    "question": "What Android fastboot command is executed to unlock the device bootloader, and what immediate forensic consequence occurs?",
+    "topic": "Anti-Forensics in Mobile",
+    "question": "What anti-forensic feature in modern encrypted messaging applications (Signal, WhatsApp, Telegram) poses the greatest challenge to historical chat reconstruction?",
     "options": [
-      "fastboot flashing unlock (or fastboot oem unlock); it forces an automated factory reset that wipes the /data partition",
-      "fastboot format cache; it preserves all deleted chat databases in unallocated space",
-      "fastboot reboot recovery; it extracts all Class A encryption keys directly to host memory",
-      "fastboot flash boot boot.img; it converts the device file system to unencrypted FAT32"
+      "Disappearing / Ephemeral Messages with automated cryptographic deletion timers",
+      "Mandatory end-to-end encryption without client-side database caching",
+      "Real-time audio steganography embedding chats in ringtones",
+      "Converting chat logs into unreadable base64 ASCII strings"
     ],
     "answer": 0,
-    "explanation": "Unlocking the bootloader via 'fastboot flashing unlock' is a hardware security mechanism that automatically triggers a full cryptographic erasure/factory wipe of the user data partition ('/data') to prevent data theft."
+    "explanation": "Disappearing messages automatically delete messages from both sender and recipient SQLite databases after a preconfigured countdown timer (e.g., 24 hours), overwriting rows and destroying chat records."
   },
   {
     "id": 18,
-    "question": "In Android architecture, what is the role of 'dm-verity' (Device Mapper Verity)?",
+    "topic": "Mobile Hardware Diversity",
+    "question": "Why is the Android ecosystem considered significantly more fragmented and challenging for forensic tool development than iOS?",
     "options": [
-      "Encrypting the user data partition using the suspect's lock screen PIN code",
-      "Providing transparent cryptographic hash tree verification of the read-only /system and /vendor partitions to prevent unauthorized modifications",
-      "Translating Dalvik bytecode instructions into native ARM assembly instructions",
-      "Logging incoming and outgoing voice calls directly to cellular tower base stations"
+      "Because thousands of distinct hardware models use different SoCs (Qualcomm, MediaTek, Exynos, Unisoc), custom OEM kernels, and proprietary bootloaders",
+      "Because Android prohibits the use of USB cables for data transfer",
+      "Because Android devices change their internal operating system code every 24 hours",
+      "Because Google prohibits forensic tool vendors from analyzing open-source AOSP code"
     ],
-    "answer": 1,
-    "explanation": "dm-verity uses a kernel cryptographic hash tree to ensure that block devices (like /system, /vendor) have not been modified or corrupted. Modifying the system partition causes dm-verity to halt boot."
+    "answer": 0,
+    "explanation": "Android fragmentation involves thousands of manufacturers (Samsung, Xiaomi, Vivo, Oppo) using different chipsets, custom Android skins (MIUI, OneUI), proprietary bootloaders, and varying patch levels."
   },
   {
     "id": 19,
-    "question": "What runtime environment was introduced in Android 5.0 (Lollipop) to replace the legacy Dalvik Virtual Machine, using Ahead-of-Time (AOT) and Just-in-Time (JIT) compilation?",
+    "topic": "Thermal Constraints",
+    "question": "What physical phenomenon can occur during intensive physical extraction or passcode brute-forcing of a smartphone inside an enclosed forensic box?",
     "options": [
-      "JVM (Java Virtual Machine)",
-      "CLR (Common Language Runtime)",
-      "ART (Android Runtime)",
-      "LLVM (Low Level Virtual Machine)"
+      "Thermal throttling or automatic thermal shutdown due to lack of airflow, halting the forensic acquisition",
+      "Permanent demagnetization of the internal solid-state flash memory cells",
+      "Spontaneous inversion of the NAND flash floating gate charges",
+      "Automatic activation of the factory recovery reset partition"
     ],
-    "answer": 2,
-    "explanation": "ART (Android Runtime) replaced Dalvik. It compiles bytecode (.dex) into native machine instructions (.oat/.vdex) using Ahead-of-Time (AOT) compilation during installation and profile-guided JIT compilation at runtime."
+    "answer": 0,
+    "explanation": "High-intensity operations (brute-forcing, hashing gigabytes of raw flash) generate significant heat. Inside a sealed Faraday box without airflow, smartphones reach thermal limits and shut down to protect hardware."
   },
   {
     "id": 20,
-    "question": "In Android application sandboxing, how does the operating system isolate applications from one another?",
+    "topic": "Forensic Evidence Triage",
+    "question": "If a seized smartphone is found submerged in water at a crime scene, what is the correct forensic handling protocol?",
     "options": [
-      "All applications share a single administrative root UID and access permissions are controlled via browser cookies",
-      "Applications are stored in separate virtual machines running on distinct physical processor cores",
-      "The cellular modem hardware grants execution tokens based on SIM card IMSI authentication",
-      "Each application is assigned a unique Linux User Identifier (UID, e.g. u0_a123) and runs in its own isolated process sandbox"
+      "Keep the device submerged in the same source water inside an airtight container and transport it immediately to the lab without attempting to power it on",
+      "Place the smartphone in a microwave oven on low power for 30 seconds to evaporate moisture",
+      "Connect the device to a fast charger immediately to test whether the display illuminates",
+      "Force-reboot the device repeatedly into Recovery mode using hardware button combinations"
     ],
-    "answer": 3,
-    "explanation": "Android builds upon Linux multi-user security: each installed app is assigned a unique User ID (UID). Linux kernel file permissions prevent an app with UID 10123 from reading the data directory of UID 10124."
+    "answer": 0,
+    "explanation": "Submerged devices must remain in the same liquid to prevent rapid corrosion caused by exposure to oxygen. In the lab, forensic specialists disassemble, ultrasonic-clean with pure isopropanol, and dry before attempting extraction."
   },
   {
     "id": 21,
-    "question": "What security architecture framework implemented in Android operates in 'Enforcing' mode to restrict even the root account using mandatory access controls?",
+    "topic": "Mobile Acquisition Types",
+    "question": "What is a 'Manual Acquisition' in mobile device forensics?",
     "options": [
-      "SELinux (Security-Enhanced Linux)",
-      "AppArmor",
-      "Windows Defender Application Control",
-      "POSIX Discretionary Access Control"
+      "Navigating through the user interface directly on the device touchscreen and documenting findings via photography or video recording",
+      "Manually micro-soldering copper jumper wires to motherboard test points",
+      "Typing raw AT modem commands into a serial terminal to extract SMS messages",
+      "Manually entering SQL queries directly into the SQLite database console"
     ],
     "answer": 0,
-    "explanation": "SELinux (Security-Enhanced Linux) enforces Mandatory Access Control (MAC). Even if a process obtains root (UID 0), SELinux policy domains and types dictate what files, sockets, and capabilities it can access."
+    "explanation": "Manual acquisition involves using the device's own touchscreen or keypad to view data directly on the screen, capturing evidence using high-resolution cameras or specialized camera stands."
   },
   {
     "id": 22,
-    "question": "Where is application private user data physically located on an Android file system?",
+    "topic": "Mobile Acquisition Types",
+    "question": "What data is typically acquired during a standard 'Logical Extraction' of a smartphone?",
     "options": [
-      "/system/app/<package_name>/",
-      "/data/data/<package_name>/",
-      "/sdcard/Android/media/<package_name>/",
-      "/vendor/etc/<package_name>/"
+      "Active files, databases, and application records accessible via the OS APIs or standard backup routines, without unallocated space",
+      "A complete bit-stream raw image of all physical NAND flash memory sectors including unallocated space",
+      "The volatile contents of RAM memory registers and CPU cache lines only",
+      "The compiled firmware code stored in the read-only BootROM microchip"
     ],
-    "answer": 1,
-    "explanation": "An app's private files, SQLite databases, shared preferences, and caches are located in '/data/data/<package_name>/' (symlinked to '/data/user/0/<package_name>/' for multi-user user 0). (or /data/user/0/<package_name>/)"
+    "answer": 0,
+    "explanation": "Logical extraction queries the mobile operating system using APIs, AT commands, or backup protocols (ADB backup, iTunes backup) to retrieve live, structured files. It does NOT acquire unallocated space or raw deleted data."
   },
   {
     "id": 23,
-    "question": "In modern Android (Android 10+), what encryption model replaced Full Disk Encryption (FDE), providing Credential Encrypted (CE) and Device Encrypted (DE) storage?",
+    "topic": "Mobile Acquisition Types",
+    "question": "How does a 'File System Extraction' (Advanced Logical) differ from a basic Logical Extraction?",
     "options": [
-      "BitLocker Volume Encryption (BVE)",
-      "Apple Data Protection (ADP)",
-      "File-Based Encryption (FBE)",
-      "LUKS2 Container Encryption"
+      "It extracts the full accessible hierarchical directory structure and system files (including logs, plists, and sandboxed app data), rather than just API-exported contacts and SMS",
+      "It desolders the flash chip from the motherboard to read raw binary sectors",
+      "It ignores the file system entirely and reads unallocated space only",
+      "It modifies the operating system kernel to disable file permissions permanently"
     ],
-    "answer": 2,
-    "explanation": "File-Based Encryption (FBE) encrypts individual files with unique keys. It splits storage into: Credential Encrypted (CE, unlocked only after passcode entry) and Device Encrypted (DE, accessible during BFU for alarms/phone)."
+    "answer": 0,
+    "explanation": "File system extraction captures the complete directory structure (including system files, application databases, cache directories, and log files). It provides far more context than a simple logical backup extraction."
   },
   {
     "id": 24,
-    "question": "In File-Based Encryption (FBE), what occurs to Credential Encrypted (CE) storage when an Android phone reboots into BFU state?",
+    "topic": "Mobile Acquisition Types",
+    "question": "What is a 'Physical Extraction' in mobile device forensics?",
     "options": [
-      "The CE files are automatically exported into uncompressed TAR archives in shared storage",
-      "The device operating system re-encrypts the files using the cellular provider's IMSI key",
-      "The device grants emergency read-only root access across all user directories",
-      "The CE encryption keys derived from the user passcode are purged from memory, making CE files completely unreadable"
+      "A bit-by-bit (bit-stream) binary image copy of the entire physical flash memory, capturing allocated files, unallocated space, and deleted data",
+      "Weighing and physically measuring the external dimensions of the mobile smartphone",
+      "Disassembling the external plastic housing to inspect internal antenna wiring",
+      "Using a stylus to manually navigate the device settings menu"
     ],
-    "answer": 3,
-    "explanation": "CE storage holds user app data (chats, photos, messages). In BFU state, the CE master key has not been derived from the user passcode; the kernel cannot read CE files until the user enters their passcode."
+    "answer": 0,
+    "explanation": "Physical extraction produces an exact bit-by-bit copy of the physical flash memory. It captures everything, including deleted files, unallocated space, file system metadata, and hidden partitions."
   },
   {
     "id": 25,
-    "question": "What systemless rooting framework for Android modifies the boot image (boot.img) without altering the read-only /system partition?",
+    "topic": "Acquisition Comparison",
+    "question": "Which acquisition type provides the highest likelihood of recovering deleted WhatsApp messages and deleted call logs from SQLite freelists?",
     "options": [
-      "Magisk",
-      "SuperSU (legacy)",
-      "KingRoot",
-      "CyanogenMod"
+      "Physical Extraction (or Full File System with WAL parsing)",
+      "Standard Logical Extraction",
+      "Manual Screen Capture",
+      "SIM Card Logical Extraction"
     ],
     "answer": 0,
-    "explanation": "Magisk is the premier systemless rooting solution. It patches the boot image (boot.img/initramfs) to inject root daemons and mounts overlays at boot without modifying physical /system files, bypassing dm-verity and SafetyNet."
+    "explanation": "Physical extraction (and full file system extraction) captures SQLite Write-Ahead Logs (`-wal`), rollback journals, and unallocated database freelists where deleted records reside before being vacuumed or overwritten."
   },
   {
     "id": 26,
-    "question": "What primary SQLite database stores saved contacts, display names, and phone numbers on Android devices?",
+    "topic": "Mobile Forensic Integrity",
+    "question": "Why does any logical or file-system acquisition of a live smartphone inevitably cause minor metadata changes on the target device?",
     "options": [
-      "addressbook.db (in /data/system/users/0/)",
-      "contacts2.db (in /data/data/com.android.providers.contacts/databases/)",
-      "dialer_cache.sqlite (in /data/misc/telephony/)",
-      "sim_contacts.db (in /system/etc/telephony/)"
+      "Because the running mobile OS must update system logs, battery stats, and communication sockets to execute the extraction agent",
+      "Because forensic extraction cables reverse the electrical polarity of the NAND flash memory",
+      "Because cellular carriers detect extractions and automatically rewrite the partition table",
+      "Because SQLite databases automatically delete all records when connected to a computer"
     ],
-    "answer": 1,
-    "explanation": "Android stores contacts in 'contacts2.db' under the contacts content provider ('com.android.providers.contacts/databases/'). Key tables include 'raw_contacts', 'contacts', and 'data' (holding phone numbers and emails)."
+    "answer": 0,
+    "explanation": "Unlike dead-box computer hard drives attached to hardware write-blockers, a live smartphone is actively running an operating system. Running extraction agents or ADB commands inevitably writes tiny temporary log entries into RAM and storage."
   },
   {
     "id": 27,
-    "question": "What SQLite database stores SMS and MMS text messages on standard Android devices?",
+    "topic": "USB Debugging Protocol",
+    "question": "What developer feature on Android devices must typically be enabled to permit logical and file system extraction via the Android Debug Bridge (ADB)?",
     "options": [
-      "sms_messages.sqlite (in /data/user/0/com.android.mms/)",
-      "telephony_log.db (in /data/system/telephony/)",
-      "mmssms.db (in /data/data/com.android.providers.telephony/databases/)",
-      "messaging_store.db (in /data/misc/sms/)"
+      "USB Debugging (Developer Options)",
+      "Fastboot OEM Lock",
+      "Factory Recovery Mode",
+      "Emergency Download (EDL)"
     ],
-    "answer": 2,
-    "explanation": "SMS and MMS records are managed by the telephony provider in 'mmssms.db' (under 'com.android.providers.telephony/databases/'). The 'sms' table records thread_id, address (sender/recipient), date, and body."
+    "answer": 0,
+    "explanation": "USB Debugging establishes an ADB connection between the computer and Android's `adbd` background daemon, permitting shell command execution, application backup pulling, and forensic extraction."
   },
   {
     "id": 28,
-    "question": "What SQLite database records dialed, received, and missed phone calls on modern Android devices?",
+    "topic": "iOS Trust Handshake",
+    "question": "When connecting an iPhone to a forensic computer for logical acquisition, what prompt must be accepted on the iPhone screen to allow data communication?",
     "options": [
-      "call_history.storedata (in /private/var/mobile/)",
-      "cellular_calls.sqlite (in /data/misc/dialer/)",
-      "telecom_cdr.db (in /data/system/telephony/)",
-      "calllog.db (in /data/data/com.android.providers.contacts/databases/ or dialer provider)"
+      "'Trust This Computer?' dialog accompanied by entering the device passcode",
+      "'Enable Root Access?' confirmation dialog",
+      "'Format External Storage?' system prompt",
+      "'Download Firmware Update?' Apple ID prompt"
     ],
-    "answer": 3,
-    "explanation": "Android call logs are recorded in 'calllog.db'. The 'calls' table contains columns: 'number', 'date' (epoch timestamp), 'duration' (seconds), and 'type' (1=Incoming, 2=Outgoing, 3=Missed, 4=Voicemail, 5=Rejected, 6=Blocked)."
+    "answer": 0,
+    "explanation": "Apple iOS requires explicit user authorization via the 'Trust This Computer?' prompt, requiring the device passcode. This creates cryptographic pairing lockdown records exchange (`pairing_records.plist`)."
   },
   {
     "id": 29,
-    "question": "When analyzing Android call logs in 'calllog.db', what does a call 'type' value of 3 indicate?",
+    "topic": "Mobile Forensic Verification",
+    "question": "What mathematical process is executed immediately after completing a mobile physical extraction to prove evidence integrity in a court of law?",
     "options": [
-      "Missed Call",
-      "Incoming Received Call (type 1)",
-      "Outgoing Dialed Call (type 2)",
-      "Rejected Call (type 5)"
+      "Computing cryptographic hashes (MD5 / SHA-256) of the acquired image file and logging them in the chain of custody",
+      "Uploading the extraction image directly to the vendor's cloud server for approval",
+      "Re-encrypting the forensic image using a disposable AES-128 key",
+      "Compressing the extraction file into an unverified RAR archive"
     ],
     "answer": 0,
-    "explanation": "In the Android 'calls' table: Type 1 = Incoming (Received), Type 2 = Outgoing, Type 3 = Missed, Type 4 = Voicemail, Type 5 = Rejected, Type 6 = Blocked."
+    "explanation": "Computing cryptographic hash values (SHA-256/MD5) verifies that the forensic bit-stream image has not been altered or tampered with since the moment of acquisition, establishing legal admissibility under Section 65B BSA."
   },
   {
     "id": 30,
-    "question": "What primary SQLite database stores chat messages in WhatsApp on Android devices?",
+    "topic": "SIM Extraction Scope",
+    "question": "What specific categories of evidence can be recovered from an isolated extraction of a physical SIM card alone?",
     "options": [
-      "wa.db",
-      "msgstore.db",
-      "chat_storage.sqlite",
-      "whatsapp_messages.db"
+      "ICCID, IMSI, service provider name, SMS messages stored on SIM (EF_SMS), and fixed dialing contacts (EF_ADN)",
+      "Full encrypted WhatsApp chat databases and downloaded media files",
+      "Saved Wi-Fi WPA2 network passwords and browser search history",
+      "High-resolution camera photos and GPS location coordinates"
     ],
-    "answer": 1,
-    "explanation": "WhatsApp stores all chats, messages, and timestamps in 'msgstore.db' (in '/data/data/com.whatsapp/databases/'). 'wa.db' stores the contact list and phone numbers. (or encrypted backups msgstore.db.crypt14 / crypt15)"
+    "answer": 0,
+    "explanation": "SIM cards have minimal memory (64–128 KB). They store telecom identifiers (ICCID, IMSI), carrier service profile data, a small number of 2G-era text messages (EF_SMS), and basic contacts (EF_ADN)."
   },
   {
     "id": 31,
-    "question": "Where is the unencrypted symmetric AES cryptographic key required to decrypt WhatsApp backup databases (msgstore.db.crypt14) stored on a rooted Android device?",
+    "topic": "Qualcomm EDL Mode",
+    "question": "What is Emergency Download Mode (EDL) in Qualcomm-powered Android smartphones?",
     "options": [
-      "/data/system/whatsapp.keystore",
-      "/sdcard/WhatsApp/Databases/key.pem",
-      "/data/data/com.whatsapp/files/key",
-      "/data/misc/keystore/user_0/wa_key"
+      "A low-level BootROM diagnostic state that communicates over USB via the Qualcomm HS-USB QDLoader 9008 protocol, bypassing the OS and lock screen to dump raw flash partitions",
+      "A user-accessible Android recovery menu option used to clear application cache",
+      "A satellite emergency SOS mode used to broadcast distress beacons",
+      "An automated factory reset procedure triggered when battery voltage drops below 5%"
     ],
-    "answer": 2,
-    "explanation": "WhatsApp stores the 158-byte symmetric decryption key file at '/data/data/com.whatsapp/files/key'. Examiners with root access extract this key to decrypt crypt12/crypt14/crypt15 backups offline."
+    "answer": 0,
+    "explanation": "Qualcomm EDL mode (Qualcomm HS-USB QDLoader 9008) is an unbrick/diagnostic state hardcoded in the Primary BootLoader (PBL) inside the SoC BootROM. It allows sending specialized programmer loaders (Firehose) to dump physical flash partitions directly."
   },
   {
     "id": 32,
-    "question": "What configuration file on Android devices stores configured Wi-Fi network SSIDs and plaintext Pre-Shared Keys (PSKs)?",
+    "topic": "Qualcomm EDL Extraction",
+    "question": "In Qualcomm EDL forensic extraction, what proprietary binary file must be delivered to the device to initialize memory read operations?",
     "options": [
-      "/system/etc/wifi/network_profiles.conf",
-      "/data/system/users/0/wifi_keys.xml",
-      "/vendor/wifi/firmware/wpa_keys.dat",
-      "/data/misc/wifi/WifiConfigStore.xml (or legacy wpa_supplicant.conf)"
+      "A Firehose programmer file (ELF / MBN binary signed for that chipset)",
+      "A standard Windows DLL driver file",
+      "An uncompiled Java source code file",
+      "A generic Android APK installer file"
     ],
-    "answer": 3,
-    "explanation": "Saved Wi-Fi networks and passwords are saved in '/data/misc/wifi/WifiConfigStore.xml' (in modern Android) or '/data/misc/wifi/wpa_supplicant.conf' (in legacy Android). It lists SSIDs, BSSIDs, PSKs, and connection timestamps."
+    "answer": 0,
+    "explanation": "The Firehose programmer (an ELF/MBN binary tailored to that specific Qualcomm SoC) is uploaded into device RAM over USB in EDL mode. It communicates via XML commands to read raw flash blocks."
   },
   {
     "id": 33,
-    "question": "What system service and log file records application crashes, system events, and diagnostic messages in Android?",
+    "topic": "MediaTek BROM Mode",
+    "question": "What is the equivalent low-level BootROM hardware acquisition mode used on MediaTek (MTK) chipset devices?",
     "options": [
-      "Logcat",
-      "dmesg systemd journal",
-      "AndroidEventViewer.evtx",
-      "DiagnosticReport.plist"
+      "MediaTek BootROM (BROM) / Preloader mode",
+      "Samsung Odin Download mode",
+      "Apple DFU (Device Firmware Upgrade) mode",
+      "Intel Fastboot tethered mode"
     ],
     "answer": 0,
-    "explanation": "Logcat is Android's centralized logging system. It manages four log buffers (main, system, radio, events), capturing app execution, errors, Bluetooth syncs, and cellular tower handovers. (accessible via 'adb logcat -d' or kernel ring buffer)"
+    "explanation": "MediaTek devices possess an embedded BootROM (BROM) mode. Forensic tools exploit BROM vulnerabilities (e.g., SLA/DA bypass) to load custom Download Agents (DA) and read physical flash memory without authentication."
   },
   {
     "id": 34,
-    "question": "What log buffer in Android Logcat captures cellular network signaling, telephony states, and SMS routing events?",
+    "topic": "JTAG Forensics",
+    "question": "What is JTAG (Joint Test Action Group) forensics in mobile hardware analysis?",
     "options": [
-      "main buffer",
-      "radio buffer (accessed via 'adb logcat -b radio')",
-      "system buffer",
-      "events buffer"
+      "Connecting specialized hardware probes to standardized IEEE 1149.1 boundary-scan test points on the phone's circuit board to read flash memory via the CPU",
+      "Disassembling the touch screen to read optical light patterns emitted by OLED pixels",
+      "Using a wireless infrared camera to measure thermal radiation from the battery",
+      "Transmitting acoustic pulses through the speaker to measure memory resistance"
     ],
-    "answer": 1,
-    "explanation": "The 'radio' buffer (accessed with 'adb logcat -b radio') captures low-level telephony, radio interface layer (RIL) commands, GSM registration, cell tower handovers, and SMS transmissions."
+    "answer": 0,
+    "explanation": "JTAG (IEEE 1149.1) utilizes hardware test access ports (TDI, TDO, TCK, TMS, TRST) on the motherboard. Forensic tools instruct the CPU to execute boundary-scan instructions and stream raw memory contents directly to an extraction box."
   },
   {
     "id": 35,
-    "question": "In Android forensics, what is the significance of the 'usagestats' directory located in '/data/system/usagestats/'?",
+    "topic": "JTAG Architecture",
+    "question": "Which standardized hardware signal pins are required to establish a functional JTAG boundary-scan forensic connection?",
     "options": [
-      "It maintains encrypted backups of user biometric fingerprint templates",
-      "It stores the cellular tower Cell Global Identity logs provided by base station controllers",
-      "It records daily, weekly, and monthly XML/protobuf records documenting which applications were opened and their exact foreground usage duration",
-      "It holds the Master Boot Record partition table backup descriptors"
+      "TDI (Test Data In), TDO (Test Data Out), TCK (Test Clock), TMS (Test Mode Select), and GND",
+      "TXD (Transmit), RXD (Receive), CTS (Clear to Send), and RTS (Request to Send)",
+      "SDA (Serial Data), SCL (Serial Clock), VCC, and MOSI",
+      "D+ (Data Positive), D- (Data Negative), VBUS, and ID"
     ],
-    "answer": 2,
-    "explanation": "The 'usagestats' service (in '/data/system/usagestats/0/daily/') records application foreground launch events, total time in foreground, and last time used, proving deliberate user app interactions."
+    "answer": 0,
+    "explanation": "Standard JTAG requires: TDI (Test Data Input), TDO (Test Data Output), TCK (Test Clock), TMS (Test Mode Select), TRST (optional Test Reset), and GND."
   },
   {
     "id": 36,
-    "question": "In Android forensic examinations, what does 'Package Name' signify (e.g. 'com.google.android.youtube')?",
+    "topic": "In-System Programming (ISP)",
+    "question": "How does In-System Programming (ISP) forensics differ fundamentally from JTAG forensics?",
     "options": [
-      "The hardware MAC address of the device Wi-Fi radio interface",
-      "The cellular operator's Mobile Network Code published in SIM profiles",
-      "The cryptographic SHA-256 integrity hash of the compiled boot image",
-      "A globally unique reverse-domain identifier defined by the developer in the application manifest to identify the application within the OS"
+      "ISP micro-solders directly to the eMMC/UFS memory chip bus lines (DAT0, CMD, CLK), reading memory directly without involving the phone's CPU",
+      "ISP relies on standard Bluetooth wireless connections without physical soldering",
+      "ISP requires completely desoldering the flash chip from the motherboard",
+      "ISP uses the phone's front camera to scan internal QR codes"
     ],
-    "answer": 3,
-    "explanation": "Android identifies apps by their unique Java-style package name (e.g., 'com.whatsapp', 'org.telegram.messenger') defined in AndroidManifest.xml and used for permissions, data directories, and sandboxing."
+    "answer": 0,
+    "explanation": "In-System Programming (ISP) bypasses the processor entirely by micro-soldering fine jumper wires directly to the eMMC/UFS memory communication lines (DAT0, CMD, CLK, VCC, VCCQ, GND), reading the flash memory chip directly on the board."
   },
   {
     "id": 37,
-    "question": "What Android system file located in '/data/system/packages.xml' provides rich forensic intelligence about installed applications?",
+    "topic": "ISP Hardware Pinouts",
+    "question": "Which bus line in an eMMC In-System Programming (ISP) pinout carries the actual binary data payload during 1-bit extraction mode?",
     "options": [
-      "It details every installed package, its assigned UID, installation timestamp, update timestamp, granted permissions, and code paths",
-      "It contains the decrypted plaintext passwords for all local user accounts",
-      "It maintains the Master File Table allocation bitmap for internal flash storage",
-      "It logs all outbound GPS coordinates transmitted to external advertising networks"
+      "DAT0 (Data Line 0)",
+      "CLK (Clock)",
+      "CMD (Command)",
+      "VCCQ (I/O Voltage)"
     ],
     "answer": 0,
-    "explanation": "The '/data/system/packages.xml' file is a goldmine for forensic examiners: it documents every installed package name, assigned Linux UID, firstInstallTime, lastUpdateTime, signatures, and granular granted permissions."
+    "explanation": "In 1-bit ISP extraction mode, DAT0 carries the serialized binary data output from the eMMC flash chip. CMD sends commands, CLK synchronizes clock pulses, and VCC/VCCQ provide power."
   },
   {
     "id": 38,
-    "question": "What user authentication artifact on older Android devices stored the salted SHA-1 hash of the user lock screen pattern?",
+    "topic": "Chip-Off Forensics",
+    "question": "What physical procedure defines 'Chip-Off' forensics in mobile device hardware analysis?",
     "options": [
-      "password.key",
-      "gesture.key (in /data/system/gesture.key)",
-      "locksettings.db",
-      "pattern_hash.bin"
+      "Physically desoldering the Ball Grid Array (BGA) flash memory chip from the motherboard using precision heat, and reading it in a dedicated hardware programmer socket",
+      "Using a sharp chisel to physically cut the phone's aluminum chassis open",
+      "Removing the plastic SIM card tray using an ejection pin tool",
+      "Peeling off the tempered glass screen protector to view underlying fingerprints"
     ],
-    "answer": 1,
-    "explanation": "In older Android versions (Android 5 and below), the lock pattern was stored as an unsalted or simple SHA-1 hash of the 0-8 grid node byte sequence in '/data/system/gesture.key'."
+    "answer": 0,
+    "explanation": "Chip-Off is an invasive, destructive method where the BGA memory chip (eMMC/UFS) is desoldered from the PCB using an infrared/hot-air rework station, cleaned, and inserted into a dedicated chip programmer reader."
   },
   {
     "id": 39,
-    "question": "What database on modern Android devices stores lock screen metadata and Gatekeeper challenge configurations?",
+    "topic": "Chip-Off Limitations",
+    "question": "Why is Chip-Off forensics largely ineffective against modern smartphones (Android 10+ and modern iPhones) even if the flash chip is desoldered successfully?",
     "options": [
-      "security_pin.sqlite",
-      "auth_tokens.db",
-      "locksettings.db (in /data/system/locksettings.db)",
-      "credential_manager.db"
+      "Because File-Based Encryption (FBE) and hardware-bound keys inside the SoC's secure enclave mean the raw dumped NAND flash is completely encrypted and unreadable without the original processor",
+      "Because modern flash chips immediately erase themselves when exposed to room temperature air",
+      "Because BGA solder balls cannot be re-melted using standard lead-free solder alloys",
+      "Because modern memory sockets are illegal under international telecommunication treaties"
     ],
-    "answer": 2,
-    "explanation": "Modern Android manages lock screen settings in '/data/system/locksettings.db'. The actual cryptographic verification is handled by Gatekeeper inside the hardware TrustZone (TEE)."
+    "answer": 0,
+    "explanation": "Modern devices use hardware-backed File-Based Encryption (FBE). The master cryptographic keys are derived from hardware fuses (UID) inside the SoC processor / Secure Enclave. Extracting the flash chip yields only raw AES-encrypted ciphertext!"
   },
   {
     "id": 40,
-    "question": "What is the role of the hardware 'TrustZone' (ARM TrustZone / TEE) in modern Android smartphone security?",
+    "topic": "Chip-Off Packaging",
+    "question": "What standardized Ball Grid Array (BGA) package type is commonly encountered on legacy and budget Android eMMC flash memory chips?",
     "options": [
-      "A secondary battery controller that regulates wireless inductive charging circuits",
-      "An external satellite receiver that synchronizes UTC time across base stations",
-      "A high-speed graphics coprocessor dedicated to real-time image rendering",
-      "A secure hardware execution environment that isolates biometric verification, keystore keys, and passcode verification from the main Android OS"
+      "BGA-153 / BGA-169 and BGA-221",
+      "DIP-8 and SOIC-16",
+      "TO-220 and SOT-23",
+      "PGA-370 and LGA-1151"
     ],
-    "answer": 3,
-    "explanation": "ARM TrustZone divides the processor into Secure World (TEE) and Normal World (Android OS). Sensitive operations\u2014Gatekeeper (passcode checking), Keymaster/Keymint (encryption keys), and fingerprint matching\u2014run inside the secure world."
+    "answer": 0,
+    "explanation": "Mobile eMMC flash storage chips are packaged as Ball Grid Arrays, most commonly BGA-153, BGA-169, and BGA-221 (incorporating eMCP RAM+NAND). Modern UFS chips use BGA-254."
   },
   {
     "id": 41,
-    "question": "What operating system kernel powers Apple iOS, iPadOS, macOS, watchOS, and tvOS?",
+    "topic": "Android Rooting Fundamentals",
+    "question": "What is the technical objective of 'Rooting' an Android mobile smartphone?",
     "options": [
-      "XNU",
-      "Linux Monolithic Kernel",
-      "Windows NT Microkernel",
-      "QNX Real-Time Microkernel"
+      "Gaining superuser privileges (UID 0 / root) to bypass the standard Linux application sandbox and security restrictions",
+      "Permanently disabling the cellular baseband radio transceiver",
+      "Replacing the physical battery with a higher voltage power cell",
+      "Converting the internal storage from ext4/F2FS into Microsoft NTFS format"
     ],
     "answer": 0,
-    "explanation": "Apple's operating systems are powered by XNU ('X is Not Unix'), a hybrid kernel combining the Mach 3.0 microkernel architecture, FreeBSD POSIX subsystems, and the I/O Kit driver framework. (X is Not Unix - a hybrid kernel combining Mach microkernel and BSD subsystems)"
+    "explanation": "Rooting grants superuser access (`root`, UID 0). By default, Android sandboxes every app under its own unprivileged UID (`u0_aXXX`). Root allows total access to all application directories, system partitions, and raw block devices."
   },
   {
     "id": 42,
-    "question": "What is the default file system used across modern Apple iOS devices (iOS 10.3 and newer)?",
+    "topic": "Rooting Execution Mechanism",
+    "question": "Traditionally, how did root management utilities (like SuperSU) grant elevated privileges to requesting applications?",
     "options": [
-      "HFS+ (Hierarchical File System Extended)",
-      "APFS (Apple File System)",
-      "Ext4 (Fourth Extended Filesystem)",
-      "FAT32 (File Allocation Table 32)"
+      "By placing a setuid-root 'su' binary into system executable directories (e.g., /system/xbin/su)",
+      "By rewriting the physical silicon circuitry of the Qualcomm Snapdragon CPU",
+      "By registering a fake cellular tower profile in the baseband modem",
+      "By generating a self-signed SSL certificate in Google Chrome"
     ],
-    "answer": 1,
-    "explanation": "Apple introduced APFS (Apple File System) in iOS 10.3, replacing legacy HFS+. APFS features 64-bit architecture, Copy-on-Write, space sharing, cloning, native multi-key encryption, and snapshots."
+    "answer": 0,
+    "explanation": "Legacy rooting installed a modified `su` (substitute user) binary with the setuid bit enabled into `/system/bin` or `/system/xbin`. When an app requested root, the `su` daemon prompted the user and spawned a root shell."
   },
   {
     "id": 43,
-    "question": "How is the physical flash storage divided into partitions on an Apple iOS device?",
+    "topic": "Systemless Rooting",
+    "question": "Why do modern root solutions (such as Magisk) employ 'Systemless Rooting' rather than modifying the `/system` partition directly?",
     "options": [
-      "A single unpartitioned raw volume managing dynamic storage through virtual swap files",
-      "Four primary MBR partitions: Boot, Kernel, Cache, and Recovery",
-      "Two primary partitions: System (OS partition mounted read-only) and Data (User partition mounted read-write at /private/var/)",
-      "Three partitions: BIOS Reserved, EFI System Partition, and Master File Table"
+      "To avoid modifying the read-only /system partition, preventing cryptographic verification failures in Android Verified Boot (dm-verity) and passing Google Play Integrity checks",
+      "Because the /system partition does not exist in versions of Android past version 4.4",
+      "Because modifying /system causes the lithium-ion battery to rapidly discharge",
+      "Because systemless rooting allows root access without requiring an unlocked bootloader"
     ],
-    "answer": 2,
-    "explanation": "iOS devices divide storage into two main volumes: the System partition (mounted read-only, signed system volume SSV in modern iOS) and the Data partition (mounted read-write at '/private/var/' holding all user data)."
+    "answer": 0,
+    "explanation": "Modern Android enforces `dm-verity` (cryptographic kernel verification of the `/system` block device). Modifying `/system` causes boot loops. Magisk modifies `boot.img` and overlays files in memory via tmpfs, leaving the physical system partition untouched."
   },
   {
     "id": 44,
-    "question": "What dedicated hardware security coprocessor on Apple devices manages cryptographic operations, Touch ID, Face ID, and Data Protection keys?",
+    "topic": "Android Verified Boot",
+    "question": "What security mechanism in Android uses cryptographic hash trees to ensure the integrity of the operating system partitions (/system, /vendor) during boot?",
     "options": [
-      "Trusted Platform Module (TPM)",
-      "Baseband Modem Processor",
-      "Apple Neural Engine (ANE)",
-      "Secure Enclave Processor (SEP)"
+      "dm-verity (Device Mapper Verity / Android Verified Boot)",
+      "SELinux Enforcing Mode",
+      "SafetyNet Attestation API",
+      "Zygote Process Cloning"
     ],
-    "answer": 3,
-    "explanation": "The Secure Enclave Processor (SEP) is an isolated hardware coprocessor running its own microkernel (sepd). It contains a hardware AES engine, true random number generator (TRNG), and the hardware UID fused into silicon."
+    "answer": 0,
+    "explanation": "`dm-verity` (a Linux kernel feature used in Android Verified Boot) uses a Merkle hash tree to verify block-by-block integrity of read-only partitions. If even a single byte is modified, the signature check fails and the device halts boot."
   },
   {
     "id": 45,
-    "question": "What is the unique cryptographic hardware key embedded into the Secure Enclave during chip manufacturing that cannot be read by software or Apple?",
+    "topic": "Hardware Security Flags",
+    "question": "In Samsung Galaxy smartphones, what hardware-level security mechanism permanently records an irreversible bit flip when a custom recovery or root kernel is flashed?",
     "options": [
-      "UID (Unique ID) key",
-      "GID (Group ID) key",
-      "Apple Root CA Private Key",
-      "Baseband IMEI Authentication Key"
+      "The Samsung Knox Warranty Bit (eFuse 0x1 permanent hardware burn)",
+      "The Qualcomm EDL hardware jumper fuse",
+      "The MediaTek preloader signature register",
+      "The Google Titan M2 firmware revocation flag"
     ],
     "answer": 0,
-    "explanation": "The UID is a 256-bit AES key fused into the Secure Enclave silicon during manufacturing. It cannot be extracted by software or firmware; all file encryption keys are derived through the hardware AES engine using this UID."
+    "explanation": "Samsung Knox incorporates an electronic hardware fuse (eFuse). Flashing unauthorized software blows the microscopic physical fuse, permanently flipping the Knox Warranty Bit from `0x0` to `0x1`, permanently disabling Knox Vault, Samsung Pay, and Secure Folder."
   },
   {
     "id": 46,
-    "question": "In Apple Data Protection architecture, what defines 'Class A' (NSFileProtectionComplete) protection?",
+    "topic": "Bootloader Security",
+    "question": "What is the primary forensic consequence of 'Unlocking the Bootloader' on modern Android devices (e.g., via `fastboot oem unlock` or `fastboot flashing unlock`)?",
     "options": [
-      "The file is completely unencrypted and accessible over standard USB debugging interfaces",
-      "The file is encrypted with a key derived from the user passcode + hardware UID; the key is purged from memory whenever the device is locked",
-      "The file is encrypted with an asymmetric key stored on Apple iCloud backup servers",
-      "The file key remains resident in memory indefinitely until a factory firmware reset"
+      "The device automatically triggers a complete factory reset, securely wiping all user data (/data partition) to prevent data theft",
+      "The device hardware clock permanently stops running",
+      "The SIM card is permanently locked with PUK code",
+      "The cellular modem baseband firmware is permanently erased"
     ],
-    "answer": 1,
-    "explanation": "Class A (Complete Protection) offers the highest security: file keys are destroyed in RAM within seconds of the user locking the screen. The file cannot be read until the user enters their passcode to derive the key."
+    "answer": 0,
+    "explanation": "For user privacy, unlocking the bootloader triggers an automated cryptographic factory reset of the `/data` (userdata) partition. An investigator cannot simply unlock a locked suspect's bootloader without destroying the evidence!"
   },
   {
     "id": 47,
-    "question": "In Apple Data Protection architecture, what defines 'Class C' (NSFileProtectionCompleteUntilFirstUserAuthentication) protection?",
+    "topic": "Forensic Value of Rooting",
+    "question": "From an investigative perspective, why is temporary root access (temp-root) highly desirable during live Android forensic acquisition?",
     "options": [
-      "The file is re-encrypted every 60 seconds using a randomized pseudorandom seed",
-      "The file can be accessed exclusively while the device is connected to an authorized Wi-Fi network",
-      "The file encryption key is derived upon the first unlock after boot and remains in RAM even when the device is subsequently locked",
-      "The file key is stored in cleartext inside the Master Boot Record partition table"
+      "It allows the forensic tool to bypass SELinux restrictions and read raw block devices (`/dev/block/bootdevice/by-name/userdata`) for full physical extraction",
+      "It permanently prevents the suspect from changing their Google account password",
+      "It allows the forensic workstation to charge the smartphone twice as fast",
+      "It automatically decrypts WhatsApp end-to-end encrypted voice calls in real time"
     ],
-    "answer": 2,
-    "explanation": "Class C is the default for most app data. The key is derived when the user unlocks the device for the first time after boot and remains resident in memory until the device powers off or reboots."
+    "answer": 0,
+    "explanation": "Without root, forensic tools are restricted by the application sandbox and cannot access private `/data/data/` app directories or raw storage block devices. Root allows dumping raw partition images directly over ADB."
   },
   {
     "id": 48,
-    "question": "In Apple Data Protection architecture, what defines 'Class D' (NSFileProtectionNone) protection?",
+    "topic": "Forensic Integrity of Rooting",
+    "question": "What is the primary legal and evidentiary challenge of rooting a suspect's smartphone to achieve extraction?",
     "options": [
-      "The file is stored unencrypted in unallocated flash cluster slack space",
-      "The file is encrypted with a 48-digit BitLocker full volume encryption recovery key",
-      "The file is transmitted directly to law enforcement monitoring servers upon creation",
-      "The file is encrypted using a key derived solely from the hardware UID, making it accessible even in BFU state before any passcode is entered"
+      "Defense attorneys may argue that flashing root tools altered the system file system, potentially compromising evidence integrity and chain of custody",
+      "Indian Evidence Act / BSA strictly bars any evidence acquired using open-source tools",
+      "Rooting a device automatically deletes all existing call history records",
+      "Rooted smartphones cannot be physically photographed inside a courtroom"
     ],
-    "answer": 3,
-    "explanation": "Class D files are protected only with a key tied to the hardware UID (not the user passcode). These files (like boot assets, emergency dialer data) are readable as soon as the kernel mounts the disk in BFU state."
+    "answer": 0,
+    "explanation": "Rooting modifies device memory or partitions. In court, defense counsel may argue evidence spoliation—that the forensic examiner's root exploit injected files, altered timestamps, or modified the target file system."
   },
   {
     "id": 49,
-    "question": "What secure SQLite database on iOS devices stores saved website passwords, Wi-Fi credentials, credit card tokens, and application secrets?",
+    "topic": "Custom Recoveries",
+    "question": "What third-party custom recovery environment is frequently used by forensic examiners to execute physical extractions on unlocked Android devices?",
     "options": [
-      "keychain-2.db (in /private/var/Keychains/)",
-      "passwords.sqlite (in /System/Library/Security/)",
-      "safari_tokens.db (in /private/var/mobile/Library/)",
-      "vault.storedata (in /private/var/preferences/)"
+      "TWRP (Team Win Recovery Project)",
+      "GNU GRUB2 Bootloader",
+      "Windows Recovery Environment (WinRE)",
+      "Apple DFU Diagnostic Shell"
     ],
     "answer": 0,
-    "explanation": "The iOS Keychain is stored in 'keychain-2.db'. Keychain records are encrypted with keys tied to the device UID and passcode. Extracting the decrypted keychain reveals saved passwords and authentication tokens."
+    "explanation": "TWRP is an open-source custom recovery that boots into an unconstrained Linux environment with a touchscreen UI, built-in ADB server running as root, and partition mounting utilities."
   },
   {
     "id": 50,
-    "question": "What primary SQLite database stores iMessage and SMS text conversations on Apple iOS devices?",
+    "topic": "SELinux Enforcement",
+    "question": "What Mandatory Access Control (MAC) system, originally created by the NSA, enforces strict security policies on all Android processes even if an attacker gains root (UID 0)?",
     "options": [
-      "messages.sqlite (in /System/Library/Messages/)",
-      "sms.db (in /private/var/mobile/Library/SMS/)",
-      "imessage_store.db (in /private/var/root/SMS/)",
-      "chat_storage.sqlite (in /private/var/mobile/Data/)"
+      "Security-Enhanced Linux (SELinux in Enforcing Mode)",
+      "AppArmor Profiles",
+      "Linux Pluggable Authentication Modules (PAM)",
+      "Discretionary Access Control (DAC) file modes"
     ],
-    "answer": 1,
-    "explanation": "iOS stores SMS and iMessage records in 'sms.db' (in '/private/var/mobile/Library/SMS/'). Key tables include 'message' (text, date, handle_id), 'chat' (threads), and 'attachment' (multimedia)."
+    "answer": 0,
+    "explanation": "SELinux (Security-Enhanced Linux) enforces Mandatory Access Control (MAC). Even if a process escalates to `root` (UID 0), SELinux policy rules restrict what domains it can transition to and which block devices it can access."
   },
   {
     "id": 51,
-    "question": "How are date-time values stored in the 'sms.db' database on iOS 11 and later versions?",
+    "topic": "Android Permission Architecture",
+    "question": "In the Android operating system, how does the kernel enforce basic application isolation and security sandboxing?",
     "options": [
-      "Seconds elapsed since January 1, 1970 UTC (Unix Epoch)",
-      "Microseconds elapsed since January 1, 1601 UTC (WebKit Epoch)",
-      "Nanoseconds elapsed since January 1, 2001 UTC (Apple Mac/Cocoa Core Data Epoch)",
-      "Julian calendar days elapsed since 4713 BCE"
+      "By assigning every installed app a unique, distinct Linux User ID (UID like u0_a145) at install time, restricting access to its own private directory (/data/data/<package>)",
+      "By placing each application inside an encrypted hardware virtual machine container",
+      "By executing all third-party applications inside a temporary Google Chrome browser tab",
+      "By requiring every application binary to be signed with the cellular carrier's private key"
     ],
-    "answer": 2,
-    "explanation": "Modern iOS (iOS 11+) stores timestamps in 'sms.db' as nanoseconds since Apple Core Data epoch (January 1, 2001 UTC). Earlier versions stored seconds or microseconds since 2001."
+    "answer": 0,
+    "explanation": "Android relies on standard Linux multi-user separation: each installed app is assigned a unique Linux User ID (e.g., `u0_a145`). Standard UNIX file permissions prevent one app from reading another app's directory."
   },
   {
     "id": 52,
-    "question": "What database stores call history records (voice calls, FaceTime, WhatsApp audio) on Apple iOS devices?",
+    "topic": "Android Permission Classes",
+    "question": "Under Android's permission model (Android 6.0 Marshmallow and newer), what defines a 'Dangerous' (or Runtime) permission?",
     "options": [
-      "calllog.db (in /private/var/telephony/)",
-      "cellular_calls.sqlite (in /System/Library/Calls/)",
-      "voip_history.db (in /private/var/mobile/Library/VOIP/)",
-      "CallHistory.storedata (in /private/var/mobile/Library/CallHistoryDB/)"
+      "Permissions that access sensitive user private data (Camera, Microphone, Location, Contacts, SMS) and must be explicitly approved by the user at runtime via an interactive dialog",
+      "Permissions that allow an application to increase CPU clock speed above factory limits",
+      "Permissions that allow an application to completely delete the operating system recovery image",
+      "Permissions granted exclusively to pre-installed system apps signed with the platform key"
     ],
-    "answer": 3,
-    "explanation": "Call history on iOS is stored in 'CallHistory.storedata' (an SQLite database). The 'ZCALLRECORD' table holds phone numbers, call duration, timestamp (ZDATE), call type (ZCALLTYPE), and service provider (FaceTime, cellular)."
+    "answer": 0,
+    "explanation": "Dangerous (Runtime) permissions access private user data or control device hardware (e.g., READ_CONTACTS, ACCESS_FINE_LOCATION, RECORD_AUDIO). The OS prompts the user with an explicit approval dialog at first use."
   },
   {
     "id": 53,
-    "question": "What SQLite database on iOS devices tracks detailed application usage, screen status, battery levels, and user habits?",
+    "topic": "Android Normal Permissions",
+    "question": "How are 'Normal' permissions (e.g., ACCESS_NETWORK_STATE, SET_WALLPAPER) handled during Android app installation?",
     "options": [
-      "knowledgeC.db (in /private/var/mobile/Library/CoreDuet/Knowledge/)",
-      "user_analytics.sqlite (in /System/Library/Analytics/)",
-      "device_habits.db (in /private/var/preferences/)",
-      "sysdiagnose.storedata (in /private/var/logs/)"
+      "They are granted automatically by the system upon installation without prompting the user, as they pose minimal risk to user privacy",
+      "They require entering the user's Google account password during installation",
+      "They are permanently blocked unless the device is rooted",
+      "They must be manually enabled by the user in Settings > Developer Options"
     ],
     "answer": 0,
-    "explanation": "The 'knowledgeC.db' database (CoreDuet framework) is a premier forensic artifact. It tracks app in-focus events, battery charging, device locks/unlocks, plugged accessories, and user activity patterns with millisecond precision."
+    "explanation": "Normal permissions cover areas where the app needs to access data or resources outside its sandbox, but where there is very little risk to the user's privacy (e.g., accessing the internet). They are granted automatically."
   },
   {
     "id": 54,
-    "question": "What property list file in iOS stores the registered device name, international mobile equipment identity (IMEI), and serial number?",
+    "topic": "Android Permission Auditing",
+    "question": "In an Android forensic investigation, which XML file located in `/data/system/` records the complete list of installed packages, assigned UIDs, and granted runtime permissions?",
     "options": [
-      "/System/Library/CoreServices/SystemVersion.plist",
-      "/private/var/preferences/SystemConfiguration/preferences.plist",
-      "/private/var/mobile/Library/Preferences/com.apple.carrier.plist",
-      "/private/var/root/Library/DeviceIdentity.plist"
+      "packages.xml",
+      "AndroidManifest.xml",
+      "settings.xml",
+      "build.prop"
     ],
-    "answer": 1,
-    "explanation": "'preferences.plist' (under SystemConfiguration) stores system-wide network configuration, device computer name, Wi-Fi parameters, and hardware identification profiles."
+    "answer": 0,
+    "explanation": "`/data/system/packages.xml` is a master forensic artifact recording all installed packages, their allocated Linux UIDs, installation/update timestamps, code paths, and the exact set of permissions granted by the user."
   },
   {
     "id": 55,
-    "question": "In Apple iOS forensics, what is an 'iTunes / Finder Backup' (MobileSync Backup)?",
+    "topic": "Android Manifest File",
+    "question": "What essential configuration file inside an Android APK package statically declares all permissions that the application may ever request?",
     "options": [
-      "A bit-for-bit physical acquisition of the raw flash storage memory chips",
-      "A raw volatile RAM memory dump captured via the checkm8 bootloader exploit",
-      "A standardized logical backup format where files are renamed to SHA-1 hashes of their domain and path, indexed by Manifest.db",
-      "An uncompressed TAR archive containing the read-only /system partition"
+      "AndroidManifest.xml",
+      "classes.dex",
+      "resources.arsc",
+      "META-INF/CERT.RSA"
     ],
-    "answer": 2,
-    "explanation": "An iTunes backup stores files in folders named after the first 2 characters of their SHA-1 hash (e.g. '0a/0a1b2c...'). The SQLite database 'Manifest.db' maps these SHA-1 filenames back to real paths and domains."
+    "answer": 0,
+    "explanation": "Every Android APK must include `AndroidManifest.xml` at its root. It declares the app's package name, components (Activities, Services, Receivers), and all `<uses-permission>` tags requested."
   },
   {
     "id": 56,
-    "question": "What is the significant advantage of an 'Encrypted iTunes Backup' over an unencrypted backup during iOS forensic acquisition?",
+    "topic": "iOS TCC Framework",
+    "question": "In Apple iOS, what privacy framework controls and logs user permissions for sensitive resources (Camera, Microphone, Photos, Contacts, Health)?",
     "options": [
-      "Encrypted backups bypass the requirement for the device lock screen passcode",
-      "Encrypted backups automatically flash custom recovery ramdisks into the Secure Enclave",
-      "Encrypted backups format the target host workstation drive using Apple APFS file systems",
-      "Encrypted backups include sensitive data like the full Keychain, Wi-Fi passwords, Health data, and Call History that are omitted from unencrypted backups"
+      "Transparency, Consent, and Control (TCC) Framework",
+      "iOS Sandboxed User Privilege Manager (SUPM)",
+      "Secure Enclave Runtime Authorization (SERA)",
+      "Apple FairPlay DRM Controller"
     ],
-    "answer": 3,
-    "explanation": "Unencrypted backups omit the Keychain, Health data, and saved Wi-Fi keys for security. If the examiner sets or knows the backup password, the backup includes the complete Keychain and private sensitive databases."
+    "answer": 0,
+    "explanation": "Apple's TCC (Transparency, Consent, and Control) subsystem governs access to sensitive hardware and user privacy data, maintaining access control lists and prompts across iOS and macOS."
   },
   {
     "id": 57,
-    "question": "What is 'Jailbreaking' in Apple iOS forensics and incident analysis?",
+    "topic": "iOS TCC Database Artefact",
+    "question": "Where is the primary SQLite database storing user-granted app permissions located in an extracted iOS file system?",
     "options": [
-      "Privilege escalation that circumvents Apple iOS security restrictions (bypassing code signing, sandbox, and read-only root) to grant root access",
-      "Remotely erasing an iPhone using the Apple Find My application interface",
-      "Replacing the physical liquid crystal display with an aftermarket third-party component",
-      "Permanently removing the SIM card slot to convert the device into an eSIM-only model"
+      "/private/var/mobile/Library/TCC/TCC.db",
+      "/System/Library/CoreServices/permissions.sqlite",
+      "/private/var/root/Preferences/privacy.plist",
+      "/var/log/tcc_permissions.log"
     ],
     "answer": 0,
-    "explanation": "Jailbreaking exploits kernel or bootrom vulnerabilities to disable kernel code signing enforcement (AMFI), escape app sandboxing, and grant full root privileges, allowing physical and file system acquisition."
+    "explanation": "`TCC.db` (located at `/private/var/mobile/Library/TCC/TCC.db`) is a critical forensic SQLite database storing bundle IDs, requested services (e.g., `kTCCServiceCamera`), user authorization states, and grant timestamps."
   },
   {
     "id": 58,
-    "question": "What type of jailbreak requires a computer connection via USB every time the device is rebooted because the exploit executes in volatile memory or BootROM?",
+    "topic": "iOS Privacy Descriptions",
+    "question": "In iOS application development, what must developers include in `Info.plist` to explain to users why the app needs access to a protected resource (e.g., Camera)?",
     "options": [
-      "Untethered Jailbreak",
-      "Tethered Jailbreak",
-      "Semi-Untethered Jailbreak",
-      "Cloud Jailbreak"
+      "A Usage Description string (e.g., NSCameraUsageDescription)",
+      "A raw hexadecimal public key certificate",
+      "A compiled C++ kernel driver extension",
+      "A hardcoded root password hash"
     ],
-    "answer": 1,
-    "explanation": "A tethered or semi-tethered jailbreak (like checkra1n) cannot re-jailbreak itself on device reboot. If the device powers off, it boots into standard jailed mode (or halts) until re-connected to a computer executing the exploit. (or Semi-Tethered like checkra1n)"
+    "answer": 0,
+    "explanation": "Apple mandates Purpose Strings in `Info.plist` (e.g., `NSCameraUsageDescription`, `NSLocationWhenInUseUsageDescription`). If an app attempts to access a protected API without this string, iOS instantly crashes the app."
   },
   {
     "id": 59,
-    "question": "What type of jailbreak persists across device reboots without requiring any computer connection or re-running an app?",
+    "topic": "Android Special Access",
+    "question": "What specialized high-privilege Android permission, introduced in Android 11 (API 30), grants an app broad access to shared storage outside its scoped storage sandbox?",
     "options": [
-      "Tethered Jailbreak",
-      "Semi-Tethered Jailbreak",
-      "Untethered Jailbreak",
-      "Rootless Jailbreak"
+      "MANAGE_EXTERNAL_STORAGE (All Files Access)",
+      "READ_PRIVILEGED_PHONE_STATE",
+      "BIND_ACCESSIBILITY_SERVICE",
+      "INSTALL_SHORTCUT"
     ],
-    "answer": 2,
-    "explanation": "An untethered jailbreak patches the boot sequence permanently, surviving device reboots without needing a computer or app re-execution. Modern iOS mitigations make untethered jailbreaks exceptionally rare."
+    "answer": 0,
+    "explanation": "`MANAGE_EXTERNAL_STORAGE` grants an application broad management access to shared storage outside Scoped Storage directories, commonly requested by file managers, backup tools, and mobile malware."
   },
   {
     "id": 60,
-    "question": "What is a 'Rootless Jailbreak' (e.g. Dopamine) on modern iOS versions?",
+    "topic": "Permission Forensics",
+    "question": "Why is analyzing granted app permissions forensic critical in mobile malware investigations?",
     "options": [
-      "A jailbreak that completely removes the root user account from the /etc/passwd file",
-      "A hardware exploit that desolders the Secure Enclave chip from the motherboard",
-      "A technique that executes applications strictly in an external cloud virtual machine",
-      "A jailbreak that avoids modifying the read-only signed system volume (/system) and installs binaries exclusively under /var/jb to bypass SSV security"
+      "To identify permission abuse: detecting apps requesting anomalous combinations (e.g., a simple Calculator app requesting READ_SMS, RECORD_AUDIO, and RECEIVE_BOOT_COMPLETED)",
+      "To measure the battery consumption rate of the device display",
+      "To decrypt the SSL encryption keys of all incoming internet traffic",
+      "To verify whether the SIM card is registered to a prepaid or postpaid plan"
     ],
-    "answer": 3,
-    "explanation": "With iOS 15+, Apple enforces the Signed System Volume (SSV). Rootless jailbreaks do not modify /system (which would break SSV seals); instead, they redirect jailbreak binaries and tweaks into '/var/jb'."
+    "answer": 0,
+    "explanation": "Permission auditing is central to mobile malware analysis. Malicious spyware disguises itself as benign utilities (flashlights, calculators) while requesting sensitive permissions like READ_SMS (OTP theft) and RECORD_AUDIO."
   },
   {
     "id": 61,
-    "question": "What is the International Mobile Equipment Identity (IMEI) number structure and total digit length?",
+    "topic": "iOS Jailbreaking Fundamentals",
+    "question": "What is the technical objective of 'Jailbreaking' an Apple iOS mobile device?",
     "options": [
-      "15 decimal digits (8-digit Type Allocation Code / TAC + 6-digit Serial Number + 1-digit Luhn Check Digit)",
-      "16 decimal digits (divided into four 4-digit blocks)",
-      "12 hexadecimal characters representing the physical MAC address",
-      "10 decimal digits representing the national mobile subscriber phone number"
+      "Privilege escalation to superuser (root UID 0), disabling mandatory code-signing checks (amfid), and bypassing the sandbox to access the root file system",
+      "Physically unlocking the device so it accepts SIM cards from different cellular carriers",
+      "Replacing the Apple A-Series processor with an open-source ARM CPU",
+      "Flashing an open-source Android operating system onto the iPhone hardware"
     ],
     "answer": 0,
-    "explanation": "The IMEI is a 15-digit unique hardware identifier: TAC (Type Allocation Code, 8 digits identifying manufacturer and model) + Serial Number (6 digits) + Check Digit (1 digit calculated via Luhn algorithm)."
+    "explanation": "Jailbreaking exploits software or hardware vulnerabilities in iOS to obtain superuser (`root`, UID 0) privileges, patches Apple Mobile File Integrity daemon (`amfid`) to bypass code signing, and removes the sandbox."
   },
   {
     "id": 62,
-    "question": "What USSD code is universally entered on the keypad of any GSM/UMTS/LTE mobile phone to display its IMEI number?",
+    "topic": "SIM Unlock vs Jailbreak",
+    "question": "How does a 'Carrier Unlock' (SIM-unlock) differ from an 'iOS Jailbreak'?",
     "options": [
-      "*#21#",
-      "*#06#",
-      "*#9900#",
-      "##778#"
+      "Carrier unlocking permits using any network SIM card without modifying OS privilege boundaries, whereas jailbreaking modifies OS kernel security to grant root access",
+      "Carrier unlocking requires replacing the internal battery; jailbreaking is done over the air",
+      "Carrier unlocking grants root access; jailbreaking only changes the network operator APN",
+      "Carrier unlocking and jailbreaking are identical legal terms for the same procedure"
     ],
-    "answer": 1,
-    "explanation": "Dialing the standard USSD code '*#06#' immediately displays the unique IMEI number (or both IMEIs for dual-SIM devices) on the screen of any mobile phone."
+    "answer": 0,
+    "explanation": "Carrier unlock (network unlock) simply updates the baseband activation policy to allow SIM cards from other network operators. It does NOT modify system privileges or jailbreak the operating system."
   },
   {
     "id": 63,
-    "question": "How many unique IMEI numbers are assigned to a smartphone capable of Dual SIM Dual Standby (DSDS) operation?",
+    "topic": "Jailbreak Types",
+    "question": "What defines an 'Untethered' iOS jailbreak?",
     "options": [
-      "Only one single IMEI shared across both SIM cards",
-      "Four distinct IMEIs representing uplink and downlink channels",
-      "Exactly two distinct IMEI numbers (one unique IMEI per physical radio transceiver / SIM slot)",
-      "Zero, because dual-SIM smartphones use MAC addresses instead of IMEIs"
+      "The jailbreak exploit persists across device reboots; the device boots directly into a jailbroken state without needing a computer or app re-execution",
+      "The device requires connecting to a computer with specialized software every single time it boots, or it will not boot at all",
+      "The device boots normally into stock unjailbroken mode, requiring a sideloaded app to be re-run on the device to restore root",
+      "The jailbreak functions only when an active Wi-Fi tethering hotspot is enabled"
     ],
-    "answer": 2,
-    "explanation": "Dual-SIM devices have two distinct cellular baseband transceiver channels, and therefore must possess two distinct, unique IMEI numbers (IMEI 1 and IMEI 2) registered with telecom regulatory bodies."
+    "answer": 0,
+    "explanation": "An Untethered jailbreak patches the boot chain permanently. The device can be rebooted indefinitely and remains fully jailbroken with kernel patches applied automatically at boot."
   },
   {
     "id": 64,
-    "question": "What is the International Mobile Subscriber Identity (IMSI) and where is it stored?",
+    "topic": "Jailbreak Types",
+    "question": "What defines a 'Tethered' iOS jailbreak?",
     "options": [
-      "A 48-bit hardware serial number printed on the smartphone circuit board",
-      "A dynamic IP address assigned by the Carrier-Grade NAT router",
-      "A cryptographic public key stored inside the Secure Enclave Processor",
-      "A 15-digit subscriber identifier stored inside the SIM card (EF_IMSI file) that uniquely identifies the subscriber on the cellular network"
+      "The device cannot complete a boot sequence independently; it must be connected to a computer running exploit tools every time it is powered on",
+      "The jailbreak requires an active physical ethernet cable attached to the Lightning port",
+      "The jailbreak permanently disables all cellular voice calling capabilities",
+      "The jailbreak survives factory resets without re-installation"
     ],
-    "answer": 3,
-    "explanation": "The IMSI uniquely identifies a cellular subscriber globally. It is stored on the SIM card chip in the EF_IMSI elementary file. It consists of: Mobile Country Code (MCC) + Mobile Network Code (MNC) + Mobile Subscriber Identification Number (MSIN)."
+    "answer": 0,
+    "explanation": "A Tethered jailbreak cannot boot into an operational state on its own. If powered off, the device hangs at the Apple logo or in DFU mode until booted with a computer-assisted tethered boot exploit."
   },
   {
     "id": 65,
-    "question": "What are the three components that compose a standard 15-digit International Mobile Subscriber Identity (IMSI)?",
+    "topic": "Jailbreak Types",
+    "question": "What defines a 'Semi-Untethered' iOS jailbreak (the most prevalent modern format, e.g., unc0ver, Taurine, Dopamine)?",
     "options": [
-      "MCC (Mobile Country Code, 3 digits) + MNC (Mobile Network Code, 2-3 digits) + MSIN (Mobile Subscriber Identification Number)",
-      "TAC (Type Allocation Code) + FAC (Final Assembly Code) + SNR (Serial Number)",
-      "CGI (Cell Global Identity) + LAC (Location Area Code) + CID (Cell ID)",
-      "SSID (Service Set Identifier) + BSSID (Basic Service Set ID) + RSSI (Signal Strength)"
+      "The device boots normally into an unjailbroken stock iOS state if rebooted, and the user re-enables the jailbreak simply by running a sideloaded app directly on the phone",
+      "The jailbreak is permanent and cannot be removed even by an iTunes DFU restore",
+      "The jailbreak requires soldering hardware jumper wires across the logic board",
+      "The device must remain plugged into a wall outlet charger at all times"
     ],
     "answer": 0,
-    "explanation": "IMSI = MCC (3 digits e.g. 404/405 for India) + MNC (2 or 3 digits e.g. 10 for Airtel) + MSIN (remaining digits up to 10 digits identifying the specific subscriber account)."
+    "explanation": "Modern jailbreaks are semi-untethered: on reboot, the phone boots safely into stock, unjailbroken iOS. The user simply opens a sideloaded app (signed via AltStore/TrollStore) on the screen to re-inject kernel patches."
   },
   {
     "id": 66,
-    "question": "What is the Mobile Station International Subscriber Directory Number (MSISDN)?",
+    "topic": "BootROM Exploit checkm8",
+    "question": "What is 'checkm8' in Apple iOS hardware forensics?",
     "options": [
-      "The physical serial number of the SIM card chip printed on plastic",
-      "The full international telephone number dialed to reach the mobile subscriber (e.g. +91 9876543210)",
-      "The internal IP address assigned to the mobile handset by GGSN/PGW",
-      "The base transceiver station sector antenna azimuth direction angle"
+      "An unpatchable, permanent hardware vulnerability in the BootROM (SecureROM) of Apple A5 through A11 devices (iPhone 4S through iPhone X) that allows executing unsigned code via USB DFU mode",
+      "A software trojan horse delivered via malicious iMessage attachments",
+      "A zero-day web vulnerability affecting Apple Safari on iOS 17",
+      "A proprietary forensic hardware box manufactured exclusively by Cellebrite"
     ],
-    "answer": 1,
-    "explanation": "MSISDN is the actual telephone number dialed to place a call: Country Code (CC) + National Destination Code (NDC) + Subscriber Number (SN). It is mapped to the IMSI in the Home Location Register (HLR)."
+    "answer": 0,
+    "explanation": "`checkm8` (discovered by axi0mX in 2019) is a permanent, read-only BootROM vulnerability (use-after-free in USB DFU protocol) affecting Apple devices with A5–A11 chips. Because BootROM is burned in silicon, Apple cannot patch it via software updates."
   },
   {
     "id": 67,
-    "question": "What is the Integrated Circuit Card Identifier (ICCID) in cellular forensics?",
+    "topic": "Forensic Utility of checkm8",
+    "question": "Why is checkm8-based extraction (used in tools like checkra1n and forensic suites) considered a revolution in iOS forensics?",
     "options": [
-      "The radio frequency channel number used during 5G New Radio synchronization",
-      "The temporary session token generated during mobile Wi-Fi tethering sessions",
-      "The 19- or 20-digit unique serial number physically laser-etched onto the SIM card chip and stored in EF_ICCID",
-      "The electronic serial number assigned to the smartphone display touchscreen"
+      "It allows examiners to boot a custom ramdisk into memory to perform full file system and keychain extractions on supported A5–A11 devices even without jailbreak persistence",
+      "It automatically decrypts Apple IDs and reveals the suspect's iCloud master password",
+      "It allows downgrading the physical hardware processor to an older generation",
+      "It instantly bypasses the alphanumeric passcode without requiring brute-force"
     ],
-    "answer": 2,
-    "explanation": "The ICCID is the globally unique serial number of the SIM card itself (stored in EF_ICCID and printed on the plastic SIM). It identifies the issuer, country, network, and chip serial number."
+    "answer": 0,
+    "explanation": "checkm8 allows examiners to inject a temporary, custom forensic ramdisk over USB in DFU mode, gaining root execution in volatile RAM to extract the full file system and keychain without modifying the NAND data partition."
   },
   {
     "id": 68,
-    "question": "What cellular network database maintains the master, permanent subscriber registry (including IMSI, MSISDN, subscribed services, and encryption keys)?",
+    "topic": "Apple Code Signing",
+    "question": "What iOS background security daemon enforces mandatory cryptographic code-signing on all running executables and is typically patched during a jailbreak?",
     "options": [
-      "VLR (Visitor Location Register)",
-      "EIR (Equipment Identity Register)",
-      "AUC (Authentication Center)",
-      "HLR"
+      "amfid (Apple Mobile File Integrity Daemon)",
+      "launchd",
+      "cfprefsd",
+      "commcenter"
     ],
-    "answer": 3,
-    "explanation": "The Home Location Register (HLR, evolved to HSS in LTE/EPC) is the central database that permanently stores subscriber details: IMSI, MSISDN, service subscriptions, and current VLR/MME location routing pointers. (Home Location Register) / HSS (Home Subscriber Server in LTE/5G)"
+    "answer": 0,
+    "explanation": "`amfid` (Apple Mobile File Integrity daemon) enforces that every binary and dynamic library executed on iOS has a valid cryptographic signature from Apple or a trusted provisioning profile. Jailbreaks patch `amfid` to permit unsigned binaries."
   },
   {
     "id": 69,
-    "question": "What cellular network database maintains temporary subscriber profile data while a mobile device is roaming within a specific switching service area?",
+    "topic": "Package Managers",
+    "question": "What graphical package management interface is traditionally installed on a jailbroken iPhone to manage third-party tools and command-line forensic utilities?",
     "options": [
-      "VLR (Visitor Location Register)",
-      "HLR (Home Location Register)",
-      "EIR (Equipment Identity Register)",
-      "AUC (Authentication Center)"
+      "Cydia (or Sileo / Zebra)",
+      "Google Play Store",
+      "Microsoft Store",
+      "RPM Package Manager"
     ],
     "answer": 0,
-    "explanation": "The Visitor Location Register (VLR) is a local, temporary database paired with the MSC. When a subscriber enters a cell area, the VLR copies essential subscriber data from the HLR to route local calls without querying the remote HLR repeatedly."
+    "explanation": "Cydia (developed by Jay Freeman / saurik), along with modern alternatives Sileo and Zebra, serves as the APT-based package manager GUI on jailbroken iOS devices for installing tweaks and forensic command-line tools."
   },
   {
     "id": 70,
-    "question": "What cellular network database categorizes mobile handsets into White, Grey, and Black lists based on their IMEI to block stolen devices?",
+    "topic": "Jailbreak Evidence Risks",
+    "question": "What is the primary risk of using a public community jailbreak tool (such as unc0ver or palera1n) on a seized suspect iPhone in a criminal case?",
     "options": [
-      "HLR (Home Location Register)",
-      "EIR (Equipment Identity Register)",
-      "VLR (Visitor Location Register)",
-      "SMSC (Short Message Service Center)"
+      "The jailbreak modifies system files, writes persistent binaries to the data partition, and risks evidence spoliation challenges under forensic evidence rules",
+      "The jailbreak automatically notifies Apple Inc. and triggers remote data destruction",
+      "The jailbreak permanently disables the iPhone's NAND flash memory cells",
+      "The jailbreak prevents the device from ever connecting to a forensic computer"
     ],
-    "answer": 1,
-    "explanation": "The Equipment Identity Register (EIR) tracks IMEIs: White list (valid, approved devices), Grey list (monitored/suspicious devices), and Black list (stolen, barred from accessing the network)."
+    "answer": 0,
+    "explanation": "Community jailbreak tools are designed for end users, not forensics; they write Cydia binaries, modify system configurations, and alter timestamps. Forensics requires dedicated read-only ramdisk methods (like Cellebrite/GrayKey) to avoid altering evidence."
   },
   {
     "id": 71,
-    "question": "What is the full formula for the Cell Global Identity (CGI) that uniquely identifies a cellular antenna sector worldwide?",
+    "topic": "Android Architectural Layers",
+    "question": "What is the correct hierarchical order of the 5 core layers of the Android Operating System Architecture, from bottom (hardware) to top (user)?",
     "options": [
-      "CGI = IMEI (Equipment Identity) + IMSI (Subscriber Identity) + MSISDN (Phone Number)",
-      "CGI = TAC (Tracking Area Code) + RSRP (Signal Power) + RSRQ (Signal Quality)",
-      "CGI = MCC (Mobile Country Code) + MNC (Mobile Network Code) + LAC (Location Area Code) + CID (Cell ID)",
-      "CGI = BSSID (Base Station ID) + SSID (Network Name) + Channel Frequency"
+      "Linux Kernel &rarr; Hardware Abstraction Layer (HAL) &rarr; Native Libraries & Android Runtime (ART) &rarr; Java API Framework &rarr; System & User Apps",
+      "Hardware Abstraction Layer (HAL) &rarr; Linux Kernel &rarr; Java API Framework &rarr; Android Runtime (ART) &rarr; Apps",
+      "Android Runtime (ART) &rarr; Linux Kernel &rarr; System Apps &rarr; Native Libraries &rarr; Hardware Abstraction Layer",
+      "Java API Framework &rarr; System Apps &rarr; Linux Kernel &rarr; Native Libraries &rarr; Android Runtime (ART)"
     ],
-    "answer": 2,
-    "explanation": "Cell Global Identity (CGI) uniquely identifies a cell worldwide: MCC (Country) + MNC (Network) + LAC (Location Area Code, 16-bit) + CID (Cell Identity, 16-bit)."
+    "answer": 0,
+    "explanation": "The official AOSP architecture comprises: 1. Linux Kernel (base); 2. Hardware Abstraction Layer (HAL); 3. Native C/C++ Libraries & Android Runtime (ART); 4. Java API Framework; and 5. System and User Applications (top)."
   },
   {
     "id": 72,
-    "question": "In cellular tower engineering, into how many 120-degree sectors is a standard 3-sector cell site typically divided?",
+    "topic": "Android Linux Kernel",
+    "question": "What core low-level operating system functions are handled by the modified Linux Kernel at the base of the Android OS stack?",
     "options": [
-      "4 sectors (North, South, East, West covering 90\u00b0 each)",
-      "2 sectors (Uplink and Downlink covering 180\u00b0 each)",
-      "6 sectors (Hexagonal arrays covering 60\u00b0 each)",
-      "3 sectors (Alpha covering ~0\u00b0-120\u00b0, Beta covering ~120\u00b0-240\u00b0, Gamma covering ~240\u00b0-360\u00b0)"
+      "Hardware device drivers (camera, display, Wi-Fi), memory management, process isolation, power management (Wakelocks), and SELinux mandatory access controls",
+      "Rendering the Java UI buttons and handling touch screen animation frames",
+      "Translating DEX bytecode into Dalvik register instructions",
+      "Parsing JSON responses returned from Google Cloud APIs"
     ],
-    "answer": 3,
-    "explanation": "Most cellular base stations use 3 directional antennas mounted 120 degrees apart: Sector 1 (Alpha e.g. 0\u00b0-120\u00b0), Sector 2 (Beta e.g. 120\u00b0-240\u00b0), and Sector 3 (Gamma e.g. 240\u00b0-360\u00b0), each having a unique Cell ID."
+    "answer": 0,
+    "explanation": "The Linux kernel forms the foundation of Android, providing hardware abstraction, device drivers, low-level process scheduling, virtual memory management, network stacks, and core security (SELinux)."
   },
   {
     "id": 73,
-    "question": "What does the 'Azimuth' angle in a cellular tower specification table represent to a CDR investigator?",
+    "topic": "Hardware Abstraction Layer",
+    "question": "What is the primary role of the Hardware Abstraction Layer (HAL) in Android architecture?",
     "options": [
-      "The compass direction (in degrees from true North, 0\u00b0-360\u00b0) toward which the directional sector antenna is pointed",
-      "The elevation height of the tower in meters above sea level",
-      "The vertical tilt angle of the antenna toward the ground",
-      "The transmission frequency bandwidth in Megahertz (MHz)"
+      "Providing standardized interfaces (HIDL/AIDL) that expose device hardware capabilities to the higher-level Java framework without modifying framework code for each hardware vendor",
+      "Encrypting all user passwords before saving them into the SQLite database",
+      "Managing the cellular baseband radio frequency modulation",
+      "Simulating an Apple iOS environment for cross-platform applications"
     ],
     "answer": 0,
-    "explanation": "Azimuth is the compass bearing (0\u00b0 to 359\u00b0 from true North) indicating the central direction in which a sector antenna radiates its radio energy. Knowing azimuth defines the pie-shaped wedge where the suspect's phone was located."
+    "explanation": "The HAL consists of multiple library modules that implement standardized interfaces for specific hardware components (Camera HAL, Audio HAL, Sensors HAL), decoupling upper Java frameworks from proprietary hardware drivers."
   },
   {
     "id": 74,
-    "question": "What parameter in GSM cellular signaling measures the round-trip radio propagation delay to calculate the distance between a phone and the cell tower?",
+    "topic": "Android Runtime (ART)",
+    "question": "How does the modern Android Runtime (ART, introduced in Android 5.0) improve upon the legacy Dalvik Virtual Machine?",
     "options": [
-      "Received Signal Strength Indicator (RSSI)",
-      "Timing Advance (TA)",
-      "Reference Signal Received Power (RSRP)",
-      "Carrier-to-Noise Ratio (CNR)"
+      "ART utilizes Ahead-of-Time (AOT) and profile-guided Just-in-Time (JIT) compilation, compiling DEX bytecode into native machine code for faster execution and improved battery life",
+      "ART completely removes the Linux kernel and replaces it with Windows NT",
+      "ART executes Java code directly inside the baseband cellular modem",
+      "ART prohibits applications from storing SQLite databases on internal flash"
     ],
-    "answer": 1,
-    "explanation": "Timing Advance (TA) is used in GSM/LTE to advance transmission time so bursts arrive at the tower in the correct time slot. Because radio waves travel at the speed of light, TA directly measures distance from the tower."
+    "answer": 0,
+    "explanation": "Legacy Dalvik interpreted bytecode with pure JIT compilation on every launch. ART uses Ahead-of-Time (AOT) compilation during installation and profile-guided JIT at runtime, executing native ELF machine code directly on the CPU."
   },
   {
     "id": 75,
-    "question": "In GSM cellular networks, what approximate physical distance does each step (quantum) of Timing Advance (TA) represent?",
+    "topic": "DEX Bytecode",
+    "question": "In Android application compilation, what file format contains the compiled bytecode executed by the Android Runtime (ART)?",
     "options": [
-      "Approximately 50 meters",
-      "Approximately 2.5 kilometers",
-      "Approximately 550 meters (0.55 km per TA unit)",
-      "Approximately 10 kilometers"
+      "DEX (Dalvik Executable) format (`classes.dex`)",
+      "Standard Java JAR archive format",
+      "PE32 Windows executable format",
+      "Mach-O 64-bit binary format"
     ],
-    "answer": 2,
-    "explanation": "In GSM, one bit period is ~3.69 microseconds. A one-unit increment of Timing Advance (TA = 0 to 63) corresponds to a round-trip distance of ~1,100 meters, which equates to a one-way distance step of ~550 meters."
+    "answer": 0,
+    "explanation": "Java/Kotlin source code is compiled into `.class` files, which the D8/R8 compiler optimizes and converts into Dalvik Executable (`classes.dex`) format, optimized for minimal memory footprint on mobile devices."
   },
   {
     "id": 76,
-    "question": "What is the fundamental difference between a Call Detail Record (CDR) and an Internet Protocol Detail Record (IPDR)?",
+    "topic": "Java API Framework",
+    "question": "Which component of the Android Java API Framework manages the lifecycle of applications and maintains the activity navigation backstack?",
     "options": [
-      "CDR is recorded exclusively by the mobile handset; IPDR is recorded exclusively by foreign satellite receivers",
-      "CDR contains full audio recordings of telephone calls; IPDR contains plaintext copies of web browsing history",
-      "CDR requires a court warrant to generate; IPDR is broadcast publicly over unencrypted radio frequencies",
-      "CDR tracks circuit-switched voice calls and SMS events; IPDR tracks packet-switched data sessions, IP addresses, ports, and bytes transferred"
+      "Activity Manager (ActivityManagerService)",
+      "Window Manager (WindowManagerService)",
+      "Package Manager (PackageManagerService)",
+      "Content Provider Framework"
     ],
-    "answer": 3,
-    "explanation": "CDR logs telephony transactions: Calling/Called party, start time, duration, call type, start/end CGI. IPDR logs mobile data connections: Source IP, Source Port, Destination IP, Destination Port, timestamps, and data volume."
+    "answer": 0,
+    "explanation": "`ActivityManagerService` (AMS) manages application lifecycles (create, pause, resume, destroy), process creation, task navigation, and activity backstacks."
   },
   {
     "id": 77,
-    "question": "In cellular CDR terminology, what does 'MOC' signify?",
+    "topic": "Android Partitions",
+    "question": "In an Android flash memory partition scheme, which partition contains the user's personal files, downloaded apps, SQLite databases, and user settings?",
     "options": [
-      "Mobile Originating Call (outgoing call initiated by the subscriber)",
-      "Mobile Terminating Call (incoming call received by the subscriber)",
-      "Master Operating Center (central cellular network switch)",
-      "Media Optimization Controller (audio transcoding gateway)"
+      "/data (userdata partition)",
+      "/system partition",
+      "/boot partition",
+      "/recovery partition"
     ],
     "answer": 0,
-    "explanation": "In CDR logs: MOC stands for Mobile Originating Call (outgoing call made by the target number); MTC stands for Mobile Terminating Call (incoming call received by the target number)."
+    "explanation": "The `/data` partition (userdata) is the primary target in digital forensics; it stores all user-installed applications, private app databases (`/data/data/`), personal photos, contacts, and configuration settings."
   },
   {
     "id": 78,
-    "question": "In cellular CDR terminology, what does 'MTC' signify?",
+    "topic": "Android System Partition",
+    "question": "In modern Android devices (Android 10 and newer), why is the `/system` partition mounted as read-only and sealed cryptographically?",
     "options": [
-      "Mobile Originating Call (outgoing call made by the subscriber)",
-      "Mobile Terminating Call (incoming call received by the subscriber)",
-      "Message Transfer Carrier (short message routing service)",
-      "Multi-Tenant Controller (virtual base station manager)"
+      "It is implemented as a 'System-as-Root' Dynamic Partition (super partition) protected by dm-verity, preventing unauthorized modification by malware or rootkits",
+      "It uses optical write-once memory cells that physically prevent overwriting",
+      "It is stored entirely in volatile RAM and re-downloaded from Google upon every reboot",
+      "It contains proprietary carrier billing algorithms protected by telecom law"
     ],
-    "answer": 1,
-    "explanation": "MTC stands for Mobile Terminating Call, representing an incoming voice call answered or routed to the subscriber's phone."
+    "answer": 0,
+    "explanation": "Modern Android incorporates Dynamic Partitions inside a single `super` partition. System-as-Root mounts `/system` as read-only, cryptographically verified by `dm-verity` to guarantee platform integrity."
   },
   {
     "id": 79,
-    "question": "Why does a single voice call entry in a CDR often list two distinct Cell Global Identities (First CGI and Last CGI)?",
+    "topic": "Android Recovery Partition",
+    "question": "What is the purpose of the `/recovery` partition in standard Android architecture?",
     "options": [
-      "The cellular carrier uses dual-SIM transceivers to duplicate all audio calls for redundancy",
-      "The call failed due to network congestion and was redirected to an emergency satellite channel",
-      "The mobile user moved during the call and handed over from the originating cell tower to a different terminating cell tower",
-      "The calling party and called party were connected to the exact same base transceiver station"
+      "It contains an independent minimal Linux environment with a dedicated kernel used to apply Over-The-Air (OTA) system updates and execute factory data resets",
+      "It stores real-time backups of all user WhatsApp messages every 24 hours",
+      "It stores the hardware encryption master keys inside a tamper-proof file",
+      "It logs all incoming cellular telephone calls for 365 days"
     ],
-    "answer": 2,
-    "explanation": "Mobile networks support handovers during calls. If a suspect initiates a call while driving and moves out of sector range, the call transfers to a new tower; the CDR records the First CGI (start) and Last CGI (end)."
+    "answer": 0,
+    "explanation": "The `/recovery` partition holds an alternate boot environment containing its own minimal kernel and recovery binary, allowing the device to perform factory wipes or install signed OTA update zip packages."
   },
   {
     "id": 80,
-    "question": "In IPDR (Internet Protocol Detail Record) investigations, what IP address range is reserved under RFC 6598 for Carrier-Grade NAT (CGNAT)?",
+    "topic": "Zygote Process",
+    "question": "In Android OS startup, what is the role of the 'Zygote' daemon process?",
     "options": [
-      "192.168.0.0/16 (Private Class C network)",
-      "10.0.0.0/8 (Private Class A network)",
-      "172.16.0.0/12 (Private Class B network)",
-      "100.64.0.0/10 (100.64.0.0 to 100.127.255.255)"
+      "An init-spawned parent process that preloads all common Java core classes and resources, spawning new application processes rapidly via Linux fork()",
+      "The cryptographic encryption manager that decrypts flash storage during boot",
+      "The network firewall daemon that inspects incoming cellular IP packets",
+      "The recovery bootloader that displays the OEM manufacturer splash screen"
     ],
-    "answer": 3,
-    "explanation": "RFC 6598 reserves the '100.64.0.0/10' shared address space specifically for Carrier-Grade NAT (CGNAT). Cellular carriers assign these private IPv4 addresses to mobile phones, translating them to public IPs at the PGW/GGSN."
+    "answer": 0,
+    "explanation": "`app_process` (Zygote) is launched by `init`. It preloads common framework classes and system resources into memory. When a user launches an app, Zygote forks itself, instantly creating a new process sharing preloaded code."
   },
   {
     "id": 81,
-    "question": "Why is it mathematically impossible to identify a specific cybercriminal using ONLY a public IP address and date-time stamp when the ISP uses Carrier-Grade NAT (CGNAT)?",
+    "topic": "Android Logging Subsystem",
+    "question": "What command-line tool and subsystem in Android provides access to the real-time system and application message logging buffers?",
     "options": [
-      "Hundreds or thousands of different mobile subscribers share the exact same public IPv4 address simultaneously via port translation",
-      "Carrier-Grade NAT encrypts all packet payloads using military-grade AES-256 ciphers",
-      "The cellular carrier automatically deletes all NAT translation logs every ten seconds to conserve disk space",
-      "The public IP address belongs exclusively to foreign satellite communications constellations"
+      "logcat",
+      "syslog-ng",
+      "eventviewer",
+      "journalctl"
     ],
     "answer": 0,
-    "explanation": "Under CGNAT, thousands of mobile devices share a pool of public IPv4 addresses. To pinpoint the exact subscriber, law enforcement MUST provide the destination server's connection log showing the Source Port number along with timestamp and public IP."
+    "explanation": "`logcat` is Android's built-in command-line tool that interfaces with the kernel `logger` driver and `logd` daemon to display and filter circular ring buffer messages generated across the system."
   },
   {
     "id": 82,
-    "question": "What critical technical parameter MUST an investigator obtain from target server logs (e.g. web server, bank portal) to identify a suspect behind CGNAT?",
+    "topic": "Logcat Buffers",
+    "question": "Android's logging architecture is split into multiple independent circular ring buffers. What is the primary role of the 'radio' log buffer (`logcat -b radio`)?",
     "options": [
-      "Destination MAC Address of the carrier's gateway router",
-      "Source Port (Source Port Number used by the client connection)",
-      "The suspect's cellular phone battery charge percentage",
-      "The serial number of the web server's SSL certificate"
+      "Capturing low-level cellular telephony events, baseband modem communication, SIM interactions, and signal strength changes",
+      "Streaming FM radio broadcasts over the headphone jack",
+      "Logging Bluetooth Low Energy audio streaming packets only",
+      "Recording Wi-Fi access point beacon frames"
     ],
-    "answer": 1,
-    "explanation": "Because CGNAT maps unique combinations of (Private IP + Private Port) <-> (Public IP + Public Source Port), the ISP's NAT translation logs require the Public IP, the exact Source Port, and timestamp to identify the specific subscriber."
+    "answer": 0,
+    "explanation": "The `radio` buffer (`logcat -b radio`) captures all events originating from the telephony and radio layer (Radio Interface Layer - RIL), including AT commands, cellular tower registrations, call states, and SMS routing."
   },
   {
     "id": 83,
-    "question": "What document maintained by telecommunications service providers contains the physical Subscriber Application Form (CAF), identity proof, and address proof?",
+    "topic": "Logcat Buffers",
+    "question": "Which `logcat` buffer captures binary-encoded system event logs, such as activity life-cycle changes and battery status changes?",
     "options": [
-      "CDR (Call Detail Record)",
-      "IPDR (Internet Protocol Detail Record)",
-      "SDR",
-      "VLR (Visitor Location Register)"
+      "events (`logcat -b events`)",
+      "main (`logcat -b main`)",
+      "system (`logcat -b system`)",
+      "crash (`logcat -b crash`)"
     ],
-    "answer": 2,
-    "explanation": "The SDR/CAF contains the subscriber's legal identity documents: full name, physical residential address, alternate contact number, government ID proof (Aadhaar/Passport/Voter ID), and customer photograph submitted during SIM registration. (Subscriber Detail Record) / CAF (Customer Application Form)"
+    "answer": 0,
+    "explanation": "The `events` buffer (`logcat -b events`) holds binary-formatted system event messages (e.g., `am_proc_start`, `am_create_activity`, `screen_toggled`), which are crucial for timeline reconstruction in forensics."
   },
   {
     "id": 84,
-    "question": "What forensic intelligence is extracted from the Subscriber Identity Module (SIM) card using a specialized SIM smart card reader?",
+    "topic": "Logcat Buffers",
+    "question": "What does the `crash` log buffer in modern Android store?",
     "options": [
-      "The user's complete Google Chrome private browsing search history",
-      "High-resolution photographic pictures stored in internal flash memory",
-      "Decrypted AES master volume keys for Apple File System APFS containers",
-      "ICCID, IMSI, SMS messages stored in EF_SMS, dialed numbers in EF_FDN/EF_LND, and last registered Location Information (EF_LOCI)"
+      "Uncaught fatal Java exceptions, application stack traces, and native C/C++ segmentation fault crash signals",
+      "Records of physical vehicular accidents detected by accelerometer sensors",
+      "Hardware battery over-voltage warnings",
+      "Corrupted SQLite database tables"
     ],
-    "answer": 3,
-    "explanation": "SIM cards contain Elementary Files (EFs): EF_ICCID, EF_IMSI, EF_SMS (messages stored on SIM), EF_ADN/FDN (contacts), and EF_LOCI (Location Information storing TMSI, LAC, and MCC/MNC of the last connected tower)."
+    "answer": 0,
+    "explanation": "The `crash` buffer (`logcat -b crash`) exclusively records fatal application crashes, uncaught Java exceptions, and native SIGSEGV/SIGABRT tombstone backtraces."
   },
   {
     "id": 85,
-    "question": "What security protection mechanism on a SIM card locks the card after 3 consecutive incorrect PIN attempts, requiring an 8-digit unlock code from the carrier?",
+    "topic": "Dumpsys Diagnostic Tool",
+    "question": "In Android forensics, what is the operational purpose of executing the command `adb shell dumpsys`?",
     "options": [
-      "PUK (Personal Unblocking Key)",
-      "PIN2 (Secondary PIN)",
-      "IMEI Lock",
-      "MSISDN Auth"
+      "Dumping the comprehensive, real-time diagnostic state and active memory tables of all registered system services (battery, Wi-Fi, activity, accounts)",
+      "Formatting the internal userdata partition and reinstalling Android",
+      "Extracting raw audio recordings captured by the microphone",
+      "Writing random binary data across all unallocated flash storage"
     ],
     "answer": 0,
-    "explanation": "If a user enters an incorrect SIM PIN three times, the SIM card locks. It can only be unlocked by entering the 8-digit PUK (Personal Unblocking Key / PIN Unlock Key) obtained from the cellular service provider. 10 failed PUK attempts permanently destroys the SIM."
+    "explanation": "`dumpsys` is an invaluable live triage tool that queries the Android Service Manager, dumping the internal operational state of all active system services (e.g., `dumpsys batterystats`, `dumpsys wifi`, `dumpsys usagestats`)."
   },
   {
     "id": 86,
-    "question": "What occurs if an investigator or suspect enters an incorrect PUK (Personal Unblocking Key) code 10 consecutive times on a locked SIM card?",
+    "topic": "UsageStatsManager Forensics",
+    "question": "What forensic intelligence is recovered from parsing `dumpsys usagestats` (UsageStatsManager)?",
     "options": [
-      "The SIM card automatically transmits its stored SMS messages to the nearest police station",
-      "The SIM card permanently and irreversibly disables its internal microchip, rendering the SIM completely unusable",
-      "The SIM card resets its internal PIN code back to the default factory code '0000'",
-      "The smartphone operating system initiates an automated physical disk formatting cycle"
+      "Historical records of which applications were launched, exact launch timestamps, foreground duration, and last-time-used timestamps",
+      "The full plain text passwords of all Google accounts registered on the device",
+      "The GPS latitude and longitude of every photograph taken by the camera",
+      "The private encryption keys protecting the WhatsApp message database"
     ],
-    "answer": 1,
-    "explanation": "After 10 consecutive incorrect PUK entries, the SIM card enters a permanent blocked state (bricked). The internal EEPROM locks permanently, and no data can ever be read from that chip again."
+    "answer": 0,
+    "explanation": "`UsageStatsManager` logs application activity. Forensic examiners extract `dumpsys usagestats` to prove whether a suspect actively used a specific app (e.g., browser, crypto-wallet) at an exact crime timestamp."
   },
   {
     "id": 87,
-    "question": "What legacy radio communication protocol is used by one-way numeric and alphanumeric Pagers (Beeper devices)?",
+    "topic": "Battery Historian Analysis",
+    "question": "What forensic data can be extracted from `dumpsys batterystats` or analyzed using Google's Battery Historian tool?",
     "options": [
-      "GSM (Global System for Mobile Communications)",
-      "CDMA2000 (Code Division Multiple Access)",
-      "POCSAG (Post Office Code Standardisation Advisory Group) or FLEX protocol",
-      "Bluetooth Low Energy (BLE 5.0)"
+      "Detailed timelines of screen on/off events, app power draw, Wi-Fi connectivity intervals, GPS sensor activation, and device charging history",
+      "The manufacturing serial number of the chemical lithium-ion battery cells",
+      "A complete history of all incoming and outgoing encrypted phone calls",
+      "The private keys stored inside the Android Keystore system"
     ],
-    "answer": 2,
-    "explanation": "Traditional pagers operate on POCSAG (512, 1200, or 2400 bps) or Motorola's FLEX protocol over VHF/UHF frequencies. Because communication is unencrypted broadcast radio, pagers can be intercepted over the air using software-defined radio (SDR)."
+    "answer": 0,
+    "explanation": "Battery Historian parses `batterystats`, providing second-by-second historical timelines showing when the screen was turned on, when GPS was activated by specific apps, and when the device was plugged into power."
   },
   {
     "id": 88,
-    "question": "Why are traditional one-way pager communications inherently vulnerable to eavesdropping and interception by forensic investigators?",
+    "topic": "Android Bugreports",
+    "question": "What comprehensive diagnostic archive is generated when executing the command `adb bugreport` on an Android device?",
     "options": [
-      "Pagers automatically upload their message history to commercial cloud backup services",
-      "Pager hardware controllers contain hardcoded Wi-Fi passwords published by manufacturers",
-      "Pagers operate exclusively across public unencrypted satellite microwave frequencies",
-      "Pager messages are broadcast over the air in cleartext without encryption, allowing any radio receiver tuned to the channel to decode all messages"
+      "A complete ZIP archive containing full dumpsys outputs, logcat ring buffers, kernel dmesg, tombstones, network statistics, and build configurations",
+      "A raw bit-stream physical image of the userdata flash memory partition",
+      "A backup file containing all user photos and videos in full resolution",
+      "A compiled software patch that updates Android to the latest security level"
     ],
-    "answer": 3,
-    "explanation": "One-way pagers do not transmit; they only listen. Transmitters broadcast cleartext messages across entire cities over VHF/UHF channels. Anyone with an RTL-SDR dongle and decoding software (e.g. multimon-ng) can capture all pager traffic in range."
+    "answer": 0,
+    "explanation": "`adb bugreport` captures a comprehensive diagnostic snapshot (packaged as a ZIP file) containing `dumpsys`, all `logcat` buffers, kernel ring buffers (`dmesg`), network interface states, and memory maps."
   },
   {
     "id": 89,
-    "question": "What rich forensic data can be extracted from smart wearable devices (e.g. Apple Watch, Garmin, Fitbit) during a physical assault or murder investigation?",
+    "topic": "Android Native Tombstones",
+    "question": "Where does Android store persistent crash dump files ('tombstones') generated when native C/C++ processes crash?",
     "options": [
-      "Continuous heart rate logs, step counts, GPS location tracks, accelerometer motion spikes, and sleep/wake transition timestamps",
-      "Decrypted BitLocker volume encryption master passwords from corporate servers",
-      "Raw bitstream images of the suspect's home personal computer hard drive",
-      "The serial numbers of all passing vehicles detected by highway traffic cameras"
+      "/data/tombstones/",
+      "/system/etc/crashes/",
+      "/boot/log/tombstones.bin",
+      "/cache/recovery/last_crash"
     ],
     "answer": 0,
-    "explanation": "Smartwatches record continuous biometric and movement telemetry: sudden heart rate spikes, cessation of pulse (establishing time of death), step counts, and precise GPS trails, providing critical circumstantial evidence."
+    "explanation": "When a native binary crashes due to memory corruption or fatal signals, the `debuggerd` daemon writes a detailed crash log (register states, stack memory, memory maps) into `/data/tombstones/tombstone_XX`."
   },
   {
     "id": 90,
-    "question": "Where is health and biometric sensor data synchronized from an Apple Watch stored on an associated paired iPhone?",
+    "topic": "Ephemeral Nature of Logcat",
+    "question": "What is a major forensic limitation regarding `logcat` ring buffers in digital investigations?",
     "options": [
-      "biometrics.storedata (in /System/Library/HealthKit/)",
-      "healthdb_secure.sqlite (in /private/var/mobile/Library/Health/)",
-      "watch_sensor.db (in /private/var/mobile/Devices/)",
-      "apple_fitness.sqlite (in /private/var/preferences/)"
+      "They reside in volatile RAM and operate as circular ring buffers; older log entries are rapidly overwritten as new messages arrive or when the device reboots",
+      "They can only record messages written in pure Java, ignoring C/C++ and Kotlin",
+      "They are encrypted with a private key known only to the cellular network provider",
+      "They cannot be viewed unless the device has an active 5G internet connection"
     ],
-    "answer": 1,
-    "explanation": "Apple Watch health data synchronizes to the paired iPhone, stored in 'healthdb_secure.sqlite' (protected under Class A Data Protection). It records heart rate, ECG, step count, elevation, and workouts with timestamps."
+    "answer": 0,
+    "explanation": "Logcat buffers are circular in-memory ring buffers (typically 256 KB to 4 MB). High system activity overwrites older entries in minutes or hours, and all logcat data is permanently lost upon device reboot."
   },
   {
     "id": 91,
-    "question": "What forensic artifact is recovered from the internal flash memory of an IoT Smart Home speaker (e.g. Amazon Echo, Google Nest)?",
+    "topic": "Android SQLite Architecture",
+    "question": "What database engine format is universally utilized by Android for storing application data, messages, contacts, and browser history?",
     "options": [
-      "Physical video surveillance tapes recorded over analog coaxial cables",
-      "The Master File Table allocation bitmap for internal magnetic hard drives",
-      "Audio recording cache files, voice recognition transcriptions, Wi-Fi configuration credentials, and paired Bluetooth device MAC addresses",
-      "The private cryptographic keys used by telecom operators to sign SIM card ICCIDs"
+      "SQLite 3 format",
+      "Microsoft Access MDB format",
+      "MySQL InnoDB raw tablespaces",
+      "Oracle Berkeley DB B-trees"
     ],
-    "answer": 2,
-    "explanation": "Smart speakers cache recent audio snippets, voice intent transcriptions, paired client MAC addresses, and network connection logs in internal flash (eMMC/NAND), recoverable via chip-off or UART serial debugging."
+    "answer": 0,
+    "explanation": "Android relies universally on the open-source, serverless SQLite 3 relational database format for almost all system and third-party application storage."
   },
   {
     "id": 92,
-    "question": "What communication protocol commonly used by IoT smart home devices (smart bulbs, door locks, sensors) operates on 2.4 GHz IEEE 802.15.4 mesh networks?",
+    "topic": "SQLite Write-Ahead Logging",
+    "question": "In SQLite databases operating in Write-Ahead Logging (WAL) mode, what is the forensic significance of the companion `-wal` and `-shm` files?",
     "options": [
-      "NFC (Near Field Communication)",
-      "LTE-Advanced Carrier Aggregation",
-      "DOCSIS 3.1 Cable Protocol",
-      "Zigbee (or Z-Wave operating on sub-GHz ISM bands)"
+      "Transactions and newly modified records are written to the `-wal` file before being checkpointed to the main database; examiners must parse both files to recover recent and deleted data",
+      "The `-wal` file contains the secret encryption key used to lock the database",
+      "The `-shm` file contains high-resolution video thumbnails of all database rows",
+      "These files are temporary artifacts that can be safely deleted without any data loss"
     ],
-    "answer": 3,
-    "explanation": "Smart home sensors commonly communicate via Zigbee (IEEE 802.15.4, 2.4 GHz) or Z-Wave (sub-GHz proprietary mesh). Examiners intercept or capture packet captures of these networks to reconstruct door lock or sensor trigger events."
+    "answer": 0,
+    "explanation": "In WAL mode, updates write to `<database>.db-wal` (Write-Ahead Log) first. Recent messages and modified records reside in the `-wal` file until a checkpoint occurs. The `-shm` file manages shared memory indexes."
   },
   {
     "id": 93,
-    "question": "What forensic artifact extracted from a modern connected car's In-Vehicle Infotainment (IVI) system provides evidence of a driver's presence?",
+    "topic": "SMS & MMS Artefacts",
+    "question": "What standard SQLite database file in Android stores SMS and MMS text messages, recipient phone numbers, and message bodies?",
     "options": [
-      "Paired mobile phone contacts, call logs, SMS history, GPS navigation route history, and door open/seatbelt buckle event logs",
-      "The serial number of the optical fiber cable connecting the local electrical substation",
-      "Decrypted Kerberos Ticket Granting Tickets issued to the vehicle's engine control module",
-      "The Master Boot Record partition table of the vehicle's hydraulic brake booster pump"
+      "telephony.db or mmssms.db (located in `/data/data/com.android.providers.telephony/databases/`)",
+      "sms_store.sqlite located in `/system/media/`",
+      "messages.xml located in `/data/system/`",
+      "cellular_chat.db located in `/cache/telephony/`"
     ],
     "answer": 0,
-    "explanation": "Modern vehicle IVI systems (e.g. Berla iVe supported systems) pair with smartphones and store contacts, call logs, SMS messages, precise vehicle GPS tracks, door opening events, and gear shift timestamps."
+    "explanation": "`mmssms.db` (or `telephony.db`) under the telephony provider directory stores all native SMS/MMS messages. The `sms` table records sender/recipient, timestamp (Unix epoch ms), message type, and text body."
   },
   {
     "id": 94,
-    "question": "What is the function of the Controller Area Network (CAN bus) in vehicle forensics and accident reconstruction?",
+    "topic": "Android Timestamps",
+    "question": "In standard Android SQLite databases (such as `mmssms.db` or `contacts2.db`), how are date and time values typically stored?",
     "options": [
-      "A satellite communication link used to transmit real-time video surveillance to police headquarters",
-      "A vehicle bus standard allowing microcontrollers and electronic control units (ECUs) to communicate without a host computer, logging speed, braking, and steering data",
-      "A high-speed fiber optic ring connecting traffic light controllers across municipal highways",
-      "An encrypted virtual private network tunnel used exclusively by commercial ride-sharing drivers"
+      "Unix Epoch timestamps measured in milliseconds (number of milliseconds since January 1, 1970 UTC)",
+      "Mac Absolute time (seconds elapsed since January 1, 2001 UTC)",
+      "Windows FILETIME 64-bit intervals of 100-nanoseconds since 1601",
+      "Julian day calendar strings formatted in reverse alphanumeric order"
     ],
-    "answer": 1,
-    "explanation": "The CAN bus interconnects vehicle ECUs (engine, brakes, steering, airbags). Event Data Recorders (EDR) record CAN bus telemetry (vehicle speed, throttle position, brake application, seatbelt status) during crash events."
+    "answer": 0,
+    "explanation": "Android natively stores timestamps as Unix Epoch time in milliseconds (13-digit integers like `1731668400000`), representing the milliseconds elapsed since midnight UTC on January 1, 1970."
   },
   {
     "id": 95,
-    "question": "What is an Event Data Recorder (EDR) or 'Black Box' in automotive crash forensics?",
+    "topic": "Contacts & Call History Artefacts",
+    "question": "Which database stores address book contacts, call logs, phone numbers, call durations, and call types (incoming, outgoing, missed)?",
     "options": [
-      "A streaming dash camera that uploads high-definition video directly to public cloud servers",
-      "A radar detector that warns motorists of police speed enforcement checkpoints",
-      "A tamper-resistant module (often integrated into the Airbag Control Module) that records vehicle dynamics data immediately prior to, during, and after a collision",
-      "A radio transceiver that automatically pays highway electronic toll charges"
+      "contacts2.db (located in `/data/data/com.android.providers.contacts/databases/`)",
+      "addressbook.sqlite in `/system/app/`",
+      "dialer_cache.bin in `/cache/telephony/`",
+      "callhistory.plist in `/data/system/users/`"
     ],
-    "answer": 2,
-    "explanation": "Automotive EDRs record vehicle parameters (speed, brake switch status, engine RPM, steering angle, lateral acceleration, airbag deployment time) in non-volatile memory during crash or near-crash events."
+    "answer": 0,
+    "explanation": "`contacts2.db` stores all contacts, email addresses, and phone numbers. Its `calls` table records every call event: phone number, timestamp, duration (in seconds), call type (1=Incoming, 2=Outgoing, 3=Missed), and geocoded location."
   },
   {
     "id": 96,
-    "question": "In mobile forensic report presentation, what is 'Tower Dump Analysis'?",
+    "topic": "Android Shared Preferences",
+    "question": "What file format and directory path does Android use for 'Shared Preferences' (storing app settings, user tokens, and flags)?",
     "options": [
-      "Physically demolishing a telecommunication tower to extract its internal hard disk storage drives",
-      "Formatting the internal NAND flash memory of all mobile phones seized within a city district",
-      "Broadcasting emergency evacuation alerts across all mobile subscribers within a municipal region",
-      "Analyzing CDR records from all base station sectors covering a crime scene to identify mobile devices present at the location and time of the crime"
+      "XML files located in `/data/data/<package_name>/shared_prefs/`",
+      "Binary plist files located in `/data/system/preferences/`",
+      "JSON documents located in `/cache/preferences/`",
+      "Plain text CSV files located in `/storage/emulated/0/`"
     ],
-    "answer": 3,
-    "explanation": "A Tower Dump provides CDR data for all calls, SMS, and data sessions that connected to specific cell towers covering a crime scene during a specific time window, enabling investigators to spot common suspect numbers."
+    "answer": 0,
+    "explanation": "Shared Preferences store key-value pairs (login tokens, username, configuration settings) in standard XML format under `/data/data/<package_name>/shared_prefs/<preference_name>.xml`."
   },
   {
     "id": 97,
-    "question": "What analytical technique compares multiple Tower Dumps from different crime scenes to identify suspect numbers appearing across all locations?",
+    "topic": "User Account Artefacts",
+    "question": "Where does the Android operating system store registered user account identities (Google, Exchange, WhatsApp sync accounts)?",
     "options": [
-      "Common Cell / Intersection Analysis",
-      "Single-Tower Triangulation",
-      "IMEI Luhn Check Analysis",
-      "Baseband Firmware Dissasembly"
+      "accounts.db (located in `/data/system_de/0/` or `/data/system/users/0/`)",
+      "user_profiles.xml in `/system/etc/`",
+      "identities.sqlite in `/boot/config/`",
+      "cloud_logins.bin in `/cache/recovery/`"
     ],
     "answer": 0,
-    "explanation": "Intersection Analysis cross-references CDR tower dumps from multiple distinct crime scenes committed by the same perpetrator. Numbers appearing in the intersection of all dumps become prime suspects."
+    "explanation": "`accounts.db` maintains all user accounts registered with the AccountManager, linking accounts to package authenticators, sync schedules, and user email identities."
   },
   {
     "id": 98,
-    "question": "In telecom forensics, what is the role of an 'IMSI Catcher' (e.g. StingRay)?",
+    "topic": "Wi-Fi Artefacts",
+    "question": "Where are saved Wi-Fi network SSIDs, pre-shared keys (WPA2 passwords), and BSSID MAC addresses stored on Android devices?",
     "options": [
-      "A commercial forensic software suite used to crack encrypted Apple iTunes backups",
-      "A rogue, false base station (BTS) that forces nearby mobile devices to connect to it by transmitting high signal power, capturing their IMSI and location",
-      "A hardware tool used to desolder eMMC flash memory chips from smartphone motherboards",
-      "A digital certificate authority that validates cellular operator roaming agreements"
+      "WifiConfigStore.xml (located in `/data/misc/wifi/` or `/data/misc/apexdata/com.android.wifi/`)",
+      "wpa_supplicant.conf in `/system/media/`",
+      "network_history.sqlite in `/boot/wifi/`",
+      "wireless_passwords.txt in `/storage/emulated/0/`"
     ],
-    "answer": 1,
-    "explanation": "An IMSI-catcher masquerades as a legitimate cell tower with stronger signal, compelling mobile handsets in the vicinity to connect. It harvests their IMSIs and can eavesdrop or track locations without carrier assistance."
+    "answer": 0,
+    "explanation": "`WifiConfigStore.xml` (or legacy `wpa_supplicant.conf`) stores all configured Wi-Fi networks, including SSID names, WPA2/WPA3 Pre-Shared Keys in plaintext, and network connection priorities."
   },
   {
     "id": 99,
-    "question": "What legal document or statutory authority under Indian law empowers law enforcement officers to request Call Detail Records (CDRs) from telecom service providers?",
+    "topic": "Cellular & Location Caching",
+    "question": "What forensic database maintained by Google Play Services caches cell tower identifications and Wi-Fi access points to accelerate geolocation?",
     "options": [
-      "Section 66 of the Information Technology Act, 2000",
-      "Section 43 of the Indian Evidence Act, 1872",
-      "Section 91 of the Code of Criminal Procedure, 1973 (now Section 94 of Bharatiya Nagarik Suraksha Sanhita, 2023)",
-      "Section 144 of the Negotiable Instruments Act, 1881"
+      "gservices.db / geolocation caches maintained in `/data/data/com.google.android.gms/`",
+      "gps_raw_stream.bin in `/boot/`",
+      "carrier_cell.sqlite in `/system/telephony/`",
+      "satellites.xml in `/cache/location/`"
     ],
-    "answer": 2,
-    "explanation": "Under Indian criminal law, police officers issue a formal notice under Section 91 CrPC (now Section 94 BNSS 2023) to telecom service providers (Airtel, Jio, Vi, BSNL) demanding the production of CDRs, SDRs, and IPDRs for investigation."
+    "answer": 0,
+    "explanation": "Google Play Services (`com.google.android.gms`) maintains local location databases and caches of recently seen Wi-Fi BSSIDs and cell towers, frequently recording historical location fixes."
   },
   {
     "id": 100,
-    "question": "Why must an electronic Call Detail Record (CDR) printout submitted as evidence in an Indian court be accompanied by a statutory certificate?",
+    "topic": "Android Freelist Parsing",
+    "question": "How can forensic examiners recover deleted SMS messages or deleted chat messages that have been deleted from an active SQLite database table?",
     "options": [
-      "The International Telecommunication Union mandates that all CDR files be encrypted using SHA-512",
-      "The Indian Penal Code requires that all computer printouts be signed by the state governor",
-      "The Ministry of Electronics and Information Technology must certify all hardware SIM card readers",
-      "Section 63 of the Bharatiya Sakshya Adhiniyam, 2023 (formerly Section 65B of IEA 1872) mandates a certificate signed by the authorized nodal officer of the telecom service provider"
+      "By carving unallocated SQLite database pages and parsing deleted record payloads remaining in the database 'freelist' before a VACUUM command executes",
+      "By requesting the phone's CPU to reverse its internal instruction registers",
+      "By placing the smartphone inside a high-strength magnetic degausser",
+      "By sending a special AT command to the cellular baseband processor"
     ],
-    "answer": 3,
-    "explanation": "Under Section 63 BSA 2023 (formerly Section 65B IEA), electronic records like CDR spreadsheets are inadmissible secondary evidence unless accompanied by a certificate signed by the telecom nodal officer authenticating the computer output."
+    "answer": 0,
+    "explanation": "When a row is deleted in SQLite, the engine marks the leaf cell as free and links it to a 'freelist' rather than overwriting it immediately. Forensic tools parse freelists and unallocated space to recover deleted record payloads until a `VACUUM` command reorganizes the file."
   },
   {
     "id": 101,
-    "question": "Why is placing a seized iPhone into 'Airplane Mode' alone considered insufficient for forensic isolation compared to a Faraday enclosure?",
+    "topic": "WhatsApp Database Encryption",
+    "question": "In Android WhatsApp forensics, what cryptographic mechanism protects the chat database file `msgstore.db.crypt14` or `msgstore.db.crypt15` stored in external shared storage?",
     "options": [
-      "Lock screen shortcuts or Control Center can re-enable Wi-Fi and Bluetooth, and incoming calls or remote wipes may occur if Airplane Mode is accidentally toggled off",
-      "Airplane Mode automatically initiates an automated secure erasure of all APFS data protection keys",
-      "Airplane Mode forces the Secure Enclave to enter Before First Unlock (BFU) mode permanently",
-      "Airplane Mode transmits an automated emergency distress beacon across satellite emergency frequencies"
+      "AES-256 in GCM or CBC mode using a 32-byte symmetric key stored securely in the app's private sandbox directory (`/data/data/com.whatsapp/files/key`)",
+      "DES-56 encryption using the user's phone number as the plaintext password",
+      "RSA-4096 asymmetric encryption where WhatsApp holds the only private key on their cloud servers",
+      "Plain unencrypted SQLite storage with an obfuscated `.crypt` file extension"
     ],
     "answer": 0,
-    "explanation": "Airplane mode can be bypassed if the user has Wi-Fi or Bluetooth set to stay active in Airplane mode, or if the screen is touched, or if a physical SIM card is removed/reinserted. Physical Faraday shielding is mandatory."
+    "explanation": "WhatsApp backup databases in external storage (`msgstore.db.crypt14/15`) are encrypted using AES-256. To decrypt these backups offline, the examiner must extract the 32-byte encryption key from WhatsApp's protected private directory (`/data/data/com.whatsapp/files/key`), requiring root or physical/agent extraction."
   },
   {
     "id": 102,
-    "question": "In Apple iOS, what user action immediately disables Touch ID / Face ID biometrics and forces passcode-only entry?",
+    "topic": "Telegram Forensic Artefacts",
+    "question": "Where does Telegram store its local user accounts, contact lists, and cached non-secret chat history on an Android device?",
     "options": [
-      "Placing the device flat on a metallic surface for ten consecutive seconds",
-      "Pressing and holding the side power button and either volume button simultaneously (or rapidly pressing the power button 5 times)",
-      "Disconnecting the device from an authorized Lightning or USB-C charging cable",
-      "Connecting a Bluetooth Low Energy peripheral while the screen is locked"
+      "In `/data/data/org.telegram.messenger/databases/` primarily within `cache4.db`",
+      "In `/system/etc/telegram/messages.xml`",
+      "In `/sdcard/Download/telegram_chats.txt`",
+      "In the SIM card's elementary file EF_SMS"
     ],
-    "answer": 1,
-    "explanation": "Pressing and holding the Side button + Volume button triggers the SOS slider screen, which immediately purges biometric keys from the Secure Enclave, requiring the full alphanumeric passcode to unlock."
+    "answer": 0,
+    "explanation": "Telegram stores user session details, contacts, messages, and metadata in SQLite databases within its private sandbox directory `/data/data/org.telegram.messenger/databases/`, with the main database named `cache4.db`."
   },
   {
     "id": 103,
-    "question": "In Apple Secure Enclave architecture, what hardware component prevents offline brute-forcing of user passcodes by enforcing exponential time delays?",
+    "topic": "Signal Messenger Forensics",
+    "question": "Why is the local SQLite database of Signal Messenger (`signal.db`) inaccessible to standard SQLite browsing tools even after extracting the raw file from `/data/data/org.thoughtcrime.securesms/`?",
     "options": [
-      "Translation Lookaside Buffer (TLB)",
-      "Direct Memory Access (DMA) Bus Controller",
-      "Weaver (anti-replay hardware engine with dedicated non-volatile memory)",
-      "Apple Neural Engine (ANE)"
+      "Signal utilizes SQLCipher full-database 256-bit AES encryption, requiring the dynamic passphrase derived from the device's Keystore or app preferences",
+      "Signal converts all database tables into proprietary binary video blobs",
+      "Signal does not use SQLite and writes directly to raw NAND sectors",
+      "Signal automatically deletes its database every 5 minutes"
     ],
-    "answer": 2,
-    "explanation": "Weaver is a dedicated hardware module inside the Secure Enclave. It stores iteration counts and anti-replay counters in tamper-resistant non-volatile memory, enforcing mandatory delays (1 min, 5 min, 15 min, 1 hour) between failed passcode attempts."
+    "answer": 0,
+    "explanation": "Signal uses SQLCipher, an open-source extension providing transparent 256-bit AES encryption of entire SQLite database files. The database passphrase is generated at installation and stored in protected app shared preferences or Android Keystore."
   },
   {
     "id": 104,
-    "question": "What occurs by default on an iOS device if the 'Erase Data' security setting is enabled and an incorrect passcode is entered 10 consecutive times?",
+    "topic": "Android Browser Forensics (Chrome)",
+    "question": "In Android Google Chrome forensics, which SQLite database located in `/data/data/com.android.chrome/app_chrome/Default/` stores the user's web browsing history and downloaded file records?",
     "options": [
-      "The device operating system re-flashes itself using factory firmware downloaded from iCloud",
-      "The device transmits a full encrypted bitstream image of the user partition to local law enforcement",
-      "The device converts all APFS file system containers to unencrypted FAT32 format",
-      "The Secure Enclave permanently destroys the hardware storage encryption keys, rendering all user data cryptographically irrecoverable"
+      "History",
+      "WebData.db",
+      "Bookmarks.xml",
+      "NetworkActionPredictor.log"
     ],
-    "answer": 3,
-    "explanation": "If 'Erase Data' is active, 10 consecutive failed passcode attempts instructs the Secure Enclave to discard the Effaceable Storage keys. Without these keys, the AES-encrypted data on flash storage is permanently undecryptable."
+    "answer": 0,
+    "explanation": "Google Chrome on Android utilizes the Chromium directory layout. The database named `History` (a SQLite file) contains the `urls` table (visited URLs, visit counts, last visit times) and the `downloads` table."
   },
   {
     "id": 105,
-    "question": "What is 'Effaceable Storage' in Apple iOS device security architecture?",
+    "topic": "Chrome Timestamp Interpretation",
+    "question": "Timestamps recorded in Google Chrome's `History` SQLite database (in the `visits` and `urls` tables) are formatted using which epoch time standard?",
     "options": [
-      "A dedicated region of non-volatile NAND flash memory that can be securely erased instantly to destroy file system master keys",
-      "A temporary RAM buffer allocated to cache high-resolution video streams from the camera",
-      "An unallocated disk cluster region reserved for deleted SMS text messages",
-      "A cloud storage container where device diagnostic logs are mirrored daily"
+      "WebKit / Chrome epoch: microseconds elapsed since January 1, 1601 UTC",
+      "Unix epoch: seconds elapsed since January 1, 1970 UTC",
+      "Mac OS X epoch: seconds elapsed since January 1, 2001 UTC",
+      "Windows FILETIME: milliseconds elapsed since January 1, 1900 UTC"
     ],
     "answer": 0,
-    "explanation": "Effaceable Storage is a specialized non-volatile flash area holding cryptographic keys (such as the DKey and file system master keys). Erasing this small hardware block provides instant, cryptographic sanitization of the entire device."
+    "explanation": "Google Chrome and Chromium-based browsers record timestamps as microseconds since January 1, 1601 UTC (the WebKit/Chrome timestamp). To convert to Unix epoch seconds, subtract 11,644,473,600 and divide by 1,000,000."
   },
   {
     "id": 106,
-    "question": "In Android application packages (.apk), which compiled file contains all Java/Kotlin source code compiled into Dalvik bytecode?",
+    "topic": "Android MediaStore Architecture",
+    "question": "What is the primary role of the Android MediaStore database (`external.db`) located in `/data/data/com.android.providers.media/`?",
     "options": [
-      "AndroidManifest.xml",
-      "classes.dex (Dalvik Executable)",
-      "resources.arsc",
-      "CERT.RSA"
+      "It serves as the central indexed catalog of all audio, video, and image files stored on internal and external storage, indexing file paths, file sizes, MIME types, and date added/modified",
+      "It contains the AES-256 decryption keys for streaming media applications like Spotify and Netflix",
+      "It acts as a firewall blocking malicious audio files from reaching the baseband processor",
+      "It records the hardware serial numbers of connected Bluetooth headphones"
     ],
-    "answer": 1,
-    "explanation": "Android apps are compiled into Dalvik Executable (.dex) bytecode files named 'classes.dex' (and classes2.dex, etc. in multidex apps), which are executed by the Android Runtime (ART)."
+    "answer": 0,
+    "explanation": "The Android MediaStore provider indexes all media files across storage volumes in `external.db`. It contains tables such as `images`, `video`, `audio`, and `files`, allowing forensic examiners to discover media metadata even if the actual media files were deleted or moved."
   },
   {
     "id": 107,
-    "question": "What file inside an Android APK package contains the human-readable string resources, IDs, and compiled binary XML values?",
+    "topic": "EXIF Metadata Forensics",
+    "question": "Which EXIF metadata tags embedded in smartphone JPEG photos provide high-value evidentiary proof of a suspect's physical presence at a crime scene?",
     "options": [
-      "classes.dex",
-      "AndroidManifest.xml",
-      "resources.arsc",
-      "build.prop"
+      "`GPSLatitude`, `GPSLongitude`, `GPSAltitude`, `GPSTimeStamp`, and `Make`/`Model`",
+      "`NetworkSubnetMask` and `DHCPLeaseTime`",
+      "`ICCID` and `BasebandFirmwareRevision`",
+      "`BatteryTemperature` and `ChargingCycles`"
     ],
-    "answer": 2,
-    "explanation": "'resources.arsc' is the pre-compiled binary resource table of the APK. It holds strings, colors, styles, layouts, and resource IDs referenced by the application's compiled bytecode."
+    "answer": 0,
+    "explanation": "Exchangeable Image File Format (EXIF) metadata embedded in smartphone camera images can store GPS coordinates (`GPSLatitude`, `GPSLongitude`), altitude, UTC timestamp of image capture, camera make/model, aperture, and focal length."
   },
   {
     "id": 108,
-    "question": "What directory inside an Android APK contains digital signature files (e.g. CERT.RSA, CERT.SF, MANIFEST.MF) under APK Signature Scheme v1?",
+    "topic": "Android Keystore System",
+    "question": "What is the primary security advantage of storing cryptographic keys inside the hardware-backed Android Keystore system?",
     "options": [
-      "res/",
-      "assets/",
-      "lib/",
-      "META-INF/"
+      "Key material is bound to a Hardware Security Module (HSM), Trusted Execution Environment (TEE), or StrongBox chip, preventing keys from being extracted into application memory or exposed to root users",
+      "It increases the storage speed of SQLite databases by 500%",
+      "It automatically transmits backup copies of keys to the mobile network operator",
+      "It allows keys to be shared across all installed third-party apps without authentication"
     ],
-    "answer": 3,
-    "explanation": "Under APK Signature Scheme v1 (JAR signing), the 'META-INF/' directory contains MANIFEST.MF (SHA-256 hashes of all files), CERT.SF (signature file), and CERT.RSA (the developer's public key certificate and cryptographic signature)."
+    "answer": 0,
+    "explanation": "The Android Keystore system protects cryptographic keys by performing cryptographic operations inside a hardware-backed environment (TEE or StrongBox Keymaster/Keystore). Key material never enters the host Android OS memory, preventing extraction even on a rooted device."
   },
   {
     "id": 109,
-    "question": "What critical security advantage does Android APK Signature Scheme v2 (and v3) provide over legacy JAR signing (v1)?",
+    "topic": "Cloud Synced App Artefacts",
+    "question": "When examining an Android phone where a messaging application's local database has been wiped, what secondary local forensic artefact can reveal incoming messages sent via Firebase Cloud Messaging (FCM)?",
     "options": [
-      "It cryptographically protects the entire APK archive as a whole, detecting any alteration to ZIP central directory headers or metadata",
-      "It permanently prevents users from uninstalling the application from their smartphone",
-      "It forces the application to execute exclusively inside ARM TrustZone secure world",
-      "It encrypts the APK file on disk using the cellular carrier's IMSI authentication key"
+      "Google Play Services FCM notification logs, SQLite notification caches, and Android notification database (`notification_log.db` or notification dumpsys)",
+      "The baseband modem NVRAM partition",
+      "The recovery kernel log `/dev/urandom`",
+      "The SIM card elementary file EF_ARR"
     ],
     "answer": 0,
-    "explanation": "v1 only signed individual files inside the ZIP, allowing central directory tampering (e.g. Janus vulnerability). Scheme v2 hashes the entire binary archive before the ZIP central directory, guaranteeing whole-file integrity."
+    "explanation": "Push notifications delivered through Firebase Cloud Messaging (FCM) are handled by Google Play Services and the Android Notification Manager. Notification text, senders, and timestamps are often cached in notification databases or logged in `dumpsys notification`."
   },
   {
     "id": 110,
-    "question": "In Android security architecture, what is a 'Dangerous Permission' (Runtime Permission)?",
+    "topic": "Chrome Cookies Forensics",
+    "question": "In Android Chrome, how are session authentication tokens and tracking cookies stored in the `Cookies` SQLite database in modern Android releases?",
     "options": [
-      "A permission that allows an application to reboot the physical hardware without warning",
-      "A permission that grants access to sensitive private user data (e.g. CAMERA, READ_CONTACTS, ACCESS_FINE_LOCATION) requiring explicit user approval at runtime",
-      "A permission that permanently wipes the cellular carrier's SIM card credentials",
-      "A permission that grants the application permission to write to the read-only /system partition"
+      "The cookie `value` column is encrypted using AES-128/256 with an encryption key protected by the Android Keystore system",
+      "They are stored in unencrypted Base64 plaintext accessible to any app",
+      "They are stored in pure binary executable assembly code",
+      "They are stored on the SIM card's secure element"
     ],
-    "answer": 1,
-    "explanation": "Android classifies permissions into Protection Levels: Normal (granted automatically at install) and Dangerous (runtime permissions: Camera, Contacts, Location, Microphone, SMS, Storage) which require explicit user consent."
+    "answer": 0,
+    "explanation": "Modern Chromium/Chrome implementations encrypt sensitive cookie values stored in the `Cookies` database using an encryption key protected by the system's keystore/credential manager, preventing unauthorized local reading of session tokens."
   },
   {
     "id": 111,
-    "question": "What SQLite database file stores the Google Chrome web browsing history, typed URLs, and downloads on an Android device?",
+    "topic": "Android Debug Bridge (ADB)",
+    "question": "Which Android Debug Bridge (ADB) command creates an archive of application data and shared storage without requiring device rooting, provided apps allow backup?",
     "options": [
-      "/data/system/users/0/chrome_history.sqlite",
-      "/data/misc/chrome/webcache.db",
-      "/data/data/com.android.chrome/app_chrome/Default/History",
-      "/sdcard/Android/data/com.android.chrome/browser.db"
+      "`adb backup -apk -shared -all -f backup.ab`",
+      "`adb dump --raw-memory /dev/block/bootdevice`",
+      "`adb extract-all --force-decryption`",
+      "`adb pull /data/system/packages.list`"
     ],
-    "answer": 2,
-    "explanation": "Google Chrome stores its browsing history, visited URLs, and file downloads in an SQLite database named 'History' located in the app's private directory: '/data/data/com.android.chrome/app_chrome/Default/History'."
+    "answer": 0,
+    "explanation": "The command `adb backup -apk -shared -all -f backup.ab` initiates a logical backup of APK files, application data (for apps where `android:allowBackup=\"true\"`), and shared storage, producing an Android Backup (`.ab`) file."
   },
   {
     "id": 112,
-    "question": "What configuration file in Android contains fundamental system properties, OS build version, manufacturer, and hardware model specifications?",
+    "topic": "Android Backup Extraction",
+    "question": "What tool or utility is commonly used by digital forensic examiners to convert an Android Backup file (`.ab`) into a standard `.tar` archive for inspection?",
     "options": [
-      "/data/system/device_specs.conf",
-      "/etc/android_version.xml",
-      "/boot/hardware_profile.prop",
-      "/system/build.prop (or /vendor/build.prop)"
+      "Android Backup Extractor (ABE)",
+      "Wireshark Protocol Analyzer",
+      "Volatility Memory Framework",
+      "Autopsy Sleuthkit Carving Module"
     ],
-    "answer": 3,
-    "explanation": "'build.prop' (in /system or /vendor) defines system properties: 'ro.build.version.release' (Android version), 'ro.product.model' (handset model), 'ro.product.brand', 'ro.build.date', and security patch level."
+    "answer": 0,
+    "explanation": "Android Backup Extractor (ABE) is a specialized Java utility that unpacks encrypted or unencrypted Android `.ab` backup archives into standard uncompressed `.tar` archives by removing the 24-byte backup header and decompressing the zlib stream."
   },
   {
     "id": 113,
-    "question": "What Android artifact directory stores thumbnails of image and video files browsed by the user in shared storage?",
+    "topic": "Fastboot Mode Forensics",
+    "question": "In Android device triage, what is Fastboot mode and how is it used forensically?",
     "options": [
-      "/sdcard/DCIM/.thumbnails/",
-      "/system/media/previews/",
-      "/data/misc/camera/cache/",
-      "/data/system/thumbnails/"
+      "A diagnostic bootloader protocol communicating over USB that allows reading hardware partition tables, OEM status, and booting custom forensic recovery images (`fastboot boot recovery.img`) without flashing NAND",
+      "A high-speed cellular data protocol used to stream call recordings to carrier headquarters",
+      "An in-app debugger for JavaScript code running in Google Chrome",
+      "A power-saving mode that disables RAM refresh cycles to preserve battery life"
     ],
     "answer": 0,
-    "explanation": "Android caches image thumbnails in '/sdcard/DCIM/.thumbnails/' (or '.thumbdata' files). Examiners can recover thumbnails of photos that the suspect deleted from the main camera folder."
+    "explanation": "Fastboot is a bootloader-level protocol executed when the phone boots into the bootloader. Forensic examiners can use Fastboot on devices with unlocked (or temporarily vulnerable) bootloaders to query device variables (`fastboot getvar all`) or tether-boot a forensic recovery kernel without modifying NAND storage."
   },
   {
     "id": 114,
-    "question": "What primary SQLite database stores the complete photo library, albums, metadata, and face recognition data on Apple iOS devices?",
+    "topic": "Andriller Forensic Suite",
+    "question": "What is Andriller in mobile forensic investigations?",
     "options": [
-      "camera_roll.db (in /System/Library/Media/)",
-      "Photos.sqlite (in /private/var/mobile/Media/PhotoData/) ",
-      "photos_metadata.storedata (in /private/var/preferences/)",
-      "gallery.sqlite (in /private/var/mobile/Library/)"
+      "A specialized open-source/commercial utility designed for Android smartphone collection, decoding communication databases, cracking lock screen patterns/PINs, and parsing WhatsApp/browser data",
+      "A hardware flasher box used exclusively for iPhone A15 Bionic chip desoldering",
+      "A network sniffer tool for intercepting 5G New Radio air-interface frames",
+      "An automated password cracker for PDF document permissions"
     ],
-    "answer": 1,
-    "explanation": "'Photos.sqlite' manages the entire iOS photo library. It records original capture timestamps, latitude/longitude GPS coordinates, camera model, lens settings, and face recognition groupings."
+    "answer": 0,
+    "explanation": "Andriller is a dedicated utility for Android forensic investigations. It performs read-only acquisitions, extracts communication databases, parses app data, and performs automated pattern/PIN decoding on supported Android devices."
   },
   {
     "id": 115,
-    "question": "What occurs when a user deletes a photograph from an iPhone running modern iOS?",
+    "topic": "Cellebrite Physical Analyzer",
+    "question": "In mobile forensic laboratory operations, what is the specific role of Cellebrite Physical Analyzer?",
     "options": [
-      "The photo file sectors on flash memory are immediately overwritten with randomized pseudorandom hex characters",
-      "The photo is instantly converted into an uncompressed TIFF file in unallocated cluster slack",
-      "The photo is moved to the 'Recently Deleted' album in Photos.sqlite, where it is retained for 30 days before permanent purging",
-      "The photo is automatically transmitted to Apple iCloud servers as an immutable diagnostic archive"
+      "Decoding, parsing, reconstructing, and reporting digital evidence from raw binary extractions, file system dumps, and logical backups collected by UFED hardware",
+      "Transmitting over-the-air firmware updates to locked mobile devices",
+      "Manufacture of Faraday bags and RF shielding enclosures",
+      "Physical chemical desoldering of NAND flash memory chips"
     ],
-    "answer": 2,
-    "explanation": "iOS does not immediately delete photos. It sets 'ZTRASHEDSTATE = 1' and 'ZTRASHEDDATE' in Photos.sqlite, moving the photo to 'Recently Deleted' where it remains fully carvable and viewable for 30 days."
+    "answer": 0,
+    "explanation": "While Cellebrite UFED devices extract the raw data from mobile devices, Cellebrite Physical Analyzer is the workstation software that decodes the extraction, parsing SQLite databases, reconstructing timelines, carving deleted files, and generating comprehensive forensic reports."
   },
   {
     "id": 116,
-    "question": "What SQLite database stores Safari web browsing history, page titles, and visit timestamps on iOS devices?",
+    "topic": "Magnet AXIOM Mobile",
+    "question": "What notable capability does Magnet AXIOM Mobile provide when analyzing extractions from modern Android devices?",
     "options": [
-      "safari_cache.sqlite (in /private/var/mobile/Containers/)",
-      "web_history.storedata (in /System/Library/Safari/)",
-      "places.sqlite (in /private/var/preferences/)",
-      "History.db (in /private/var/mobile/Library/Safari/)"
+      "Artifact-first parsing that simultaneously ingests mobile extractions, cloud tokens, and warrant returns, correlating cross-app communication, geolocation, and media",
+      "Immediate hardware decryption of Qualcomm Titan M2 processors without any user passcode",
+      "Over-the-air remote execution of live malware onto target devices",
+      "Re-flashing target devices with stock OEM firmware during extraction"
     ],
-    "answer": 3,
-    "explanation": "Safari stores browsing history on iOS in 'History.db'. The 'history_items' table tracks visited URLs, and 'history_visits' records timestamps (in Apple Cocoa Core Data epoch), visit count, and page titles."
+    "answer": 0,
+    "explanation": "Magnet AXIOM Mobile focuses on artifact-centric evidence processing, analyzing hundreds of mobile apps, cloud tokens, system artefacts, and warrant returns simultaneously to build unified forensic timelines."
   },
   {
     "id": 117,
-    "question": "In Apple iOS forensics, what is the 'routined' daemon and what artifact database does it maintain?",
+    "topic": "MSAB XRY Extraction Types",
+    "question": "The MSAB XRY mobile forensics suite classifies extractions into which three primary operational levels?",
     "options": [
-      "It maintains 'Cache.sqlite' (Significant Locations) tracking frequently visited places, arrival/departure times, and transit habits",
-      "It manages Bluetooth Low Energy synchronization with third-party fitness trackers",
-      "It executes automated system reboots whenever battery temperature exceeds 45 degrees Celsius",
-      "It compresses application log files into encrypted ZIP archives in unallocated storage"
+      "Logical, File System (Advanced Logical), and Physical",
+      "Passive, Aggressive, and Destructive",
+      "Volatile, Semi-Volatile, and Non-Volatile",
+      "Network, Cloud, and Satellite"
     ],
     "answer": 0,
-    "explanation": "'routined' is the iOS daemon responsible for CoreRoutine (Significant Locations). It maintains 'Cache.sqlite' (in '/private/var/mobile/Library/Caches/com.apple.routined/'), logging frequently visited GPS coordinates and visit durations."
+    "explanation": "MSAB XRY structures its extractions into: (1) Logical (standard backup/API query), (2) File System / Extended Logical (full live directory tree extraction), and (3) Physical (bit-by-bit raw flash partition image)."
   },
   {
     "id": 118,
-    "question": "In Apple iOS diagnostics, what is a 'sysdiagnose' file and why is it exceptionally valuable in incident investigations?",
+    "topic": "Oxygen Forensic Detective",
+    "question": "Which specialized capability is a hallmark feature of Oxygen Forensic Detective in mobile examinations?",
     "options": [
-      "A full physical bitstream copy of the Secure Enclave hardware silicon chip",
-      "A comprehensive diagnostic TAR archive generated by pressing Volume + Power buttons, capturing system logs, active tasks, Wi-Fi networks, and crash reports",
-      "A hardware debugging protocol used to flash factory firmware onto NAND flash chips",
-      "An unencrypted backup of the Apple Watch biometric heart rate database"
+      "Extensive parsing of encrypted cloud services, IoT companion apps, drone logs, and mobile lockscreen bypasses using proprietary bootloader exploits",
+      "Exclusive restriction to desktop Windows Registry analysis with zero mobile support",
+      "Manual hex-editing of raw NAND flash sectors without software decoding",
+      "Direct satellite interception of ongoing cellular phone calls"
     ],
-    "answer": 1,
-    "explanation": "Triggering sysdiagnose (holding Volume Up + Volume Down + Power) generates a large archive (.tar.gz) containing system state: Wi-Fi logs, mobile_installation logs, thermal state, running processes, and power history."
+    "answer": 0,
+    "explanation": "Oxygen Forensic Detective is known for deep mobile app decoding, cloud extraction (Oxygen Forensic Cloud Extractor), parsing IoT and smartwatch companion data, and low-level physical acquisition via bootloader/EDL exploits."
   },
   {
     "id": 119,
-    "question": "In cellular network architecture, what is a 'Femtocell' or 'Microcell'?",
+    "topic": "ADB Content Provider Queries",
+    "question": "An examiner with authorized ADB shell access uses the command `content query --uri content://telephony/carriers`. What forensic data is returned?",
     "options": [
-      "A high-power regional transmission antenna with a coverage radius exceeding 100 kilometers",
-      "A specialized satellite transceiver mounted on commercial passenger aircraft",
-      "A low-power cellular base station typically deployed indoors or in high-density areas with a coverage radius under 100 meters to 2 kilometers",
-      "An underground submarine fiber optic repeater station connecting international networks"
+      "Configured Access Point Name (APN) settings, carrier proxy servers, and MMSC endpoints",
+      "Live GPS coordinates of the mobile device",
+      "Decrypted WhatsApp chat conversations",
+      "The user's Google account password"
     ],
-    "answer": 2,
-    "explanation": "Femtocells and microcells provide small-footprint coverage (10m to 2km) in offices, homes, or shopping malls, allowing examiners to pinpoint suspect locations with far greater precision than macrocells."
+    "answer": 0,
+    "explanation": "The command `content query --uri content://telephony/carriers` queries Android's telephony content provider, returning APN configuration records, carrier proxy settings, port numbers, and multimedia messaging endpoints."
   },
   {
     "id": 120,
-    "question": "What is the maximum theoretical coverage radius of a standard GSM macrocell base transceiver station (BTS)?",
+    "topic": "Autopsy Android Module",
+    "question": "What is the primary function of the Android Analyzer module in the open-source Autopsy forensic platform?",
     "options": [
-      "Approximately 500 meters",
-      "Approximately 150 kilometers",
-      "Approximately 500 kilometers",
-      "Approximately 35 kilometers"
+      "Parsing common Android SQLite databases including Call Logs, SMS/MMS messages, Contacts, Tango, and Web History from an extracted Android disk image or folder structure",
+      "Bypassing hardware FRP (Factory Reset Protection) on Samsung Exynos devices",
+      "Generating deep-fake video evidence for courtroom demonstrations",
+      "Writing exploit payloads directly into the device's Baseband Processor"
     ],
-    "answer": 3,
-    "explanation": "In standard GSM, the Timing Advance parameter has 64 steps (0 to 63), each representing ~550 meters: 64 * 550m = 35.2 km, setting the theoretical maximum cell radius to ~35 km without extended range configurations. (limited by GSM Timing Advance range of 0 to 63)"
+    "answer": 0,
+    "explanation": "The Android Analyzer add-on module in Autopsy automatically ingests an Android file system or image, locates standard database files (such as `contacts2.db`, `telephony.db`, browser history), decodes records, and populates Autopsy's Blackboard evidence tree."
   },
   {
     "id": 121,
-    "question": "In Call Detail Record (CDR) analysis, what is 'Horizontal Beamwidth' of a directional cellular sector antenna?",
+    "topic": "FDE vs FBE in Android",
+    "question": "What is the critical architectural difference between legacy Full Disk Encryption (FDE) and modern File-Based Encryption (FBE) introduced in Android 7.0 and mandated in Android 10+?",
     "options": [
-      "The angular width (typically 65 degrees) across which the antenna radiates the majority of its radio signal power",
-      "The physical height of the steel telecommunication tower above ground level",
-      "The vertical tilt angle applied to direct radio waves toward the horizon",
-      "The speed in megabits per second at which mobile packet data is transmitted"
+      "FDE encrypts the entire userdata partition with a single key tied to the user password, whereas FBE encrypts individual files with different keys, separating storage into Device Encrypted (DE) and Credential Encrypted (CE) areas",
+      "FDE encrypts only system apps while FBE encrypts only third-party apps",
+      "FDE uses AES-56 while FBE uses 4096-bit RSA keys for every sector",
+      "FDE requires internet access during boot while FBE operates completely offline"
     ],
     "answer": 0,
-    "explanation": "Cellular sector antennas typically have a horizontal beamwidth of 60\u00b0 to 65\u00b0 (measured at -3dB half-power points). While covering a 120\u00b0 sector nominal wedge, signal is strongest within this 65\u00b0 beam."
+    "explanation": "In legacy Full Disk Encryption (FDE), a single key protected the entire userdata partition. In File-Based Encryption (FBE), different files are encrypted with different keys. This allows Direct Boot: the phone boots into Device Encrypted (DE) storage without user password entry, while Credential Encrypted (CE) storage remains locked until the user enters their PIN/pattern."
   },
   {
     "id": 122,
-    "question": "In cellular tower engineering, what is 'Mechanical Downtilt' versus 'Electrical Downtilt'?",
+    "topic": "Direct Boot: DE vs CE Storage",
+    "question": "In an Android device operating in the Direct Boot state (powered on, booted, but before the user enters their lockscreen PIN for the first time), what data can be accessed?",
     "options": [
-      "Mechanical tilt is controlled by the user's mobile smartphone; electrical tilt is controlled by satellite operators",
-      "Mechanical tilt physically angles the antenna bracket downward; electrical tilt alters phase shifts across antenna elements to tilt the beam without moving the bracket",
-      "Mechanical tilt increases the cell coverage area; electrical tilt shuts down the radio transceiver",
-      "Mechanical tilt rotates the antenna 360 degrees continuously; electrical tilt locks the antenna North"
+      "Only Device Encrypted (DE) storage data, such as alarms, incoming call services, and accessibility settings; Credential Encrypted (CE) data remains completely encrypted",
+      "All user WhatsApp chats and downloaded photos",
+      "The entire unallocated space of the NAND flash memory",
+      "All saved Google Chrome passwords and cookies"
     ],
-    "answer": 1,
-    "explanation": "Downtilt confines cell coverage to a target area. Mechanical tilt physically tilts the hardware. Electrical tilt changes the relative phase of the radio frequency feed, altering the radiation pattern electronically."
+    "answer": 0,
+    "explanation": "Before the user unlocks the screen for the first time after a reboot, the device is in Direct Boot mode. Only Device Encrypted (DE) keys are available in memory (allowing basic phone functions like receiving calls, alarm clock). Credential Encrypted (CE) keys are unlocked only when the user inputs their screen lock credential."
   },
   {
     "id": 123,
-    "question": "In forensic CDR analysis, what is the 'Planimetric Travel Speed Test'?",
+    "topic": "Hardware Security Chips (Titan M2 / Knox)",
+    "question": "What role do dedicated hardware security coprocessors such as Google's Titan M2, Apple's Secure Enclave, or Samsung's Knox Vault play in thwarting forensic acquisition?",
     "options": [
-      "Measuring the electrical resistance of the SIM card chip contacts using a digital multimeter",
-      "Determining the data transfer rate in gigabytes per hour during active 4G video streaming",
-      "Calculating the distance between two cell towers and the elapsed time between consecutive calls to determine if suspect movement was physically plausible",
-      "Calculating the battery drain percentage of the smartphone per kilometer traveled"
+      "They enforce passcode rate-limiting, exponential backoff delays, and cryptographic key generation entirely off the main Application Processor, rendering brute-force attacks mathematically infeasible",
+      "They physically discharge a high-voltage spark to incinerate the flash memory if an investigator touches the USB port",
+      "They disable cellular baseband communications whenever a Faraday bag is detected",
+      "They broadcast the device location via high-frequency audio tones to police servers"
     ],
-    "answer": 2,
-    "explanation": "If a suspect phone connects to Tower A in Delhi at 10:00 AM and Tower B in Mumbai at 10:15 AM, the implied speed (>4,000 km/h) is physically impossible, proving that two different phones or SIM-swap clones were active."
+    "answer": 0,
+    "explanation": "Dedicated security chips (Google Titan M2, Apple Secure Enclave, Samsung Knox Vault) execute independent isolated microcode. They manage PIN verification, implement hardware rate-limiting (e.g. 30-second delays, max attempt lockouts), and protect the root master keys, preventing brute-force attacks on the main CPU."
   },
   {
     "id": 124,
-    "question": "What is 'SIM Swapping' (SIM Jacking) fraud in telecom cybercrime?",
+    "topic": "OEM Bootloader Unlocking Wipe Policy",
+    "question": "What major forensic obstacle occurs when an investigator attempts to unlock an Android device's bootloader via the standard `fastboot oem unlock` or `fastboot flashing unlock` command?",
     "options": [
-      "Physically exchanging SIM cards between two smartphones during a physical robbery",
-      "Soldering two distinct SIM chips onto a single printed circuit board adapter",
-      "Modifying the IMEI number of a mobile handset using cracked service software",
-      "Fraudulently convincing a mobile carrier to reassign a victim's phone number to a new SIM card in the attacker's possession to intercept 2FA OTP codes"
+      "The bootloader automatically triggers a mandatory cryptographic wipe / factory reset of the `/data` (userdata) partition",
+      "The smartphone's battery is permanently disabled",
+      "The device transforms into an iPhone operating system",
+      "The IMEI number is permanently deleted from the baseband transceiver"
     ],
-    "answer": 3,
-    "explanation": "SIM swapping is a social engineering attack where an adversary dupes the carrier into activating a new SIM card linked to the victim's MSISDN, instantly intercepting SMS-based two-factor authentication (OTP) codes."
+    "answer": 0,
+    "explanation": "By Android security specification, executing bootloader unlock commands triggers an automatic, mandatory wipe of the userdata partition (`/data`) to prevent an unauthorized possessor from unlocking the bootloader to read the previous owner's encrypted files."
   },
   {
     "id": 125,
-    "question": "What is 'IMEI Cloning' (or IMEI Spoofing) and why do criminals engage in it?",
+    "topic": "USB Debugging RSA Key Authorization",
+    "question": "Why can an examiner not simply connect a locked modern Android phone to a computer and execute `adb shell` or `adb pull`?",
     "options": [
-      "Reprogramming a stolen phone's IMEI to match a legitimate, unblacklisted device to bypass Equipment Identity Register (EIR) network blocks",
-      "Duplicating a SIM card's IMSI number across multiple physical microchips",
-      "Converting a single-SIM smartphone into a dual-SIM smartphone via software update",
-      "Altering the MAC address of an external wireless Wi-Fi router"
+      "ADB requires the device to be unlocked and the user to explicitly accept the computer's RSA host key fingerprint via a physical confirmation pop-up on the touchscreen",
+      "ADB only works over Bluetooth and does not support USB cables",
+      "ADB was completely removed from Android starting in Android 8.0",
+      "ADB commands can only be issued by the cellular network operator"
     ],
     "answer": 0,
-    "explanation": "Stolen phones are blacklisted on the EIR by their IMEI. Criminals use specialized flashing boxes to overwrite the IMEI with an arbitrary or valid IMEI from a cheap handset, allowing the blacklisted phone back onto networks."
+    "explanation": "Android enforces RSA host authorization for ADB. Even if USB debugging is turned on, when connected to a new forensic workstation, the device presents a dialog asking the user to verify the computer's RSA key fingerprint, which requires an unlocked screen to accept."
   },
   {
     "id": 126,
-    "question": "In telecommunications, what is a 'Call Forwarding' (CF) artifact in a CDR?",
+    "topic": "Samsung Knox Warranty Bit (eFuse)",
+    "question": "What is the forensic consequence of tripping the Samsung Knox Warranty Bit (changing from `0x0` to `0x1`) during an unauthorized flashing attempt?",
     "options": [
-      "A call that was initiated using a commercial VoIP application like Skype or WhatsApp",
-      "A record showing that an incoming call was redirected automatically to another phone number (due to unconditional, busy, or unreachable forwarding)",
-      "A voice call that crossed international sovereign borders via undersea cables",
-      "A conference call involving three or more subscribers simultaneously"
+      "Hardware eFuses are blown permanently, irreversibly disabling Knox Vault, Secure Folder, Samsung Pay, and terminating enterprise data protection access",
+      "The phone is rendered completely unbootable permanently (hard-bricked)",
+      "The baseband modem changes its IMEI number to all zeros",
+      "The display resolution is permanently reduced to 480p"
     ],
-    "answer": 1,
-    "explanation": "Call forwarding records in CDRs show the original called number, the forwarding flag (CFU - unconditional, CFB - busy, CFNRY - no reply), and the forwarded-to number, critical for tracing deceptive redirection."
+    "answer": 0,
+    "explanation": "Samsung devices incorporate a physical hardware eFuse called the Knox Warranty Bit. Flashing non-OEM recovery or root images blows this fuse permanently (setting status to `0x1`). This irrevocably revokes access to Knox-protected containers like Secure Folder."
   },
   {
     "id": 127,
-    "question": "What is the Short Message Service Center (SMSC) number recorded in SMS CDR logs?",
+    "topic": "Qualcomm Snapdragon SPU",
+    "question": "What is the Qualcomm Secure Processing Unit (SPU) found in modern Snapdragon System-on-Chips (SoCs)?",
     "options": [
-      "The hardware serial number of the receiving subscriber's mobile handset",
-      "The geographic latitude and longitude coordinates of the destination cell tower",
-      "The telephone number of the carrier's central message switching server responsible for storing, routing, and delivering the SMS message",
-      "The cryptographic SHA-256 integrity hash of the 160-character text payload"
+      "An on-die hardware-isolated secure subsystem with its own dedicated CPU, crypto engines, and RAM, designed to protect biometric templates, banking credentials, and cryptographic keys",
+      "A software application downloaded from the Google Play Store to optimize mobile gaming frame rates",
+      "A peripheral sound processing unit responsible exclusively for Dolby Atmos audio",
+      "An external microSD card reader with built-in Wi-Fi"
     ],
-    "answer": 2,
-    "explanation": "When an SMS is sent, it is routed to the carrier's SMSC (e.g. +91 9810051914 for Airtel Delhi). The CDR records this SMSC address, confirming which carrier handled the message transmission."
+    "answer": 0,
+    "explanation": "The Qualcomm Secure Processing Unit (SPU) is an integrated hardware-isolated enclave on modern Snapdragon SoCs. It features its own secure processor, cryptographic accelerators, and secure memory, isolating critical operations from the main Android OS."
   },
   {
     "id": 128,
-    "question": "What is the maximum payload size of a single standard GSM SMS text message in 7-bit default alphabet encoding?",
+    "topic": "Physical Acquisition Limitations on Modern UFS",
+    "question": "Why is a raw chip-off physical extraction of a modern Android device running Android 11+ using UFS storage often of zero evidentiary value without the device's hardware keys?",
     "options": [
-      "256 characters",
-      "70 characters (which applies to 16-bit UCS-2 Unicode)",
-      "500 characters",
-      "160 characters (140 bytes / 1,120 bits)"
+      "Because File-Based Encryption (FBE) encrypts every file payload with per-file keys that are derived from the user's passcode and hardware-bound keys inside the SoC's secure enclave",
+      "Because UFS memory chips disintegrate when exposed to air",
+      "Because raw UFS flash chips cannot be physically placed in memory chip readers",
+      "Because UFS storage only retains data when continuously powered by a battery"
     ],
-    "answer": 3,
-    "explanation": "A standard SMS is limited to 140 octets (bytes) = 1,120 bits. In standard GSM 7-bit encoding: 1120 / 7 = 160 characters. In 16-bit UCS-2 Unicode (e.g. Hindi, emojis), the limit is 140 / 2 = 70 characters."
+    "answer": 0,
+    "explanation": "With modern hardware-backed File-Based Encryption (FBE), the raw flash memory dump obtained via chip-off contains only high-entropy encrypted ciphertext. Decryption requires both the user's passcode and the device-unique hardware secret embedded inside the original SoC's secure element."
   },
   {
     "id": 129,
-    "question": "What occurs when an SMS message exceeds 160 characters in standard GSM 7-bit encoding?",
+    "topic": "Factory Reset Protection (FRP)",
+    "question": "What is Android Factory Reset Protection (FRP) and how does it affect device reactivation?",
     "options": [
-      "It is split into multiple concatenated SMS parts, each holding 153 characters with a 7-byte User Data Header (UDH) for reassembly",
-      "The message is converted into a voice call and delivered as synthesized speech",
-      "The carrier automatically truncates and discards all text beyond the 160th character",
-      "The message is permanently encrypted using 256-bit Advanced Encryption Standard keys"
+      "A security feature that prevents a device from being setup and used after an untrusted factory reset unless the credentials of the previously registered Google Account are entered",
+      "A hardware switch inside the battery compartment that disables flash memory",
+      "An automated backup system that uploads all files to Google Drive prior to reset",
+      "A law enforcement backdoor allowing immediate root access on any Android device"
     ],
     "answer": 0,
-    "explanation": "Long messages use Concatenated SMS (Multipart SMS). A 6- or 7-byte User Data Header (UDH) inside each part tells the receiving phone how to reassemble the segments, reducing available text to 153 characters per part."
+    "explanation": "Factory Reset Protection (FRP) is designed to deter theft. If a device is factory reset via recovery mode or untrusted methods, the device requires the previous Google Account username and password during the initial setup wizard before granting access."
   },
   {
     "id": 130,
-    "question": "What forensic artifact format is commonly used by Garmin GPS navigation and fitness devices to store track logs, waypoints, and heart rate data?",
+    "topic": "Ephemeral Evidence & Wear-Leveling",
+    "question": "Why is traditional data carving in unallocated space increasingly unreliable on modern mobile solid-state storage (NAND/UFS)?",
     "options": [
-      "GPX (GPS Exchange Format XML)",
-      "FIT",
-      "KML (Keyhole Markup Language)",
-      "CSV (Comma-Separated Values)"
+      "Because Flash Translation Layer (FTL) garbage collection and the TRIM/discard command proactively erase and unmap deleted blocks to maintain write performance",
+      "Because solid-state drives store data as analog audio waves",
+      "Because Android deletes unallocated space every 60 seconds",
+      "Because mobile flash memory does not have unallocated space"
     ],
-    "answer": 1,
-    "explanation": "Garmin devices store location tracks, sensor data, and timestamps in proprietary binary '.FIT' files. Forensic tools decode FIT files to extract precise latitude, longitude, altitude, speed, and biometric telemetry. (Flexible and Interoperable Data Transfer) binary format (.fit)"
+    "answer": 0,
+    "explanation": "The Flash Translation Layer (FTL) uses background garbage collection and TRIM/UNMAP commands to clear blocks that are no longer referenced by the file system. Once TRIM runs, the storage controller returns zeros or random data for unallocated blocks, preventing traditional data carving."
   },
   {
     "id": 131,
-    "question": "In Unmanned Aerial Vehicle (UAV / Drone) forensics, what critical flight data is recovered from the drone's internal flash memory (e.g. DJI DAT files)?",
+    "topic": "iOS Kernel Architecture",
+    "question": "The core operating system kernel of Apple's iOS is derived from which hybrid kernel architecture?",
     "options": [
-      "Decrypted corporate email archives synchronized from the pilot's laptop",
-      "The private cryptographic keys of all commercial passenger aircraft in the flight corridor",
-      "GPS flight trajectories, takeoff home points, pilot controller coordinates, altitude, motor RPM, and battery telemetry",
-      "The Master Boot Record partition table of the local air traffic control radar system"
+      "Darwin / XNU (X is Not Unix), combining the Mach microkernel, BSD subsystem, and I/O Kit object-oriented driver framework",
+      "Pure Linux monolithic kernel with SELinux extensions",
+      "Windows NT microkernel architecture with Win32 subsystem",
+      "FreeBSD monolithic kernel without any microkernel components"
     ],
-    "answer": 2,
-    "explanation": "Drone flight logs (e.g. DJI .DAT or .txt logs) record rich forensic evidence: exact Home Point (where the pilot stood at takeoff), flight path coordinates, altitude, throttle inputs, pitch/roll, and serial numbers."
+    "answer": 0,
+    "explanation": "Apple's iOS (as well as macOS, watchOS, tvOS) is built on the Darwin operating system, whose XNU hybrid kernel combines the Mach 3.0 microkernel (thread scheduling, IPC, memory management), FreeBSD subsystem (POSIX APIs, user credentials, networking), and I/O Kit (C++ device driver framework)."
   },
   {
     "id": 132,
-    "question": "What is the 'Home Point' in drone forensics and why is it legally significant in locating a rogue drone operator?",
+    "topic": "Secure Enclave Processor (SEP)",
+    "question": "What is the Secure Enclave Processor (SEP) in Apple iPhone architecture?",
     "options": [
-      "The geographic address of the manufacturer's corporate headquarters",
-      "The primary international airport designated for emergency landings",
-      "The central telecommunication switching office routing cellular data",
-      "The GPS coordinate recorded by the drone at motor arming/takeoff, frequently identifying the physical location of the pilot"
+      "A dedicated hardware security coprocessor running its own isolated microkernel (sepOS), managing biometric data (Face ID / Touch ID), cryptographic keys, and passcode verification",
+      "The primary multi-core graphics processing unit (GPU) responsible for rendering the home screen",
+      "The baseband transceiver chip communicating with 4G/5G cellular towers",
+      "A cloud server operated by Apple that verifies user logins remotely"
     ],
-    "answer": 3,
-    "explanation": "When a drone takes off, its GPS establishes a 'Home Point' for automated Return-to-Home (RTH). Extracting the Home Point from flight logs reveals where the pilot was standing when the flight commenced."
+    "answer": 0,
+    "explanation": "The Secure Enclave is a dedicated security coprocessor fabricated directly into Apple A-series and M-series chips. It runs sepOS, features its own secure memory, random number generator, and hardware AES engine, and is responsible for passcode authentication and biometric matching."
   },
   {
     "id": 133,
-    "question": "What wireless protocol is predominantly used for short-range communication between mobile smartphones and smart wearable accessories?",
+    "topic": "Hardware AES Engine & UID/GID",
+    "question": "Which unique, factory-fused cryptographic key embedded in Apple SoCs is inaccessible to software and known not even to Apple?",
     "options": [
-      "Bluetooth Low Energy (BLE / Bluetooth Smart)",
-      "NFC (Near Field Communication)",
-      "Zigbee (IEEE 802.15.4)",
-      "Wi-Fi Direct (P2P)"
+      "The Unique ID (UID) key fused into the Application Processor during silicon fabrication",
+      "The Group ID (GID) key shared across all processors of a specific model family",
+      "The Apple Developer Signing Certificate private key",
+      "The International Mobile Station Equipment Identity (IMEI) key"
     ],
     "answer": 0,
-    "explanation": "Smartwatches and fitness trackers use Bluetooth Low Energy (BLE) to communicate with paired phones. BLE provides low-power telemetry streaming, and pairing artifacts persist in mobile system settings."
+    "explanation": "The Device Unique ID (UID) is a 256-bit AES key burned into the Application Processor during manufacturing. No software or firmware can read the raw UID key directly; only the hardware AES engine can use it for cryptographic operations, binding encryption directly to the physical silicon chip."
   },
   {
     "id": 134,
-    "question": "Where are paired Bluetooth device MAC addresses and connection timestamps stored on an Android smartphone?",
+    "topic": "Apple Secure Boot Chain",
+    "question": "What is the chronological sequence of the Apple iOS Secure Boot chain?",
     "options": [
-      "/system/etc/bluetooth/devices.xml",
-      "/data/misc/bluedroid/bt_config.conf (or /data/misc/bluetooth/)",
-      "/data/system/users/0/paired_bt.db",
-      "/vendor/bluetooth/firmware/bonding.conf"
+      "Boot ROM (SecureROM) -> Low-Level Bootloader (LLB) -> iBoot -> iOS Kernel -> User Space",
+      "iOS Kernel -> Boot ROM -> iBoot -> SpringBoard",
+      "iBoot -> Boot ROM -> Low-Level Bootloader -> Secure Enclave",
+      "Baseband Processor -> SecureROM -> SpringBoard -> iOS Kernel"
     ],
-    "answer": 1,
-    "explanation": "Android stores paired Bluetooth device details in 'bt_config.conf' (or associated XML/database files in modern Android), documenting device MAC address, device name, link keys, and last connection timestamps."
+    "answer": 0,
+    "explanation": "The iOS Secure Boot Chain begins at hardware fabrication: Boot ROM (SecureROM, immutable hardware code) verifies the Low-Level Bootloader (LLB), which verifies iBoot, which in turn verifies the iOS Kernel (XNU), ensuring that only cryptographically signed Apple firmware can execute."
   },
   {
     "id": 135,
-    "question": "What information is recorded in the 'Location Information' (EF_LOCI) elementary file on a SIM card?",
+    "topic": "Apple Data Protection Classes: Class A",
+    "question": "Under iOS Data Protection architecture, how does Complete Protection (Class A / `NSFileProtectionComplete`) protect files?",
     "options": [
-      "The user's complete Google Maps offline navigation map caches",
-      "The physical street address of the retail shop where the SIM was purchased",
-      "TMSI (Temporary Mobile Subscriber Identity), Location Area Code (LAC), and Mobile Country/Network Code (MCC/MNC) of the last registered cell",
-      "The private Wi-Fi network passwords of all connected wireless routers"
+      "The file encryption key is erased from memory immediately when the device is locked, making the file inaccessible until the user unlocks the device with their passcode",
+      "The file is encrypted with a public key and can only be opened when connected to Wi-Fi",
+      "The file is readable at all times, even when the device is locked",
+      "The file is stored exclusively on iCloud servers and never written to flash memory"
     ],
-    "answer": 2,
-    "explanation": "EF_LOCI on a SIM card records the last location area where the phone was active: Temporary Mobile Subscriber Identity (TMSI), Location Area Code (LAC), and Routing Area status."
+    "answer": 0,
+    "explanation": "Class A (Complete Protection) provides the highest security: file encryption keys are derived from the user's passcode and the device UID, and are wiped from memory as soon as the screen is locked. Data is completely unreadable until the user unlocks the device."
   },
   {
     "id": 136,
-    "question": "What is 'Cell Phone Triangulation' using multiple cell towers in forensic geolocation?",
+    "topic": "Apple Data Protection Classes: Class C",
+    "question": "Which Apple Data Protection class protects files that must remain accessible after the device has been unlocked once following a boot, even while the screen is locked?",
     "options": [
-      "Connecting three physical jumper wires to the smartphone circuit board test points",
-      "Rotating the mobile device through three 90-degree angles inside a Faraday box",
-      "Calculating the mathematical average of three distinct SHA-256 acquisition digests",
-      "Estimating a phone's position by calculating the intersection of distance circles (using Timing Advance and signal delay) from three or more base stations"
+      "Protected Until First User Authentication (Class C / `NSFileProtectionCompleteUntilFirstUserAuthentication`)",
+      "Complete Protection (Class A / `NSFileProtectionComplete`)",
+      "Protected Unless Open (Class B / `NSFileProtectionCompleteUnlessOpen`)",
+      "No Protection (Class D / `NSFileProtectionNone`)"
     ],
-    "answer": 3,
-    "explanation": "True triangulation (or trilateration) requires data from at least 3 distinct cell towers. By calculating the signal propagation delay / Timing Advance from each tower, the phone's location is narrowed to the intersection area."
+    "answer": 0,
+    "explanation": "Class C (CompleteUntilFirstUserAuthentication) is the default class for most third-party app data. The file key remains in RAM after the first unlock following a boot. This enables background processes (like incoming emails or background sync) to write and read data even when the phone screen is subsequently locked."
   },
   {
     "id": 137,
-    "question": "Why does a single cell tower CDR record provide a 'sector area' rather than an exact pinpoint GPS coordinate?",
+    "topic": "Apple Data Protection Classes: Class B",
+    "question": "What characterizes Apple Data Protection Class B (`NSFileProtectionCompleteUnlessOpen`)?",
     "options": [
-      "A cell sector antenna covers a 120-degree wedge spanning several kilometers, meaning the phone could be anywhere within that radio coverage zone",
-      "Cellular carriers deliberately scramble tower coordinates to protect national security secrets",
-      "The cellular radio frequency signal is reflected by the Earth's ionosphere",
-      "Cellular phones disable their internal GPS hardware whenever a voice call is active"
+      "A file can be created or opened while the device is unlocked, and remains accessible via asymmetric ephemeral key wrapping even if the device is subsequently locked while the file is open",
+      "The file has zero encryption and is stored in cleartext",
+      "The file can only be decrypted if an Apple Genius Bar technician approves it",
+      "The file key is permanently destroyed after 10 minutes of inactivity"
     ],
     "answer": 0,
-    "explanation": "A standard CDR only indicates that a phone connected to a specific tower antenna. Because a sector antenna radiates in an arc (e.g. 120\u00b0 azimuth) across several square kilometers, CDR data proves presence within an area, not a pinpoint point."
+    "explanation": "Class B uses asymmetric cryptography: a file can be opened while the device is unlocked, and if the device is locked while the file is still open, the app can continue writing to it using an ephemeral public key pair without exposing the main private key."
   },
   {
     "id": 138,
-    "question": "What telecom artifact combines base station geographic coordinates with sector azimuth angles to map CDR tower locations into GIS mapping software?",
+    "topic": "Apple Data Protection Classes: Class D",
+    "question": "What is the security posture of Apple Data Protection Class D (`NSFileProtectionNone`)?",
     "options": [
-      "Customer Application Form (CAF)",
-      "Cell Site Database (Cell Tower Dump / Master Tower List provided by telecom operators)",
-      "Subscriber Detail Record (SDR)",
-      "International Mobile Equipment Identity registry"
+      "The file is encrypted only with the device hardware UID key; it is accessible at all times, even before the first passcode unlock after boot",
+      "The file is completely unencrypted on disk with zero AES protection",
+      "The file is deleted automatically upon locking the screen",
+      "The file is protected by a 64-character master administrator password"
     ],
-    "answer": 1,
-    "explanation": "The Cell Site Database (master cell list) provides the physical ground coordinates (Latitude/Longitude), Azimuth (compass direction), Antenna Height, and Beamwidth for every Cell ID, enabling GIS visualization."
+    "answer": 0,
+    "explanation": "Class D files are protected only with a key derived from the hardware UID. Because this key does not depend on the user's passcode, Class D data is accessible whenever the device is booted, even in the BFU (Before First Unlock) state."
   },
   {
     "id": 139,
-    "question": "What is 'Drive Testing' in telecommunications and forensic cellular coverage verification?",
+    "topic": "iOS Mandatory Access Control (MAC)",
+    "question": "Which security framework in the iOS Darwin kernel enforces Mandatory Access Control (MAC) rules restricting system calls and inter-process interactions?",
     "options": [
-      "Testing the crash resistance of a mobile smartphone inside a motor vehicle collision simulator",
-      "Accelerating a hard disk drive to 7200 RPM to verify read head stability",
-      "Physically driving a route with specialized RF scanning equipment to measure real-world signal strength and verify which cell tower actually serves a specific location",
-      "Simulating vehicle speed using an automated software emulator in a forensic laboratory"
+      "TrustedBSD MAC framework combined with Apple Sandbox (`Seatbelt`) profile engine",
+      "Linux AppArmor profile engine",
+      "Windows Defender Security Center",
+      "NetFilter iptables packet filter"
     ],
-    "answer": 2,
-    "explanation": "Because terrain and buildings cause signal reflections and shadowing, mathematical coverage maps can be misleading. Drive testing uses specialized RF receivers to measure actual radio coverage and confirm tower connectivity on the ground."
+    "answer": 0,
+    "explanation": "iOS security relies on the TrustedBSD Mandatory Access Control (MAC) framework integrated into the XNU kernel. The Apple Sandbox (internally called 'Seatbelt') enforces strict sandbox profiles (`.sb` files) on every third-party app and daemon."
   },
   {
     "id": 140,
-    "question": "What is the designated legal retention period for Call Detail Records (CDRs) and IPDRs mandated for telecom service providers by the Department of Telecommunications (DoT) in India?",
+    "topic": "Address Space Layout Randomization (ASLR)",
+    "question": "How does Kernel Address Space Layout Randomization (KASLR) enhance iOS defensive architecture?",
     "options": [
-      "6 months",
-      "10 years",
-      "90 days",
-      "2 years"
+      "It randomizes the memory locations of the iOS kernel code, stack, and heap at every boot, preventing attackers from using hardcoded memory offsets in Return-Oriented Programming (ROP) exploits",
+      "It randomizes the physical pin locations on the Lightning/USB-C charging port",
+      "It randomly changes the cellular IMEI number every 24 hours",
+      "It compresses file system blocks to save flash storage space"
     ],
-    "answer": 3,
-    "explanation": "In December 2021, the Department of Telecommunications (DoT), Government of India, amended the Unified License agreement, mandating that all telecom and internet service providers preserve CDRs and IPDRs for a minimum of 2 years. (extended from 1 year by DoT amendment in December 2021)"
+    "answer": 0,
+    "explanation": "KASLR randomizes the base memory address of the kernel and executable binaries at boot time. An attacker cannot use fixed memory addresses to execute shellcode or ROP chains, requiring a separate memory leak vulnerability to bypass."
   },
   {
     "id": 141,
-    "question": "What commercial mobile forensic hardware and software suite developed by Cellebrite is widely used for physical and logical smartphone extraction?",
+    "topic": "APFS File System Architecture",
+    "question": "Introduced in iOS 10.3 to replace legacy HFS+, what modern 64-bit file system is standard across all contemporary Apple devices?",
     "options": [
-      "Cellebrite UFED",
-      "EnCase Forensic Workstation",
-      "Wireshark Network Suite",
-      "Ghidra Reverse Engineering Core"
+      "Apple File System (APFS)",
+      "Extended File System 4 (EXT4)",
+      "New Technology File System (NTFS)",
+      "ZFS (Zettabyte File System)"
     ],
     "answer": 0,
-    "explanation": "Cellebrite UFED is the global standard commercial hardware and software suite for mobile device extraction, supporting physical, file system, and logical extractions across thousands of Android and iOS devices. (Universal Forensic Extraction Device)"
+    "explanation": "Apple File System (APFS) replaced HFS+ in iOS 10.3 (and macOS 10.13). Designed specifically for solid-state flash storage, APFS features 64-bit inode numbers, nanosecond timestamp precision, copy-on-write cloning, native multi-key encryption, and space sharing."
   },
   {
     "id": 142,
-    "question": "What specialized mobile forensic hardware device developed by Magnet Forensics / Grayshift specializes in passcode brute-forcing and full file system extraction of iPhones?",
+    "topic": "APFS Timestamp Precision",
+    "question": "What is the timestamp resolution provided by the Apple File System (APFS), and why is this critical for forensic timeline reconstruction?",
     "options": [
-      "Tableau T8u",
-      "GrayKey",
-      "UltraBlock Hardware",
-      "Atola Insight"
+      "Nanosecond (1 billionth of a second) precision, enabling precise sequence correlation of file creation, modification, and access events",
+      "1-second precision identical to FAT32",
+      "2-second precision identical to MS-DOS FAT16",
+      "Millisecond precision identical to standard Unix epoch"
     ],
-    "answer": 1,
-    "explanation": "GrayKey (developed by Grayshift, now Magnet Forensics) is a specialized hardware appliance that interfaces with modern locked iPhones via Lightning/USB-C to perform advanced passcode recovery and full file system/AFU/BFU extractions."
+    "answer": 0,
+    "explanation": "APFS supports nanosecond-level timestamp precision (compared to 1-second precision in legacy HFS+). This extreme granularity enables forensic investigators to determine the exact millisecond/microsecond sub-sequence of events during incident reconstruction."
   },
   {
     "id": 143,
-    "question": "In Android application reverse engineering, what open-source tool decompiles compiled Dalvik bytecode (.dex) directly into readable Java source code?",
+    "topic": "iOS Partition Layout",
+    "question": "What are the two primary partitions on an iOS storage device, and how are they mounted?",
     "options": [
-      "apktool",
-      "Wireshark",
-      "jadx (or jadx-gui)",
-      "Volatility"
+      "System Partition (mounted read-only at `/`) and Data Partition (mounted read-write at `/private/var`)",
+      "C: Drive (read-write) and D: Recovery Drive (read-only)",
+      "EFI System Partition and Linux Swap Partition",
+      "Boot Partition (mounted read-write) and Cache Partition (mounted read-only)"
     ],
-    "answer": 2,
-    "explanation": "jadx (and jadx-gui) decompiles Android DEX, APK, and AAR files into clean, readable Java source code, enabling forensic examiners to inspect application code and hardcoded secrets."
+    "answer": 0,
+    "explanation": "iOS flash storage is split into two primary partitions: the System partition (containing the iOS operating system and native system binaries, mounted read-only at `/` to prevent tampering) and the Data partition (mounted read-write at `/private/var`, containing all user data, apps, and logs)."
   },
   {
     "id": 144,
-    "question": "What open-source tool is standard for disassembling Android APK packages into Smali assembly code and decoding binary XML resources?",
+    "topic": "iOS App Sandbox Container Layout",
+    "question": "Where are third-party iOS applications and their associated user data stored in the iOS file system?",
     "options": [
-      "jadx",
-      "binwalk",
-      "ddrescue",
-      "apktool"
+      "Application binaries reside in `/private/var/containers/Bundle/Application/<UUID>/` while user data resides in `/private/var/containers/Data/Application/<UUID>/`",
+      "All binaries and data reside in a single flat directory `/Applications/<AppName>/`",
+      "In `/system/app/<AppName>/`",
+      "In `/usr/bin/mobile/apps/`"
     ],
-    "answer": 3,
-    "explanation": "apktool decodes binary AndroidManifest.xml and resource tables (.arsc) into human-readable XML and disassembles Dalvik bytecode into Smali assembly files for modification and analysis."
+    "answer": 0,
+    "explanation": "iOS separates app code and data into distinct container directories assigned unique 128-bit Universally Unique Identifiers (UUIDs): the Bundle Container (`/private/var/containers/Bundle/Application/<UUID>/`) holds the read-only `.app` bundle, while the Data Container (`/private/var/containers/Data/Application/<UUID>/`) holds user data."
   },
   {
     "id": 145,
-    "question": "In Android forensics, what is the role of 'StrongBox Keymaster' implemented in hardware security chips (e.g. Titan M)?",
+    "topic": "App Data Container: Documents Directory",
+    "question": "Within an iOS app's Data Container (`/private/var/containers/Data/Application/<UUID>/`), what is the purpose of the `Documents/` sub-directory?",
     "options": [
-      "A dedicated hardware security chip with its own CPU, memory, and secure storage providing tamper-resistant cryptographic key generation",
-      "A secondary cellular radio transceiver used to connect to 5G mmWave networks",
-      "An automated battery cooling controller that prevents thermal throttling",
-      "A software virtual machine running Dalvik bytecode under root privileges"
+      "It stores critical user-generated content, documents, and databases that are automatically included in standard iTunes/iCloud backups",
+      "It contains temporary scratch files that are wiped upon every device reboot",
+      "It contains the compiled Mach-O executable code of the application",
+      "It holds the application's icon images and localization strings"
     ],
     "answer": 0,
-    "explanation": "StrongBox Keymaster (introduced in Android 9) executes on dedicated, physically isolated tamper-resistant hardware (like Google Titan M) separate from the main processor, protecting cryptographic keys against physical probing."
+    "explanation": "The `Documents/` directory is intended for user-generated content, communication databases, and documents. By default, its contents are backed up during iTunes and iCloud backup operations, making it a primary target for forensic extraction."
   },
   {
     "id": 146,
-    "question": "How can an examiner query an Android Content Provider directly from the command line using ADB?",
+    "topic": "App Data Container: Library Sub-Directories",
+    "question": "Where does an iOS application store its configuration preferences (`.plist` files) and cached network data within its Data Container?",
     "options": [
-      "adb pull /provider/content/<path>",
-      "adb shell content query --uri content://<authority>/<path>",
-      "adb execute-sql --database=<db_name>",
-      "adb query-provider --target=<authority>"
+      "Preferences in `Library/Preferences/` and cached data in `Library/Caches/`",
+      "Preferences in `tmp/` and cached data in `System/`",
+      "Preferences in `Documents/` and cached data in `Bundle/`",
+      "Preferences in `/etc/` and cached data in `/var/log/`"
     ],
-    "answer": 1,
-    "explanation": "The 'content' command in Android shell ('content query --uri content://...') allows examiners to query content providers over ADB, retrieving contacts, call logs, and SMS messages without directly pulling database files."
+    "answer": 0,
+    "explanation": "Inside the `Library/` directory of an app's container: `Library/Preferences/` stores user settings as property lists (`[BundleID].plist`), while `Library/Caches/` stores cached web data, images, and network responses (which are excluded from iTunes/iCloud backups)."
   },
   {
     "id": 147,
-    "question": "Where are Android application Shared Preferences stored on the internal file system?",
+    "topic": "App Data Container: tmp Directory",
+    "question": "What is the forensic significance of the `tmp/` directory within an iOS application container?",
     "options": [
-      "/data/system/preferences/<package_name>.dat",
-      "/sdcard/Android/data/<package_name>/prefs.json",
-      "/data/data/<package_name>/shared_prefs/<name>.xml",
-      "/system/etc/preferences/<package_name>.xml"
+      "It holds temporary data that the app does not need across app launches; the system may purge these files when the app is not running, but unpurged files may yield transient evidentiary data",
+      "It stores the user's permanent cryptographic private keys",
+      "It contains the operating system's kernel symbol table",
+      "It is a read-only directory that cannot be modified by the app"
     ],
-    "answer": 2,
-    "explanation": "Shared Preferences are stored as plain XML files in '/data/data/<package_name>/shared_prefs/'. They store configuration parameters, user login tokens, last sync timestamps, and session flags."
+    "answer": 0,
+    "explanation": "The `tmp/` directory is used for transient data that is not needed across multiple app invocations. While the operating system can purge this directory when storage is low or when the app is inactive, residual files, partial downloads, and temp databases frequently persist."
   },
   {
     "id": 148,
-    "question": "What custom recovery environment for Android is widely utilized in forensics to dump physical partitions without booting the main operating system?",
+    "topic": "Shared App Groups Container",
+    "question": "When multiple apps from the same developer or app extensions need to share databases (e.g. WhatsApp and its notification extension), where is this shared data stored?",
     "options": [
-      "Odin Download Engine",
-      "Fastboot OEM Flasher",
-      "Android Stock Recovery",
-      "TWRP (Team Win Recovery Project)"
+      "In the App Group Shared Container located at `/private/var/mobile/Containers/Shared/AppGroup/<UUID>/`",
+      "In the root system directory `/private/var/root/`",
+      "In the device's shared Bluetooth NVRAM",
+      "Directly on the external SIM card"
     ],
-    "answer": 3,
-    "explanation": "TWRP (Team Win Recovery Project) is a custom touch-based recovery. Flashing or booting a temporary TWRP image allows examiners to execute root commands, dump block partitions via ADB, and mount encrypted partitions."
+    "answer": 0,
+    "explanation": "Apps belonging to the same developer team that declare an App Group entitlement share a common container directory located at `/private/var/mobile/Containers/Shared/AppGroup/<UUID>/`. For example, WhatsApp stores its central chat database `ChatStorage.sqlite` in this shared container."
   },
   {
     "id": 149,
-    "question": "In Android partition architecture, what is the purpose of the 'frp' (Factory Reset Protection) partition?",
+    "topic": "APFS Copy-on-Write Snapshots",
+    "question": "How do APFS snapshots function in iOS, and what is their forensic value?",
     "options": [
-      "Storing persistent Google account authentication flags to prevent unauthorized use after an untrusted recovery factory reset",
-      "Holding the kernel image and initial RAM disk used during system boot",
-      "Managing the radio frequency calibration parameters for cellular transceivers",
-      "Caching high-resolution image thumbnails browsed in gallery applications"
+      "They are read-only point-in-time frozen images of the file system; examiners can inspect previous states of the operating system or user data before an update or wiping event occurred",
+      "They are photographs taken automatically by the front-facing camera when the wrong PIN is entered",
+      "They are hardware memory dumps saved directly to the battery controller",
+      "They are compressed ZIP archives automatically transmitted to law enforcement"
     ],
     "answer": 0,
-    "explanation": "The 'frp' partition (or persistent partition) stores Google account verification tokens. If a thief resets the phone via recovery, FRP blocks access at setup wizard until the original owner's Google credentials are entered."
+    "explanation": "APFS snapshots create instantaneous, read-only point-in-time copies of a file system volume using copy-on-write pointers. In modern iOS versions (starting with Signed System Volume in iOS 14+), the OS boots from an immutable, sealed APFS snapshot of the System volume."
   },
   {
     "id": 150,
-    "question": "What is the operational difference between Apple iOS 'Recovery Mode' and 'DFU (Device Firmware Upgrade) Mode'?",
+    "topic": "iOS Property Lists (.plist)",
+    "question": "What file format is ubiquitous throughout the iOS file system for storing configuration settings, application metadata, and system state?",
     "options": [
-      "Recovery Mode bypasses the user passcode; DFU Mode executes an automated factory reset",
-      "Recovery Mode loads iBoot and displays a graphical connect-to-computer icon; DFU Mode communicates directly with SecureROM with a completely black screen",
-      "Recovery Mode is accessible exclusively on iPads; DFU Mode is restricted to Apple Watches",
-      "Recovery Mode operates over Wi-Fi; DFU Mode requires an optical fiber connection"
+      "Property Lists (`.plist`), encoded either as human-readable XML or optimized binary format (BPList00)",
+      "Windows INI configuration files",
+      "YAML files strictly formatted with 4-space indentation",
+      "Comma-Separated Value (CSV) spreadsheets"
     ],
-    "answer": 1,
-    "explanation": "Recovery Mode runs iBoot (second-stage bootloader), presenting a USB graphic on screen. DFU mode is executed by the hardware BootROM (SecureROM) before iBoot loads; the screen stays pitch black, allowing low-level exploit execution."
+    "answer": 0,
+    "explanation": "Apple systems use Property List (`.plist`) files extensively. While they can be formatted in XML, Apple compiles most system property lists into binary format (starting with the magic bytes `bplist00`). Forensic tools convert binary plists to JSON/XML for inspection."
   },
   {
     "id": 151,
-    "question": "What is the USB Product ID (PID) presented by an Apple device when connected in DFU Mode?",
+    "topic": "iOS Permission Strings (Info.plist)",
+    "question": "In iOS app development and forensics, where must an application declare its justification strings (e.g. `NSCameraUsageDescription`, `NSLocationWhenInUseUsageDescription`) to request access to privacy-sensitive hardware?",
     "options": [
-      "0x1281 (Recovery Mode PID)",
-      "0x12A8 (Normal iOS USB PID)",
-      "0x1227",
-      "0x8086"
+      "In the application's root `Info.plist` file within its bundle container",
+      "In the Darwin kernel boot arguments file `/etc/boot.conf`",
+      "In the cellular carrier's SIM elementary file",
+      "In the system firmware ROM"
     ],
-    "answer": 2,
-    "explanation": "In USB enumeration, Apple devices in DFU Mode present the Product ID (PID) '0x1227'. In Recovery Mode, they present PID '0x1281'. In standard booted mode, they present PID '0x12A8' (or similar)."
+    "answer": 0,
+    "explanation": "Apple mandates that any app accessing sensitive resources (camera, microphone, location, photo library) must declare purpose strings in its bundle's `Info.plist` (e.g., `NSCameraUsageDescription`). If these keys are missing, iOS immediately terminates the app upon requesting access."
   },
   {
     "id": 152,
-    "question": "In Apple APFS file system encryption, what is a 'Keybag'?",
+    "topic": "iOS TCC Framework & TCC.db",
+    "question": "Which central operating system framework in iOS manages user privacy consent records, and what database file records these granted permissions?",
     "options": [
-      "A physical Faraday pouch used to transport seized iPhones to the laboratory",
-      "An uncompressed tar archive containing system diagnostic crash dumps",
-      "A registry hive storing paired Bluetooth accessory serial numbers",
-      "A data structure containing a collection of class encryption keys wrapped with higher-level master keys derived from user passcodes and hardware UID"
+      "Transparency, Consent, and Control (TCC) framework, stored in SQLite database `TCC.db`",
+      "Android Security Manager, stored in `permissions.xml`",
+      "Windows User Account Control (UAC), stored in `SAM.hiv`",
+      "Linux AppArmor, stored in `audit.log`"
     ],
-    "answer": 3,
-    "explanation": "A Keybag is a cryptographic container holding Data Protection class keys. iOS maintains the System Keybag (unlocked at boot with hardware keys) and the User Keybag (unwrapped only when the user enters their passcode)."
+    "answer": 0,
+    "explanation": "Apple's Transparency, Consent, and Control (TCC) framework regulates access to sensitive privacy subsystems. Granted, denied, and prompted permissions are stored in SQLite databases named `TCC.db` (located at `/private/var/mobile/Library/TCC/TCC.db` and `/Library/Application Support/com.apple.TCC/TCC.db`)."
   },
   {
     "id": 153,
-    "question": "In Apple iTunes / Finder backup forensic analysis, what file functions as the master index mapping hashed filenames to their original paths?",
+    "topic": "TCC.db Forensic Value",
+    "question": "What evidentiary information can a forensic investigator extract from the `access` table within an iOS `TCC.db` database?",
     "options": [
-      "Manifest.db (SQLite 3 relational database)",
-      "Manifest.plist (Property List file)",
-      "Status.plist",
-      "Info.plist"
+      "The app service requested (e.g. `kTCCServiceCamera`), bundle ID, client authorization status (allowed/denied), prompt count, and Unix timestamp of last access",
+      "The plaintext credit card numbers entered by the user",
+      "The raw decrypted photos taken by the camera",
+      "The source code of the application"
     ],
     "answer": 0,
-    "explanation": "In an iOS local backup, 'Manifest.db' is an SQLite database containing the 'Files' table, mapping each 40-character SHA-1 hashed filename (e.g., '3d0d7e5fb2ce288813306e4d4636395e047a3d28') back to its relative path and domain."
+    "explanation": "The `access` table in `TCC.db` provides an audit trail: which services were requested (camera, microphone, contacts, location), whether the user allowed or denied the request (`allowed` boolean), and timestamps of when permissions were modified or last utilized."
   },
   {
     "id": 154,
-    "question": "What cryptographic algorithm and iteration count are utilized to derive the key that encrypts an Apple iOS local backup when 'Encrypt iPhone Backup' is enabled?",
+    "topic": "iOS Unified Logging System (tracev3)",
+    "question": "Since iOS 10, what is the architecture and file format of the Apple Unified Logging System (`os_log`)?",
     "options": [
-      "MD5 single-pass hashing algorithm",
-      "PBKDF2 with HMAC-SHA1 or HMAC-SHA256 using up to 10,000,000 iterative rounds",
-      "Argon2id with 1 Megabyte memory cost",
-      "DES 56-bit symmetric block cipher"
+      "High-performance memory buffers that persist compressed binary log files with the `.tracev3` extension located in `/private/var/db/diagnostics/`",
+      "Plain human-readable text files stored in `/var/log/syslog`",
+      "XML spreadsheets stored in `/System/Library/Logs/`",
+      "Encrypted MP3 audio recordings stored in `/tmp/`"
     ],
-    "answer": 1,
-    "explanation": "Apple uses PBKDF2 with extremely high iteration counts (often 10 million rounds in modern iOS) to derive the key from the backup password, making brute-force dictionary attacks computationally expensive without GPU clusters."
+    "answer": 0,
+    "explanation": "The Apple Unified Logging System (`os_log`) captures system and app diagnostic events into proprietary compressed binary log files with the `.tracev3` extension, stored under `/private/var/db/diagnostics/` and `/private/var/db/uuidtext/`."
   },
   {
     "id": 155,
-    "question": "What SQLite database file stores historical Push Notifications delivered to an Apple iOS device?",
+    "topic": "Extracting Unified Logs (log collect)",
+    "question": "Which command or utility is utilized on macOS / jailbroken iOS to collect and archive all Unified Logs into a single inspectable `.logarchive` bundle?",
     "options": [
-      "/System/Library/PushNotifications/cache.db",
-      "/private/var/preferences/notifications.plist",
-      "/private/var/mobile/Library/UserNotifications/ (delivers.db or PushStore databases)",
-      "/private/var/root/Library/Alerts.db"
+      "`log collect --output <filename.logarchive>`",
+      "`cat /dev/klog > syslog.txt`",
+      "`dd if=/dev/disk0s1 of=logs.raw`",
+      "`tcpdump -i any -w trace.pcap`"
     ],
-    "answer": 2,
-    "explanation": "iOS stores delivered push notifications in SQLite databases under '/private/var/mobile/Library/UserNotifications/'. Notifications frequently contain snippets of incoming WhatsApp, Signal, or bank messages received while locked."
+    "answer": 0,
+    "explanation": "The command `log collect --output <filename.logarchive>` gathers tracev3 files and companion UUID string lookup tables from `/private/var/db/` into a standardized `.logarchive` directory bundle, which can then be parsed using Apple Console or open-source tools."
   },
   {
     "id": 156,
-    "question": "In Apple iOS forensics, what is 'Apple Unified Logging' and what file format stores its log traces?",
+    "topic": "Apple Sysdiagnose Key Combination",
+    "question": "On an unlocked, live iPhone, how can an investigator trigger an Apple `sysdiagnose` to generate a comprehensive system state dump without specialized commercial hardware?",
     "options": [
-      "A plain text log file located in /var/log/messages.txt",
-      "A Windows Event Log container format (.evtx) adapted for iOS",
-      "An uncompressed HTML report generated by the Safari web browser",
-      "A high-performance system logging system storing binary trace data in '.tracev3' files in '/private/var/db/diagnostics/'"
+      "Simultaneously pressing and holding both Volume Up and Volume Down buttons together with the Power/Side button for 1 to 1.5 seconds until a short vibration is felt",
+      "Pressing the Home button 10 times in rapid succession",
+      "Dialing `*#06#` on the phone keypad",
+      "Placing the phone inside a microwave for 3 seconds"
     ],
-    "answer": 3,
-    "explanation": "Unified Logging (introduced in iOS 10) records high-volume kernel and user-space telemetry into compressed binary files with the '.tracev3' extension, detailing app launches, network connections, and security events."
+    "answer": 0,
+    "explanation": "A `sysdiagnose` captures a massive diagnostic snapshot (process listings, task memory, network state, Wi-Fi logs, disk metrics). On modern iPhones, holding Volume Up + Volume Down + Side Button for 1–1.5 seconds triggers the dump, which is archived under `/private/var/mobile/Library/Logs/CrashReporter/DiagnosticLogs/sysdiagnose/`."
   },
   {
     "id": 157,
-    "question": "In cellular telecommunications roaming architecture, what is the 'HPLMN'?",
+    "topic": "iOS Crash Logs (.ips)",
+    "question": "What forensic artefacts are recorded in iOS crash reports with the `.ips` extension found in `/private/var/mobile/Library/Logs/CrashReporter/`?",
     "options": [
-      "Home Public Land Mobile Network (the subscriber's native home cellular network)",
-      "Visited Public Land Mobile Network (the roaming partner network)",
-      "Hardware Packet Link Mobile Node (the base station controller)",
-      "High Power Low Modulated Network (the emergency broadcast system)"
+      "Timestamp of crash, crashed process name, bundle identifier, OS version, hardware model, exception codes, and stack traces of all executing threads",
+      "The full audio conversation of the user's last phone call",
+      "Decrypted passwords stored in Apple Safari",
+      "The phone's complete cellular billing records"
     ],
     "answer": 0,
-    "explanation": "HPLMN (Home PLMN) is the network where the subscriber's SIM card profile is permanently registered (identified by the MCC and MNC of the IMSI). When abroad, the phone roams on a VPLMN (Visited PLMN)."
+    "explanation": "Crash reports (`.ips` files) contain JSON metadata and stack backtraces showing the precise application bundle ID, thread state, exception type (e.g., `EXC_BAD_ACCESS`, `SIGSEGV`), memory registers, and timestamp of the incident."
   },
   {
     "id": 158,
-    "question": "In cellular telecommunications roaming architecture, what is the 'VPLMN'?",
+    "topic": "iOS Powerlog Database (CurrentPowerlog.PLSQL)",
+    "question": "Why is the SQLite database `CurrentPowerlog.PLSQL` (located in `/private/var/mobile/Library/BatteryLife/`) considered an extraordinary 'goldmine' in iOS digital forensics?",
     "options": [
-      "Home Public Land Mobile Network (the native cellular carrier)",
-      "Visited Public Land Mobile Network (the foreign or guest network where a roaming subscriber connects)",
-      "Virtual Packet Logical Mobile Node (the gateway router)",
-      "Verified Private Land Mobile Network (the law enforcement radio band)"
+      "It logs granular historical timelines of battery charge, screen state (on/off), foreground app usage duration, Wi-Fi connections, and Bluetooth peripheral connections at periodic intervals",
+      "It contains the user's Apple ID password and master iCloud recovery key",
+      "It provides real-time satellite tracking coordinates regardless of GPS state",
+      "It records complete keystroke logs from the virtual keyboard"
     ],
-    "answer": 1,
-    "explanation": "VPLMN (Visited PLMN) is the guest network that a mobile user connects to while roaming outside their home carrier's territory. The VPLMN coordinates with the subscriber's HPLMN for authentication and billing."
+    "answer": 0,
+    "explanation": "`CurrentPowerlog.PLSQL` (and rotated archives) records battery and power telemetry. Forensically, it details device usage: exact timestamps when the screen turned on/off, which apps were in the foreground and for how many seconds, device charging cycles, and network state changes."
   },
   {
     "id": 159,
-    "question": "What international standard file format is used by cellular operators to exchange international roaming billing and call records?",
+    "topic": "KnowledgeC Database (knowledgeC.db)",
+    "question": "What forensic evidence is maintained in the Apple `knowledgeC.db` database located at `/private/var/mobile/Library/CoreDuet/`?",
     "options": [
-      "PCAPNG (Packet Capture Next Generation)",
-      "JSON (JavaScript Object Notation)",
-      "TAP3 (Transferred Account Procedure version 3 / CIBER format)",
-      "MBOX (Mailbox Container Format)"
+      "CoreDuet behavioral data tracking user intent, application usage history, lock/unlock events, portrait/landscape orientation, and device plug-in events",
+      "Carrier network frequency channel allocations",
+      "The binary firmware of the Apple Watch coprocessor",
+      "A complete mirror of the suspect's email inbox"
     ],
-    "answer": 2,
-    "explanation": "TAP3 (Transferred Account Procedure version 3) is the standard format defined by the GSMA for exchanging roaming call detail records between cellular operators worldwide for settlement."
+    "answer": 0,
+    "explanation": "The `knowledgeC.db` database is used by Apple's CoreDuet system to anticipate user behavior. It logs granular timestamped events including app in focus, device lock/unlock states, audio output changes, Siri queries, and battery plug-in events."
   },
   {
     "id": 160,
-    "question": "What technology enables high-definition voice telephone calls over 4G LTE packet-switched data networks instead of legacy 2G/3G circuit-switched networks?",
+    "topic": "iOS State Model Logs",
+    "question": "When evaluating iOS network logs, what evidence can confirm that an iPhone was connected to a specific Wi-Fi network at a given timestamp?",
     "options": [
-      "GPRS (General Packet Radio Service)",
-      "EDGE (Enhanced Data rates for GSM Evolution)",
-      "CSFB (Circuit-Switched Fallback)",
-      "VoLTE (Voice over Long-Term Evolution) utilizing IP Multimedia Subsystem (IMS)"
+      "Entries in `com.apple.wifi.plist` (or `com.apple.wifi-networks.plist`) and associated Unified Log records showing SSID, BSSID MAC address, security type, and timestamp of association",
+      "The IMEI number of the cellular baseband processor",
+      "The battery charge percentage reported in `Settings.plist`",
+      "The camera aperture setting in EXIF headers"
     ],
-    "answer": 3,
-    "explanation": "VoLTE routes voice calls as packetized data streams over LTE using the IP Multimedia Subsystem (IMS) and Session Initiation Protocol (SIP), replacing legacy circuit-switched fallbacks and providing HD audio."
+    "answer": 0,
+    "explanation": "Apple records configured and connected Wi-Fi networks in `com.apple.wifi.plist` (or `com.apple.wifi-networks.plist`), detailing SSIDs, BSSID (hardware MAC) of the access point, last joined date, and channel frequencies."
   },
   {
     "id": 161,
-    "question": "In telecommunications forensics, what is 'VoWiFi' (Voice over Wi-Fi)?",
+    "topic": "libimobiledevice Suite",
+    "question": "What is `libimobiledevice` in digital forensic practice?",
     "options": [
-      "Making cellular voice calls and sending SMS over an unencrypted or encrypted Wi-Fi network using IMS tunneling back to the carrier's core",
-      "Broadcasting FM radio signals across local household wireless routers",
-      "Executing Bluetooth audio streaming to external automobile speakers",
-      "Transferring contacts between two smartphones using near-field communication"
+      "A cross-platform open-source software library and CLI suite that interacts natively with iOS devices over USB using Apple's proprietary protocols without requiring iTunes",
+      "A physical hardware machine used to grind silicon chips down to micron levels",
+      "A proprietary Apple server used exclusively by Apple Store technicians",
+      "A specialized malware strain designed to hijack Android smartphones"
     ],
     "answer": 0,
-    "explanation": "VoWiFi (Voice over Wi-Fi / Wi-Fi Calling) tunnels cellular voice and SMS over standard residential or public Wi-Fi connections via an IPsec tunnel to the carrier's ePDG gateway, meaning calls generate IPDRs instead of traditional cell tower CGI records."
+    "explanation": "`libimobiledevice` is an open-source library that implements Apple's protocols (lockdownd, afc, backup2, diagnostics). It allows forensic workstations (Linux, macOS, Windows) to interface with iOS devices to pull diagnostics, inspect device metadata, and trigger logical backups."
   },
   {
     "id": 162,
-    "question": "What forensic challenge occurs when a suspect places a voice call using VoWiFi (Wi-Fi Calling)?",
+    "topic": "idevicebackup2 Forensics",
+    "question": "Which command in the `libimobiledevice` suite triggers a full logical backup of an unlocked, paired iPhone to a local forensic workstation?",
     "options": [
-      "The call recording will automatically be deleted from the recipient's smartphone memory",
-      "The CDR will lack a cellular tower Cell Global Identity (CGI), showing an ePDG IP or Wi-Fi gateway indicator instead",
-      "The caller's IMEI number will permanently change to all zeros",
-      "The carrier's Equipment Identity Register will permanently blacklist the SIM card"
+      "`idevicebackup2 backup --full <destination_path>`",
+      "`idevicecrashreport -k -f`",
+      "`ideviceinfo -s`",
+      "`idevicediagnostics sleep`"
     ],
-    "answer": 1,
-    "explanation": "Because VoWiFi calls route through the internet via Wi-Fi rather than cellular base stations, the CDR does not record a physical BTS cell tower CGI. Investigators must rely on carrier IPDR logs and ISP IP allocation to locate the Wi-Fi router."
+    "answer": 0,
+    "explanation": "The command `idevicebackup2 backup --full <destination_path>` initiates an Apple mobile backup over USB via the `com.apple.mobilebackup2` protocol, producing a standard iTunes backup structure containing `Manifest.db`, `Manifest.plist`, `Info.plist`, and hashed file payloads."
   },
   {
     "id": 163,
-    "question": "In cellular tower coverage modeling, what is an 'Omnidirectional Antenna' versus a 'Directional Sector Antenna'?",
+    "topic": "Encrypted vs Unencrypted iTunes Backups",
+    "question": "Why do mobile forensic examiners often prefer creating an ENCRYPTED iTunes backup (with a known temporary password) over an unencrypted backup?",
     "options": [
-      "An omnidirectional antenna communicates exclusively with satellites; a directional antenna connects to underground cables",
-      "An omnidirectional antenna requires high-voltage electrical power; a directional antenna is completely passive",
-      "An omnidirectional antenna radiates 360 degrees equally in all horizontal directions; a directional antenna concentrates radiation in a specific sector wedge",
-      "An omnidirectional antenna operates only during nighttime; a directional antenna functions during daylight"
+      "Encrypted backups include sensitive forensic artefacts excluded from unencrypted backups, such as saved Wi-Fi passwords, Health data, HomeKit data, and Safari saved credentials",
+      "Encrypted backups take 90% less time to extract",
+      "Encrypted backups automatically bypass the device's screen passcode",
+      "Encrypted backups permanently delete all log files on the iPhone"
     ],
-    "answer": 2,
-    "explanation": "Omnidirectional antennas radiate equally in 360\u00b0 (common in rural sites or microcells). Directional sector antennas concentrate power in specific angular azimuths (e.g. 120\u00b0 or 65\u00b0), providing angular sectorization for forensic mapping."
+    "answer": 0,
+    "explanation": "By Apple security design, unencrypted iTunes backups exclude sensitive records like Apple Health data, Wi-Fi credentials, and Keychain passwords. Setting a temporary backup password encrypts the backup but causes iOS to include Health databases, HomeKit, and Keychain records."
   },
   {
     "id": 164,
-    "question": "In cellular CDR mapping, what does 'Antenna Downtilt' do to the coverage radius on the ground?",
+    "topic": "iTunes Backup Manifest.db",
+    "question": "In an iOS iTunes backup directory, what is the role of the SQLite database named `Manifest.db`?",
     "options": [
-      "Increasing downtilt expands the coverage radius to over 100 kilometers",
-      "Increasing downtilt rotates the antenna azimuth 180 degrees counter-clockwise",
-      "Increasing downtilt converts the cellular signal from 4G LTE to analog 1G",
-      "Increasing downtilt pulls the radio beam closer to the tower, shrinking the coverage footprint and reducing interference with neighboring cells"
+      "It maps the 40-character SHA-1 hashed filenames in the backup folder to their original file system paths, domain names (e.g. `AppDomain-com.whatsapp`), file sizes, and metadata flags",
+      "It contains the AES-256 decryption key for the entire iPhone",
+      "It acts as a temporary cache for incoming phone calls",
+      "It stores the user's Apple ID biometric fingerprint template"
     ],
-    "answer": 3,
-    "explanation": "Tilting an antenna downward (downtilt) directs the main lobe toward the ground closer to the base station, reducing cell radius and preventing signal overshoot into adjacent cell sites."
+    "answer": 0,
+    "explanation": "In iOS 10+ iTunes backups, files are stored named by the SHA-1 hash of `Domain-RelativePath`. `Manifest.db` is the master SQLite database that indexes these hashed files, mapping each hash back to its original domain, relative path, file properties, and file system permissions."
   },
   {
     "id": 165,
-    "question": "What telecom analysis method evaluates overlapping cell tower radii and Timing Advance arcs to establish a suspect's probable presence within a narrow geographic boundary?",
+    "topic": "GrayKey / GrayShift Technology",
+    "question": "What is GrayKey (developed by Grayshift / Magnet Forensics) in law enforcement digital forensics?",
     "options": [
-      "RF Propagation & Cell Intersection Geofencing",
-      "IMEI Parity Check Analysis",
-      "SIM Application Toolkit Simulation",
-      "Baseband Hex Dump Carving"
+      "A specialized hardware forensic appliance that leverages proprietary low-level vulnerabilities to bypass iOS passcode limits, brute-force passcodes, and perform full file system and keychain extractions",
+      "An open-source desktop image viewer for macOS",
+      "A cellular baseband sniffer that intercepts SMS over GSM networks",
+      "A cloud service for recovering deleted photos from Instagram"
     ],
     "answer": 0,
-    "explanation": "By modeling the known coverage contours (azimuth, beamwidth, power) and Timing Advance distance rings of multiple cell towers recorded in a CDR, forensic examiners identify the intersection zone where the suspect's phone was operated."
+    "explanation": "GrayKey is a specialized law enforcement hardware appliance. It connects directly to Lightning or USB-C ports on Apple devices, deploying low-level proprietary bootloader/kernel exploits to bypass passcode attempt counters and perform full file system extractions."
   },
   {
     "id": 166,
-    "question": "In SIM card file system architecture (ISO/IEC 7816), what is the root directory designated as?",
+    "topic": "Cellebrite Premium",
+    "question": "What capability distinguishes Cellebrite Premium from standard Cellebrite UFED hardware?",
     "options": [
-      "DF (Dedicated File)",
-      "MF (Master File - designated by file ID 0x3F00)",
-      "EF (Elementary File)",
-      "ADF (Application Dedicated File)"
+      "Advanced in-lab capabilities to unlock and perform full file system and physical extractions on modern locked iOS and high-end Android devices using proprietary exploit chains",
+      "The ability to conduct remote wiretaps without physical device possession",
+      "The inclusion of a thermal imaging camera for motherboard inspection",
+      "A feature that translates Hindi voice notes into English in real-time"
     ],
-    "answer": 1,
-    "explanation": "Under ISO/IEC 7816 smart card standards, the root directory of a SIM card is the Master File (MF), identified by the hexadecimal ID '3F00'. Subdirectories are Dedicated Files (DFs), and data files are Elementary Files (EFs)."
+    "answer": 0,
+    "explanation": "Cellebrite Premium (and CAS - Cellebrite Advanced Services) uses proprietary security research exploit chains to unlock locked high-end iOS and Android devices, extracting complete file systems, physical memory, and decrypted Keychains where standard commercial tools fail."
   },
   {
     "id": 167,
-    "question": "In SIM card file system architecture, what is a 'Dedicated File' (DF)?",
+    "topic": "Elcomsoft iOS Forensic Toolkit (EIFT)",
+    "question": "What dual acquisition methods does the Elcomsoft iOS Forensic Toolkit (EIFT) provide for extracting data from compatible iOS devices?",
     "options": [
-      "A raw physical partition storing the SIM operating system kernel",
-      "An individual data file storing subscriber text messages",
-      "A functional directory or folder subordinate to the Master File (e.g. DF_GSM 0x7F20, DF_TELECOM 0x7F10)",
-      "A temporary cryptographic certificate issued by the base station controller"
+      "Agent-based extraction (installing a temporary unsigned extraction app via developer signing) and hardware-based checkm8 BootROM exploit extraction",
+      "Satellite uplink and microwave radiation extraction",
+      "Audio frequency modulation and NFC contactless extraction",
+      "SIM card swapping and PIN guessing"
     ],
-    "answer": 2,
-    "explanation": "A Dedicated File (DF) functions as a directory within the smart card file system, grouping related Elementary Files (e.g., DF_TELECOM holds phonebooks and SMS; DF_GSM holds cellular authentication data)."
+    "answer": 0,
+    "explanation": "EIFT utilizes two primary advanced acquisition methods: (1) Forensic Agent extraction (sideloading a dedicated extraction agent with an Apple developer certificate to dump file system and keychain without jailbreaking), and (2) checkm8 BootROM exploit extraction for vulnerable devices (A5–A11 chips)."
   },
   {
     "id": 168,
-    "question": "In SIM card file system architecture, what is an 'Elementary File' (EF)?",
+    "topic": "checkm8 BootROM Exploit",
+    "question": "Why was the discovery of the `checkm8` exploit by axi0mX considered a watershed moment in iOS forensics?",
     "options": [
-      "The central processing unit embedded within the silicon microchip",
-      "The external radio frequency antenna printed on the plastic carrier",
-      "The power regulation circuit connecting the SIM card to the smartphone battery",
-      "A leaf file containing actual subscriber data, structured as Transparent (binary), Linear Fixed, or Cyclic"
+      "It is an unpatchable, permanent vulnerability in the read-only BootROM (SecureROM) affecting Apple devices from the A5 chip up to the A11 chip (iPhone 4S through iPhone X)",
+      "It allowed any user to hack into Apple's corporate servers in Cupertino",
+      "It provided a software patch that increased iPhone battery life by 50%",
+      "It disabled cellular roaming charges globally"
     ],
-    "answer": 3,
-    "explanation": "Elementary Files (EFs) are the actual data files on a smart card. They store data like IMSI (EF_IMSI), SMS (EF_SMS), contacts (EF_ADN), and location info (EF_LOCI)."
+    "answer": 0,
+    "explanation": "Because `checkm8` resides in hardware BootROM (which is burned into silicon during manufacturing and read-only), Apple cannot patch it via iOS software updates. It grants full control over the execution chain on A5–A11 devices, enabling forensic RAM acquisition and custom bootloaders."
   },
   {
     "id": 169,
-    "question": "In SIM card forensics, what file structure type is used for 'EF_SMS' (Short Messages)?",
+    "topic": "iOS Keychain Decryption (keychain-2.db)",
+    "question": "Where are saved passwords, credit card numbers, Wi-Fi credentials, and cryptographic certificates stored in iOS, and what database holds them?",
     "options": [
-      "Linear Fixed (consisting of fixed-length records, each holding one SMS message slot)",
-      "Transparent (a flat linear stream of unformatted binary bytes)",
-      "Cyclic (a circular ring buffer where new entries overwrite the oldest entry)",
-      "Hierarchical B-Tree database table"
+      "In the iOS Keychain, physically stored in the SQLite database `/private/var/Keychains/keychain-2.db`",
+      "In a plaintext text file `/etc/passwords.txt`",
+      "On the SIM card's elementary file EF_LOCI",
+      "Inside the camera sensor's onboard flash"
     ],
     "answer": 0,
-    "explanation": "EF_SMS is structured as a Linear Fixed file, divided into a fixed number of records (typically 176 bytes each). Each record holds the status byte, SMSC address, sender/recipient number, timestamp, and message text."
+    "explanation": "The iOS Keychain stores high-security credentials in `/private/var/Keychains/keychain-2.db`. Each item in the database has its sensitive payload encrypted with keys protected by the Secure Enclave and Hardware AES engine, categorized by accessibility classes (e.g. `kSecAttrAccessibleWhenUnlocked`)."
   },
   {
     "id": 170,
-    "question": "In SIM card forensics, what file structure type is used for 'EF_LND' (Last Number Dialed)?",
+    "topic": "Forensic Extraction Agent vs Jailbreak",
+    "question": "Why do modern forensic suites (Cellebrite, Magnet, Elcomsoft) utilize an 'Extraction Agent' rather than applying a public jailbreak (like unc0ver or Taurine) to an evidentiary iPhone?",
     "options": [
-      "Transparent (a flat unstructured binary byte stream)",
-      "Cyclic (a circular buffer where new dialed numbers overwrite the oldest entry)",
-      "Linear Fixed (fixed slots that reject new entries when full)",
-      "Relational SQLite container file"
+      "An extraction agent is signed with a valid developer certificate, operates forensically in-memory without patching system kernels or modifying the read-only system partition, preserving forensic integrity",
+      "An extraction agent permanently unlocks all iPhones manufactured in the future",
+      "An extraction agent removes the requirement for a search warrant",
+      "Public jailbreaks automatically encrypt the phone with ransomware"
     ],
-    "answer": 1,
-    "explanation": "EF_LND (Last Number Dialed) is structured as a Cyclic file. When a user dials a new call, it is written to the top record, and the oldest record rolls off the end, maintaining a fixed history of recent outbound calls."
+    "answer": 0,
+    "explanation": "Public jailbreaks modify the system partition, inject binaries into `/bin` and `/usr`, and compromise the forensic chain of custody. A dedicated forensic extraction agent runs as an isolated user-space application signed with a developer identity, performing read-only dumps of `/private/var` without altering system files."
   },
   {
     "id": 171,
-    "question": "What technology replaces physical removable plastic SIM cards with a programmable, permanently soldered chip inside the smartphone?",
+    "topic": "BFU vs AFU States in iOS",
+    "question": "What is the primary difference in evidence availability between an iOS device in Before First Unlock (BFU) state versus After First Unlock (AFU) state?",
     "options": [
-      "Micro-SD Flash Card",
-      "Smart Media Card",
-      "eSIM",
-      "Memory Stick Duo"
+      "In BFU state, file encryption keys are not yet in RAM and almost all user data remains inaccessible; in AFU state, Class C and Class B keys have been derived and reside in RAM, enabling broad file system extraction",
+      "In BFU state, the phone can be unlocked with any fingerprint; in AFU state, biometrics are disabled",
+      "In BFU state, the device transmits all data to iCloud; in AFU state, cloud sync is permanently disabled",
+      "There is zero cryptographic difference between BFU and AFU states in iOS"
     ],
-    "answer": 2,
-    "explanation": "An eSIM (eUICC) is a hardware chip soldered directly onto the device motherboard. It supports Remote SIM Provisioning (RSP), allowing users to download and switch carrier profiles without handling a physical SIM card. (Embedded SIM / eUICC - Embedded Universal Integrated Circuit Card)"
+    "answer": 0,
+    "explanation": "When powered on but before the first passcode unlock (BFU), only Class D keys exist in memory; user data (Class A, B, C) cannot be decrypted. After the user unlocks the screen once (AFU), Class C keys remain resident in RAM, allowing forensic extraction tools to recover significant evidence even if the screen is currently locked."
   },
   {
     "id": 172,
-    "question": "In eSIM (eUICC) architecture, what entity securely packages and downloads mobile network operator profiles onto subscriber devices?",
+    "topic": "Secure Enclave Throttling & Backoff",
+    "question": "How does Apple's Secure Enclave enforce hardware rate-limiting against automated passcode brute-force attacks?",
     "options": [
-      "HLR (Home Location Register)",
-      "MSC (Mobile Switching Center)",
-      "EIR (Equipment Identity Register)",
-      "SM-DP+ (Subscription Manager Data Preparation +)"
+      "It enforces exponential time delays: 1 to 4 attempts have no delay; 5 attempts incur a 1-minute delay; 6 incurs 5 minutes; 7 and 8 incur 15 minutes; 9+ incurs a 60-minute delay per attempt",
+      "It permanently destroys the phone screen after 3 incorrect attempts",
+      "It increases the screen brightness until the battery drains completely",
+      "It sends an emergency alert to the local fire department"
     ],
-    "answer": 3,
-    "explanation": "SM-DP+ (Subscription Manager Data Preparation +) is the secure server in GSMA Remote SIM Provisioning architecture that prepares, encrypts, and downloads eSIM profile packages to the Local Profile Assistant (LPA) on the device."
+    "answer": 0,
+    "explanation": "The Secure Enclave Processor (SEP) tracks failed attempts in dedicated non-volatile counters. It enforces strict exponential backoff delays (up to 1 hour per attempt after repeated failures), making software brute-forcing of 6-digit or alphanumeric passcodes mathematically impractical without specialized SEP bypass exploits."
   },
   {
     "id": 173,
-    "question": "How does a mobile forensic investigator extract eSIM profiles and ICCID identifiers from a modern smartphone?",
+    "topic": "10-Attempt Device Erase Policy",
+    "question": "What critical risk must an investigator mitigate if a suspect enabled the 'Erase Data' security setting on their iPhone?",
     "options": [
-      "Via logical/file system extraction querying telephony system settings or carrier profile property lists and databases",
-      "By physically desoldering the eSIM chip and inserting it into a standard SIM card reader",
-      "By scanning the device with a low-frequency handheld metal detector",
-      "By exposing the device to high-intensity ultraviolet radiation"
+      "Entering 10 incorrect passcodes causes the Secure Enclave to immediately and permanently obliterate the file system master cryptographic key (Effaceable Storage / DKEK), rendering all user data irrecoverable",
+      "Entering 10 incorrect passcodes reformats the workstation computer",
+      "Entering 10 incorrect passcodes unlocks the device automatically in test mode",
+      "Entering 10 incorrect passcodes dials the international emergency number"
     ],
     "answer": 0,
-    "explanation": "Because eSIM chips are permanently soldered microchips, examiners extract eSIM profile metadata (ICCID, carrier profile name, state) logically through mobile forensic tools querying telephony databases and system settings."
+    "explanation": "If 'Erase Data after 10 failed attempts' is toggled on in iOS Settings, the 10th failed attempt instructs the Secure Enclave to overwrite the device's Effaceable Storage, permanently destroying the master encryption keys and making cryptographic recovery impossible."
   },
   {
     "id": 174,
-    "question": "What rich forensic evidence is extracted from the internal storage of a modern Body-Worn Camera (BWC) used by law enforcement or security personnel?",
+    "topic": "USB Restricted Mode",
+    "question": "What is Apple's USB Restricted Mode, introduced in iOS 11.4.1/12, and how does it impact forensic triage?",
     "options": [
-      "Decrypted BitLocker volume encryption recovery passwords",
-      "Continuous timestamped video/audio streams, GPS location coordinates, buffer pre-event recordings, and device serial numbers",
-      "The private RSA keys of the municipal electrical power grid",
-      "The Master File Table allocation bitmap of all nearby domestic routers"
+      "If an iPhone has not been unlocked with its passcode for more than one hour, the Lightning/USB-C port disables data communications, allowing only battery charging until unlocked",
+      "It restricts USB cables to a maximum length of 1 meter",
+      "It limits file download speeds over USB to 56 kbps",
+      "It allows USB connections only when connected to Apple-certified Mac computers"
     ],
-    "answer": 1,
-    "explanation": "Body-worn cameras store tamper-resistant video recordings with synchronized watermarked UTC timestamps, GPS tracks, accelerometer activations, buffering history (pre-event buffer), and officer ID metadata."
+    "answer": 0,
+    "explanation": "USB Restricted Mode shuts down the USB data lines on the Lightning/Type-C connector if the device has been locked for over one hour. Forensic workstations cannot communicate with or query the device over USB until the passcode is entered, requiring investigators to maintain power and use keep-awake dongles."
   },
   {
     "id": 175,
-    "question": "What artifact recovered from modern Smart TV flash memory can prove a suspect was awake and present inside a residence at the time of a crime?",
+    "topic": "Biometric Lockout Timeouts",
+    "question": "Under which condition does iOS automatically disable Face ID or Touch ID and mandate passcode entry?",
     "options": [
-      "The serial number of the electrical wiring inside the living room walls",
-      "The physical fingerprints of all individuals who watched the television broadcast",
-      "Application launch logs (Netflix, YouTube), video streaming timestamps, connected Wi-Fi networks, and voice remote command histories",
-      "The Master Boot Record partition table of the local municipal water pump"
+      "The device has not been unlocked for more than 48 hours, has been restarted/powered off, or has failed 5 consecutive biometric match attempts",
+      "The battery charge drops below 50%",
+      "The user changes their cellular carrier SIM card while the screen is on",
+      "The device connects to an unencrypted public Wi-Fi hotspot"
     ],
-    "answer": 2,
-    "explanation": "Smart TVs run operating systems (Android TV, webOS, Tizen) that record app launch logs, streaming watch histories with timestamps, paired Bluetooth accessories, and voice assistant command recordings."
+    "answer": 0,
+    "explanation": "iOS security policies lock out biometrics (Face ID / Touch ID) requiring the passcode when: (1) more than 48 hours have elapsed since last unlock, (2) the device has rebooted, (3) 5 consecutive biometric match attempts fail, or (4) the SOS emergency screen is triggered."
   },
   {
     "id": 176,
-    "question": "In digital home assistant forensics (e.g. Amazon Alexa), where are complete voice recording audio clips and transcribed text primarily stored?",
+    "topic": "Effaceable Storage Obliteration",
+    "question": "What is Effaceable Storage in Apple mobile devices?",
     "options": [
-      "In the internal physical RAM of the speaker, persisting permanently across power outages",
-      "On the plastic casing of the device using micro-engraved optical barcodes",
-      "On the local residential Wi-Fi router's dynamic routing table",
-      "In the user's Amazon Cloud account database (accessible via cloud forensic extraction or legal preservation request)"
+      "A dedicated, hardware-managed region of flash memory that holds master cryptographic keys; it can be securely erased in milliseconds during a remote wipe or factory reset, rendering all user data instantaneously unreadable",
+      "A virtual memory swap file stored in RAM",
+      "A temporary folder in Safari where deleted browsing cookies are stored",
+      "A cloud backup server operated in compliance with European GDPR laws"
     ],
-    "answer": 3,
-    "explanation": "While smart speakers retain short temporary audio caches in local flash memory, the permanent voice clips, full audio recordings, and text transcripts are stored on cloud servers, accessible via cloud forensics or search warrants."
+    "answer": 0,
+    "explanation": "Effaceable Storage is a low-level, non-volatile storage region that holds the keys needed to decrypt the File System Key and Class Keys. When a remote wipe or local erase is triggered, this area is immediately overwritten, effectively rendering the entire device storage instantly unreadable (cryptographic wipe)."
   },
   {
     "id": 177,
-    "question": "What communication technology utilized in Apple AirTags and Samsung SmartTags allows them to be geolocated by nearby stranger smartphones?",
+    "topic": "Apple Lockdown Mode Forensics",
+    "question": "What major restrictions does Apple's 'Lockdown Mode' (introduced in iOS 16) enforce that directly impact forensic examination?",
     "options": [
-      "Bluetooth Low Energy (BLE) rotating public keys broadcast to crowdsourced 'Find My' mesh networks",
-      "Active high-power 5G cellular modems transmitting directly to telecom towers",
-      "High-frequency ultrasonic chirps that resonate through building walls",
-      "Direct satellite uplink transmissions to low-earth orbit constellations"
+      "It blocks incoming message attachments (except certain images), disables complex web browsing technologies (JIT compilers), blocks shared photo albums, and blocks wired connections to computers when locked",
+      "It completely disables cellular phone calls and SMS",
+      "It turns off the phone's touch screen display permanently",
+      "It encrypts the phone using 512-bit RSA keys"
     ],
     "answer": 0,
-    "explanation": "AirTags emit BLE advertisement beacons with cryptographically rotating public keys. Any passing iPhone in the worldwide 'Find My' mesh network detects the beacon, encrypts its own GPS location, and uploads it to Apple's cloud."
+    "explanation": "Lockdown Mode is an extreme security posture designed for high-risk targets. It severely restricts message attachment parsing, blocks web JIT compilers, disables incoming FaceTime from unknown callers, and instantly blocks any wired USB connection to computers while the phone is locked."
   },
   {
     "id": 178,
-    "question": "What forensic evidence can be extracted from a suspect's smartphone that was paired with an Apple AirTag?",
+    "topic": "iCloud End-to-End Encryption (ADP)",
+    "question": "When a suspect enables Apple's Advanced Data Protection (ADP) for iCloud, what is the forensic limitation for law enforcement serving search warrants directly on Apple?",
     "options": [
-      "The physical battery voltage curve of the remote AirTag coin cell battery",
-      "The paired AirTag serial number, assigned name, registration date, paired Apple ID, and historical location alerts stored in local property lists",
-      "The names and phone numbers of all stranger iPhone owners who passed near the AirTag",
-      "The cryptographic private keys of all Apple corporate server data centers"
+      "Apple no longer retains the encryption keys for iCloud Backups, Photos, Notes, and Reminders in their data centers; law enforcement cannot obtain decrypted records directly from Apple",
+      "Apple can only provide data if requested in person by the suspect",
+      "Apple automatically deletes the suspect's entire account within 24 hours",
+      "Apple charges a $10,000 administrative processing fee per gigabyte"
     ],
-    "answer": 1,
-    "explanation": "A paired iPhone stores the AirTag's serial number, custom name, pairing timestamp, and local tracking alerts in '/private/var/mobile/Library/TrackingAvoidance/' and Find My caches, linking the suspect directly to the tracker."
+    "answer": 0,
+    "explanation": "With Advanced Data Protection (ADP) enabled, the number of end-to-end encrypted iCloud categories expands from 14 to 23 (including iCloud Backup, Photos, and Notes). Because the keys exist only on the user's trusted devices, Apple cannot decrypt this data in response to government subpoenas."
   },
   {
     "id": 179,
-    "question": "What forensic intelligence is obtained by analyzing 'Unwanted Tracking Alerts' on a victim's smartphone (e.g. stalking via AirTag or SmartTag)?",
+    "topic": "Signed System Volume (SSV)",
+    "question": "Introduced in iOS 14 / macOS 11, what is the forensic consequence of Apple's Signed System Volume (SSV) architecture?",
     "options": [
-      "The complete internet search history of the person who manufactured the tracking tag",
-      "The bank account details of the retail store where the tracking tag was originally purchased",
-      "The timeline and map of geographic route points where the unrecognized tracking tag was detected traveling with the victim",
-      "The physical home address of all engineers who designed the tracking tag's Bluetooth firmware"
+      "The read-only System volume is sealed with a cryptographic Merkle tree hash; any bit modification to system binaries causes the kernel to panic and refuse to boot, preventing traditional forensic rooting/jailbreak modification",
+      "It requires all apps to be written in Swift instead of Objective-C",
+      "It prevents iPhones from connecting to Wi-Fi networks with hidden SSIDs",
+      "It limits the number of installed applications to exactly 64"
     ],
-    "answer": 2,
-    "explanation": "When an iPhone or modern Android detects an unknown tracker traveling with the user, it logs an alert containing a map of locations and timestamps where the tracker was seen traveling with the victim, proving stalking patterns."
+    "answer": 0,
+    "explanation": "Signed System Volume (SSV) validates the entire system volume against a cryptographic Merkle tree rooted in an Apple-signed manifest. Any unauthorized byte modification will fail validation during boot, causing the kernel to panic and halt execution."
   },
   {
     "id": 180,
-    "question": "What forensic data can be extracted from modern Smart Doorbell cameras (e.g. Ring, Nest)?",
+    "topic": "Forensic Triage of Liquid Damaged iPhones",
+    "question": "When processing a water-submerged or liquid-damaged iPhone recovered from a crime scene, what is the standard operating procedure before attempting forensic extraction?",
     "options": [
-      "The private cryptographic keys of the municipal police department radio network",
-      "The physical weight of all vehicles that drove past the residential property",
-      "The Master Boot Record partition table of the home electrical smart meter",
-      "Motion activation timestamps, doorbell button press events, cloud-stored video/audio clips, visitor facial snapshots, and Wi-Fi connection logs"
+      "Do NOT power on or charge the device; disassemble, remove the battery, thoroughly clean corrosion from the logic board using an ultrasonic bath with high-purity isopropyl alcohol (IPA), dry completely, and inspect for motherboard shorts before applying regulated bench power",
+      "Immediately plug the device into a rapid fast-charger to see if the screen illuminates",
+      "Place the smartphone into a container of white uncooked rice for 30 minutes",
+      "Heat the phone with an industrial blowtorch until steam disappears"
     ],
-    "answer": 3,
-    "explanation": "Smart doorbells record motion detection events, doorbell ring events, live-view requests, and video/audio clips with precise timestamps, providing crucial alibi validation or entry/exit timelines."
+    "answer": 0,
+    "explanation": "Applying power to a wet or corroded logic board causes instant catastrophic electrical shorts that destroy the SoC or PMIC (Power Management IC). Standard forensic procedure requires disassembly, ultrasonic cleaning in pure isopropyl alcohol (99%+ IPA), thorough drying, and bench testing with a regulated DC power supply."
   },
   {
     "id": 181,
-    "question": "In automotive digital forensics, what standardized physical port located under the dashboard provides access to onboard vehicle diagnostics and ECU data?",
+    "topic": "Pager Communication Protocols",
+    "question": "Which legacy telecommunication protocols are standard in radio paging networks for transmitting numeric and alphanumeric messages to pagers (beepers)?",
     "options": [
-      "OBD-II (On-Board Diagnostics II) 16-pin connector port",
-      "USB-C SuperSpeed Diagnostic Port",
-      "RS-232 Serial DB9 Port",
-      "Ethernet RJ45 Twisted Pair Port"
+      "POCSAG (Post Office Code Standardisation Advisory Group) and FLEX (Motorola)",
+      "GSM and CDMA2000",
+      "HTTP/2 and WebSocket",
+      "Bluetooth Low Energy and Zigbee"
     ],
     "answer": 0,
-    "explanation": "The OBD-II port (mandatory in passenger cars since 1996 in US, 2001 in EU/India) provides direct diagnostic access to vehicle electronic control units (ECUs), trouble codes, and real-time sensor parameters."
+    "explanation": "Radio pagers rely on standardized RF broadcast protocols: POCSAG (standardized by the British Post Office, supporting 512, 1200, and 2400 bps) and Motorola's FLEX protocol (supporting high-capacity transmission up to 6400 bps)."
   },
   {
     "id": 182,
-    "question": "What commercial forensic software and hardware suite developed by Berla Corporation is the worldwide industry standard for vehicle infotainment and telematics extraction?",
+    "topic": "Pager Capcodes & Broadcast Security",
+    "question": "What is a 'Capcode' in radio paging systems, and what is the primary cryptographic vulnerability of legacy pager communications?",
     "options": [
-      "Cellebrite UFED for Vehicles",
-      "iVe Vehicle Forensic System",
-      "Magnet AXIOM Auto",
-      "FTK Automotive Suite"
+      "A unique 7-digit radio address assigned to a specific pager receiver; messages are broadcast over the air in cleartext without encryption, allowing passive radio interception via Software-Defined Radios (SDR)",
+      "A 256-bit AES symmetric key embedded in the pager antenna",
+      "The serial number of the pager's AAA alkaline battery",
+      "A digital signature verified by a public key infrastructure"
     ],
-    "answer": 1,
-    "explanation": "Berla iVe is the specialized forensic tool for extracting and analyzing data from vehicle infotainment (IVI) and telematics control units (TCU), recovering GPS tracks, connected mobile devices, door events, and voice calls."
+    "answer": 0,
+    "explanation": "A Capcode is a unique 7-digit decimal address assigned to a pager. Crucially, paging networks broadcast messages over open radio frequencies in cleartext. Any receiver or Software Defined Radio (SDR) tuned to the frequency can sniff and decode all transmitted messages."
   },
   {
     "id": 183,
-    "question": "What forensic artifact extracted from a vehicle telematics system proves that a vehicle door was opened or closed at a specific timestamp?",
+    "topic": "Physical Extraction of Pagers",
+    "question": "How is digital evidence extracted from a physical pager device seized during a criminal investigation?",
     "options": [
-      "The engine coolant temperature gauge needle position recorded on analog dials",
-      "The friction wear pattern observed across physical disc brake pads",
-      "Door opening/closing event records logged by the Body Control Module (BCM) over the CAN bus",
-      "The tire pressure monitor radio frequency transmission frequency"
+      "Manual screen capture and inspection, reading non-volatile serial EEPROM (Electrically Erasable Programmable Read-Only Memory) chips using an external IC programmer, or probing JTAG/serial UART test points on the PCB",
+      "Sending an over-the-air 'dump' command from an Android smartphone",
+      "Connecting the pager via USB 3.0 to Cellebrite Physical Analyzer",
+      "Reading the SIM card embedded inside the pager"
     ],
-    "answer": 2,
-    "explanation": "Modern vehicle Body Control Modules (BCMs) log events when doors, hoods, or trunks are opened, closed, locked, or unlocked, complete with timestamps, proving when a suspect entered or exited a vehicle."
+    "answer": 0,
+    "explanation": "Legacy pagers lack modern operating systems or USB ports. Forensic extraction involves photographing the LCD display messages, probing UART/serial test pads, or desoldering and dumping the onboard serial EEPROM (e.g. 24Cxx / 93Cxx series chips) using a dedicated hardware IC programmer."
   },
   {
     "id": 184,
-    "question": "In drone crash forensics, what physical storage component inside a drone or its camera gimbal holds captured aerial photographic and video evidence?",
+    "topic": "Apple Watch (watchOS) Forensics",
+    "question": "How is an Apple Watch typically examined in digital forensics given the lack of exposed external physical data ports on modern models?",
     "options": [
-      "Magnetic spinning hard disk drive rotating at 5400 RPM",
-      "Dynamic RAM memory buffer that clears upon motor shutdown",
-      "An optical DVD-R disc burned in real-time during flight",
-      "Micro-SD card (or internal eMMC/UFS storage) formatted in FAT32 or exFAT"
+      "Primarily via forensic extraction of the paired host iPhone (which archives synced watch backups, Health data, and companion app state), or by using proprietary adapter pucks on the hidden diagnostic diagnostic port on older models",
+      "By connecting standard USB-C cables directly to the Digital Crown",
+      "By placing the watch in a high-temperature oven",
+      "By asking the watch's voice assistant Siri to read all deleted files aloud"
     ],
-    "answer": 3,
-    "explanation": "Drones store high-resolution aerial video and images on removable Micro-SD cards or internal eMMC flash storage (formatted in FAT32 or exFAT), containing standard MP4/MOV files and embedded EXIF/subrip telemetry."
+    "answer": 0,
+    "explanation": "Apple Watches sync continuous telemetry to their paired host iPhone. An extraction of the paired iPhone yields Apple Watch backups, HealthKit metrics, workout GPS tracks, and paired device metadata. On older models (Series 0–6), a hidden diagnostic 6-pin port inside the band slot was accessible via specialized hardware adapters (iBUS)."
   },
   {
     "id": 185,
-    "question": "What is 'Geofencing' in consumer drone firmware (e.g. DJI GEO system) and how is it forensically relevant?",
+    "topic": "Health & Biometric Wearable Artefacts",
+    "question": "In Apple iOS and watchOS forensics, which SQLite database stores granular heart rate measurements, step counts, electrocardiogram (ECG) recordings, and sleep analysis?",
     "options": [
-      "Restricting flight within designated no-fly zones (airports, prisons, national borders); forensic logs record warnings or authorization unlocks if breached",
-      "Preventing the drone from taking off unless connected to a home Wi-Fi network",
-      "Limiting drone camera resolution to standard definition within residential areas",
-      "Automatically returning the drone to the manufacturer whenever maintenance is due"
+      "`healthdb.sqlite` (or `healthdb_secure.sqlite`) located in `/private/var/mobile/Library/Health/`",
+      "`contacts2.db` in `/data/data/`",
+      "`sms.db` in `/private/var/mobile/Library/SMS/`",
+      "`photos.sqlite` in `/private/var/mobile/Media/`"
     ],
     "answer": 0,
-    "explanation": "Drone firmware enforces GEO geofencing around restricted airspace. Flight logs record geofence warnings, forced landings, or administrative unlock certificates, establishing whether a suspect intentionally flew in restricted zones."
+    "explanation": "Apple HealthKit data is stored in `healthdb.sqlite` and `healthdb_secure.sqlite`. These databases record timestamped biometric data (heart rate samples, VO2 max, stand hours, step counts, workouts) that can pinpoint a victim's time of death or an attacker's elevated physical exertion."
   },
   {
     "id": 186,
-    "question": "What legal doctrine in Indian jurisprudence mandates that digital evidence like CDRs or mobile extractions must be preserved in an unaltered state?",
+    "topic": "Wear OS (Android Wear) Acquisition",
+    "question": "How can an investigator extract forensic data directly from a standalone Wear OS smartwatch?",
     "options": [
-      "Doctrine of Sovereign Immunity",
-      "Principle of Evidentiary Integrity & Custody",
-      "Principle of Estoppel",
-      "Doctrine of Severability"
+      "By enabling Developer Options and ADB debugging over Wi-Fi or Bluetooth, allowing ADB commands (`adb pull`, `adb shell`) to acquire logs, installed apps, and system state",
+      "By typing commands directly on the watch's physical side button using Morse code",
+      "By placing the watch next to an AM radio antenna",
+      "By inserting an SD card into the microphone hole"
     ],
-    "answer": 1,
-    "explanation": "Evidentiary integrity requires that mobile evidence remain unaltered from seizure through analysis. Any unauthorized modification can lead to exclusion under Indian evidentiary standards. (under BSA 2023 / CrPC 1973)"
+    "answer": 0,
+    "explanation": "Wear OS devices run a modified Android kernel. By enabling Developer Options on the watch display, examiners can activate 'ADB debugging over Wi-Fi' (or Bluetooth), connect the forensic PC to the watch's local IP address via `adb connect <IP>:<PORT>`, and extract data using standard ADB commands."
   },
   {
     "id": 187,
-    "question": "In criminal trials involving mobile phone seizures in India, what official police document records the physical inventory, serial numbers, and condition of seized items at the scene?",
+    "topic": "Bluetooth Low Energy (BLE) & GATT Analysis",
+    "question": "What architecture is used by wearable fitness trackers and IoT devices to communicate with host mobile applications over Bluetooth Low Energy?",
     "options": [
-      "First Information Report (FIR registered under Section 154 CrPC)",
-      "Charge Sheet / Final Police Report (under Section 173 CrPC)",
-      "Seizure Memo / Panchnama (executed in the presence of independent witnesses)",
-      "General Diary / Station Daily Diary (entry recorded at police station)"
+      "Generic Attribute Profile (GATT) organized into Services, Characteristics, and Descriptors, which can be sniffed or queried using BLE protocol analyzers",
+      "Point-to-Point Protocol over Ethernet (PPPoE)",
+      "Simple Network Management Protocol (SNMPv3)",
+      "File Transfer Protocol (FTP)"
     ],
-    "answer": 2,
-    "explanation": "The Seizure Memo / Panchnama is the foundational legal document executed at the scene. It details the exact make, model, IMEI, physical condition, SIM details, and sealing process in the presence of independent witnesses."
+    "answer": 0,
+    "explanation": "BLE communication relies on the GATT (Generic Attribute Profile) hierarchy: a device presents Services, which contain Characteristics (data values like live heart rate, battery level) and Descriptors. Sniffers (like Ubertooth One or Wireshark) can capture unencrypted GATT data packets exchanged between the wearable and the smartphone."
   },
   {
     "id": 188,
-    "question": "What is the role of 'Independent Witnesses' (Panchas) during the seizure and sealing of mobile devices at a crime scene under Indian law?",
+    "topic": "Smart Speaker & IoT Forensics (Amazon Echo / Google Nest)",
+    "question": "When seizing smart home speakers (e.g. Amazon Echo, Google Nest) at a crime scene, where is the most valuable evidentiary content usually located?",
     "options": [
-      "Performing the technical forensic extraction of WhatsApp chat databases",
-      "Deciding the legal guilt or innocence of the accused suspect",
-      "Authorizing the telecom service provider to issue Call Detail Records",
-      "Attesting that the physical evidence was recovered from the suspect or scene and sealed in their presence without tampering"
+      "In the cloud provider's account servers (Amazon Alexa Cloud / Google Assistant activity logs) and the companion mobile apps installed on the suspect's smartphone, rather than the local device RAM",
+      "Inside the physical speaker cone's paper membrane",
+      "On the AC wall power adapter's internal capacitor",
+      "In the smart speaker's removable 3.5mm audio jack"
     ],
-    "answer": 3,
-    "explanation": "Panch witnesses provide independent corroboration to the court that the seizure, inventory, and sealing of electronic evidence occurred as claimed by police, refuting claims of police planting or evidence tampering."
+    "answer": 0,
+    "explanation": "Smart speakers are low-storage IoT thin clients. Voice audio recordings, command transcriptions, linked smart home action logs (e.g. lights turned on at 2:15 AM), and geolocation exist in the cloud ecosystem and the companion app (Alexa/Google Home) on the user's phone, which should be acquired via cloud warrant returns and phone extractions."
   },
   {
     "id": 189,
-    "question": "Under Section 63 of Bharatiya Sakshya Adhiniyam, 2023, who is legally competent to sign the electronic evidence certificate for a mobile phone extraction report?",
+    "topic": "Wearable GPS Track Extraction",
+    "question": "Fitness smartwatches (Garmin, Polar, Apple Watch) record outdoor runs and cycling routes using which standard geographic data formats?",
     "options": [
-      "The qualified digital forensics examiner or person in lawful management/operation of the forensic workstation computer",
-      "The defense counsel representing the accused in the criminal trial",
-      "The physical manufacturer of the smartphone battery",
-      "Any member of the general public who witnessed the criminal act"
+      "FIT (Flexible and Interoperable Data Transfer), GPX (GPS Exchange Format), and TCX (Training Center XML)",
+      "DOCX and PDF",
+      "MP4 and AVI",
+      "EXE and DLL"
     ],
     "answer": 0,
-    "explanation": "Section 63(4) BSA 2023 requires that the certificate be signed by a person occupying a responsible official position in relation to the operation of the relevant device or the management of the relevant activities (i.e., the forensic examiner)."
+    "explanation": "Sports watches record route coordinate points, cadence, elevation, and heart rate into standard files: Garmin's binary `.fit` format, or XML-based `.gpx` and `.tcx` files. These contain latitude/longitude coordinates tied to precise timestamps, establishing a suspect's outdoor route."
   },
   {
     "id": 190,
-    "question": "What is the evidentiary status of mobile text messages (SMS/WhatsApp) without accompanying certificate under Section 63 BSA 2023 / 65B IEA 1872 in Indian courts (Arjun Panditrao v. Kailash Kushanrao)?",
+    "topic": "Smart Tag / AirTag Forensics",
+    "question": "How do tracking tags like Apple AirTags operate, and what forensic data can be recovered from an AirTag used in an illicit stalking case?",
     "options": [
-      "They are automatically accepted as absolute proof of criminal guilt",
-      "They are legally inadmissible as secondary electronic evidence unless the mandatory statutory certificate is produced",
-      "They are admissible only if the recipient has physically memorized the text messages",
-      "They are admissible only in civil lawsuits and strictly barred from criminal trials"
+      "AirTags broadcast rotating BLE advertisements picked up by nearby Apple devices in the 'Find My' mesh network; an AirTag's serial number is engraved on the casing and can be linked to the purchaser's Apple ID by Apple via legal subpoena",
+      "AirTags contain a built-in cellular 5G modem that connects directly to telephone towers",
+      "AirTags record 24 hours of live audio conversations onto a micro SD card",
+      "AirTags are permanently anonymous and can never be traced to any human purchaser"
     ],
-    "answer": 1,
-    "explanation": "The Supreme Court of India in Arjun Panditrao (2020) ruled that the production of a Section 65B (now Section 63 BSA 2023) certificate is mandatory as a condition precedent to the admissibility of secondary electronic evidence."
+    "answer": 0,
+    "explanation": "AirTags emit rotating, cryptographically pseudorandom BLE beacon identifiers. When nearby Apple devices detect them, they report the location to Apple's Find My network. Investigators can read the AirTag's hardware serial number (via NFC tap or printed under the battery) and serve a legal subpoena on Apple to identify the linked Apple ID and purchase payment method."
   },
   {
     "id": 191,
-    "question": "What is a 'Faraday Box' with integrated RF-shielded viewing window and conductive gloves used for during mobile forensic triage?",
+    "topic": "CDR Fundamentals & Core Attributes",
+    "question": "What is a Call Detail Record (CDR) maintained by cellular telecommunication service providers?",
     "options": [
-      "Bypassing the device's hardware biometric Face ID facial recognition cameras",
-      "Desoldering the flash memory chips using integrated robotic soldering irons",
-      "Allowing examiners to manually operate a seized phone's touchscreen in real time while maintaining complete radio frequency isolation",
-      "Recharging the smartphone battery using wireless electromagnetic induction"
+      "A billing and operational log generated by Mobile Switching Centers (MSC) documenting the metadata of cellular transactions (calling/called number, date/time, duration, call type, IMEI, IMSI, and cell tower IDs)",
+      "An audio recording of the entire voice conversation stored as a WAV file",
+      "A complete mirror of the suspect's WhatsApp messages and photographs",
+      "A copy of the suspect's computer browser history"
     ],
-    "answer": 2,
-    "explanation": "A Faraday box with a shielded viewing window and internal conductive gloves allows an examiner to navigate the phone manually (e.g. enable Airplane mode, check OS version) while completely shielded from external RF signals."
+    "answer": 0,
+    "explanation": "A Call Detail Record (CDR) is a metadata transaction record generated by cellular switching equipment (MSC). It does NOT record voice audio; it records call metadata: A-party (calling), B-party (called), start time, call duration, call type (Voice/SMS/Data), IMEI of device, IMSI of SIM, and initial/terminating cell site IDs."
   },
   {
     "id": 192,
-    "question": "What is 'Mobile Device Triage' in digital forensic investigations?",
+    "topic": "Cell Global Identity (CGI) Structure",
+    "question": "What are the four standardized components that constitute a unique Cell Global Identity (CGI) in cellular networks?",
     "options": [
-      "The permanent physical destruction of obsolete mobile phone hardware components",
-      "The recycling of precious metals extracted from smartphone circuit boards",
-      "The automated factory reset of all seized mobile smartphones before analysis",
-      "A rapid preliminary examination at the scene or lab to preview critical evidence (e.g. active chats, recent calls) to guide immediate tactical decisions"
+      "MCC (Mobile Country Code), MNC (Mobile Network Code), LAC (Location Area Code), and CI (Cell Identity)",
+      "IP Address, MAC Address, Subnet Mask, and Default Gateway",
+      "IMEI, IMSI, MSISDN, and ICCID",
+      "Latitude, Longitude, Altitude, and Azimuth"
     ],
-    "answer": 3,
-    "explanation": "Forensic triage is the rapid, prioritized inspection of seized devices to find urgent leads (e.g., kidnapping victim location, ongoing threats) before conducting the exhaustive full forensic acquisition and analysis."
+    "answer": 0,
+    "explanation": "Cell Global Identity (CGI) uniquely identifies every cellular transceiver sector worldwide. It is composed of: (1) MCC (Mobile Country Code, e.g. 404/405 for India), (2) MNC (Mobile Network Code, e.g. Airtel/Jio), (3) LAC (Location Area Code), and (4) CI (Cell Identity)."
   },
   {
     "id": 193,
-    "question": "In mobile forensics, what is the 'Clean Workstation Principle'?",
+    "topic": "Cell Tower Azimuth & Beamwidth",
+    "question": "In cellular tower coverage analysis, what does the 'Azimuth' angle specify?",
     "options": [
-      "Ensuring the forensic analysis computer is free from unauthorized software, properly calibrated, updated, and validated to prevent evidence cross-contamination",
-      "Wiping the exterior plastic case of the mobile phone with antibacterial sanitizer wipes",
-      "Only conducting examinations in rooms that have certified high-efficiency air filters",
-      "Restricting digital forensic examinations strictly to newly purchased desktop computers"
+      "The compass direction (in degrees, 0° to 359° relative to True North) in which a directional cell tower sector antenna transmits its central radio beam",
+      "The vertical height of the tower in meters above sea level",
+      "The monthly billing rate charged by the cellular carrier",
+      "The total number of simultaneous voice calls handled by the cell site"
     ],
     "answer": 0,
-    "explanation": "The clean workstation principle mandates that the examiner's workstation be properly maintained, free of extraneous test cases, isolated from malware contamination, and running validated, accredited forensic software."
+    "explanation": "Cell towers are typically partitioned into three 120-degree directional sectors (Alpha, Beta, Gamma). The Azimuth is the compass heading (0°–360° from North) of the antenna's main radiation lobe. For example, Azimuth 0° points North, 120° points Southeast, and 240° points Southwest."
   },
   {
     "id": 194,
-    "question": "What is 'Tool Validation' in accredited digital forensics laboratories under ISO/IEC 17025?",
+    "topic": "Timing Advance (TA) in Cellular Networks",
+    "question": "How does the Timing Advance (TA) parameter recorded in cellular network logs assist forensic investigators in estimating a device's distance from a tower?",
     "options": [
-      "Checking that the forensic software product license key has been renewed annually",
-      "Empirically testing forensic hardware and software tools against known datasets to verify that they produce accurate, reliable, and repeatable results",
-      "Ensuring that the forensic software graphical user interface matches corporate branding guidelines",
-      "Verifying that the software vendor is listed on international commercial stock exchanges"
+      "Each TA value represents a discrete round-trip radio propagation time increment, allowing calculation of the device's distance from the cell tower in radial bands (e.g. ~550 meters per TA unit in GSM)",
+      "It records the local time zone offset of the suspect's wristwatch",
+      "It measures the battery degradation rate of the smartphone",
+      "It determines how many minutes the suspect was late for a scheduled appointment"
     ],
-    "answer": 1,
-    "explanation": "Tool validation (mandated by ISO/IEC 17025 and Daubert standards) requires labs to test tools against mock ground-truth datasets, verifying that the tool accurately extracts data without altering, dropping, or fabricating records."
+    "answer": 0,
+    "explanation": "In TDMA/GSM/LTE networks, Timing Advance (TA) compensates for radio propagation delays between the mobile device and the base station. Because radio waves travel at the speed of light, each unit of TA corresponds to a known distance band (e.g., in GSM, 1 TA unit ≈ 550 meters radius), narrowing the suspect's position to a curved radial arc."
   },
   {
     "id": 195,
-    "question": "In mobile forensic report writing, why must an examiner document the exact software version number of the extraction tool utilized?",
+    "topic": "Tower Dumps in Criminal Investigations",
+    "question": "What is a 'Tower Dump' in mobile telecommunications forensics?",
     "options": [
-      "To assist the software vendor in auditing commercial licensing compliance",
-      "To satisfy standard graphic design requirements for government publication printing",
-      "To ensure scientific reproducibility, allowing other examiners to replicate the examination and evaluate known bugs or parsing behavior of that specific version",
-      "To determine the retail market resale price of the forensic equipment"
+      "A forensic extraction obtained from a telecom service provider listing all cellular transactions (every phone number, IMEI, and IMSI) that connected to a specific cell tower sector during a designated time window",
+      "Physical demolition of an illegal cell tower by police",
+      "A memory dump of the physical base station antenna controller",
+      "A technique to disconnect all cellular calls in an entire city"
     ],
-    "answer": 2,
-    "explanation": "Scientific validity requires repeatability. Documenting exact software versions (e.g. Cellebrite UFED v7.65.0.12) ensures that findings can be verified or re-tested by independent experts, accounting for version-specific parsing rules."
+    "answer": 0,
+    "explanation": "A Tower Dump is a telecom provider record that captures all cellular connections that occurred on a specific cell tower (or specific sectors) over a specified time timeframe. Investigators cross-reference multiple tower dumps from different crime scenes to identify common phone numbers or IMEIs."
   },
   {
     "id": 196,
-    "question": "What is the final, comprehensive repository where an examiner documents all mobile extraction steps, tool outputs, hash values, and forensic findings?",
+    "topic": "IPDR (Internet Protocol Detail Record)",
+    "question": "What is an Internet Protocol Detail Record (IPDR) and how does it differ from a traditional voice CDR?",
     "options": [
-      "First Information Report (FIR)",
-      "Police Station Daily Diary",
-      "Telecommunication Service Provider Service Level Agreement",
-      "Digital Forensic Examination Report (Expert Witness Report)"
+      "An IPDR tracks mobile data/internet usage sessions, recording source/destination IP addresses, destination port numbers, timestamps, volume of bytes transferred, and public NAT allocations",
+      "An IPDR records voice calls while a CDR records text messages",
+      "An IPDR is generated exclusively by Wi-Fi routers in private homes",
+      "An IPDR contains the unencrypted source code of all visited web pages"
     ],
-    "answer": 3,
-    "explanation": "The Digital Forensic Examination Report is the formal, legally binding document presented to the court. It details case background, evidence receipt, tool validation, extraction methodology, hash integrity, findings, and expert opinions."
+    "answer": 0,
+    "explanation": "While voice CDRs capture telephony and SMS, an Internet Protocol Detail Record (IPDR) captures mobile data traffic. Telecom operators record when a mobile device established an IP session, its private IP, public translated NAT IP, destination IP, port numbers, duration, and bytes uploaded/downloaded."
   },
   {
     "id": 197,
-    "question": "What is the significance of the Luhn Algorithm (Mod 10 algorithm) in mobile phone hardware identification?",
+    "topic": "First Cell ID vs Last Cell ID",
+    "question": "When a suspect initiates a voice call that lasts 45 minutes while driving on a highway, why do CDR records list a 'First Cell ID' and a 'Last Cell ID'?",
     "options": [
-      "It computes the final 15th validation check digit of an International Mobile Equipment Identity (IMEI) number",
-      "It encrypts the subscriber's voice calls over 3G UMTS radio frequency channels",
-      "It generates the cryptographic public key used in Apple Secure Enclave boot validation",
-      "It formats the internal flash memory chips of Android smartphones during factory resets"
+      "The First Cell ID identifies the tower sector where the call was initiated, while the Last Cell ID identifies the sector where the call was terminated, demonstrating vehicle movement and direction of travel",
+      "The First Cell ID is the suspect's home tower, and the Last Cell ID is the victim's home tower",
+      "The First Cell ID is the 4G tower, and the Last Cell ID is the 5G tower",
+      "The two IDs are random numbers generated by the billing software to prevent fraud"
     ],
     "answer": 0,
-    "explanation": "The 15th digit of an IMEI is a check digit calculated using the Luhn formula (mod 10). Forensic software validates this digit to verify that a typed or extracted IMEI is mathematically valid."
+    "explanation": "During a voice call, handovers occur between adjacent base stations as the mobile subscriber moves. CDRs record the cell site where the call originated (First Cell ID) and where it ended (Last Cell ID). Comparing these locations proves physical movement across geographic terrain during the call."
   },
   {
     "id": 198,
-    "question": "In mobile cellular positioning, what is the 'Angle of Arrival' (AoA) technique?",
+    "topic": "IMEI-IMSI Pairing Analysis",
+    "question": "How can telecommunication analysts detect that a criminal is swapping multiple SIM cards inside the same physical smartphone handset?",
     "options": [
-      "Calculating the vertical elevation of a drone above ground level using barometric sensors",
-      "Measuring the specific directional angle at which a mobile handset's radio signal arrives at multiple antenna arrays on cell towers to pinpoint its location",
-      "Measuring the battery temperature increase during rapid wireless charging cycles",
-      "Determining the optical refraction angle of laser scanners during chip-off desoldering"
+      "By filtering the carrier's CDR database for a single recurring IMEI number associated with multiple different IMSI numbers across consecutive sessions",
+      "By listening to audio recordings of the suspect's voice pitch",
+      "By querying the suspect's home Wi-Fi router DNS log",
+      "By inspecting the physical color of the smartphone's plastic chassis"
     ],
-    "answer": 1,
-    "explanation": "Angle of Arrival (AoA) uses multi-element antenna arrays at base stations to calculate the exact direction from which the mobile phone's uplink radio signal arrives, providing precise bearing lines for triangulation."
+    "answer": 0,
+    "explanation": "The IMEI identifies the physical handset hardware, while the IMSI identifies the subscriber identity module (SIM card). If a CDR report reveals the same IMEI active with several different IMSI numbers over days or weeks, it proves that different SIM cards were swapped into the same physical phone."
   },
   {
     "id": 199,
-    "question": "What artifact is created in an Android smartphone's internal storage when an application encounters an unhandled exception or crash?",
+    "topic": "Cellular Triangulation vs Single-Tower Sector",
+    "question": "What is required to perform true multi-lateration / cell site triangulation of a mobile device, as opposed to single-tower sector mapping?",
     "options": [
-      "Encrypted BitLocker full volume header backups in unallocated cluster slack",
-      "A full physical bitstream copy of the external SIM card elementary files",
-      "ANR (Application Not Responding) traces and tombstone crash dumps in '/data/anr/' and '/data/tombstones/'",
-      "An automatic SMS message transmitted directly to local police dispatchers"
+      "Simultaneous network measurement data (timing and signal strength RSSI/RSRP) from at least three distinct base stations or sectors",
+      "A single cell tower sector with an active 5G antenna",
+      "A legal wiretap order signed by a magistrate judge",
+      "Access to the suspect's WhatsApp profile picture"
     ],
-    "answer": 2,
-    "explanation": "When apps crash or hang, Android generates ANR traces in '/data/anr/traces.txt' and native crash dumps in '/data/tombstones/', capturing process state, memory stack frames, loaded libraries, and timestamps."
+    "answer": 0,
+    "explanation": "Single-tower CDR analysis only places a handset within a broad wedge-shaped sector (e.g. 120° arc up to several kilometers). True triangulation (multilateration) requires simultaneous signal measurements (Time Difference of Arrival - TDOA, or signal strength) from at least three intersecting base station towers."
   },
   {
     "id": 200,
-    "question": "In digital forensics evidence presentation, why must an examiner distinguish between 'Device Time' and 'Network Time' (UTC/NTP)?",
+    "topic": "CDR Evidentiary Admissibility in India",
+    "question": "Under Indian evidence law (Section 65B of the Indian Evidence Act, 1872 / Section 63 of Bharatiya Sakshya Adhiniyam, BSA 2024), what mandatory document must accompany CDR records produced in court?",
     "options": [
-      "Device time is legally barred from being presented in criminal court proceedings",
-      "Network time is calculated using the internal rotational speed of the hard drive platters",
-      "Device time changes automatically whenever an external USB cable is attached",
-      "User devices may have altered, drifted, or incorrect local clocks, whereas cellular carrier CDR timestamps reflect synchronized network UTC time"
+      "A Certificate under Section 65B (or BSA Sec 63) signed by an authorized telecom nodal officer certifying the authenticity, lawful origin, and unbroken computer system integrity of the electronic record",
+      "A written confession signed by the suspect in police custody",
+      "A receipt showing that the suspect paid their monthly telephone bill in cash",
+      "An engineering blueprint of the physical cell tower hardware"
     ],
-    "answer": 3,
-    "explanation": "Suspects often deliberately change their phone clock (or the battery drains causing time drift). Forensic examiners must correlate device-local timestamps with authoritative, UTC-synchronized network CDR timestamps."
+    "answer": 0,
+    "explanation": "Under the landmark Supreme Court ruling in *Arjun Panditrao Khotkar v. Kailash Kushanrao Gorantyal (2020)* interpreting Section 65B of the Indian Evidence Act (now Section 63 of the BSA 2024), electronic records like CDRs are inadmissible in Indian courts without a mandatory certificate signed by the telecom service provider's authorized nodal officer certifying the integrity and automated generation of the computer logs."
   }
 ];
-
-if (typeof window !== 'undefined') {
-  window.book4MCQs = book4MCQs;
-}
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = book4MCQs;
-}
