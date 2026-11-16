@@ -84,7 +84,7 @@ books.forEach((bId, bIndex) => {
     allOk = false;
   }
 
-  const expectedSpreads = (bId === 'book4' || bId === 'book5') ? 40 : 20;
+  const expectedSpreads = (bId === 'book3' || bId === 'book4' || bId === 'book5') ? 40 : 20;
   if (!data.spreads || data.spreads.length !== expectedSpreads) {
     console.error(`FAIL: ${bId} has ${data.spreads ? data.spreads.length : 0} spreads (expected ${expectedSpreads})`);
     allOk = false;
@@ -96,13 +96,25 @@ books.forEach((bId, bIndex) => {
   }
 
   let bannerCountTotal = 0;
+  const isMulti = (bId === 'book3' || bId === 'book4' || bId === 'book5');
   data.spreads.forEach((spread, sIdx) => {
     // Check right page content
     const rightContent = spread.right.content;
     const bannerMatches = (rightContent.match(/class="spread-quiz-cta-banner"/g) || []).length;
+    const contMatches = (rightContent.match(/\(Part 1\/2\) Complete/g) || []).length;
     bannerCountTotal += bannerMatches;
-    if (bannerMatches !== 1) {
-      console.warn(`WARNING: ${bId} Spread ${sIdx + 1} has ${bannerMatches} banners in HTML content!`);
+
+    if (isMulti) {
+      if (sIdx % 2 === 0 && contMatches !== 1) {
+        console.warn(`WARNING: ${bId} Spread ${sIdx + 1} (Part 1/2) expected 1 continuation notice, got ${contMatches}!`);
+      }
+      if (sIdx % 2 === 1 && bannerMatches !== 1) {
+        console.warn(`WARNING: ${bId} Spread ${sIdx + 1} (Part 2/2) expected 1 quiz CTA banner, got ${bannerMatches}!`);
+      }
+    } else {
+      if (bannerMatches !== 1) {
+        console.warn(`WARNING: ${bId} Spread ${sIdx + 1} has ${bannerMatches} banners in HTML content!`);
+      }
     }
 
     // Verify openMCQForSpread runs without throwing
