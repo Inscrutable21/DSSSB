@@ -1,4 +1,5 @@
-// Book 5 MCQs: Information Security, Applied Cryptography & VAPT (200 Questions - 10 Per Spread)
+// Book 5 MCQs: Information Security, Cryptography & VAPT (200 Questions)
+// Topic field aligned 1:1 with Official Syllabus Main Headings
 window.book5MCQs = [
   {
     "id": 1,
@@ -10,7 +11,8 @@ window.book5MCQs = [
       "Non-repudiation"
     ],
     "answer": 0,
-    "explanation": "Confidentiality ensures that information is not made available or disclosed to unauthorized individuals, entities, or processes (achieved via encryption and access controls)."
+    "explanation": "Confidentiality ensures that information is not made available or disclosed to unauthorized individuals, entities, or processes (achieved via encryption and access controls).",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 2,
@@ -22,7 +24,8 @@ window.book5MCQs = [
       "Authorization"
     ],
     "answer": 1,
-    "explanation": "Integrity ensures the accuracy, completeness, and unaltered state of data from creation to transmission and storage (enforced via cryptographic hashes and digital signatures)."
+    "explanation": "Integrity ensures the accuracy, completeness, and unaltered state of data from creation to transmission and storage (enforced via cryptographic hashes and digital signatures).",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 3,
@@ -34,7 +37,8 @@ window.book5MCQs = [
       "Authentication"
     ],
     "answer": 2,
-    "explanation": "Availability ensures that computing systems, network infrastructure, and data remain operable and reachable when needed by authorized users (enforced via redundancy and DDoS defenses)."
+    "explanation": "Availability ensures that computing systems, network infrastructure, and data remain operable and reachable when needed by authorized users (enforced via redundancy and DDoS defenses).",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 4,
@@ -46,7 +50,8 @@ window.book5MCQs = [
       "Compensating Control"
     ],
     "answer": 0,
-    "explanation": "Preventive controls (firewalls, encryption, IPS, biometric doors) actively stop security incidents before they occur."
+    "explanation": "Preventive controls (firewalls, encryption, IPS, biometric doors) actively stop security incidents before they occur.",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 5,
@@ -58,7 +63,8 @@ window.book5MCQs = [
       "Separation of Privilege"
     ],
     "answer": 1,
-    "explanation": "Defense-in-Depth ensures that if one defensive layer is breached (e.g., perimeter firewall), subsequent layers (host IDS, endpoint protection, database encryption) prevent compromise."
+    "explanation": "Defense-in-Depth ensures that if one defensive layer is breached (e.g., perimeter firewall), subsequent layers (host IDS, endpoint protection, database encryption) prevent compromise.",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 6,
@@ -70,7 +76,8 @@ window.book5MCQs = [
       "The Vernam Principle"
     ],
     "answer": 1,
-    "explanation": "Kerckhoffs's Principle states that a cryptosystem must be secure even if the enemy knows the entire system, provided only the secret key is kept confidential."
+    "explanation": "Kerckhoffs's Principle states that a cryptosystem must be secure even if the enemy knows the entire system, provided only the secret key is kept confidential.",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 7,
@@ -82,7 +89,8 @@ window.book5MCQs = [
       "Risk = Vulnerability - Threat"
     ],
     "answer": 1,
-    "explanation": "Risk is the product of Threat (adversary capability), Vulnerability (flaw/weakness), and Impact (consequence of compromise). If Vulnerability is zero, Risk is zero."
+    "explanation": "Risk is the product of Threat (adversary capability), Vulnerability (flaw/weakness), and Impact (consequence of compromise). If Vulnerability is zero, Risk is zero.",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 8,
@@ -94,7 +102,8 @@ window.book5MCQs = [
       "Fail-Safe Defaults"
     ],
     "answer": 1,
-    "explanation": "The Principle of Least Privilege limits access rights for users, programs, and processes to only the bare minimum permissions required for authorized work, limiting exploit blast radius."
+    "explanation": "The Principle of Least Privilege limits access rights for users, programs, and processes to only the bare minimum permissions required for authorized work, limiting exploit blast radius.",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 9,
@@ -106,7 +115,8 @@ window.book5MCQs = [
       "Mandatory Vacations"
     ],
     "answer": 1,
-    "explanation": "Separation of Duties and Dual Control divide critical transactions among multiple personnel so no single individual can unilaterally execute fraudulent or destructive actions."
+    "explanation": "Separation of Duties and Dual Control divide critical transactions among multiple personnel so no single individual can unilaterally execute fraudulent or destructive actions.",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 10,
@@ -118,7 +128,8 @@ window.book5MCQs = [
       "SQL Injection"
     ],
     "answer": 0,
-    "explanation": "Phishing is a social engineering attack where malicious actors impersonate legitimate institutions via email to trick victims into providing sensitive credentials or installing malware."
+    "explanation": "Phishing is a social engineering attack where malicious actors impersonate legitimate institutions via email to trick victims into providing sensitive credentials or installing malware.",
+    "topic": "Confidentiality, Integrity, and Availability (CIA) Triad"
   },
   {
     "id": 11,
@@ -130,7 +141,8 @@ window.book5MCQs = [
       "Availability, Accuracy, Authenticity"
     ],
     "answer": 1,
-    "explanation": "AAA stands for Authentication (verifying identity), Authorization (determining permissions), and Accounting/Auditing (logging user activity)."
+    "explanation": "AAA stands for Authentication (verifying identity), Authorization (determining permissions), and Accounting/Auditing (logging user activity).",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 12,
@@ -142,7 +154,8 @@ window.book5MCQs = [
       "Somewhere you are (Location)"
     ],
     "answer": 2,
-    "explanation": "Biometric traits (fingerprint, iris, retina, face, voice) represent the 'Something you are' (Inherence) authentication factor."
+    "explanation": "Biometric traits (fingerprint, iris, retina, face, voice) represent the 'Something you are' (Inherence) authentication factor.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 13,
@@ -154,7 +167,8 @@ window.book5MCQs = [
       "A PIN entered twice from two separate browsers"
     ],
     "answer": 1,
-    "explanation": "True MFA mandates using at least two different factor categories (e.g. Something you know + Something you have). A password and a PIN are both 'something you know' and do NOT qualify as MFA."
+    "explanation": "True MFA mandates using at least two different factor categories (e.g. Something you know + Something you have). A password and a PIN are both 'something you know' and do NOT qualify as MFA.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 14,
@@ -166,7 +180,8 @@ window.book5MCQs = [
       "Rule-Based Access Control"
     ],
     "answer": 1,
-    "explanation": "RBAC (Role-Based Access Control) assigns permissions to organizational roles (e.g., 'Auditor', 'Doctor'), and users are assigned to roles, dramatically simplifying enterprise administration."
+    "explanation": "RBAC (Role-Based Access Control) assigns permissions to organizational roles (e.g., 'Auditor', 'Doctor'), and users are assigned to roles, dramatically simplifying enterprise administration.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 15,
@@ -178,7 +193,8 @@ window.book5MCQs = [
       "Open Access Control"
     ],
     "answer": 0,
-    "explanation": "In Mandatory Access Control (MAC), the central operating system policy strictly enforces access based on security clearances and classification labels (e.g., Bell-LaPadula model); data owners cannot override it."
+    "explanation": "In Mandatory Access Control (MAC), the central operating system policy strictly enforces access based on security clearances and classification labels (e.g., Bell-LaPadula model); data owners cannot override it.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 16,
@@ -190,7 +206,8 @@ window.book5MCQs = [
       "Static File Permissions"
     ],
     "answer": 1,
-    "explanation": "Attribute-Based Access Control (ABAC) uses fine-grained boolean policies evaluating subject, resource, action, and environmental context attributes (e.g., allow if time is 9am-5pm and location is office)."
+    "explanation": "Attribute-Based Access Control (ABAC) uses fine-grained boolean policies evaluating subject, resource, action, and environmental context attributes (e.g., allow if time is 9am-5pm and location is office).",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 17,
@@ -202,7 +219,8 @@ window.book5MCQs = [
       "Authentication"
     ],
     "answer": 0,
-    "explanation": "Non-repudiation provides indisputable cryptographic proof of the origin and integrity of a transaction, preventing a sender from claiming they did not transmit it."
+    "explanation": "Non-repudiation provides indisputable cryptographic proof of the origin and integrity of a transaction, preventing a sender from claiming they did not transmit it.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 18,
@@ -214,7 +232,8 @@ window.book5MCQs = [
       "Because symmetric encryption cannot process binary data"
     ],
     "answer": 1,
-    "explanation": "In symmetric cryptography, both sender and receiver possess identical copies of the secret key. Therefore, either party could have generated the ciphertext, making non-repudiation impossible."
+    "explanation": "In symmetric cryptography, both sender and receiver possess identical copies of the secret key. Therefore, either party could have generated the ciphertext, making non-repudiation impossible.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 19,
@@ -226,7 +245,8 @@ window.book5MCQs = [
       "Base64 Obfuscation"
     ],
     "answer": 1,
-    "explanation": "Digital signatures provide non-repudiation because only the sender holds the unique private key used to sign the message digest, and anyone can verify it with their public key."
+    "explanation": "Digital signatures provide non-repudiation because only the sender holds the unique private key used to sign the message digest, and anyone can verify it with their public key.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 20,
@@ -238,7 +258,8 @@ window.book5MCQs = [
       "To allow users to modify their past authentication attempts"
     ],
     "answer": 0,
-    "explanation": "Centralized logging with Network Time Protocol (NTP) synchronization guarantees that forensic timelines are chronologically accurate and prevents adversaries from wiping local logs to hide their tracks."
+    "explanation": "Centralized logging with Network Time Protocol (NTP) synchronization guarantees that forensic timelines are chronologically accurate and prevents adversaries from wiping local logs to hide their tracks.",
+    "topic": "Authentication, Authorization & Non-repudiation"
   },
   {
     "id": 21,
@@ -250,7 +271,8 @@ window.book5MCQs = [
       "Cryptography was invented in 2000; Steganography was invented by Claude Shannon"
     ],
     "answer": 0,
-    "explanation": "Cryptography ('secret writing') scrambles the content into unintelligible ciphertext (the communication is visible, but unreadable). Steganography ('covered writing') conceals the fact that a message exists inside a carrier."
+    "explanation": "Cryptography ('secret writing') scrambles the content into unintelligible ciphertext (the communication is visible, but unreadable). Steganography ('covered writing') conceals the fact that a message exists inside a carrier.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 22,
@@ -262,7 +284,8 @@ window.book5MCQs = [
       "Watermarking is an illegal hacking technique"
     ],
     "answer": 0,
-    "explanation": "Digital watermarking embeds an indelible mark to assert intellectual property and verify ownership, requiring extreme robustness against filtering. Steganography prioritizes stealth and capacity."
+    "explanation": "Digital watermarking embeds an indelible mark to assert intellectual property and verify ownership, requiring extreme robustness against filtering. Steganography prioritizes stealth and capacity.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 23,
@@ -274,7 +297,8 @@ window.book5MCQs = [
       "Initialization Vector"
     ],
     "answer": 0,
-    "explanation": "The original innocent file before data embedding is the 'Cover Object' (carrier); after embedding the hidden payload, it is termed the 'Stego-Object'."
+    "explanation": "The original innocent file before data embedding is the 'Cover Object' (carrier); after embedding the hidden payload, it is termed the 'Stego-Object'.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 24,
@@ -286,7 +310,8 @@ window.book5MCQs = [
       "Huffman Encoding"
     ],
     "answer": 1,
-    "explanation": "LSB (Least Significant Bit) insertion overwrites the lowest-order bit of RGB color bytes (0-255). Changing the last bit alters luminance by only 1/255th, invisible to the human eye."
+    "explanation": "LSB (Least Significant Bit) insertion overwrites the lowest-order bit of RGB color bytes (0-255). Changing the last bit alters luminance by only 1/255th, invisible to the human eye.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 25,
@@ -298,7 +323,8 @@ window.book5MCQs = [
       "24 bits"
     ],
     "answer": 1,
-    "explanation": "Each pixel in a 24-bit image has 3 color bytes (Red, Green, Blue). Modifying the 1 least significant bit of each color byte allows embedding exactly 3 secret bits per pixel."
+    "explanation": "Each pixel in a 24-bit image has 3 color bytes (Red, Green, Blue). Modifying the 1 least significant bit of each color byte allows embedding exactly 3 secret bits per pixel.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 26,
@@ -310,7 +336,8 @@ window.book5MCQs = [
       "Color palette headers"
     ],
     "answer": 1,
-    "explanation": "JPEG steganography operates in the frequency domain, modifying the quantized Discrete Cosine Transform (DCT) coefficients of 8x8 pixel blocks to survive lossy compression."
+    "explanation": "JPEG steganography operates in the frequency domain, modifying the quantized Discrete Cosine Transform (DCT) coefficients of 8x8 pixel blocks to survive lossy compression.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 27,
@@ -322,7 +349,8 @@ window.book5MCQs = [
       "Subnet mask bits"
     ],
     "answer": 0,
-    "explanation": "Adversaries manipulate TCP Initial Sequence Numbers (ISN), IP Identification fields, or TCP Urgent Pointers to transmit secret data without generating abnormal application traffic."
+    "explanation": "Adversaries manipulate TCP Initial Sequence Numbers (ISN), IP Identification fields, or TCP Urgent Pointers to transmit secret data without generating abnormal application traffic.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 28,
@@ -334,7 +362,8 @@ window.book5MCQs = [
       "It sends an alert to the network administrator"
     ],
     "answer": 0,
-    "explanation": "A Stego-Key controls a pseudorandom number generator (PRNG) that scatters payload bits across non-sequential carrier locations, preventing unauthorized parties from extracting the data even if they know the carrier format."
+    "explanation": "A Stego-Key controls a pseudorandom number generator (PRNG) that scatters payload bits across non-sequential carrier locations, preventing unauthorized parties from extracting the data even if they know the carrier format.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 29,
@@ -346,7 +375,8 @@ window.book5MCQs = [
       "RAM usage, Display resolution, and Bandwidth"
     ],
     "answer": 0,
-    "explanation": "The Steganographic Triangle dictates that increasing payload Capacity degrades Invisibility (making statistical detection easier) or reduces Robustness against image processing."
+    "explanation": "The Steganographic Triangle dictates that increasing payload Capacity degrades Invisibility (making statistical detection easier) or reduces Robustness against image processing.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 30,
@@ -358,7 +388,8 @@ window.book5MCQs = [
       "The Two Generals Problem"
     ],
     "answer": 1,
-    "explanation": "The Prisoners' Problem models two inmates (Alice and Bob) attempting to hatch an escape plan under the watchful eye of a prison warden (Wendy), requiring their secret messages to appear completely innocent."
+    "explanation": "The Prisoners' Problem models two inmates (Alice and Bob) attempting to hatch an escape plan under the watchful eye of a prison warden (Wendy), requiring their secret messages to appear completely innocent.",
+    "topic": "Concepts of Cryptography & Steganography"
   },
   {
     "id": 31,
@@ -370,7 +401,8 @@ window.book5MCQs = [
       "Encryption is performed with a password, but decryption requires biometric hardware"
     ],
     "answer": 1,
-    "explanation": "Symmetric cryptography (secret-key cryptography) relies on both communicating parties sharing and keeping confidential the exact same secret key."
+    "explanation": "Symmetric cryptography (secret-key cryptography) relies on both communicating parties sharing and keeping confidential the exact same secret key.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 32,
@@ -382,7 +414,8 @@ window.book5MCQs = [
       "Stream ciphers use S-boxes; block ciphers only use XOR operations"
     ],
     "answer": 0,
-    "explanation": "Stream ciphers continuously XOR plaintext bits with a pseudorandom keystream (low latency, zero buffering). Block ciphers process fixed-size chunks (e.g. 64 or 128 bits) through multiple rounds."
+    "explanation": "Stream ciphers continuously XOR plaintext bits with a pseudorandom keystream (low latency, zero buffering). Block ciphers process fixed-size chunks (e.g. 64 or 128 bits) through multiple rounds.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 33,
@@ -394,7 +427,8 @@ window.book5MCQs = [
       "RSA-2048"
     ],
     "answer": 2,
-    "explanation": "ChaCha20 is a modern stream cipher using 256-bit keys, a 96-bit nonce, and ARX operations. It is immune to cache-timing attacks, replacing the obsolete and vulnerable RC4 cipher."
+    "explanation": "ChaCha20 is a modern stream cipher using 256-bit keys, a 96-bit nonce, and ARX operations. It is immune to cache-timing attacks, replacing the obsolete and vulnerable RC4 cipher.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 34,
@@ -406,7 +440,8 @@ window.book5MCQs = [
       "32-bit block size and 56-bit key length"
     ],
     "answer": 1,
-    "explanation": "DES operates on 64-bit blocks. The input key is 64 bits, but bits 8, 16, 24, 32, 40, 48, 56, and 64 are parity bits, leaving strictly 56 effective key bits (2^56 keys)."
+    "explanation": "DES operates on 64-bit blocks. The input key is 64 bits, but bits 8, 16, 24, 32, 40, 48, 56, and 64 are parity bits, leaving strictly 56 effective key bits (2^56 keys).",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 35,
@@ -418,7 +453,8 @@ window.book5MCQs = [
       "Confusion is stream encryption; Diffusion is block decryption"
     ],
     "answer": 0,
-    "explanation": "Confusion makes the mathematical relationship between key and ciphertext as complex as possible (non-linear S-boxes). Diffusion ensures that changing one bit in plaintext alters roughly 50% of ciphertext bits."
+    "explanation": "Confusion makes the mathematical relationship between key and ciphertext as complex as possible (non-linear S-boxes). Diffusion ensures that changing one bit in plaintext alters roughly 50% of ciphertext bits.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 36,
@@ -430,7 +466,8 @@ window.book5MCQs = [
       "20 rounds"
     ],
     "answer": 2,
-    "explanation": "DES executes exactly 16 Feistel rounds. In each round, the 64-bit block is split into two 32-bit halves, swapped, and transformed through the Feistel F-function."
+    "explanation": "DES executes exactly 16 Feistel rounds. In each round, the 64-bit block is split into two 32-bit halves, swapped, and transformed through the Feistel F-function.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 37,
@@ -442,7 +479,8 @@ window.book5MCQs = [
       "It converts block ciphers into asymmetric algorithms"
     ],
     "answer": 1,
-    "explanation": "In a Feistel cipher, decryption is mathematically identical to encryption; one simply applies the round keys in reverse order (Key 16 down to Key 1), saving silicon chip area."
+    "explanation": "In a Feistel cipher, decryption is mathematically identical to encryption; one simply applies the round keys in reverse order (Key 16 down to Key 1), saving silicon chip area.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 38,
@@ -454,7 +492,8 @@ window.book5MCQs = [
       "Because Feistel ciphers only allow one key"
     ],
     "answer": 0,
-    "explanation": "Diffie and Hellman proved Double DES vulnerable to the Meet-in-the-Middle attack: forward encryption from plaintext meets backward decryption from ciphertext, dropping security from 112 bits to just 57 bits."
+    "explanation": "Diffie and Hellman proved Double DES vulnerable to the Meet-in-the-Middle attack: forward encryption from plaintext meets backward decryption from ciphertext, dropping security from 112 bits to just 57 bits.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 39,
@@ -466,7 +505,8 @@ window.book5MCQs = [
       "By appending 64 zeroes to the key"
     ],
     "answer": 0,
-    "explanation": "3DES uses EDE sequence: C = E(K3, D(K2, E(K1, P))). When K1 = K2 = K3, the middle Decrypt cancels the first Encrypt, behaving exactly as a standard single DES engine."
+    "explanation": "3DES uses EDE sequence: C = E(K3, D(K2, E(K1, P))). When K1 = K2 = K3, the middle Decrypt cancels the first Encrypt, behaving exactly as a standard single DES engine.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 40,
@@ -478,7 +518,8 @@ window.book5MCQs = [
       "The algorithm was discovered to be non-invertible"
     ],
     "answer": 0,
-    "explanation": "Because 3DES inherits DES's tiny 64-bit block size, after encrypting 2^32 blocks (32 GB) under CBC mode, birthday collisions occur, exposing plaintext blocks (the Sweet32 attack)."
+    "explanation": "Because 3DES inherits DES's tiny 64-bit block size, after encrypting 2^32 blocks (32 GB) under CBC mode, birthday collisions occur, exposing plaintext blocks (the Sweet32 attack).",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (Stream vs Block & DES)"
   },
   {
     "id": 41,
@@ -490,7 +531,8 @@ window.book5MCQs = [
       "512 bits"
     ],
     "answer": 1,
-    "explanation": "In AES, the block size is ALWAYS fixed at exactly 128 bits (16 bytes, organized as a 4x4 matrix of bytes). It does not change with key size."
+    "explanation": "In AES, the block size is ALWAYS fixed at exactly 128 bits (16 bytes, organized as a 4x4 matrix of bytes). It does not change with key size.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 42,
@@ -502,7 +544,8 @@ window.book5MCQs = [
       "16 rounds in all variants"
     ],
     "answer": 1,
-    "explanation": "AES round counts are strictly standardized: AES-128 executes 10 rounds; AES-192 executes 12 rounds; AES-256 executes 14 rounds."
+    "explanation": "AES round counts are strictly standardized: AES-128 executes 10 rounds; AES-192 executes 12 rounds; AES-256 executes 14 rounds.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 43,
@@ -514,7 +557,8 @@ window.book5MCQs = [
       "AddRoundKey"
     ],
     "answer": 1,
-    "explanation": "SubBytes is the sole non-linear transformation in AES. It substitutes each byte with an entry from an invertible S-box constructed from the multiplicative inverse over GF(2^8)."
+    "explanation": "SubBytes is the sole non-linear transformation in AES. It substitutes each byte with an entry from an invertible S-box constructed from the multiplicative inverse over GF(2^8).",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 44,
@@ -526,7 +570,8 @@ window.book5MCQs = [
       "AddRoundKey"
     ],
     "answer": 2,
-    "explanation": "MixColumns provides linear diffusion across 4-byte columns. To make decryption symmetrical and save cycles, MixColumns is omitted in the final round (Round 10, 12, or 14)."
+    "explanation": "MixColumns provides linear diffusion across 4-byte columns. To make decryption symmetrical and save cycles, MixColumns is omitted in the final round (Round 10, 12, or 14).",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 45,
@@ -538,7 +583,8 @@ window.book5MCQs = [
       "It can only be used on 32-bit computers"
     ],
     "answer": 1,
-    "explanation": "ECB encrypts each 128-bit block independently with the key. Identical plaintext blocks yield identical ciphertext blocks, notoriously leaking visual and data patterns (e.g. the ECB Penguin)."
+    "explanation": "ECB encrypts each 128-bit block independently with the key. Identical plaintext blocks yield identical ciphertext blocks, notoriously leaking visual and data patterns (e.g. the ECB Penguin).",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 46,
@@ -550,7 +596,8 @@ window.book5MCQs = [
       "It is hashed using SHA-256"
     ],
     "answer": 0,
-    "explanation": "In CBC mode, the first plaintext block is XORed with a random, unique Initialization Vector (IV) before block encryption. Each subsequent block is XORed with the previous ciphertext block."
+    "explanation": "In CBC mode, the first plaintext block is XORed with a random, unique Initialization Vector (IV) before block encryption. Each subsequent block is XORed with the previous ciphertext block.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 47,
@@ -562,7 +609,8 @@ window.book5MCQs = [
       "Server-Side Request Forgery"
     ],
     "answer": 0,
-    "explanation": "Padding Oracle attacks exploit servers that return different errors for invalid padding vs incorrect passwords, allowing attackers to systematically decrypt ciphertexts byte-by-byte without the key."
+    "explanation": "Padding Oracle attacks exploit servers that return different errors for invalid padding vs incorrect passwords, allowing attackers to systematically decrypt ciphertexts byte-by-byte without the key.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 48,
@@ -574,7 +622,8 @@ window.book5MCQs = [
       "OFB (Output Feedback)"
     ],
     "answer": 2,
-    "explanation": "CTR (Counter Mode) encrypts incrementing counter values (Nonce + Counter) and XORs the result with plaintext. Because counter blocks are independent, processing can be 100% parallelized."
+    "explanation": "CTR (Counter Mode) encrypts incrementing counter values (Nonce + Counter) and XORs the result with plaintext. Because counter blocks are independent, processing can be 100% parallelized.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 49,
@@ -586,7 +635,8 @@ window.book5MCQs = [
       "It requires three separate passwords to decrypt"
     ],
     "answer": 0,
-    "explanation": "AEAD combines confidentiality with cryptographic integrity verification (MAC). It protects encrypted data and authenticates unencrypted headers (Associated Data, AAD)."
+    "explanation": "AEAD combines confidentiality with cryptographic integrity verification (MAC). It protects encrypted data and authenticates unencrypted headers (Associated Data, AAD).",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 50,
@@ -598,7 +648,8 @@ window.book5MCQs = [
       "AES-XTS"
     ],
     "answer": 2,
-    "explanation": "AES-GCM combines CTR mode encryption with Galois Field multiplication (GHASH) to generate a 128-bit authentication tag, making it the industry standard for TLS 1.3 and IPsec."
+    "explanation": "AES-GCM combines CTR mode encryption with Galois Field multiplication (GHASH) to generate a 128-bit authentication tag, making it the industry standard for TLS 1.3 and IPsec.",
+    "topic": "Symmetric and Asymmetric algorithms: Symmetric (AES & Modes of Operation)"
   },
   {
     "id": 51,
@@ -610,7 +661,8 @@ window.book5MCQs = [
       "It only encrypts data during daytime hours"
     ],
     "answer": 1,
-    "explanation": "Asymmetric cryptography utilizes a key pair. The public key is openly distributed to anyone who wants to send encrypted data, while the corresponding private key is kept strictly secret by the recipient."
+    "explanation": "Asymmetric cryptography utilizes a key pair. The public key is openly distributed to anyone who wants to send encrypted data, while the corresponding private key is kept strictly secret by the recipient.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 52,
@@ -622,7 +674,8 @@ window.book5MCQs = [
       "Modulo 26 Shift"
     ],
     "answer": 0,
-    "explanation": "A Trapdoor One-Way Function is easy to compute in one direction (e.g. multiplying large primes), but computationally infeasible to invert (factoring) unless one knows the secret 'trapdoor' key."
+    "explanation": "A Trapdoor One-Way Function is easy to compute in one direction (e.g. multiplying large primes), but computationally infeasible to invert (factoring) unless one knows the secret 'trapdoor' key.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 53,
@@ -634,7 +687,8 @@ window.book5MCQs = [
       "The challenge of reversing SHA-256 hashes"
     ],
     "answer": 0,
-    "explanation": "RSA relies on the fact that multiplying two 1024-bit primes (n = p * q) takes microseconds, but factoring composite modulus n back into p and q would take millions of compute years."
+    "explanation": "RSA relies on the fact that multiplying two 1024-bit primes (n = p * q) takes microseconds, but factoring composite modulus n back into p and q would take millions of compute years.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 54,
@@ -646,7 +700,8 @@ window.book5MCQs = [
       "phi(n) = sqrt(p * q)"
     ],
     "answer": 1,
-    "explanation": "For n = p * q where p and q are prime numbers, Euler's totient function phi(n), which counts positive integers up to n coprime to n, is exactly (p - 1) * (q - 1)."
+    "explanation": "For n = p * q where p and q are prime numbers, Euler's totient function phi(n), which counts positive integers up to n coprime to n, is exactly (p - 1) * (q - 1).",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 55,
@@ -658,7 +713,8 @@ window.book5MCQs = [
       "1,048,576"
     ],
     "answer": 2,
-    "explanation": "The Fermat prime 65,537 (hex 0x10001, binary 10000000000000001) has only two 1-bits. This makes modular exponentiation fast while preventing small-exponent attacks (like Coppersmith's attack on e=3)."
+    "explanation": "The Fermat prime 65,537 (hex 0x10001, binary 10000000000000001) has only two 1-bits. This makes modular exponentiation fast while preventing small-exponent attacks (like Coppersmith's attack on e=3).",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 56,
@@ -670,7 +726,8 @@ window.book5MCQs = [
       "d = phi(n) / e"
     ],
     "answer": 1,
-    "explanation": "The private exponent d is calculated using the Extended Euclidean Algorithm such that (e * d) mod phi(n) = 1, making d the modular multiplicative inverse of e."
+    "explanation": "The private exponent d is calculated using the Extended Euclidean Algorithm such that (e * d) mod phi(n) = 1, making d the modular multiplicative inverse of e.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 57,
@@ -682,7 +739,8 @@ window.book5MCQs = [
       "C = (M + e) mod n"
     ],
     "answer": 1,
-    "explanation": "In RSA, encryption computes C = (M^e) mod n. Decryption reverses this using private key d: M = (C^d) mod n."
+    "explanation": "In RSA, encryption computes C = (M^e) mod n. Decryption reverses this using private key d: M = (C^d) mod n.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 58,
@@ -694,7 +752,8 @@ window.book5MCQs = [
       "Because textbook RSA keys expire after 24 hours"
     ],
     "answer": 1,
-    "explanation": "Deterministic encryption allows an eavesdropper to confirm guesses about plaintext contents. Furthermore, mathematical homomorphic properties allow adversaries to forge valid ciphertexts."
+    "explanation": "Deterministic encryption allows an eavesdropper to confirm guesses about plaintext contents. Furthermore, mathematical homomorphic properties allow adversaries to forge valid ciphertexts.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 59,
@@ -706,7 +765,8 @@ window.book5MCQs = [
       "DES Parity Padding"
     ],
     "answer": 0,
-    "explanation": "RSA-OAEP (RFC 8017) uses a two-round Feistel network with cryptographic hash functions and random seeds to make RSA probabilistically secure against chosen-ciphertext attacks."
+    "explanation": "RSA-OAEP (RFC 8017) uses a two-round Feistel network with cryptographic hash functions and random seeds to make RSA probabilistically secure against chosen-ciphertext attacks.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 60,
@@ -718,7 +778,8 @@ window.book5MCQs = [
       "128 bits"
     ],
     "answer": 2,
-    "explanation": "NIST deprecated 1024-bit RSA keys in 2013. A minimum of 2048 bits is required for current enterprise systems, and 3072 bits is recommended for security beyond 2030."
+    "explanation": "NIST deprecated 1024-bit RSA keys in 2013. A minimum of 2048 bits is required for current enterprise systems, and 3072 bits is recommended for security beyond 2030.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Public-Key & RSA)"
   },
   {
     "id": 61,
@@ -730,7 +791,8 @@ window.book5MCQs = [
       "The DES block cipher algorithm"
     ],
     "answer": 0,
-    "explanation": "Diffie-Hellman (DH) solved the ancient Key Distribution Problem by allowing two strangers (Alice and Bob) to create a shared symmetric key across a public tapped wire."
+    "explanation": "Diffie-Hellman (DH) solved the ancient Key Distribution Problem by allowing two strangers (Alice and Bob) to create a shared symmetric key across a public tapped wire.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 62,
@@ -742,7 +804,8 @@ window.book5MCQs = [
       "Inverting AES S-boxes"
     ],
     "answer": 1,
-    "explanation": "Diffie-Hellman relies on the Discrete Logarithm Problem: given generator g, prime p, and public value A = (g^a) mod p, it is computationally infeasible to extract secret exponent a."
+    "explanation": "Diffie-Hellman relies on the Discrete Logarithm Problem: given generator g, prime p, and public value A = (g^a) mod p, it is computationally infeasible to extract secret exponent a.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 63,
@@ -754,7 +817,8 @@ window.book5MCQs = [
       "Cross-Site Scripting"
     ],
     "answer": 0,
-    "explanation": "An active attacker (Eve) sitting between Alice and Bob can perform two independent DH exchanges (Alice-Eve and Eve-Bob), intercepting and reading all traffic unless endpoints authenticate each other."
+    "explanation": "An active attacker (Eve) sitting between Alice and Bob can perform two independent DH exchanges (Alice-Eve and Eve-Bob), intercepting and reading all traffic unless endpoints authenticate each other.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 64,
@@ -766,7 +830,8 @@ window.book5MCQs = [
       "Hardware-enforced MAC address filtering"
     ],
     "answer": 0,
-    "explanation": "Ephemeral Diffie-Hellman generates new, temporary keys for every session. Once the session ends, the keys are discarded. If the server's long-term master key is stolen later, past sessions cannot be decrypted."
+    "explanation": "Ephemeral Diffie-Hellman generates new, temporary keys for every session. Once the session ends, the keys are discarded. If the server's long-term master key is stolen later, past sessions cannot be decrypted.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 65,
@@ -778,7 +843,8 @@ window.book5MCQs = [
       "Solving simultaneous quadratic equations in Euclidean space"
     ],
     "answer": 0,
-    "explanation": "ECC relies on points lying on algebraic curves (e.g. y^2 = x^3 + ax + b). Its security is anchored on the computational hardness of the Elliptic Curve Discrete Logarithm Problem (ECDLP)."
+    "explanation": "ECC relies on points lying on algebraic curves (e.g. y^2 = x^3 + ax + b). Its security is anchored on the computational hardness of the Elliptic Curve Discrete Logarithm Problem (ECDLP).",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 66,
@@ -790,7 +856,8 @@ window.book5MCQs = [
       "ECC keys never need to be updated"
     ],
     "answer": 0,
-    "explanation": "Because no sub-exponential algorithm exists to solve ECDLP (unlike the Number Field Sieve for RSA factoring), ECC achieves the same security as a 3072-bit RSA key using only 256 bits."
+    "explanation": "Because no sub-exponential algorithm exists to solve ECDLP (unlike the Number Field Sieve for RSA factoring), ECC achieves the same security as a 3072-bit RSA key using only 256 bits.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 67,
@@ -802,7 +869,8 @@ window.book5MCQs = [
       "MD5-Sign"
     ],
     "answer": 0,
-    "explanation": "Ed25519 (developed by Daniel J. Bernstein) is an elliptic curve signature scheme over Curve25519. It runs in strict constant time, completely eliminating cache-timing side-channel vulnerabilities."
+    "explanation": "Ed25519 (developed by Daniel J. Bernstein) is an elliptic curve signature scheme over Curve25519. It runs in strict constant time, completely eliminating cache-timing side-channel vulnerabilities.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 68,
@@ -814,7 +882,8 @@ window.book5MCQs = [
       "Square Root Extraction"
     ],
     "answer": 0,
-    "explanation": "Scalar multiplication in ECC is computed using iterative Point Doubling and Point Addition (the double-and-add algorithm), which is easy to compute forward but impossible to reverse."
+    "explanation": "Scalar multiplication in ECC is computed using iterative Point Doubling and Point Addition (the double-and-add algorithm), which is easy to compute forward but impossible to reverse.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 69,
@@ -826,7 +895,8 @@ window.book5MCQs = [
       "Mobile networks block RSA packets"
     ],
     "answer": 0,
-    "explanation": "Smaller key sizes mean faster handshakes, less power consumption, and minimal memory footprints, making ECC the premier choice for battery-constrained mobile and embedded architectures."
+    "explanation": "Smaller key sizes mean faster handshakes, less power consumption, and minimal memory footprints, making ECC the premier choice for battery-constrained mobile and embedded architectures.",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 70,
@@ -838,7 +908,8 @@ window.book5MCQs = [
       "The Kasiski Algorithm"
     ],
     "answer": 0,
-    "explanation": "Shor's Algorithm on a sufficiently large fault-tolerant quantum computer breaks both Prime Factorization (RSA) and Discrete Logarithms (DH and ECC) in polynomial time O((log n)^3)."
+    "explanation": "Shor's Algorithm on a sufficiently large fault-tolerant quantum computer breaks both Prime Factorization (RSA) and Discrete Logarithms (DH and ECC) in polynomial time O((log n)^3).",
+    "topic": "Symmetric and Asymmetric algorithms: Asymmetric (Diffie-Hellman & ECC)"
   },
   {
     "id": 71,
@@ -850,7 +921,8 @@ window.book5MCQs = [
       "A firewall rule that filters packet headers"
     ],
     "answer": 0,
-    "explanation": "A cryptographic hash function takes an input of any size and produces a fixed-length digest (e.g. SHA-256 always outputs 256 bits). It is deterministic: the same input always yields the identical digest."
+    "explanation": "A cryptographic hash function takes an input of any size and produces a fixed-length digest (e.g. SHA-256 always outputs 256 bits). It is deterministic: the same input always yields the identical digest.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 72,
@@ -862,7 +934,8 @@ window.book5MCQs = [
       "Non-repudiation"
     ],
     "answer": 0,
-    "explanation": "The Avalanche Effect ensures that even microscopic changes to input plaintext create completely uncorrelated, chaotic changes across approximately half the hash digest bits."
+    "explanation": "The Avalanche Effect ensures that even microscopic changes to input plaintext create completely uncorrelated, chaotic changes across approximately half the hash digest bits.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 73,
@@ -874,7 +947,8 @@ window.book5MCQs = [
       "Homomorphic Property"
     ],
     "answer": 0,
-    "explanation": "Pre-image resistance (the one-way property) guarantees that an attacker cannot reverse-engineer a hash digest back into the original plaintext or password."
+    "explanation": "Pre-image resistance (the one-way property) guarantees that an attacker cannot reverse-engineer a hash digest back into the original plaintext or password.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 74,
@@ -886,7 +960,8 @@ window.book5MCQs = [
       "Perfect Secrecy"
     ],
     "answer": 0,
-    "explanation": "Second pre-image resistance ensures an attacker cannot take an existing signed document x and forge a fraudulent document y that produces the exact same hash value."
+    "explanation": "Second pre-image resistance ensures an attacker cannot take an existing signed document x and forge a fraudulent document y that produces the exact same hash value.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 75,
@@ -898,7 +973,8 @@ window.book5MCQs = [
       "Linear Cryptanalysis"
     ],
     "answer": 0,
-    "explanation": "Collision resistance ensures no two arbitrary messages in the universe produce identical hash digests, forming the bedrock of digital signatures."
+    "explanation": "Collision resistance ensures no two arbitrary messages in the universe produce identical hash digests, forming the bedrock of digital signatures.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 76,
@@ -910,7 +986,8 @@ window.book5MCQs = [
       "Fermat's Little Theorem"
     ],
     "answer": 0,
-    "explanation": "The Birthday Paradox shows that in a group of 23 people, there is a >50% chance two share a birthday. In hashing, searching for ANY collision reduces complexity to the square-root bound: 2^(n/2)."
+    "explanation": "The Birthday Paradox shows that in a group of 23 people, there is a >50% chance two share a birthday. In hashing, searching for ANY collision reduces complexity to the square-root bound: 2^(n/2).",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 77,
@@ -922,7 +999,8 @@ window.book5MCQs = [
       "512 bits"
     ],
     "answer": 0,
-    "explanation": "MD5 produces a 128-bit digest. Due to collision attacks that can generate colliding files in seconds on a laptop, MD5 is strictly prohibited for security certificates and signatures."
+    "explanation": "MD5 produces a 128-bit digest. Due to collision attacks that can generate colliding files in seconds on a laptop, MD5 is strictly prohibited for security certificates and signatures.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 78,
@@ -934,7 +1012,8 @@ window.book5MCQs = [
       "The Sweet32 Attack"
     ],
     "answer": 0,
-    "explanation": "The SHAttered attack produced two distinct PDF documents with different visible contents that generated the exact same SHA-1 hash (160 bits), cementing the deprecation of SHA-1."
+    "explanation": "The SHAttered attack produced two distinct PDF documents with different visible contents that generated the exact same SHA-1 hash (160 bits), cementing the deprecation of SHA-1.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 79,
@@ -946,7 +1025,8 @@ window.book5MCQs = [
       "To format corrupt sectors"
     ],
     "answer": 0,
-    "explanation": "Cryptographic verification ensures evidence integrity. If the verification hash computed at trial matches the acquisition hash, it proves beyond doubt that the evidence was not modified."
+    "explanation": "Cryptographic verification ensures evidence integrity. If the verification hash computed at trial matches the acquisition hash, it proves beyond doubt that the evidence was not modified.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 80,
@@ -958,7 +1038,8 @@ window.book5MCQs = [
       "Buffer Overflow"
     ],
     "answer": 0,
-    "explanation": "Rainbow tables use precomputed chains of hash-reduction pairs to invert unsalted hashes instantly. Adding a cryptographically random Salt to each password defeats Rainbow Tables completely."
+    "explanation": "Rainbow tables use precomputed chains of hash-reduction pairs to invert unsalted hashes instantly. Adding a cryptographically random Salt to each password defeats Rainbow Tables completely.",
+    "topic": "Hashing Algorithms: Properties, Avalanche & Collision Resistances"
   },
   {
     "id": 81,
@@ -970,7 +1051,8 @@ window.book5MCQs = [
       "RIPEMD"
     ],
     "answer": 0,
-    "explanation": "The SHA-2 family includes SHA-224, SHA-256, SHA-384, and SHA-512. It remains the dominant enterprise hashing standard worldwide."
+    "explanation": "The SHA-2 family includes SHA-224, SHA-256, SHA-384, and SHA-512. It remains the dominant enterprise hashing standard worldwide.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 82,
@@ -982,7 +1064,8 @@ window.book5MCQs = [
       "Meet-in-the-Middle Attack"
     ],
     "answer": 0,
-    "explanation": "In Merkle-Damgard hashes, the output hash represents the internal state. An attacker who knows Hash(Secret || Message) and the secret length can append data and calculate the valid hash without knowing the secret."
+    "explanation": "In Merkle-Damgard hashes, the output hash represents the internal state. An attacker who knows Hash(Secret || Message) and the secret length can append data and calculate the valid hash without knowing the secret.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 83,
@@ -994,7 +1077,8 @@ window.book5MCQs = [
       "RSA-OAEP"
     ],
     "answer": 0,
-    "explanation": "HMAC computes Hash((Key XOR opad) || Hash((Key XOR ipad) || Message)). Because the inner hash output is hashed a second time, length extension attacks are mathematically impossible."
+    "explanation": "HMAC computes Hash((Key XOR opad) || Hash((Key XOR ipad) || Message)). Because the inner hash output is hashed a second time, length extension attacks are mathematically impossible.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 84,
@@ -1006,7 +1090,8 @@ window.book5MCQs = [
       "Public Key Distribution"
     ],
     "answer": 0,
-    "explanation": "HMAC guarantees that the message was not modified in transit (Integrity) and that it was generated by someone who possesses the shared secret key (Authentication)."
+    "explanation": "HMAC guarantees that the message was not modified in transit (Integrity) and that it was generated by someone who possesses the shared secret key (Authentication).",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 85,
@@ -1018,7 +1103,8 @@ window.book5MCQs = [
       "The Shift Register Generator"
     ],
     "answer": 0,
-    "explanation": "SHA-3 is based on Keccak's Sponge Construction operating on a 1600-bit state permutation array, completely discarding the Merkle-Damgard block-chaining model."
+    "explanation": "SHA-3 is based on Keccak's Sponge Construction operating on a 1600-bit state permutation array, completely discarding the Merkle-Damgard block-chaining model.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 86,
@@ -1030,7 +1116,8 @@ window.book5MCQs = [
       "The Substitution Phase and Permutation Phase"
     ],
     "answer": 0,
-    "explanation": "In the Absorbing phase, message blocks are XORed into the internal state and permuted. In the Squeezing phase, output bits are read from the state until the requested digest length is reached."
+    "explanation": "In the Absorbing phase, message blocks are XORed into the internal state and permuted. In the Squeezing phase, output bits are read from the state until the requested digest length is reached.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 87,
@@ -1042,7 +1129,8 @@ window.book5MCQs = [
       "Because SHA-3 operates only in RAM"
     ],
     "answer": 0,
-    "explanation": "In the Sponge construction, the state is split into bitrate r and capacity c. The capacity bits are never revealed in the output digest, preventing an attacker from reconstructing the state."
+    "explanation": "In the Sponge construction, the state is split into bitrate r and capacity c. The capacity bits are never revealed in the output digest, preventing an attacker from reconstructing the state.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 88,
@@ -1054,7 +1142,8 @@ window.book5MCQs = [
       "Because SHA-256 requires root permissions"
     ],
     "answer": 0,
-    "explanation": "Fast hash functions are engineered for high-throughput file verification. For passwords, high speed benefits the attacker. Password storage mandates slow, computationally intensive Key Derivation Functions (KDFs)."
+    "explanation": "Fast hash functions are engineered for high-throughput file verification. For passwords, high speed benefits the attacker. Password storage mandates slow, computationally intensive Key Derivation Functions (KDFs).",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 89,
@@ -1066,7 +1155,8 @@ window.book5MCQs = [
       "CRC32"
     ],
     "answer": 0,
-    "explanation": "Argon2id combines resistance to side-channel cache attacks with memory-hardness, filling large chunks of RAM to defeat massively parallel GPU and ASIC cracking hardware."
+    "explanation": "Argon2id combines resistance to side-channel cache attacks with memory-hardness, filling large chunks of RAM to defeat massively parallel GPU and ASIC cracking hardware.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 90,
@@ -1078,7 +1168,8 @@ window.book5MCQs = [
       "A Salt expires every year; a Pepper never expires"
     ],
     "answer": 0,
-    "explanation": "Salts are public and unique per user to defeat precomputed Rainbow Tables. Peppers are secret master keys stored in secure key vaults, ensuring that even if the database is leaked, hashes cannot be cracked offline."
+    "explanation": "Salts are public and unique per user to defeat precomputed Rainbow Tables. Peppers are secret master keys stored in secure key vaults, ensuring that even if the database is leaked, hashes cannot be cracked offline.",
+    "topic": "Hashing Algorithms: Modern Families (SHA-2, SHA-3) & HMAC"
   },
   {
     "id": 91,
@@ -1090,7 +1181,8 @@ window.book5MCQs = [
       "The legal prosecution of hackers"
     ],
     "answer": 0,
-    "explanation": "Cryptanalysis is the study of mathematical and operational techniques for finding weaknesses in ciphers, defeating encryption, and recovering secret keys or plaintexts."
+    "explanation": "Cryptanalysis is the study of mathematical and operational techniques for finding weaknesses in ciphers, defeating encryption, and recovering secret keys or plaintexts.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 92,
@@ -1102,7 +1194,8 @@ window.book5MCQs = [
       "An attack where the adversary decrypts messages using hardware probes"
     ],
     "answer": 0,
-    "explanation": "Ciphertext-Only Attack is the most restrictive threat model: the attacker only sees the intercepted encrypted messages and must rely on statistical flaws or entropy analysis."
+    "explanation": "Ciphertext-Only Attack is the most restrictive threat model: the attacker only sees the intercepted encrypted messages and must rely on statistical flaws or entropy analysis.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 93,
@@ -1114,7 +1207,8 @@ window.book5MCQs = [
       "Social Engineering"
     ],
     "answer": 0,
-    "explanation": "In a Known-Plaintext Attack (KPA), the attacker has access to matching plaintext-ciphertext pairs (e.g. standard headers, known file footers) to deduce the secret key."
+    "explanation": "In a Known-Plaintext Attack (KPA), the attacker has access to matching plaintext-ciphertext pairs (e.g. standard headers, known file footers) to deduce the secret key.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 94,
@@ -1126,7 +1220,8 @@ window.book5MCQs = [
       "Shoulder Surfing"
     ],
     "answer": 0,
-    "explanation": "In a Chosen-Plaintext Attack (CPA), the attacker chooses specific plaintexts to be encrypted (e.g., differential cryptanalysis analyzing how bit differences propagate through rounds)."
+    "explanation": "In a Chosen-Plaintext Attack (CPA), the attacker chooses specific plaintexts to be encrypted (e.g., differential cryptanalysis analyzing how bit differences propagate through rounds).",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 95,
@@ -1138,7 +1233,8 @@ window.book5MCQs = [
       "Traffic Analysis"
     ],
     "answer": 0,
-    "explanation": "In a Chosen-Ciphertext Attack (CCA), the attacker can probe a decryption oracle. Padding Oracle attacks (POODLE, Bleichenbacher) are practical real-world CCA exploits."
+    "explanation": "In a Chosen-Ciphertext Attack (CCA), the attacker can probe a decryption oracle. Padding Oracle attacks (POODLE, Bleichenbacher) are practical real-world CCA exploits.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 96,
@@ -1150,7 +1246,8 @@ window.book5MCQs = [
       "Integral Cryptanalysis"
     ],
     "answer": 0,
-    "explanation": "Frequency Analysis exploits the fact that natural human languages have non-uniform letter distributions (in English, 'E' appears ~12.7%, followed by 'T', 'A', 'O', 'I', 'N')."
+    "explanation": "Frequency Analysis exploits the fact that natural human languages have non-uniform letter distributions (in English, 'E' appears ~12.7%, followed by 'T', 'A', 'O', 'I', 'N').",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 97,
@@ -1162,7 +1259,8 @@ window.book5MCQs = [
       "Birthday Attack"
     ],
     "answer": 0,
-    "explanation": "The Kasiski Examination identifies repeated words in ciphertext. The Greatest Common Divisor (GCD) of the distances between these repetitions reveals the repeating keyword length."
+    "explanation": "The Kasiski Examination identifies repeated words in ciphertext. The Greatest Common Divisor (GCD) of the distances between these repetitions reveals the repeating keyword length.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 98,
@@ -1174,7 +1272,8 @@ window.book5MCQs = [
       "Injecting faults into CPU power lines"
     ],
     "answer": 0,
-    "explanation": "Brute-force testing systematically iterates through all 2^k possible keys. For DES (2^56 keys), it took 22 hours in 1999; for AES-128 (2^128 keys), it would take trillions of years."
+    "explanation": "Brute-force testing systematically iterates through all 2^k possible keys. For DES (2^56 keys), it took 22 hours in 1999; for AES-128 (2^128 keys), it would take trillions of years.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 99,
@@ -1186,7 +1285,8 @@ window.book5MCQs = [
       "Dictionary Attack"
     ],
     "answer": 0,
-    "explanation": "Side-Channel Attacks (e.g. Differential Power Analysis DPA, timing attacks, acoustic cryptanalysis) extract secret keys by monitoring physical hardware characteristics during cryptographic execution."
+    "explanation": "Side-Channel Attacks (e.g. Differential Power Analysis DPA, timing attacks, acoustic cryptanalysis) extract secret keys by monitoring physical hardware characteristics during cryptographic execution.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 100,
@@ -1198,7 +1298,8 @@ window.book5MCQs = [
       "Shoulder Surfing"
     ],
     "answer": 0,
-    "explanation": "Rubber-Hose Cryptanalysis refers to compelling a person holding the key to surrender it via physical coercion, interrogation, or threat, highlighting that humans are often the weakest security link."
+    "explanation": "Rubber-Hose Cryptanalysis refers to compelling a person holding the key to surrender it via physical coercion, interrogation, or threat, highlighting that humans are often the weakest security link.",
+    "topic": "Cryptanalysis: Goals, Classical Attack Models & Cryptanalytic Methods"
   },
   {
     "id": 101,
@@ -1210,7 +1311,8 @@ window.book5MCQs = [
       "Automatic Password Recovery"
     ],
     "answer": 1,
-    "explanation": "A digital signature guarantees who created the message (Authentication), proves the content has not changed (Integrity), and legally prevents the signer from denying it (Non-repudiation)."
+    "explanation": "A digital signature guarantees who created the message (Authentication), proves the content has not changed (Integrity), and legally prevents the signer from denying it (Non-repudiation).",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 102,
@@ -1222,7 +1324,8 @@ window.book5MCQs = [
       "A shared symmetric secret key"
     ],
     "answer": 0,
-    "explanation": "The sender hashes the document into a digest and encrypts the digest using their own PRIVATE KEY. Because only the sender possesses this private key, only the sender could have signed it."
+    "explanation": "The sender hashes the document into a digest and encrypts the digest using their own PRIVATE KEY. Because only the sender possesses this private key, only the sender could have signed it.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 103,
@@ -1234,7 +1337,8 @@ window.book5MCQs = [
       "The Root CA's private key"
     ],
     "answer": 0,
-    "explanation": "Anyone in the world can verify the signature by decrypting it with the sender's PUBLIC KEY and verifying that the resulting digest matches their independently calculated document hash."
+    "explanation": "Anyone in the world can verify the signature by decrypting it with the sender's PUBLIC KEY and verifying that the resulting digest matches their independently calculated document hash.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 104,
@@ -1246,7 +1350,8 @@ window.book5MCQs = [
       "Because symmetric ciphers are illegal for contracts"
     ],
     "answer": 0,
-    "explanation": "Because both parties hold the exact same secret key in symmetric systems, an arbitrator cannot prove whether Alice sent the message or Bob fabricated it himself."
+    "explanation": "Because both parties hold the exact same secret key in symmetric systems, an arbitrator cannot prove whether Alice sent the message or Bob fabricated it himself.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 105,
@@ -1258,7 +1363,8 @@ window.book5MCQs = [
       "RSA-PSS keys never expire"
     ],
     "answer": 0,
-    "explanation": "RSA-PSS adds randomized salt before hashing, eliminating mathematical structure in the signature and providing provable security against chosen-message forgery attacks."
+    "explanation": "RSA-PSS adds randomized salt before hashing, eliminating mathematical structure in the signature and providing provable security against chosen-message forgery attacks.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 106,
@@ -1270,7 +1376,8 @@ window.book5MCQs = [
       "MD5"
     ],
     "answer": 0,
-    "explanation": "NIST standardized DSA in FIPS 186 in 1991. It provides digital signatures exclusively (cannot be used for encryption), based on the discrete logarithm problem."
+    "explanation": "NIST standardized DSA in FIPS 186 in 1991. It provides digital signatures exclusively (cannot be used for encryption), based on the discrete logarithm problem.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 107,
@@ -1282,7 +1389,8 @@ window.book5MCQs = [
       "Blowfish"
     ],
     "answer": 0,
-    "explanation": "ECDSA combines the efficiency of elliptic curves with digital signatures. A 256-bit ECDSA key offers equivalent security strength to a 3072-bit legacy RSA key."
+    "explanation": "ECDSA combines the efficiency of elliptic curves with digital signatures. A 256-bit ECDSA key offers equivalent security strength to a 3072-bit legacy RSA key.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 108,
@@ -1294,7 +1402,8 @@ window.book5MCQs = [
       "Because raw documents contain viruses"
     ],
     "answer": 0,
-    "explanation": "Asymmetric math is slow. Hashing compresses arbitrary-length files into a fixed 256-bit digest, which is fast to sign and fits neatly into the asymmetric algorithm's block size."
+    "explanation": "Asymmetric math is slow. Hashing compresses arbitrary-length files into a fixed 256-bit digest, which is fast to sign and fits neatly into the asymmetric algorithm's block size.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 109,
@@ -1306,7 +1415,8 @@ window.book5MCQs = [
       "MD5-MAC"
     ],
     "answer": 0,
-    "explanation": "Ed25519 (RFC 8032) delivers blindingly fast signature generation and verification while avoiding secret-dependent memory lookups and conditional branches, eliminating timing leaks."
+    "explanation": "Ed25519 (RFC 8032) delivers blindingly fast signature generation and verification while avoiding secret-dependent memory lookups and conditional branches, eliminating timing leaks.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 110,
@@ -1318,7 +1428,8 @@ window.book5MCQs = [
       "By entering a phone number in an online form"
     ],
     "answer": 0,
-    "explanation": "The IT Act 2000 legally defines digital signatures as authentication of electronic records using an asymmetric cryptosystem and hash function, ensuring integrity and identity verification."
+    "explanation": "The IT Act 2000 legally defines digital signatures as authentication of electronic records using an asymmetric cryptosystem and hash function, ensuring integrity and identity verification.",
+    "topic": "Digital Signature: Architecture, Signing/Verification & Services"
   },
   {
     "id": 111,
@@ -1330,7 +1441,8 @@ window.book5MCQs = [
       "To act as a license for web design software"
     ],
     "answer": 0,
-    "explanation": "A digital certificate acts as an electronic passport: it proves that a given public key legitimately belongs to the specific domain or organization named in the certificate."
+    "explanation": "A digital certificate acts as an electronic passport: it proves that a given public key legitimately belongs to the specific domain or organization named in the certificate.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 112,
@@ -1342,7 +1454,8 @@ window.book5MCQs = [
       "RFC 1918"
     ],
     "answer": 0,
-    "explanation": "The X.509 v3 standard defines the universal schema for certificates used in TLS/HTTPS, S/MIME secure email, IPsec, and code signing."
+    "explanation": "The X.509 v3 standard defines the universal schema for certificates used in TLS/HTTPS, S/MIME secure email, IPsec, and code signing.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 113,
@@ -1354,7 +1467,8 @@ window.book5MCQs = [
       "Validity Period (Not Before / Not After)"
     ],
     "answer": 0,
-    "explanation": "Private keys are NEVER included in a digital certificate. Certificates contain only the Subject's PUBLIC key, identity metadata, and the CA's digital signature."
+    "explanation": "Private keys are NEVER included in a digital certificate. Certificates contain only the Subject's PUBLIC key, identity metadata, and the CA's digital signature.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 114,
@@ -1366,7 +1480,8 @@ window.book5MCQs = [
       "Extended Key Usage (EKU)"
     ],
     "answer": 0,
-    "explanation": "The SAN extension (RFC 5280) replaces legacy Common Name (CN) matching, allowing multiple Fully Qualified Domain Names (FQDNs) and IP addresses to share one certificate."
+    "explanation": "The SAN extension (RFC 5280) replaces legacy Common Name (CN) matching, allowing multiple Fully Qualified Domain Names (FQDNs) and IP addresses to share one certificate.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 115,
@@ -1378,7 +1493,8 @@ window.book5MCQs = [
       "A blockchain of Bitcoin transactions"
     ],
     "answer": 0,
-    "explanation": "Trust chains allow a browser to verify an end-entity certificate signed by an Intermediate CA whose own certificate is signed by a trusted Root CA stored in the operating system's trust store."
+    "explanation": "Trust chains allow a browser to verify an end-entity certificate signed by an Intermediate CA whose own certificate is signed by a trusted Root CA stored in the operating system's trust store.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 116,
@@ -1390,7 +1506,8 @@ window.book5MCQs = [
       "A registry of compromised router MAC addresses"
     ],
     "answer": 0,
-    "explanation": "A CRL is published periodically by a CA. When a private key is leaked or an employee leaves, the certificate serial number is posted on the CRL to alert clients."
+    "explanation": "A CRL is published periodically by a CA. When a private key is leaked or an employee leaves, the certificate serial number is posted on the CRL to alert clients.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 117,
@@ -1402,7 +1519,8 @@ window.book5MCQs = [
       "NTP"
     ],
     "answer": 0,
-    "explanation": "OCSP allows a client to query the CA directly: 'Is certificate #12345 revoked?'. The CA immediately responds with 'good', 'revoked', or 'unknown'."
+    "explanation": "OCSP allows a client to query the CA directly: 'Is certificate #12345 revoked?'. The CA immediately responds with 'good', 'revoked', or 'unknown'.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 118,
@@ -1414,7 +1532,8 @@ window.book5MCQs = [
       "Certificate Pinning"
     ],
     "answer": 0,
-    "explanation": "OCSP Stapling eliminates the browser connection to the CA, preventing performance bottlenecks and preventing the CA from monitoring what websites users visit."
+    "explanation": "OCSP Stapling eliminates the browser connection to the CA, preventing performance bottlenecks and preventing the CA from monitoring what websites users visit.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 119,
@@ -1426,7 +1545,8 @@ window.book5MCQs = [
       "WHOIS"
     ],
     "answer": 0,
-    "explanation": "Certificate Transparency requires all issued certificates to be appended to publicly verifiable Merkle tree logs, allowing domain owners to detect unauthorized or rogue certificates."
+    "explanation": "Certificate Transparency requires all issued certificates to be appended to publicly verifiable Merkle tree logs, allowing domain owners to detect unauthorized or rogue certificates.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 120,
@@ -1438,7 +1558,8 @@ window.book5MCQs = [
       "PTR Record"
     ],
     "answer": 0,
-    "explanation": "A DNS CAA record (e.g. example.com. CAA 0 issue 'letsencrypt.org') instructs CAs to verify permission before issuing a certificate, stopping unauthorized issuance."
+    "explanation": "A DNS CAA record (e.g. example.com. CAA 0 issue 'letsencrypt.org') instructs CAs to verify permission before issuing a certificate, stopping unauthorized issuance.",
+    "topic": "Digital Certificate & Certifying Authorities (CA): X.509 & PKI Trust"
   },
   {
     "id": 121,
@@ -1450,7 +1571,8 @@ window.book5MCQs = [
       "The reverse engineering of hardware chips"
     ],
     "answer": 0,
-    "explanation": "Steganalysis is the counter-discipline to steganography: analyzing suspect multimedia files or network streams to determine if hidden communication is taking place."
+    "explanation": "Steganalysis is the counter-discipline to steganography: analyzing suspect multimedia files or network streams to determine if hidden communication is taking place.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 122,
@@ -1462,7 +1584,8 @@ window.book5MCQs = [
       "Targeted steganalysis requires supercomputers; Blind steganalysis runs on mobile phones"
     ],
     "answer": 0,
-    "explanation": "Targeted attacks look for the specific fingerprint of a known tool (e.g. Jsteg). Blind/universal attacks evaluate general image features and train machine-learning classifiers to spot anomalies."
+    "explanation": "Targeted attacks look for the specific fingerprint of a known tool (e.g. Jsteg). Blind/universal attacks evaluate general image features and train machine-learning classifiers to spot anomalies.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 123,
@@ -1474,7 +1597,8 @@ window.book5MCQs = [
       "Contrast Stretching"
     ],
     "answer": 0,
-    "explanation": "Bit-plane slicing isolates the 0th bit of every pixel. In a clean image, the LSB plane looks like random organic noise. When structured data is embedded sequentially, visible outlines appear."
+    "explanation": "Bit-plane slicing isolates the 0th bit of every pixel. In a clean image, the LSB plane looks like random organic noise. When structured data is embedded sequentially, visible outlines appear.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 124,
@@ -1486,7 +1610,8 @@ window.book5MCQs = [
       "The Dictionary Attack"
     ],
     "answer": 0,
-    "explanation": "Under sequential LSB replacement, adjacent color values (like 12 and 13) exchange frequencies and tend to equalize. A Chi-Square statistical test detects this unnatural balance."
+    "explanation": "Under sequential LSB replacement, adjacent color values (like 12 and 13) exchange frequencies and tend to equalize. A Chi-Square statistical test detects this unnatural balance.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 125,
@@ -1498,7 +1623,8 @@ window.book5MCQs = [
       "Huffman Decoding"
     ],
     "answer": 0,
-    "explanation": "Sample Pair Analysis (SPA) analyzes finite state transitions among pixel pairs, measuring how LSB embedding perturbs spatial correlation to calculate embedded payload length."
+    "explanation": "Sample Pair Analysis (SPA) analyzes finite state transitions among pixel pairs, measuring how LSB embedding perturbs spatial correlation to calculate embedded payload length.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 126,
@@ -1510,7 +1636,8 @@ window.book5MCQs = [
       "Metasploit"
     ],
     "answer": 0,
-    "explanation": "Stegsolve (Java GUI) and zsteg (Ruby CLI) are standard forensic utilities for viewing bit-planes, checking color palettes, and extracting hidden LSB payloads from lossless images."
+    "explanation": "Stegsolve (Java GUI) and zsteg (Ruby CLI) are standard forensic utilities for viewing bit-planes, checking color palettes, and extracting hidden LSB payloads from lossless images.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 127,
@@ -1522,7 +1649,8 @@ window.book5MCQs = [
       "Lossy compression deletes the original author metadata"
     ],
     "answer": 0,
-    "explanation": "Lossy compression quantizes frequency coefficients, wiping out subtle bit-level modifications made in the spatial domain and corrupting the concealed message."
+    "explanation": "Lossy compression quantizes frequency coefficients, wiping out subtle bit-level modifications made in the spatial domain and corrupting the concealed message.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 128,
@@ -1534,7 +1662,8 @@ window.book5MCQs = [
       "Encryption forces the image to turn black"
     ],
     "answer": 0,
-    "explanation": "Encrypted data has maximum entropy (flat byte distributions). When embedded, it blends perfectly into the natural thermal and optical noise of the digital camera sensor."
+    "explanation": "Encrypted data has maximum entropy (flat byte distributions). When embedded, it blends perfectly into the natural thermal and optical noise of the digital camera sensor.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 129,
@@ -1546,7 +1675,8 @@ window.book5MCQs = [
       "Antivirus software blocks all image files"
     ],
     "answer": 0,
-    "explanation": "Automated steganalysis algorithms frequently flag complex textures, high-ISO camera photos, or stylized graphic filters as hidden payloads, creating overwhelming false alarms."
+    "explanation": "Automated steganalysis algorithms frequently flag complex textures, high-ISO camera photos, or stylized graphic filters as hidden payloads, creating overwhelming false alarms.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 130,
@@ -1558,7 +1688,8 @@ window.book5MCQs = [
       "Blocking all internet traffic"
     ],
     "answer": 0,
-    "explanation": "An Active Warden sanitizes media in transit: by re-compressing JPEGs or applying minor filtering, fragile steganographic payloads are destroyed while preserving innocent visual quality."
+    "explanation": "An Active Warden sanitizes media in transit: by re-compressing JPEGs or applying minor filtering, fragile steganographic payloads are destroyed while preserving innocent visual quality.",
+    "topic": "Steganalysis and Its Challenges: Detection, Attacks & Traps"
   },
   {
     "id": 131,
@@ -1570,7 +1701,8 @@ window.book5MCQs = [
       "A Vulnerability Assessment takes 5 years; a Penetration Test takes 1 hour"
     ],
     "answer": 0,
-    "explanation": "VA provides wide breadth, scanning IP ranges to list missing patches without exploiting them. PT provides depth, simulating an attacker by exploiting vulnerabilities to compromise systems."
+    "explanation": "VA provides wide breadth, scanning IP ranges to list missing patches without exploiting them. PT provides depth, simulating an attacker by exploiting vulnerabilities to compromise systems.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 132,
@@ -1582,7 +1714,8 @@ window.book5MCQs = [
       "Crystal Box Testing"
     ],
     "answer": 0,
-    "explanation": "In Black Box testing, the tester simulates an external unauthenticated attacker, discovering everything from scratch through public reconnaissance."
+    "explanation": "In Black Box testing, the tester simulates an external unauthenticated attacker, discovering everything from scratch through public reconnaissance.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 133,
@@ -1594,7 +1727,8 @@ window.book5MCQs = [
       "Double-Blind Testing"
     ],
     "answer": 0,
-    "explanation": "White Box testing simulates an insider threat, malicious developer, or advanced adversary with internal access, enabling comprehensive code review and architecture auditing."
+    "explanation": "White Box testing simulates an insider threat, malicious developer, or advanced adversary with internal access, enabling comprehensive code review and architecture auditing.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 134,
@@ -1606,7 +1740,8 @@ window.book5MCQs = [
       "CWE is for Windows; CVE is for Linux"
     ],
     "answer": 0,
-    "explanation": "CWE defines flaw types (e.g., CWE-89 is SQL Injection). CVE catalogs a specific real-world instance in a product (e.g., CVE-2021-44228 in Log4j)."
+    "explanation": "CWE defines flaw types (e.g., CWE-89 is SQL Injection). CVE catalogs a specific real-world instance in a product (e.g., CVE-2021-44228 in Log4j).",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 135,
@@ -1618,7 +1753,8 @@ window.book5MCQs = [
       "A firewall configuration rule"
     ],
     "answer": 0,
-    "explanation": "An exploit is the weaponized payload or technique that turns a theoretical vulnerability into actual compromise (e.g. executing arbitrary code or elevating privileges)."
+    "explanation": "An exploit is the weaponized payload or technique that turns a theoretical vulnerability into actual compromise (e.g. executing arbitrary code or elevating privileges).",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 136,
@@ -1630,7 +1766,8 @@ window.book5MCQs = [
       "A marketing press release"
     ],
     "answer": 0,
-    "explanation": "An exposure is not necessarily a software code bug, but an operational configuration weakness (like leaving Telnet open or default passwords intact) that enables compromise."
+    "explanation": "An exposure is not necessarily a software code bug, but an operational configuration weakness (like leaving Telnet open or default passwords intact) that enables compromise.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 137,
@@ -1642,7 +1779,8 @@ window.book5MCQs = [
       "Risk = Threat + Impact"
     ],
     "answer": 0,
-    "explanation": "Risk is the product of Threat (adversary capability), Vulnerability (flaw), and Impact (damage). If Vulnerability is eliminated (patched), Risk drops to zero."
+    "explanation": "Risk is the product of Threat (adversary capability), Vulnerability (flaw), and Impact (damage). If Vulnerability is eliminated (patched), Risk drops to zero.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 138,
@@ -1654,7 +1792,8 @@ window.book5MCQs = [
       "Hardware Warranty Certificate"
     ],
     "answer": 0,
-    "explanation": "The Rules of Engagement (ROE) establishes the legal boundaries and scope of the test, protecting testers from criminal prosecution and ensuring client production systems are not damaged."
+    "explanation": "The Rules of Engagement (ROE) establishes the legal boundaries and scope of the test, protecting testers from criminal prosecution and ensuring client production systems are not damaged.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 139,
@@ -1666,7 +1805,8 @@ window.book5MCQs = [
       "Disabling system antivirus"
     ],
     "answer": 0,
-    "explanation": "Attack Surface Reduction shrinks the total number of vulnerable points an attacker could probe by removing unneeded services, closing idle ports, and restricting interfaces."
+    "explanation": "Attack Surface Reduction shrinks the total number of vulnerable points an attacker could probe by removing unneeded services, closing idle ports, and restricting interfaces.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 140,
@@ -1678,7 +1818,8 @@ window.book5MCQs = [
       "There is no difference"
     ],
     "answer": 0,
-    "explanation": "False Positives waste remediation time by sounding false alarms. False Negatives are far more dangerous, leaving real vulnerabilities undetected and exposed to attackers."
+    "explanation": "False Positives waste remediation time by sounding false alarms. False Negatives are far more dangerous, leaving real vulnerabilities undetected and exposed to attackers.",
+    "topic": "Vulnerability Assessment and Penetration Testing (VAPT)"
   },
   {
     "id": 141,
@@ -1690,7 +1831,8 @@ window.book5MCQs = [
       "Cooling System Failures"
     ],
     "answer": 0,
-    "explanation": "Input validation flaws represent the root cause of the most pervasive cyber attacks (including SQL Injection, Cross-Site Scripting, and Command Injection)."
+    "explanation": "Input validation flaws represent the root cause of the most pervasive cyber attacks (including SQL Injection, Cross-Site Scripting, and Command Injection).",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 142,
@@ -1702,7 +1844,8 @@ window.book5MCQs = [
       "Clickjacking"
     ],
     "answer": 0,
-    "explanation": "SQL Injection occurs when user input is treated as SQL code by the database parser, allowing attackers to bypass authentication (' OR '1'='1) or dump tables."
+    "explanation": "SQL Injection occurs when user input is treated as SQL code by the database parser, allowing attackers to bypass authentication (' OR '1'='1) or dump tables.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 143,
@@ -1714,7 +1857,8 @@ window.book5MCQs = [
       "Hiding database error messages only"
     ],
     "answer": 0,
-    "explanation": "Prepared Statements separate SQL query structure from user data. The database treats input purely as literal parameter values, making SQL command execution impossible."
+    "explanation": "Prepared Statements separate SQL query structure from user data. The database treats input purely as literal parameter values, making SQL command execution impossible.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 144,
@@ -1726,7 +1870,8 @@ window.book5MCQs = [
       "Server-Side Request Forgery"
     ],
     "answer": 0,
-    "explanation": "Cross-Site Scripting (XSS) allows attackers to inject malicious client-side JavaScript that executes in the context of the victim's session, stealing session cookies and tokens."
+    "explanation": "Cross-Site Scripting (XSS) allows attackers to inject malicious client-side JavaScript that executes in the context of the victim's session, stealing session cookies and tokens.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 145,
@@ -1738,7 +1883,8 @@ window.book5MCQs = [
       "Self-XSS"
     ],
     "answer": 0,
-    "explanation": "Stored XSS is the most dangerous form: the payload is saved permanently on the server and executed automatically whenever any user views the affected page."
+    "explanation": "Stored XSS is the most dangerous form: the payload is saved permanently on the server and executed automatically whenever any user views the affected page.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 146,
@@ -1750,7 +1896,8 @@ window.book5MCQs = [
       "Clickjacking"
     ],
     "answer": 0,
-    "explanation": "OS Command Injection allows an attacker to append shell metacharacters (e.g., ; ls -la or | whoami) to execute unauthorized operating system commands on the host server."
+    "explanation": "OS Command Injection allows an attacker to append shell metacharacters (e.g., ; ls -la or | whoami) to execute unauthorized operating system commands on the host server.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 147,
@@ -1762,7 +1909,8 @@ window.book5MCQs = [
       "Cross-Site Scripting"
     ],
     "answer": 0,
-    "explanation": "Path Traversal uses ../ sequences (e.g. ../../../etc/passwd) to break out of the document root and view sensitive operating system files."
+    "explanation": "Path Traversal uses ../ sequences (e.g. ../../../etc/passwd) to break out of the document root and view sensitive operating system files.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 148,
@@ -1774,7 +1922,8 @@ window.book5MCQs = [
       "Broken Object Level Authorization"
     ],
     "answer": 0,
-    "explanation": "A Buffer Overflow writes past the buffer boundary. In C/C++ applications lacking boundary checks, an attacker can overwrite the saved function return address to hijack control flow."
+    "explanation": "A Buffer Overflow writes past the buffer boundary. In C/C++ applications lacking boundary checks, an attacker can overwrite the saved function return address to hijack control flow.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 149,
@@ -1786,7 +1935,8 @@ window.book5MCQs = [
       "WORM"
     ],
     "answer": 0,
-    "explanation": "Stack Canaries are placed before the return address. Before a function returns, the canary is checked; if it was overwritten by an overflow, the program terminates immediately."
+    "explanation": "Stack Canaries are placed before the return address. Before a function returns, the canary is checked; if it was overwritten by an overflow, the program terminates immediately.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 150,
@@ -1798,7 +1948,8 @@ window.book5MCQs = [
       "Control Flow Guard"
     ],
     "answer": 0,
-    "explanation": "ASLR randomizes memory positions on every boot/execution, making it impossible for an attacker to reliably jump to hardcoded memory addresses."
+    "explanation": "ASLR randomizes memory positions on every boot/execution, making it impossible for an attacker to reliably jump to hardcoded memory addresses.",
+    "topic": "Vulnerability v/s Weakness & Types of Vulnerabilities (Input Validation)"
   },
   {
     "id": 151,
@@ -1810,7 +1961,8 @@ window.book5MCQs = [
       "Buffer Overflow"
     ],
     "answer": 0,
-    "explanation": "IDOR (or BOLA, ranked #1 in OWASP API Top 10) allows an attacker to change an ID parameter in an API request and access other users' private accounts without authorization."
+    "explanation": "IDOR (or BOLA, ranked #1 in OWASP API Top 10) allows an attacker to change an ID parameter in an API request and access other users' private accounts without authorization.",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 152,
@@ -1822,7 +1974,8 @@ window.book5MCQs = [
       "Physical Cable Sniffing"
     ],
     "answer": 0,
-    "explanation": "Broken Authentication allows attackers to compromise passwords, session tokens, or keys to assume the identities of other users (leading to credential stuffing and account takeover)."
+    "explanation": "Broken Authentication allows attackers to compromise passwords, session tokens, or keys to assume the identities of other users (leading to credential stuffing and account takeover).",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 153,
@@ -1834,7 +1987,8 @@ window.book5MCQs = [
       "Server-Side Request Forgery"
     ],
     "answer": 0,
-    "explanation": "CSRF exploits the browser's automatic inclusion of session cookies with cross-site requests. Mitigated using Anti-CSRF synchronizer tokens and SameSite cookie attributes (SameSite=Strict/Lax)."
+    "explanation": "CSRF exploits the browser's automatic inclusion of session cookies with cross-site requests. Mitigated using Anti-CSRF synchronizer tokens and SameSite cookie attributes (SameSite=Strict/Lax).",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 154,
@@ -1846,7 +2000,8 @@ window.book5MCQs = [
       "Command Injection"
     ],
     "answer": 0,
-    "explanation": "SSRF tricks the backend server into acting as a proxy to probe internal private networks or steal cloud credentials from instance metadata endpoints (169.254.169.254)."
+    "explanation": "SSRF tricks the backend server into acting as a proxy to probe internal private networks or steal cloud credentials from instance metadata endpoints (169.254.169.254).",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 155,
@@ -1858,7 +2013,8 @@ window.book5MCQs = [
       "Applying security patches within 24 hours"
     ],
     "answer": 0,
-    "explanation": "Security Misconfiguration happens when systems are deployed with default accounts, unneeded sample files, open administrative ports, or verbose error messages showing stack traces."
+    "explanation": "Security Misconfiguration happens when systems are deployed with default accounts, unneeded sample files, open administrative ports, or verbose error messages showing stack traces.",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 156,
@@ -1870,7 +2026,8 @@ window.book5MCQs = [
       "SQL Injection"
     ],
     "answer": 0,
-    "explanation": "Transmitting sensitive data in cleartext exposes it to interception via Wi-Fi sniffing or Man-in-the-Middle attacks. Enforcing TLS 1.3 and HSTS prevents this."
+    "explanation": "Transmitting sensitive data in cleartext exposes it to interception via Wi-Fi sniffing or Man-in-the-Middle attacks. Enforcing TLS 1.3 and HSTS prevents this.",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 157,
@@ -1882,7 +2039,8 @@ window.book5MCQs = [
       "Format String Bug"
     ],
     "answer": 0,
-    "explanation": "A Race Condition occurs when multiple threads or processes access shared resources concurrently. In a TOCTOU flaw, an attacker changes the file or state between the check and use operations."
+    "explanation": "A Race Condition occurs when multiple threads or processes access shared resources concurrently. In a TOCTOU flaw, an attacker changes the file or state between the check and use operations.",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 158,
@@ -1894,7 +2052,8 @@ window.book5MCQs = [
       "ARP Spoofing; defended using HTTPS"
     ],
     "answer": 0,
-    "explanation": "Clickjacking loads the target website in an invisible iframe over an attacker's page. The HTTP header X-Frame-Options: DENY (or CSP frame-ancestors 'none') stops framing entirely."
+    "explanation": "Clickjacking loads the target website in an invisible iframe over an attacker's page. The HTTP header X-Frame-Options: DENY (or CSP frame-ancestors 'none') stops framing entirely.",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 159,
@@ -1906,7 +2065,8 @@ window.book5MCQs = [
       "Clickjacking"
     ],
     "answer": 0,
-    "explanation": "Unrestricted File Upload allows an attacker to upload an executable server script (web shell) and navigate to its URL, achieving immediate Remote Code Execution (RCE) on the server."
+    "explanation": "Unrestricted File Upload allows an attacker to upload an executable server script (web shell) and navigate to its URL, achieving immediate Remote Code Execution (RCE) on the server.",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 160,
@@ -1918,7 +2078,8 @@ window.book5MCQs = [
       "Memory Corruption"
     ],
     "answer": 0,
-    "explanation": "Mass Assignment occurs when modern web frameworks bind request parameters directly to object properties, allowing attackers to inject unauthorized fields like {\"is_admin\": true}."
+    "explanation": "Mass Assignment occurs when modern web frameworks bind request parameters directly to object properties, allowing attackers to inject unauthorized fields like {\"is_admin\": true}.",
+    "topic": "Types of Vulnerabilities: Memory Corruption, Access Control & Web Flaws"
   },
   {
     "id": 161,
@@ -1930,7 +2091,8 @@ window.book5MCQs = [
       "To manufacture encryption hardware"
     ],
     "answer": 0,
-    "explanation": "The CVE system provides a standard identifier (e.g. CVE-2021-44228) so security researchers, vendors, and IT teams worldwide can discuss the exact same vulnerability without confusion."
+    "explanation": "The CVE system provides a standard identifier (e.g. CVE-2021-44228) so security researchers, vendors, and IT teams worldwide can discuss the exact same vulnerability without confusion.",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 162,
@@ -1942,7 +2104,8 @@ window.book5MCQs = [
       "VULN-YYYY-MM-DD"
     ],
     "answer": 0,
-    "explanation": "CVE identifiers follow the format CVE-YYYY-NNNNN, where YYYY is the year of assignment and NNNNN is an arbitrary 4+ digit sequence number."
+    "explanation": "CVE identifiers follow the format CVE-YYYY-NNNNN, where YYYY is the year of assignment and NNNNN is an arbitrary 4+ digit sequence number.",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 163,
@@ -1954,7 +2117,8 @@ window.book5MCQs = [
       "Domain Name Registrars"
     ],
     "answer": 0,
-    "explanation": "CNAs (CVE Numbering Authorities) are vendors (like Microsoft, Google, Red Hat) and research institutions authorized to assign CVE numbers directly to flaws."
+    "explanation": "CNAs (CVE Numbering Authorities) are vendors (like Microsoft, Google, Red Hat) and research institutions authorized to assign CVE numbers directly to flaws.",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 164,
@@ -1966,7 +2130,8 @@ window.book5MCQs = [
       "A hardware rating for server cooling units"
     ],
     "answer": 0,
-    "explanation": "Maintained by FIRST, CVSS v3.1 evaluates vulnerability characteristics across Base, Temporal, and Environmental metric groups, producing a severity score from 0.0 to 10.0."
+    "explanation": "Maintained by FIRST, CVSS v3.1 evaluates vulnerability characteristics across Base, Temporal, and Environmental metric groups, producing a severity score from 0.0 to 10.0.",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 165,
@@ -1978,7 +2143,8 @@ window.book5MCQs = [
       "Modified Base Metrics (M)"
     ],
     "answer": 0,
-    "explanation": "The CVSS Base Exploitability metrics are Attack Vector (AV), Attack Complexity (AC), Privileges Required (PR), and User Interaction (UI)."
+    "explanation": "The CVSS Base Exploitability metrics are Attack Vector (AV), Attack Complexity (AC), Privileges Required (PR), and User Interaction (UI).",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 166,
@@ -1990,7 +2156,8 @@ window.book5MCQs = [
       "Physical (requires physical access to the device)"
     ],
     "answer": 0,
-    "explanation": "AV:N (Network) carries the highest severity weight: the attacker can exploit the vulnerability remotely over the Internet without physical or local subnet proximity."
+    "explanation": "AV:N (Network) carries the highest severity weight: the attacker can exploit the vulnerability remotely over the Internet without physical or local subnet proximity.",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 167,
@@ -2002,7 +2169,8 @@ window.book5MCQs = [
       "User Isolation: Redundant"
     ],
     "answer": 0,
-    "explanation": "UI:R indicates that exploitation cannot succeed autonomously; a human user must be tricked into participating (e.g., clicking a phishing link in an XSS attack)."
+    "explanation": "UI:R indicates that exploitation cannot succeed autonomously; a human user must be tricked into participating (e.g., clicking a phishing link in an XSS attack).",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 168,
@@ -2014,7 +2182,8 @@ window.book5MCQs = [
       "The duration of the penetration test"
     ],
     "answer": 0,
-    "explanation": "Scope Changed (S:C) occurs when an exploit breaks out of its security boundary (e.g. a Virtual Machine escape escaping the guest OS to compromise the host hypervisor)."
+    "explanation": "Scope Changed (S:C) occurs when an exploit breaks out of its security boundary (e.g. a Virtual Machine escape escaping the guest OS to compromise the host hypervisor).",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 169,
@@ -2026,7 +2195,8 @@ window.book5MCQs = [
       "0.1 to 3.9"
     ],
     "answer": 0,
-    "explanation": "CVSS ratings are: None (0.0), Low (0.1–3.9), Medium (4.0–6.9), High (7.0–8.9), and Critical (9.0–10.0). Critical vulnerabilities require emergency patching."
+    "explanation": "CVSS ratings are: None (0.0), Low (0.1–3.9), Medium (4.0–6.9), High (7.0–8.9), and Critical (9.0–10.0). Critical vulnerabilities require emergency patching.",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 170,
@@ -2038,7 +2208,8 @@ window.book5MCQs = [
       "The FBI Internet Crime Complaint Center"
     ],
     "answer": 0,
-    "explanation": "The National Vulnerability Database (NVD, nvd.nist.gov) synchronizes with MITRE CVEs and provides detailed CVSS scoring, impacted software CPE strings, and fix advisory links."
+    "explanation": "The National Vulnerability Database (NVD, nvd.nist.gov) synchronizes with MITRE CVEs and provides detailed CVSS scoring, impacted software CPE strings, and fix advisory links.",
+    "topic": "Common Vulnerabilities and Exposures (CVEs): MITRE & NVD Architecture"
   },
   {
     "id": 171,
@@ -2050,7 +2221,8 @@ window.book5MCQs = [
       "Deleting Logs -> Formatting Disks -> Reporting"
     ],
     "answer": 0,
-    "explanation": "A structured VA lifecycle systematically discovers alive hosts, enumerates open ports/services, executes vulnerability scanning plugins, analyzes findings, and produces remediation reports."
+    "explanation": "A structured VA lifecycle systematically discovers alive hosts, enumerates open ports/services, executes vulnerability scanning plugins, analyzes findings, and produces remediation reports.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 172,
@@ -2062,7 +2234,8 @@ window.book5MCQs = [
       "A Credentialed scan is only for web servers"
     ],
     "answer": 0,
-    "explanation": "Credentialed scans provide deep inside-out visibility (detecting missing OS patches and insecure local configurations) with near-zero network overhead and minimal false positives."
+    "explanation": "Credentialed scans provide deep inside-out visibility (detecting missing OS patches and insecure local configurations) with near-zero network overhead and minimal false positives.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 173,
@@ -2074,7 +2247,8 @@ window.book5MCQs = [
       "They automatically patch the computer during the scan"
     ],
     "answer": 0,
-    "explanation": "Unauthenticated scans guess software versions from external banner strings (which are often modified or masked), whereas credentialed scans verify exact file versions on disk."
+    "explanation": "Unauthenticated scans guess software versions from external banner strings (which are often modified or masked), whereas credentialed scans verify exact file versions on disk.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 174,
@@ -2086,7 +2260,8 @@ window.book5MCQs = [
       "John the Ripper"
     ],
     "answer": 0,
-    "explanation": "Nessus is the worldwide standard vulnerability scanner, executing over 150,000 modular vulnerability check plugins written in the Nessus Attack Scripting Language (NASL)."
+    "explanation": "Nessus is the worldwide standard vulnerability scanner, executing over 150,000 modular vulnerability check plugins written in the Nessus Attack Scripting Language (NASL).",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 175,
@@ -2098,7 +2273,8 @@ window.book5MCQs = [
       "Metasploit"
     ],
     "answer": 0,
-    "explanation": "OpenVAS (Open Vulnerability Assessment System), maintained by Greenbone, is the premier open-source vulnerability scanner providing daily-updated Network Vulnerability Tests (NVTs)."
+    "explanation": "OpenVAS (Open Vulnerability Assessment System), maintained by Greenbone, is the premier open-source vulnerability scanner providing daily-updated Network Vulnerability Tests (NVTs).",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 176,
@@ -2110,7 +2286,8 @@ window.book5MCQs = [
       "Aircrack-ng"
     ],
     "answer": 0,
-    "explanation": "Qualys is a leading enterprise SaaS platform that gathers telemetry from lightweight agents installed on endpoints, eliminating the need for bulky scheduled network scans."
+    "explanation": "Qualys is a leading enterprise SaaS platform that gathers telemetry from lightweight agents installed on endpoints, eliminating the need for bulky scheduled network scans.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 177,
@@ -2122,7 +2299,8 @@ window.book5MCQs = [
       "Burp Intruder"
     ],
     "answer": 0,
-    "explanation": "Nikto is a renowned open-source web server scanner that rapidly identifies dangerous files, outdated server banners, insecure HTTP headers, and default installation files."
+    "explanation": "Nikto is a renowned open-source web server scanner that rapidly identifies dangerous files, outdated server banners, insecure HTTP headers, and default installation files.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 178,
@@ -2134,7 +2312,8 @@ window.book5MCQs = [
       "OpenVPN"
     ],
     "answer": 0,
-    "explanation": "OpenSCAP evaluates Linux system configurations against standardized security baselines (such as DISA STIGs and CIS Benchmarks) using automated SCAP policy XML documents."
+    "explanation": "OpenSCAP evaluates Linux system configurations against standardized security baselines (such as DISA STIGs and CIS Benchmarks) using automated SCAP policy XML documents.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 179,
@@ -2146,7 +2325,8 @@ window.book5MCQs = [
       "Reading the hardware instruction manual"
     ],
     "answer": 0,
-    "explanation": "In SCADA and healthcare networks, active scanning can crash sensitive controllers. Passive scanners (like Tenable NNM) inspect mirrored network packets to detect flaws safely."
+    "explanation": "In SCADA and healthcare networks, active scanning can crash sensitive controllers. Passive scanners (like Tenable NNM) inspect mirrored network packets to detect flaws safely.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 180,
@@ -2158,7 +2338,8 @@ window.book5MCQs = [
       "The NSA Cyber Advisory List"
     ],
     "answer": 0,
-    "explanation": "CISA's Known Exploited Vulnerabilities (KEV) catalog lists CVEs that are confirmed to be actively weaponized in real-world attacks, establishing mandatory remediation deadlines."
+    "explanation": "CISA's Known Exploited Vulnerabilities (KEV) catalog lists CVEs that are confirmed to be actively weaponized in real-world attacks, establishing mandatory remediation deadlines.",
+    "topic": "Common Vulnerability Scoring System (CVSS): Metrics & Severity Scale"
   },
   {
     "id": 181,
@@ -2170,7 +2351,8 @@ window.book5MCQs = [
       "PCI-DSS"
     ],
     "answer": 0,
-    "explanation": "The PTES standard defines the complete lifecycle of a professional penetration test, ensuring thoroughness, ethical compliance, and high technical quality."
+    "explanation": "The PTES standard defines the complete lifecycle of a professional penetration test, ensuring thoroughness, ethical compliance, and high technical quality.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 182,
@@ -2182,7 +2364,8 @@ window.book5MCQs = [
       "Passive reconnaissance tests employees; Active reconnaissance tests hardware"
     ],
     "answer": 0,
-    "explanation": "Passive recon gathers intelligence invisibly (via search engines, DNS records, and social media). Active recon probes ports directly, generating traffic logged by firewalls."
+    "explanation": "Passive recon gathers intelligence invisibly (via search engines, DNS records, and social media). Active recon probes ports directly, generating traffic logged by firewalls.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 183,
@@ -2194,7 +2377,8 @@ window.book5MCQs = [
       "Burp Suite"
     ],
     "answer": 0,
-    "explanation": "Nmap is the open-source industry standard utility for network discovery, port scanning, OS fingerprinting, and vulnerability scanning."
+    "explanation": "Nmap is the open-source industry standard utility for network discovery, port scanning, OS fingerprinting, and vulnerability scanning.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 184,
@@ -2206,7 +2390,8 @@ window.book5MCQs = [
       "-sA"
     ],
     "answer": 0,
-    "explanation": "-sS executes a SYN stealth scan: it sends a SYN packet, waits for SYN/ACK, and immediately responds with an RST to tear down the connection without completing the 3-way handshake."
+    "explanation": "-sS executes a SYN stealth scan: it sends a SYN packet, waits for SYN/ACK, and immediately responds with an RST to tear down the connection without completing the 3-way handshake.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 185,
@@ -2218,7 +2403,8 @@ window.book5MCQs = [
       "-sX"
     ],
     "answer": 0,
-    "explanation": "-sT completes the full 3-way handshake (SYN -> SYN/ACK -> ACK). It is used when an unprivileged user cannot craft raw network packets on the local operating system."
+    "explanation": "-sT completes the full 3-way handshake (SYN -> SYN/ACK -> ACK). It is used when an unprivileged user cannot craft raw network packets on the local operating system.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 186,
@@ -2230,7 +2416,8 @@ window.book5MCQs = [
       "-v"
     ],
     "answer": 0,
-    "explanation": "-sV executes Service Version detection, querying listening ports with custom protocol probes to extract application banners and version numbers."
+    "explanation": "-sV executes Service Version detection, querying listening ports with custom protocol probes to extract application banners and version numbers.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 187,
@@ -2242,7 +2429,8 @@ window.book5MCQs = [
       "-sn"
     ],
     "answer": 0,
-    "explanation": "-sC runs the default category of NSE scripts, checking for common misconfigurations, default credentials, and information disclosure."
+    "explanation": "-sC runs the default category of NSE scripts, checking for common misconfigurations, default credentials, and information disclosure.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 188,
@@ -2254,7 +2442,8 @@ window.book5MCQs = [
       "-n"
     ],
     "answer": 0,
-    "explanation": "-Pn (Treat all hosts as online) skips host discovery. If a target Windows host drops ICMP pings via its local firewall, -Pn ensures Nmap still probes its ports."
+    "explanation": "-Pn (Treat all hosts as online) skips host discovery. If a target Windows host drops ICMP pings via its local firewall, -Pn ensures Nmap still probes its ports.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 189,
@@ -2266,7 +2455,8 @@ window.book5MCQs = [
       "The target host is powered off"
     ],
     "answer": 0,
-    "explanation": "A 'Filtered' state means Nmap received no response (or received an ICMP unreachable error), indicating that a firewall or packet filter is intercepting the traffic."
+    "explanation": "A 'Filtered' state means Nmap received no response (or received an ICMP unreachable error), indicating that a firewall or packet filter is intercepting the traffic.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 190,
@@ -2278,7 +2468,8 @@ window.book5MCQs = [
       "-sI (Idle Scan)"
     ],
     "answer": 0,
-    "explanation": "-sX sets FIN, PSH, and URG flags. According to RFC 793, closed ports must reply with RST, while open ports silently drop the packet, allowing testers to detect open ports stealthily."
+    "explanation": "-sX sets FIN, PSH, and URG flags. According to RFC 793, closed ports must reply with RST, while open ports silently drop the packet, allowing testers to detect open ports stealthily.",
+    "topic": "Vulnerability Assessment Tools and Techniques: Lifecycle & Scanners"
   },
   {
     "id": 191,
@@ -2290,7 +2481,8 @@ window.book5MCQs = [
       "OpenVAS"
     ],
     "answer": 0,
-    "explanation": "Metasploit provides a vast library of public exploits, auxiliary scanners, and modular payloads for automating the exploitation phase of penetration tests."
+    "explanation": "Metasploit provides a vast library of public exploits, auxiliary scanners, and modular payloads for automating the exploitation phase of penetration tests.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 192,
@@ -2302,7 +2494,8 @@ window.book5MCQs = [
       "An Exploit is legal; a Payload is illegal"
     ],
     "answer": 0,
-    "explanation": "The Exploit takes advantage of the vulnerability to gain execution; the Payload is the software payload (such as Meterpreter) deposited on the target to give the attacker control."
+    "explanation": "The Exploit takes advantage of the vulnerability to gain execution; the Payload is the software payload (such as Meterpreter) deposited on the target to give the attacker control.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 193,
@@ -2314,7 +2507,8 @@ window.book5MCQs = [
       "A Staged payload never requires an IP address"
     ],
     "answer": 0,
-    "explanation": "Staged payloads (e.g. windows/meterpreter/reverse_tcp) are tiny, fitting inside small memory buffers; they fetch the rest of Meterpreter once connected. Singles (windows/meterpreter_reverse_tcp) contain everything in one binary."
+    "explanation": "Staged payloads (e.g. windows/meterpreter/reverse_tcp) are tiny, fitting inside small memory buffers; they fetch the rest of Meterpreter once connected. Singles (windows/meterpreter_reverse_tcp) contain everything in one binary.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 194,
@@ -2326,7 +2520,8 @@ window.book5MCQs = [
       "Command Prompt"
     ],
     "answer": 0,
-    "explanation": "Meterpreter resides entirely in memory and uses encrypted TLS communications, evading traditional endpoint antivirus disk scanners and leaving minimal forensic artifacts."
+    "explanation": "Meterpreter resides entirely in memory and uses encrypted TLS communications, evading traditional endpoint antivirus disk scanners and leaving minimal forensic artifacts.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 195,
@@ -2338,7 +2533,8 @@ window.book5MCQs = [
       "John the Ripper"
     ],
     "answer": 0,
-    "explanation": "Burp Suite captures, intercepts, inspects, and modifies web traffic in real time, making it the essential platform for web application penetration testing."
+    "explanation": "Burp Suite captures, intercepts, inspects, and modifies web traffic in real time, making it the essential platform for web application penetration testing.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 196,
@@ -2350,7 +2546,8 @@ window.book5MCQs = [
       "Burp Comparer"
     ],
     "answer": 0,
-    "explanation": "Burp Repeater allows testers to tweak headers, parameters, and payloads one at a time and resend requests instantly to analyze server reactions."
+    "explanation": "Burp Repeater allows testers to tweak headers, parameters, and payloads one at a time and resend requests instantly to analyze server reactions.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 197,
@@ -2362,7 +2559,8 @@ window.book5MCQs = [
       "Burp Spider"
     ],
     "answer": 0,
-    "explanation": "Burp Intruder automates high-speed parameter fuzzing and credential testing across attack positions using configurable payload lists."
+    "explanation": "Burp Intruder automates high-speed parameter fuzzing and credential testing across attack positions using configurable payload lists.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 198,
@@ -2374,7 +2572,8 @@ window.book5MCQs = [
       "Burp Suite"
     ],
     "answer": 0,
-    "explanation": "Hashcat harnesses the massively parallel computing power of modern GPUs to crack password hashes at billions of combinations per second."
+    "explanation": "Hashcat harnesses the massively parallel computing power of modern GPUs to crack password hashes at billions of combinations per second.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 199,
@@ -2386,7 +2585,8 @@ window.book5MCQs = [
       "A copy of the operating system source code"
     ],
     "answer": 0,
-    "explanation": "A professional report provides an Executive Summary explaining business impact in non-technical terms, accompanied by a Detailed Technical Report with reproducible POCs and remediation guidance."
+    "explanation": "A professional report provides an Executive Summary explaining business impact in non-technical terms, accompanied by a Detailed Technical Report with reproducible POCs and remediation guidance.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   },
   {
     "id": 200,
@@ -2398,6 +2598,7 @@ window.book5MCQs = [
       "Format the customer's production database"
     ],
     "answer": 0,
-    "explanation": "Testers must sanitize the environment, remove all testing artifacts and temporary credentials, and perform a re-test after patches are deployed to confirm vulnerabilities are resolved."
+    "explanation": "Testers must sanitize the environment, remove all testing artifacts and temporary credentials, and perform a re-test after patches are deployed to confirm vulnerabilities are resolved.",
+    "topic": "Penetration Testing and Its Methods/Tools: PTES Phases & Tool Suite"
   }
 ];

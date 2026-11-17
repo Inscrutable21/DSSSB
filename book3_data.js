@@ -644,241 +644,241 @@ window.book3Data = {
   "tocData": [
     {
       "chapter": "Topic 1 (Part 1)",
-      "title": "RAM Volatility & RFC 3227 Order of Volatility",
+      "title": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227 (Part 1)",
       "spreadIndex": 0,
       "page": "1–2"
     },
     {
       "chapter": "Topic 1 (Part 2)",
-      "title": "Physical vs Virtual Memory & MMU Translation",
+      "title": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227 (Part 2)",
       "spreadIndex": 1,
       "page": "3–4"
     },
     {
       "chapter": "Topic 2 (Part 1)",
-      "title": "Memory Acquisition Mechanics & Kernel Drivers",
+      "title": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME) (Part 1)",
       "spreadIndex": 2,
       "page": "5–6"
     },
     {
       "chapter": "Topic 2 (Part 2)",
-      "title": "Acquisition Formats, AFF4 & Hibernation Files",
+      "title": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME) (Part 2)",
       "spreadIndex": 3,
       "page": "7–8"
     },
     {
       "chapter": "Topic 3 (Part 1)",
-      "title": "Multi-Level Paging & The _EPROCESS Structure",
+      "title": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure (Part 1)",
       "spreadIndex": 4,
       "page": "9–10"
     },
     {
       "chapter": "Topic 3 (Part 2)",
-      "title": "ActiveProcessLinks, DKOM & Pool Scanning",
+      "title": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure (Part 2)",
       "spreadIndex": 5,
       "page": "11–12"
     },
     {
       "chapter": "Topic 4 (Part 1)",
-      "title": "User-Mode Structures: PEB, TEB & Segment Registers",
+      "title": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB) (Part 1)",
       "spreadIndex": 6,
       "page": "13–14"
     },
     {
       "chapter": "Topic 4 (Part 2)",
-      "title": "PEB_LDR_DATA Module Lists & Thread Structures",
+      "title": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB) (Part 2)",
       "spreadIndex": 7,
       "page": "15–16"
     },
     {
       "chapter": "Topic 5 (Part 1)",
-      "title": "Token Stealing Privilege Escalation & DKOM",
+      "title": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing (Part 1)",
       "spreadIndex": 8,
       "page": "17–18"
     },
     {
       "chapter": "Topic 5 (Part 2)",
-      "title": "Windows Process Hierarchy & PPID Spoofing",
+      "title": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing (Part 2)",
       "spreadIndex": 9,
       "page": "19–20"
     },
     {
       "chapter": "Topic 6 (Part 1)",
-      "title": "Volatility 3 Core Plugins: pslist vs psscan",
+      "title": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan) (Part 1)",
       "spreadIndex": 10,
       "page": "21–22"
     },
     {
       "chapter": "Topic 6 (Part 2)",
-      "title": "DLLs, Handles, Privileges & Kernel Callbacks",
+      "title": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan) (Part 2)",
       "spreadIndex": 11,
       "page": "23–24"
     },
     {
       "chapter": "Topic 7 (Part 1)",
-      "title": "VAD Balanced AVL Trees & Malfind Heuristics",
+      "title": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis (Part 1)",
       "spreadIndex": 12,
       "page": "25–26"
     },
     {
       "chapter": "Topic 7 (Part 2)",
-      "title": "JIT False Positives & Shellcode Carving",
+      "title": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis (Part 2)",
       "spreadIndex": 13,
       "page": "27–28"
     },
     {
       "chapter": "Topic 8 (Part 1)",
-      "title": "In-Memory Registry Hives & SAM Hashdump",
+      "title": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS) (Part 1)",
       "spreadIndex": 14,
       "page": "29–30"
     },
     {
       "chapter": "Topic 8 (Part 2)",
-      "title": "LSASS Secrets, Mimikatz & Credential Guard",
+      "title": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS) (Part 2)",
       "spreadIndex": 15,
       "page": "31–32"
     },
     {
       "chapter": "Topic 9 (Part 1)",
-      "title": "Classic DLL Injection & Process Hollowing",
+      "title": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques (Part 1)",
       "spreadIndex": 16,
       "page": "33–34"
     },
     {
       "chapter": "Topic 9 (Part 2)",
-      "title": "AtomBombing, Ghosting & Advanced Injection",
+      "title": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques (Part 2)",
       "spreadIndex": 17,
       "page": "35–36"
     },
     {
       "chapter": "Topic 10 (Part 1)",
-      "title": "Linux Kernel Internals: task_struct & LiME",
+      "title": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting (Part 1)",
       "spreadIndex": 18,
       "page": "37–38"
     },
     {
       "chapter": "Topic 10 (Part 2)",
-      "title": "Syscall Table Hooking & LKM Rootkit Hunting",
+      "title": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting (Part 2)",
       "spreadIndex": 19,
       "page": "39–40"
     },
     {
       "chapter": "Topic 11 (Part 1)",
-      "title": "Windows Memory Compression & KASLR Defenses",
+      "title": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History (Part 1)",
       "spreadIndex": 20,
       "page": "41–42"
     },
     {
       "chapter": "Topic 11 (Part 2)",
-      "title": "Console History, PowerShell & Pool Tags",
+      "title": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History (Part 2)",
       "spreadIndex": 21,
       "page": "43–44"
     },
     {
       "chapter": "Topic 12 (Part 1)",
-      "title": "Kerberos Tickets: Golden vs Silver Tickets",
+      "title": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts (Part 1)",
       "spreadIndex": 22,
       "page": "45–46"
     },
     {
       "chapter": "Topic 12 (Part 2)",
-      "title": "Cobalt Strike In-Memory Beacons & YARA",
+      "title": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts (Part 2)",
       "spreadIndex": 23,
       "page": "47–48"
     },
     {
       "chapter": "Topic 13 (Part 1)",
-      "title": "Browser Forensics in RAM & Incognito Reality",
+      "title": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets (Part 1)",
       "spreadIndex": 24,
       "page": "49–50"
     },
     {
       "chapter": "Topic 13 (Part 2)",
-      "title": "Plaintext Web Messaging & TLS Master Secrets",
+      "title": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets (Part 2)",
       "spreadIndex": 25,
       "page": "51–52"
     },
     {
       "chapter": "Topic 14 (Part 1)",
-      "title": "Sub-OS Rootkits: Hypervisors (Ring -1) & DMA",
+      "title": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks (Part 1)",
       "spreadIndex": 26,
       "page": "53–54"
     },
     {
       "chapter": "Topic 14 (Part 2)",
-      "title": "Rowhammer Electrical Flips & Silicon Defenses",
+      "title": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks (Part 2)",
       "spreadIndex": 27,
       "page": "55–56"
     },
     {
       "chapter": "Topic 15 (Part 1)",
-      "title": "PE Header Wiping & Section Realignment",
+      "title": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking (Part 1)",
       "spreadIndex": 28,
       "page": "57–58"
     },
     {
       "chapter": "Topic 15 (Part 2)",
-      "title": "Original Entry Point (OEP) & API Unhooking",
+      "title": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking (Part 2)",
       "spreadIndex": 29,
       "page": "59–60"
     },
     {
       "chapter": "Topic 16 (Part 1)",
-      "title": "In-Memory Network Sockets & windows.netscan",
+      "title": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan (Part 1)",
       "spreadIndex": 30,
       "page": "61–62"
     },
     {
       "chapter": "Topic 16 (Part 2)",
-      "title": "TCP States, Reverse Shells & Socket Binding",
+      "title": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan (Part 2)",
       "spreadIndex": 31,
       "page": "63–64"
     },
     {
       "chapter": "Topic 17 (Part 1)",
-      "title": "BitLocker FVEK & AES Key Schedules in RAM",
+      "title": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules (Part 1)",
       "spreadIndex": 32,
       "page": "65–66"
     },
     {
       "chapter": "Topic 17 (Part 2)",
-      "title": "Mathematical Key Carving & Hash Verification",
+      "title": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules (Part 2)",
       "spreadIndex": 33,
       "page": "67–68"
     },
     {
       "chapter": "Topic 18 (Part 1)",
-      "title": "Kernel Debugging with WinDbg & Core Commands",
+      "title": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps (Part 1)",
       "spreadIndex": 34,
       "page": "69–70"
     },
     {
       "chapter": "Topic 18 (Part 2)",
-      "title": "Crash Dump Formats & Virtual Machine Dumps",
+      "title": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps (Part 2)",
       "spreadIndex": 35,
       "page": "71–72"
     },
     {
       "chapter": "Topic 19 (Part 1)",
-      "title": "Hardware Architectures: NUMA, ECC & Virtualization",
+      "title": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots (Part 1)",
       "spreadIndex": 36,
       "page": "73–74"
     },
     {
       "chapter": "Topic 19 (Part 2)",
-      "title": "Virtual Machine Memory Snapshots & Ballooning",
+      "title": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots (Part 2)",
       "spreadIndex": 37,
       "page": "75–76"
     },
     {
       "chapter": "Topic 20 (Part 1)",
-      "title": "In-Memory Threat Hunting: Web Shells & Session 0",
+      "title": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63 (Part 1)",
       "spreadIndex": 38,
       "page": "77–78"
     },
     {
       "chapter": "Topic 20 (Part 2)",
-      "title": "Chain of Custody, Section 65B & Master Traps",
+      "title": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63 (Part 2)",
       "spreadIndex": 39,
       "page": "79–80"
     }

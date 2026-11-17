@@ -1,5 +1,4 @@
-// Book 3 MCQs: RAM & Memory Forensics
-// 200 High-Yield DSSSB Pattern Questions (10 Questions per Topic across 20 Topics)
+// Book 3 MCQs: Memory (RAM) Forensics & Volatility Analysis (200 Questions)
 window.book3MCQs = [
   {
     "id": 1,
@@ -12,7 +11,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Dynamic RAM relies on capacitors that lose charge within milliseconds without refresh. RAM holds active malware, injected code, decrypted bitlocker keys, and live connections that leave no disk traces.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 2,
@@ -25,7 +24,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Halderman et al. demonstrated that chilling DRAM chips (e.g. using liquid nitrogen or inverted canned air to -50°C) slows capacitor discharge, allowing memory contents to persist for minutes to hours for cold reboot extraction.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 3,
@@ -38,7 +37,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Control Register 3 (CR3), also known as the Page Directory Base Register (PDBR) or Directory Table Base (DTB), stores the physical address of the page directory or PML4 table for virtual-to-physical address translation.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 4,
@@ -51,7 +50,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "When CR0.WP = 1, the CPU prohibits even supervisor-mode (Ring 0) code from writing to pages marked read-only in the page tables, a security feature that rootkits disable (CR0.WP = 0) to hook system tables.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 5,
@@ -64,7 +63,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "SMEP (Supervisor Mode Execution Prevention, bit 20 in CR4) prevents kernel-mode code from executing instructions located in user-space memory pages, defeating user-to-kernel ret2usr exploitation.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 6,
@@ -77,7 +76,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "SMAP (Supervisor Mode Access Prevention, bit 21 in CR4) prevents the kernel from reading or writing user-space memory pages unless explicitly unblocked via the STAC instruction (cleared via CLAC).",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 7,
@@ -90,7 +89,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Standard x86_64 architecture uses 4-level paging: Page Map Level 4 (PML4) -> Page Directory Pointer Table (PDPT) -> Page Directory (PD) -> Page Table (PT), mapping 48-bit virtual addresses to 4KB physical pages.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 8,
@@ -103,7 +102,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Hardware DMA devices (like PCI Express / Thunderbolt adapters running PCILeech) read physical RAM directly across the system bus via Direct Memory Access without relying on host operating system APIs or drivers.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 9,
@@ -116,7 +115,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "The IOMMU (Input-Output Memory Management Unit, known as Intel VT-d or AMD-Vi) maps device-visible bus addresses to physical addresses, preventing peripheral devices from conducting unauthorized DMA reads of host RAM.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 10,
@@ -129,7 +128,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "LiME (Linux Memory Extractor) compiles as an LKM for the specific running Linux kernel, allowing volatile physical memory acquisition directly to local storage or over a network socket with minimal footprint.",
-    "topic": "RAM Volatility & CPU Architecture"
+    "topic": "Acquisition, Analysis & Interpretation of Volatile Memory: Principles & RFC 3227"
   },
   {
     "id": 11,
@@ -142,7 +141,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Starting with Windows Server 2003 SP1 and Windows Vista, direct access to the '\\Device\\PhysicalMemory' object from user mode was blocked by default to prevent rootkits and malware from tampering with kernel space.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 12,
@@ -155,7 +154,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "WinPmem (originally developed by Michael Cohen under Rekall) is an open-source, signed kernel driver and command-line acquisition tool widely used for capturing physical memory on Windows systems.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 13,
@@ -168,7 +167,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "AFF4 (Advanced Forensic Format 4) is an open standard container format (built as a zip container) designed for digital forensics, supporting multiple linear streams, arbitrary metadata, sparse maps, and chunked hashing.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 14,
@@ -181,7 +180,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "During a BugCheck/crash, the Windows crash dump driver (crashdmp.sys) writes memory contents directly into 'pagefile.sys'. Upon the subsequent reboot, 'smss.exe' and 'savedump.exe' copy it into '%SystemRoot%\\MEMORY.DMP'.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 15,
@@ -194,7 +193,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "A Complete Memory Dump records the entire contents of physical RAM (both user processes and kernel). A Kernel Memory Dump records only memory allocated to the kernel and HAL, excluding user-mode pages.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 16,
@@ -207,7 +206,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Windows uses proprietary Xpress LZ (and Xpress Huffman) compression to compress physical memory pages before writing them to 'hiberfil.sys', requiring forensic tools to decompress pages prior to analysis.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 17,
@@ -220,7 +219,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "In Volatility, the 'imagecopy' plugin (or specialized hibernation conversion modules) extracts and decompresses the physical memory pages from hiberfil.sys or crash dumps into a linear, raw memory bitstream image.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 18,
@@ -233,7 +232,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Volatility 2 relied on static, hardcoded profiles (e.g. Win7SP1x64). Volatility 3 uses an OS-agnostic core that loads JSON-based Intermediate Symbol Format (ISF) tables, automatically identifying kernel symbols without hardcoded profiles.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 19,
@@ -246,7 +245,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Volatility 3 uses the '-s' or '--symbol-dirs' command-line flag to specify custom local file system directories where JSON/ISF symbol tables and symbol packs reside.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 20,
@@ -259,7 +258,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The TLB is an on-chip associative cache inside the MMU that stores recent virtual-to-physical address mappings. If a translation hits the TLB, the CPU avoids the slow multi-level page table walk in RAM.",
-    "topic": "Memory Acquisition Tools & Drivers"
+    "topic": "Memory Acquisition Tools & Techniques: Software Live Capture (WinPmem, DumpIt, LiME)"
   },
   {
     "id": 21,
@@ -272,7 +271,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "A page fault (Interrupt 14 / #PF) occurs when software accesses a virtual address whose page table entry is marked 'not present' (paged out to disk swap/pagefile, uncommitted, or invalid). The OS handles it by reading the page into RAM.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 22,
@@ -285,7 +284,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "The standard page size in x86/x86_64 architectures is 4 KB (4,096 bytes / 0x1000 hex). Large pages can be 2 MB or 1 GB.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 23,
@@ -298,7 +297,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "x86_64 processors support 2 MB large pages (by setting the Page Size / PS bit in Page Directory entries) and 1 GB huge pages (in PDPT entries), reducing page table levels and TLB footprint for large memory allocations. (2,097,152 bytes) or 1 Gigabyte (1,073,741,824 bytes)",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 24,
@@ -311,7 +310,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Paging/swapping is the OS mechanism that writes pages of physical RAM to a disk backing file (pagefile.sys or swap partition) when RAM is low, and reads them back into physical RAM when accessed again.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 25,
@@ -324,7 +323,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Because a physical memory dump captures only physical RAM, pages that were paged out to disk (pagefile.sys) are missing. Examiners must analyze both physical RAM and pagefile.sys together to recover complete process memory.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 26,
@@ -337,7 +336,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "The _EPROCESS structure represents a process in Windows kernel space. It encapsulates process IDs, security tokens, memory descriptors, image name, and linked lists connecting the process into the system.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 27,
@@ -350,7 +349,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "ActiveProcessLinks is a circular doubly linked list (LIST_ENTRY) embedded in _EPROCESS. Each entry points to the next (Flink) and previous (Blink) _EPROCESS structure in memory.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 28,
@@ -363,7 +362,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The ImageFileName field in _EPROCESS is an array of 15 bytes (UCHAR ImageFileName[15]), restricting the stored executable name to a maximum of 14 characters plus a null terminator.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 29,
@@ -376,7 +375,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "The PEB (Process Environment Block) resides in user-mode address space. It contains process configuration details: CommandLine, CurrentDirectory, ImageBaseAddress, BeingDebugged flag, and the loader data table (Ldr).",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 30,
@@ -389,7 +388,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "On 64-bit Windows, the GS register points to the TEB/TIB. GS:[0x30] points to the TEB itself; GS:[0x60] points directly to the Process Environment Block (PEB). On 32-bit Windows, FS:[0x18] points to TEB and FS:[0x30] points to PEB.",
-    "topic": "Paging & _EPROCESS Structures"
+    "topic": "Overview of Memory Structures: Multi-Level Paging (PML4) & The _EPROCESS Structure"
   },
   {
     "id": 31,
@@ -402,7 +401,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "In 32-bit Windows, the Thread Information Block (TIB) is accessed via the FS segment register. FS:[0x18] points to the TEB, and FS:[0x30] points directly to the PEB.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 32,
@@ -415,7 +414,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The 'BeingDebugged' flag at offset 0x02 of the PEB is set to 1 when a user-mode debugger (e.g. x64dbg, WinDbg) attaches to the process. The Win32 API IsDebuggerPresent() simply reads this byte.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 33,
@@ -428,7 +427,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "PEB->Ldr points to the PEB_LDR_DATA structure, which contains three doubly linked lists of LDR_DATA_TABLE_ENTRY structures tracking loaded DLLs: InLoadOrderModuleList, InMemoryOrderModuleList, and InInitializationOrderModuleList.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 34,
@@ -441,7 +440,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "The Virtual Address Descriptor (VAD) tree is a self-balancing binary search tree (AVL tree) rooted in _EPROCESS (VadRoot). It tracks every contiguous range of virtual addresses allocated to the process.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 35,
@@ -454,7 +453,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "PAGE_EXECUTE_READWRITE (constant 0x40) gives a memory page Read, Write, and Execute permissions. Legitimate software rarely allocates RWX pages; its presence strongly indicates shellcode, packers, or in-memory injection.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 36,
@@ -467,7 +466,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Virtual memory states: MEM_RESERVE reserves virtual address space without consuming physical memory/pagefile; MEM_COMMIT allocates physical memory or pagefile space for the reserved addresses.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 37,
@@ -480,7 +479,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Private memory (MEM_PRIVATE) has no disk file backing; it is used for dynamically generated code, stacks, and heaps. Injected code and unpacked malware payloads reside almost exclusively in private committed memory.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 38,
@@ -493,7 +492,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "_ETHREAD represents a thread in Windows kernel space. It contains thread IDs (Cid.UniqueThread), thread start address, thread state, impersonation tokens, and an embedded _KTHREAD (Kernel Thread) block.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 39,
@@ -506,7 +505,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "_ETHREAD stores the Win32StartAddress field, which points to the initial entry point function where the thread began executing. Malware threads often start at suspicious unbacked memory addresses.",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 40,
@@ -519,7 +518,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The _EPROCESS structure contains a FastRef pointer to the _TOKEN structure. The token holds the process's User SID, Group SIDs, Restricted SIDs, and Privileges (e.g. SeDebugPrivilege, SeTcbPrivilege).",
-    "topic": "PEB, TEB & Thread Structures"
+    "topic": "Overview of Memory Structures: Process Environment Block (PEB) & Thread Structures (TEB)"
   },
   {
     "id": 41,
@@ -532,7 +531,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Token stealing is a classic kernel privilege escalation technique: an attacker with kernel write access replaces their process's Token pointer with the Token pointer of the System process (PID 4), instantly granting SYSTEM rights.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 42,
@@ -545,7 +544,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "The 'System' process (which hosts kernel worker threads) is assigned PID 4 on all modern Windows operating systems. PID 0 is the 'System Idle Process'. (on Windows XP and all subsequent modern Windows releases)",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 43,
@@ -558,7 +557,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "smss.exe (Session Manager Subsystem) is the first user-mode process started by the kernel. It creates user sessions, starts csrss.exe (Client/Server Runtime) and winlogon.exe, and launches subsequent session instances.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 44,
@@ -571,7 +570,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The initial smss.exe process is spawned directly by the kernel's 'System' process (PID 4). Any smss.exe whose parent process is not PID 4 is a malicious imposter.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 45,
@@ -584,7 +583,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "On modern Windows (Vista+), wininit.exe starts services.exe (Service Control Manager), lsass.exe (Local Security Authority), and lsaiso.exe. Therefore, services.exe must always have wininit.exe as its parent.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 46,
@@ -597,7 +596,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Standard system svchost.exe instances are spawned exclusively by 'services.exe'. Any svchost.exe spawned by explorer.exe, cmd.exe, or powershell.exe is an indicator of malware or code execution.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 47,
@@ -610,7 +609,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Legitimate svchost.exe instances are always invoked with the '-k' parameter followed by the service group name (e.g. 'svchost.exe -k LocalService', 'svchost.exe -k netsvcs'). Instances running without '-k' are suspicious.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 48,
@@ -623,7 +622,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "There is only ever ONE legitimate lsass.exe process running on a Windows system. If multiple lsass.exe processes exist, or if its parent is not wininit.exe, malware is present.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 49,
@@ -636,7 +635,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "The legitimate csrss.exe binary resides strictly in 'C:\\Windows\\System32\\csrss.exe'. Malware frequently places rogue copies in C:\\Windows, C:\\Windows\\Temp, or user AppData directories.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 50,
@@ -649,7 +648,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "After successful logon, winlogon.exe executes 'userinit.exe', which applies group policies, executes logon scripts, launches 'explorer.exe' (the user shell), and then exits.",
-    "topic": "Process Hierarchy & Token Stealing"
+    "topic": "Running Processes: Process Hierarchy, Standard Windows Trees & Token Stealing"
   },
   {
     "id": 51,
@@ -662,7 +661,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "The 'windows.pslist' plugin traverses the ActiveProcessLinks circular doubly linked list of _EPROCESS structures. It displays processes known to the OS scheduler.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 52,
@@ -675,7 +674,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'windows.psscan' does not rely on ActiveProcessLinks. Instead, it scans physical memory pages for the 'Proc' pool tag (or modern object headers), detecting unlinked (DKOM-hidden) or terminated processes.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 53,
@@ -688,7 +687,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'windows.pstree' organizes the output of process enumeration into a visual tree hierarchy using PPIDs, making suspicious parent-child relationships (e.g., Word spawning PowerShell) instantly visible.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 54,
@@ -701,7 +700,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.netscan' scans memory pool allocations for network structures (TCP endpoints, listener blocks, UDP endpoints), displaying local/remote IPs, ports, socket state, and owning process PIDs.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 55,
@@ -714,7 +713,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'windows.cmdline' navigates to the Process Environment Block (PEB) -> ProcessParameters -> CommandLine (UNICODE_STRING) to display the full command line used to launch each process.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 56,
@@ -727,7 +726,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'windows.envars' dumps the environment variable strings stored in the process's RTL_USER_PROCESS_PARAMETERS block within the PEB, revealing user sessions, paths, and system variables.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 57,
@@ -740,7 +739,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'windows.dlllist' walks the InLoadOrderModuleList doubly linked list in PEB->Ldr, displaying the base address, size, path, and load order of DLLs loaded into each process.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 58,
@@ -753,7 +752,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.ldrmodules' compares the three PEB module lists (InLoad, InMemory, InInit) with the memory-mapped files in the VAD tree. A DLL mapped in VAD but missing from PEB lists indicates unlinking or injection.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 59,
@@ -766,7 +765,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'windows.malfind' identifies process memory injection by finding VAD nodes with PAGE_EXECUTE_READWRITE permissions that are MEM_COMMIT and MEM_PRIVATE, dumping the initial bytes (looking for 'MZ' or shellcode).",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 60,
@@ -779,7 +778,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'windows.vadinfo' prints every node in a process's VAD tree, showing start/end virtual addresses, commit charge, protection flags (READONLY, EXECUTE_READWRITE), and mapped file path if file-backed.",
-    "topic": "Volatility 3 Core Process Plugins"
+    "topic": "Running Processes & Analysis: Volatility 3 Plugins & Discrepancy Matrix (pslist vs psscan)"
   },
   {
     "id": 61,
@@ -792,7 +791,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'windows.vaddump' extracts each individual memory range described by a VAD node into a separate .dmp file, allowing examiners to carve or reverse engineer injected code or memory-mapped files.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 62,
@@ -805,7 +804,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "In Volatility 3, 'windows.dumpfiles' (using --pid) extracts cached executable binaries and memory-mapped files directly from memory management caching structures onto disk.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 63,
@@ -818,7 +817,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'windows.handles' parses the HANDLE_TABLE of processes, listing all open handles to kernel objects including files, registry subkeys, mutexes, named pipes, and processes.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 64,
@@ -831,7 +830,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'windows.mutantscan' scans memory for KMUTANT / KMUTEX pool tags. Malware authors frequently create uniquely named mutexes (e.g. 'Global\\XtremeRAT_Mutex'); identifying these confirms infection families.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 65,
@@ -844,7 +843,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'windows.filescan' scans physical memory for Windows FILE_OBJECT structures, displaying file pointers, device names, and full file system paths even if the files were deleted from disk.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 66,
@@ -857,7 +856,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.modules' walks the PsLoadedModuleList in kernel space to display loaded kernel drivers, their base addresses, sizes, and binary driver file paths.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 67,
@@ -870,7 +869,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'windows.driverscan' scans memory pool allocations for DRIVER_OBJECT structures, locating kernel drivers that were unlinked from PsLoadedModuleList by rootkits.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 68,
@@ -883,7 +882,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'windows.driverirp' checks the MajorFunction table pointers in DRIVER_OBJECT structures. If a pointer points outside the driver's legitimate code section, an IRP hook is detected.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 69,
@@ -896,7 +895,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'windows.ssdt' dumps the KiServiceTable (SSDT). In 32-bit Windows, rootkits hook SSDT entries to intercept system calls; the plugin flags any SSDT entry whose function address points outside ntoskrnl.exe.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 70,
@@ -909,7 +908,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.callbacks' enumerates kernel notification routines registered via PsSetCreateProcessNotifyRoutine, PsSetLoadImageNotifyRoutine, etc., revealing rootkits and security agents monitoring events.",
-    "topic": "VAD Trees & Malfind Analysis"
+    "topic": "Significance of Memory Analysis in Identifying Malware: VAD Trees & Malfind Analysis"
   },
   {
     "id": 71,
@@ -922,7 +921,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'windows.registry.hivelist' lists all registry hives loaded in memory (e.g. SYSTEM, SAM, SOFTWARE, NTUSER.DAT), displaying their memory block addresses for further targeted key parsing.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 72,
@@ -935,7 +934,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'windows.registry.printkey' queries loaded in-memory registry hives to display subkeys, value names, types, data, and last-written timestamps for a specified registry path.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 73,
@@ -948,7 +947,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'windows.hashdump' decrypts local user account password hashes (NTLM) by extracting the Syskey/bootkey from the SYSTEM hive in memory and decrypting password hashes stored in the SAM hive.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 74,
@@ -961,7 +960,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.lsadump' extracts decrypted Local Security Authority (LSA) secrets from the SECURITY hive and LSASS memory, retrieving service credentials, cached domain keys, and auto-logon passwords.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 75,
@@ -974,7 +973,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'windows.mftscan' scans physical memory for cached 1024-byte NTFS $MFT record structures ('FILE'), recovering file metadata for files opened or deleted while the machine was powered on.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 76,
@@ -987,7 +986,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Process Hollowing creates a legitimate host process (e.g. svchost.exe) in a suspended state (CREATE_SUSPENDED), unmaps its original executable code using NtUnmapViewOfSection, and injects malware code in its place.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 77,
@@ -1000,7 +999,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "The full RunPE/Hollowing chain: 1. CreateProcess(CREATE_SUSPENDED); 2. NtUnmapViewOfSection (unmap host); 3. VirtualAllocEx (allocate payload memory); 4. WriteProcessMemory (write malicious headers/sections); 5. SetThreadContext (redirect RIP/EIP to new entrypoint); 6. ResumeThread.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 78,
@@ -1013,7 +1012,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Process Doppelgänging uses NTFS Transactions (TxF). The attacker creates a transacted file, writes malware into it, creates a section object from the transaction, rolls back the transaction (nothing touches disk), and spawns a process from the section.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 79,
@@ -1026,7 +1025,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "In Process Herpaderping, the attacker writes the binary to disk, creates an image section, then overwrites the on-disk file with benign bytes before calling CreateThread. Security tools inspecting the disk image see benign code.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 80,
@@ -1039,7 +1038,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Reflective DLL injection includes a custom loader within the DLL itself. It allocates memory, copies sections, resolves imports and relocations in RAM, and executes DllMain without calling LoadLibraryA or touching disk.",
-    "topic": "In-Memory Registry & Credential Harvesting"
+    "topic": "Types of Data Stored in RAM: In-Memory Registry Hives & Credential Harvesting (LSASS)"
   },
   {
     "id": 81,
@@ -1052,7 +1051,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "AtomBombing abuses Windows Global Atom Tables. An attacker stores shellcode in the global atom table and uses QueueUserAPC / NtQueueApcThread to force the target process to retrieve the atom via GlobalGetAtomNameW.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 82,
@@ -1065,7 +1064,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Early Bird injection creates a target process in a suspended state, queues a user APC (QueueUserAPC) pointing to shellcode, and resumes the thread. The APC executes before AV/EDR hooks in ntdll are initialized.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 83,
@@ -1078,7 +1077,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "DLL Hollowing maps a legitimate signed DLL into the process address space and then overwrites its executable section (.text) with malicious shellcode, masking the code as a legitimate signed module backed by disk.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 84,
@@ -1091,7 +1090,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "PatchGuard (Kernel Patch Protection / KPP) in 64-bit Windows periodically verifies kernel integrity. If it detects modifications to the SSDT, GDT, IDT, or kernel code, it triggers a BugCheck (CRITICAL_STRUCTURE_CORRUPTION 0x109).",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 85,
@@ -1104,7 +1103,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Virtualization-Based Security (VBS) uses Hyper-V to create Virtual Secure Mode (VSM / Ring -1). It runs LSAISO (LSA Isolated) in Virtual Trust Level 1 (VTL 1), isolating credential keys from even a compromised Ring 0 kernel.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 86,
@@ -1117,7 +1116,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Legitimate threads execute code backed by files on disk (DLLs or EXEs). A thread whose instruction pointer points to unbacked, private committed memory (MEM_PRIVATE) is almost certainly running injected shellcode.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 87,
@@ -1130,7 +1129,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "IAT hooking is a user-mode hooking technique where an attacker overwrites an entry in the Import Address Table of a module. When the program calls the imported API, it calls the attacker's hook function instead.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 88,
@@ -1143,7 +1142,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Inline hooking modifies the prologue (first 5-12 bytes) of a target function with an unconditional JMP to the hook code. It executes hook logic, runs the preserved original prologue bytes (trampoline), and jumps back.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 89,
@@ -1156,7 +1155,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Event ID 1102 ('The audit log was cleared') in the Security log proves that someone with administrative credentials deliberately purged the audit logs, an immediate red flag in incident response.",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 90,
@@ -1169,7 +1168,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "In Linux, every process and thread is represented by a 'struct task_struct'. It contains process state, PID, memory descriptors (mm_struct), credentials (cred), and linked lists (tasks).",
-    "topic": "Advanced Code Injection Techniques"
+    "topic": "Significance of Memory Analysis in Identifying Malware: Advanced Code Injection Techniques"
   },
   {
     "id": 91,
@@ -1182,7 +1181,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "In Linux, 'struct vm_area_struct' represents Virtual Memory Areas (VMAs). It defines a contiguous virtual memory range, its access permissions (vm_flags: read, write, execute), and mapped backing files.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 92,
@@ -1195,7 +1194,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "In modern Linux kernels, 'struct cred' encapsulates a process's security credentials: real UID/GID, effective UID/GID (euid/egid), saved UID/GID, and POSIX capability bitmasks (cap_inheritable, cap_effective).",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 93,
@@ -1208,7 +1207,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'linux.check_syscall' examines the system call table (sys_call_table) in Linux memory dumps, comparing each function pointer against the kernel symbol table to detect hooked system calls.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 94,
@@ -1221,7 +1220,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'linux.check_modules' compares the kernel module list with sysfs kobject structures to identify hidden or unlinked Loadable Kernel Modules (LKMs) installed by rootkits.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 95,
@@ -1234,7 +1233,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'linux.elfs' dumps in-memory ELF (Executable and Linkable Format) binaries from Linux process address spaces, enabling offline malware analysis with tools like Ghidra or IDA Pro.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 96,
@@ -1247,7 +1246,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Memory forensics tools scan RAM dumps for scheduled AES key expansions. Because symmetric encryption keys must reside in plaintext in RAM for the driver to decrypt sectors, examiners extract keys to mount encrypted volumes. (plugins like windows.truecrypt / bitlocker scanners)",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 97,
@@ -1260,7 +1259,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "AESKeyfind searches memory for the distinct mathematical structure of the AES key schedule (round keys generated during key expansion). If 4 or more consecutive round keys satisfy the AES expansion algebra, a key is confirmed.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 98,
@@ -1273,7 +1272,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Mimikatz (and its multi-platform Python implementation 'pypykatz') parses memory dumps of lsass.exe to extract plaintext passwords (from WDigest/SSP), NTLM hashes, Kerberos tickets, and DPAPI keys.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 99,
@@ -1286,7 +1285,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "WDigest (Digest Authentication) required the plain text password in memory to compute digest challenges over HTTP. Because Mimikatz easily harvested these passwords from LSASS, Microsoft disabled WDigest caching in Windows 8.1/10.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 100,
@@ -1299,7 +1298,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Conhost.exe manages the console buffer for cmd.exe and powershell.exe. Ingesting and searching conhost.exe memory (or using Volatility's consoles/cmdscan) recovers typed commands and terminal outputs.",
-    "topic": "Linux Memory Forensics"
+    "topic": "Overview of Memory Structures: Linux Kernel Architecture, task_struct & Rootkit Hunting"
   },
   {
     "id": 101,
@@ -1312,7 +1311,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "In Volatility 2, 'cmdscan' and 'consoles' parsed console buffer structures in csrss.exe (Win XP) or conhost.exe (Win 7) to extract command-line history and screen output of console sessions.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 102,
@@ -1325,7 +1324,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Windows 10 introduced Memory Compression. When RAM is pressured, the OS compresses inactive pages in physical memory inside the System process working set, improving performance but hiding strings until decompressed.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 103,
@@ -1338,7 +1337,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "KASLR randomizes the location where kernel modules and structures are loaded into virtual memory at boot time, preventing attackers from using hardcoded memory addresses in exploit payloads.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 104,
@@ -1351,7 +1350,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "KVAS (Kernel Virtual Address Shadowing) mitigates the Meltdown vulnerability by maintaining two distinct sets of page tables: one while executing in user mode (excluding kernel mappings) and one in kernel mode.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 105,
@@ -1364,7 +1363,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Meltdown and Spectre demonstrated that modern CPUs speculatively execute instructions beyond security checks, leaving secret data traces in L1/L2 CPU caches that attackers can extract via cache-timing side channels.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 106,
@@ -1377,7 +1376,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Shimcache data is maintained in volatile memory by the kernel during system runtime. It is only flushed and written to the registry on disk during a clean system shutdown; an abrupt power cut loses recent records from disk.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 107,
@@ -1390,7 +1389,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "The Token structure defines user privileges via 64-bit masks (Present, Enabled, EnabledByDefault). Discovering 'SeDebugPrivilege' or 'SeImpersonatePrivilege' enabled in a user process is a strong indicator of privilege escalation.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 108,
@@ -1403,7 +1402,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The Potato family of exploits (JuicyPotato, PrintSpoofer) tricks a SYSTEM-level service (like RPC or Print Spooler) into connecting to a local named pipe, allowing an attacker with SeImpersonatePrivilege to impersonate SYSTEM.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 109,
@@ -1416,7 +1415,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Kerberoasting requests Kerberos Ticket Granting Service (TGS) tickets for Service Principal Names (SPNs) from Active Directory, extracting service account tickets from memory or network traffic to crack NTLM passwords offline.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 110,
@@ -1429,7 +1428,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "A Golden Ticket is a forged Kerberos TGT created using the password hash of the domain's 'krbtgt' service account. Possession of this hash allows an adversary to generate tickets with arbitrary domain privileges.",
-    "topic": "Compression, KASLR & Pool Tags"
+    "topic": "Types of Data Stored in RAM & System Artifacts: Memory Compression, KASLR & Console History"
   },
   {
     "id": 111,
@@ -1442,7 +1441,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Unlike a Golden Ticket (which requires the krbtgt hash and forges TGTs), a Silver Ticket forges a TGS service ticket using the password hash of a specific service account, accessing that target service without contacting the DC.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 112,
@@ -1455,7 +1454,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Skeleton Key patches LSASS in memory on an Active Directory domain controller. It injects a master password into the Kerberos/NTLM authentication routine, enabling the attacker to log in as ANY domain user.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 113,
@@ -1468,7 +1467,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Cobalt Strike Beacon is a leading C2 implant that executes reflectively in memory. Volatility detects it via windows.malfind (RWX private memory), thread stack inspection, and specialized beacon config parsing scripts.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 114,
@@ -1481,7 +1480,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Sleep obfuscation uses asynchronous timers and ROP gadgets to encrypt the implant's in-memory payload, change VAD permissions to read-only or NOACCESS while sleeping, and decrypt itself only when a timer awakens the thread.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 115,
@@ -1494,7 +1493,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Stack pivoting changes RSP/ESP to point to a buffer controlled by the attacker (e.g. via 'xchg eax, esp; ret'). This allows execution of long ROP chains when the original stack buffer size was too small.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 116,
@@ -1507,7 +1506,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Non-Paged Pool holds critical kernel structures (interrupt handlers, spinlocks, page tables, DPCs) that must never cause a page fault, while Paged Pool can be paged out to disk.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 117,
@@ -1520,7 +1519,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Pool tags are 4-character strings (e.g. 'Proc', 'Thre', 'File') passed to ExAllocatePoolWithTag. Forensic scanners search memory for these tags to locate orphaned or unlinked kernel objects.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 118,
@@ -1533,7 +1532,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "The Windows kernel tags _EPROCESS object allocations in the executive pool with the tag 'Proc'. Volatility's psscan searches memory for this tag.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 119,
@@ -1546,7 +1545,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Windows 10 introduced the Segment Heap (first in UWP, then Win32) to replace the older NT LFH (Low Fragmentation Heap), optimizing memory usage and security.",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 120,
@@ -1559,7 +1558,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Volatility 3 extracts command-line invocations via 'windows.cmdline' and can inspect conhost.exe memory pages to recover typed console commands and interactive session outputs. (or specialized conhost console history extractors)",
-    "topic": "Enterprise Memory & C2 Artifacts"
+    "topic": "Types of Data Stored in RAM & Identifying Malware: Kerberos Authentication & C2 Artifacts"
   },
   {
     "id": 121,
@@ -1572,7 +1571,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Browsers must decrypt HTTPS web pages to render them on screen. Therefore, volatile RAM of browser processes contains cleartext web pages, passwords typed into input boxes, and active chat messages.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 122,
@@ -1585,7 +1584,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Even with end-to-end encryption, messages must be decrypted in user-space RAM for the user to read them. Dumping and carving memory of the desktop client or browser recovers plaintext chats and media.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 123,
@@ -1598,7 +1597,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'linux.bash' scans process memory of active or recently terminated bash shells for history lines, recovering typed commands even if HISTFILE was set to /dev/null or history was disabled.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 124,
@@ -1611,7 +1610,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'linux.check_afinfo' verifies the integrity of the network address family structures (e.g. tcp4_seq_afinfo). Rootkits often hook these pointers to hide active malicious network connections.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 125,
@@ -1624,7 +1623,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'linux.mount' inspects the Virtual File System (VFS) structures in memory, displaying all mounted file systems, mount points, device paths, and mount options.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 126,
@@ -1637,7 +1636,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "In macOS / XNU kernel, 'struct proc' represents the BSD process layer (PIDs, credentials, names), while 'struct task' represents the underlying Mach resource container.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 127,
@@ -1650,7 +1649,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "'mac.pslist' traverses the active process list in the XNU kernel to display running processes, PIDs, PPIDs, and process names in a macOS memory image.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 128,
@@ -1663,7 +1662,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'mac.malfind' scans memory regions of macOS processes for pages with write and execute (WX) permissions containing Mach-O headers or executable shellcode.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 129,
@@ -1676,7 +1675,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "BlackLotus exploited CVE-2022-21894 (Baton Drop) in vulnerable, validly signed Windows Boot Manager binaries to disable Secure Boot, disable BitLocker, and inject its kernel driver before OS initialization.",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 130,
@@ -1689,7 +1688,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "System Management Mode (SMM / Ring -2) is the highest privileged CPU execution mode on x86 processors, executing independent of the OS inside protected SMRAM upon receiving a System Management Interrupt (SMI).",
-    "topic": "Browser Forensics & Communications in RAM"
+    "topic": "Types of Data Stored in RAM: In-Memory Browser Forensics, Chats & TLS Master Secrets"
   },
   {
     "id": 131,
@@ -1702,7 +1701,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Hypervisor rootkits use hardware virtualization (Intel VT-x / AMD-V) to install a thin hypervisor (Ring -1 / VMX root) under the live OS, making the rootkit completely transparent to kernel-level security tools.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 132,
@@ -1715,7 +1714,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Intel Boot Guard is a hardware-based boot integrity feature. The CPU validates an Authenticated Code Module (ACM) using public keys fused into the chipset before executing the UEFI firmware, preventing bootkits.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 133,
@@ -1728,7 +1727,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "DMA attacks exploit external bus standards (FireWire, Thunderbolt, PCMCIA) that have direct memory access to physical RAM. Tools like Inception or PCILeech exploit this to dump RAM or inject unlock code.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 134,
@@ -1741,7 +1740,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Kernel DMA Protection leverages the IOMMU (Intel VT-d) to isolate peripheral devices into restricted memory domains, blocking unauthorized DMA reads before a user logs in and unlocks the system.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 135,
@@ -1754,7 +1753,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "A process's Working Set consists of the pages in its virtual address space that are currently present in physical memory frames (RAM), as opposed to pages paged out to pagefile.sys.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 136,
@@ -1767,7 +1766,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The PFN (Page Frame Number) database is an array of _MMPFN structures maintained by the kernel memory manager. It tracks the state (active, standby, modified, free, zeroed) of every physical memory page.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 137,
@@ -1780,7 +1779,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Zeroed pages are free physical memory pages that the system background zeroing thread (Phase 0 of System Idle Process) has wiped with zeros, ensuring new processes do not inherit remnant data from previous processes.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 138,
@@ -1793,7 +1792,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Standby pages retain their data and original file associations. If a process needs the page again, the memory manager instantly reclaims it from the standby list without reading from disk (a soft fault).",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 139,
@@ -1806,7 +1805,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Modified pages contain 'dirty' data that has been modified in memory. The kernel's Modified Page Writer must write these contents to disk before the page frame can be moved to the standby or free list.",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 140,
@@ -1819,7 +1818,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "PFN inspection tools and plugins parse the kernel's _MMPFN array to display the distribution of active, standby, modified, and free pages across the physical memory dump. (or specialized PFN database parsers)",
-    "topic": "Hardware & Hypervisor Attacks"
+    "topic": "Memory Acquisition Tools & Techniques: Hardware DMA Acquisition & Hypervisor Attacks"
   },
   {
     "id": 141,
@@ -1832,7 +1831,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Each loaded module is described by an LDR_DATA_TABLE_ENTRY struct in the PEB loader lists. It contains DllBase, EntryPoint, SizeOfImage, FullDllName, BaseDllName, and TimeDateStamp.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 142,
@@ -1845,7 +1844,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Malware frequently overwrites its own PE header in memory with zeros (or random data) after unpacking. This breaks standard PE dumpers that search for 'MZ' and section tables at the module base address.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 143,
@@ -1858,7 +1857,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Examiners use the VAD node to find the exact starting address and size of the allocation, and utilize specialized tools (e.g. PeRebuilder, Volatility's hollowfind/dumpfiles) to reconstruct DOS/PE headers and section alignments.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 144,
@@ -1871,7 +1870,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "TLS Callbacks are functions that run before the program's normal entry point executes. Malware authors use TLS callbacks to execute anti-debugging, unpacking, or injection code before analysts' breakpoints hit.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 145,
@@ -1884,7 +1883,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "The IAT contains pointers to imported dynamic link library functions. By inspecting an injected binary's IAT, examiners determine what capabilities it possesses (e.g. VirtualAllocEx, WriteProcessMemory, InternetOpenA).",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 146,
@@ -1897,7 +1896,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "On disk, the IAT contains RVAs pointing to function names or ordinals. When loaded, the Windows PE loader resolves each function's actual memory address and writes those addresses directly into the IAT.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 147,
@@ -1910,7 +1909,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Malware authors use packers (UPX, Themida, VMProtect) to obfuscate code on disk. However, the CPU cannot execute encrypted code; the malware must unpack and decrypt itself into memory, where memory analysis captures it fully unpacked.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 148,
@@ -1923,7 +1922,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "When a packed program launches, it runs a stub (unpacking routine). Once the stub unpacks the real payload into memory, it jumps to the Original Entry Point (OEP) to begin normal execution of the malicious code.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 149,
@@ -1936,7 +1935,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "A process should have only one main executable image. Finding embedded 'MZ' headers in private memory (MEM_PRIVATE) indicates that additional executables or DLLs were unpacked or reflectively loaded into memory.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 150,
@@ -1949,7 +1948,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.mutantscan' scans memory pool allocations for KMUTANT structures. Identifying uniquely named mutexes provides concrete indicators of compromise (IoCs) to correlate with threat intelligence feeds.",
-    "topic": "Reverse Engineering In-Memory Binaries"
+    "topic": "Significance of Memory Analysis in Identifying Malware: PE Rebuilding & API Unhooking"
   },
   {
     "id": 151,
@@ -1962,7 +1961,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Ephemeral outbound connections close quickly and leave minimal disk evidence. Memory scanning captures the live socket state, tying the external C2 IP and port directly to a specific malicious process PID.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 152,
@@ -1975,7 +1974,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "SYN_SENT indicates the client sent a connection request (SYN) and is waiting for the target server to respond. If connections remain in SYN_SENT, the target IP may be offline, filtering traffic, or sinkholed.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 153,
@@ -1988,7 +1987,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "CLOSE_WAIT indicates the remote side initiated teardown (sent FIN), the local OS acknowledged it, and the local endpoint is waiting for its local application to finish processing and call close().",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 154,
@@ -2001,7 +2000,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "While svchost.exe connects to Microsoft updates (80/443), unexpected outbound connections to arbitrary IPs over high/atypical ports (like 4444) strongly point to malware running inside svchost.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 155,
@@ -2014,7 +2013,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Examiners frequently run 'strings -a -td' over memory dumps, and use plugins like 'windows.vadyarascan' or 'windows.strings' to map string offsets back to specific processes and virtual addresses. (or running Unix strings utility over raw dump followed by Volatility virtual-to-physical mapping)",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 156,
@@ -2027,7 +2026,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "YARA is the premier rule-based pattern matching tool used by malware analysts. Volatility's 'yarascan' plugins (windows.vadyarascan) allow examiners to execute complex YARA rules directly across memory dumps.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 157,
@@ -2040,7 +2039,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'windows.vadyarascan' compiles user-supplied YARA rules and scans the virtual memory regions of processes, reporting rule matches along with process IDs, memory addresses, and matching hex strings.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 158,
@@ -2053,7 +2052,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "In physical memory, pages of a single process buffer may be scattered non-contiguously. Virtual scanning walks the page tables to present continuous memory streams, allowing multi-page signatures to match reliably.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 159,
@@ -2066,7 +2065,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "LotL attacks abuse pre-installed tools (PowerShell, WMI, mshta) so standard file-based AV sees only trusted Microsoft binaries. Memory forensics reveals the malicious command lines, scripts, and in-memory payloads.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 160,
@@ -2079,7 +2078,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Fileless malware resides in RAM (injected into legitimate processes or running from WMI/Registry scripts). Because there is no file on disk to analyze, volatile memory acquisition is the ONLY way to capture the malware.",
-    "topic": "Network Sockets in Memory"
+    "topic": "Network Connections and System Artifacts: In-Memory Sockets, TCP States & netscan"
   },
   {
     "id": 161,
@@ -2092,7 +2091,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "EFS relies on user private keys protected by DPAPI. When an authorized user is logged in, these keys reside in LSASS memory. Dumping LSASS allows examiners to recover keys and decrypt EFS files.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 162,
@@ -2105,7 +2104,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "Memory dumps contain cleartext passwords, proprietary data, and cryptographic keys. Transferring RAM dumps across networks requires encrypted, dedicated channels to prevent accidental evidence leakage.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 163,
@@ -2118,7 +2117,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Documenting the hash of the acquisition tool proves to the court that the tool used was authentic, vetted, and not tampered with, supporting chain of custody and forensic repeatability.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 164,
@@ -2131,7 +2130,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Every program executed on a live machine modifies memory—allocating pages, altering caches, terminating threads, and overwriting critical evidence. Live triage must be minimal; full analysis belongs on a workstation.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 165,
@@ -2144,7 +2143,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "The minimal footprint principle mandates that examiners minimize alterations to evidence. Running lightweight, portable, statically-linked tools from read-only external media minimizes RAM and disk modifications.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 166,
@@ -2157,7 +2156,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "ISO/IEC 27037 (Guidelines for identification, collection, acquisition, and preservation of digital evidence) explicitly addresses volatile memory, emphasizing RFC 3227 order of volatility, validation, and documentation.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 167,
@@ -2170,7 +2169,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Contemporaneous notes are made at the time the events occur (recording exact timestamps, tool names, version numbers, hashes, and anomalies), providing vital credibility during courtroom testimony.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 168,
@@ -2183,7 +2182,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "A defensible forensic report must document exact facts: process name, PID, memory address range, VAD protection attributes, hex dump, disassembly of shellcode, and correlated network/file IoCs.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 169,
@@ -2196,7 +2195,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Digital evidence must satisfy core legal tests: Authenticity (evidence is what it purports to be), Integrity (unaltered since seizure), Reliability (tools and methods scientifically validated), and Admissibility.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 170,
@@ -2209,7 +2208,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "In WinDbg, '!process 0 0' lists basic information (CID, PEB, parent CID, ImageFileName) for all processes without dumping full thread stacks. Using '!process 0 7' dumps full thread details.",
-    "topic": "Extraction of Encryption Keys from Memory"
+    "topic": "Extraction of Encryption Keys: BitLocker FVEK, VeraCrypt & AES Key Schedules"
   },
   {
     "id": 171,
@@ -2222,7 +2221,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "In WinDbg, '!peb' displays formatted user-mode Process Environment Block fields including CommandLine, ImageBaseAddress, Environment, and Loaded Modules.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 172,
@@ -2235,7 +2234,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "In WinDbg, '!teb' displays the formatted fields of the Thread Environment Block, including stack limits, TIB, TLS expansion slots, and Win32 client info.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 173,
@@ -2248,7 +2247,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "'!vadump' in WinDbg walks and displays all memory allocations in the process's VAD tree along with protection attributes (PAGE_EXECUTE_READWRITE, PAGE_READONLY, etc.).",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 174,
@@ -2261,7 +2260,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'!token' evaluates an _EX_FAST_REF or pointer to a Windows _TOKEN structure, displaying the User SID, Group SIDs, and all enabled/disabled Privileges.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 175,
@@ -2274,7 +2273,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "dumpchk.exe (Microsoft Crash Dump Checking Utility) verifies that a memory dump file (MEMORY.DMP) is valid, undamaged, and readable by debuggers before starting examination.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 176,
@@ -2287,7 +2286,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The header of 'hiberfil.sys' contains power management signatures like 'POWR' (or 'HIBR' / 'WAKE'), followed by compression control blocks, hardware configuration, and page frame directories.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 177,
@@ -2300,7 +2299,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Allocations exceeding 4 KB (PAGE_SIZE) in Windows are allocated as whole pages and tracked in the Big Pool table ('nt!PoolBigPageTable'). Volatility 3's 'windows.bigpools' plugin scans this table.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 178,
@@ -2313,7 +2312,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.bigpools' dumps allocations from the kernel's big pool page table, showing tag names, virtual addresses, sizes, and whether they reside in Paged or NonPaged memory.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 179,
@@ -2326,7 +2325,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "When ransomware encrypts files, it must hold the symmetric keys (AES/ChaCha20) in RAM to execute the crypto algorithm. Dumping memory while the process is active allows examiners to extract keys and decrypt files.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 180,
@@ -2339,7 +2338,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Rowhammer is a hardware memory defect where repeatedly activating (hammering) memory rows causes electrical interference that leaks charge into adjacent capacitor rows, flipping bits without write access.",
-    "topic": "Live Memory Debugging & WinDbg"
+    "topic": "Acquisition, Analysis & Interpretation of RAM: Live Kernel Debugging & Crash Dumps"
   },
   {
     "id": 181,
@@ -2352,7 +2351,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "ECC (Error-Correcting Code) RAM uses additional check bits to detect multi-bit errors and automatically correct single-bit errors, providing hardware resilience against bit-flip attacks like Rowhammer.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 182,
@@ -2365,7 +2364,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "In VMware Workstation/ESXi, the '.vmem' file contains the exact raw physical RAM of the guest VM. When a VM is paused or snapshotted (.vmsn/.vmss), the .vmem can be analyzed directly in Volatility. (accompanied by .vmss or .vmsn state files)",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 183,
@@ -2378,7 +2377,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Hyper-V saves guest memory states in '.bin' (memory contents) and '.vsv' (state save) files, or modern unified '.vmrs' (Virtual Machine Runtime State) files.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 184,
@@ -2391,7 +2390,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "VirtualBox stores guest saved state in '.sav' files, from which examiners extract RAM dumps, or they execute 'VBoxManage debugvm <name> dumpvmcore --filename=mem.dmp' to acquire raw RAM.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 185,
@@ -2404,7 +2403,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Volatility 3 uses 'dwarf2json' to parse DWARF debugging symbols from unstripped Linux kernel binaries (vmlinux or linux-image-debug) and output a JSON symbol table.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 186,
@@ -2417,7 +2416,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "task_struct->mm points to 'struct mm_struct', which describes the process's entire virtual memory: start/end of code, data, heap, stack, page directory pointer (pgd), and the list of VMAs.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 187,
@@ -2430,7 +2429,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "In Linux, 'struct files_struct' manages the process's table of open file descriptors, mapping integer file descriptors (0 for stdin, 1 for stdout, etc.) to kernel 'struct file' objects. (holding the fd_array of struct file pointers)",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 188,
@@ -2443,7 +2442,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'linux.lsof' (list open files) inspects the files_struct of Linux tasks in memory, displaying open files, sockets, pipes, and block devices associated with each PID.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 189,
@@ -2456,7 +2455,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Web applications cache JWTs and OAuth bearer tokens in browser memory. Extracting these tokens reveals user identities, roles, expiration times, and grants access to session logs for incident triage.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 190,
@@ -2469,7 +2468,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "The Connected Devices Platform (CDP) manages user timeline records in memory before flushing them to ActivitiesCache.db, tracking cross-device app usage, documents opened, and user actions.",
-    "topic": "Memory Hardware & Virtual Machine Snapshots"
+    "topic": "Overview of Memory Structures: Hardware Memory Architectures & VM Snapshots"
   },
   {
     "id": 191,
@@ -2482,7 +2481,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Modern web shells (e.g. Godzilla, Behinder, IceScorpion) load compiled Java bytecode (.class) or .NET assemblies dynamically from memory byte arrays using custom ClassLoaders, leaving zero files on disk.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 192,
@@ -2495,7 +2494,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "'windows.sessions' displays active Windows desktop sessions (Session 0 for services, Session 1+ for interactive users), showing session IDs, user SIDs, and associated processes.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 193,
@@ -2508,7 +2507,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "Before Vista, services and user applications ran together in Session 0, enabling shatter attacks. Session 0 isolation restricts Session 0 to system services, moving interactive user sessions to Session 1+.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 194,
@@ -2521,7 +2520,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "'windows.desktops' enumerates WindowStation and Desktop objects. Malware (like hidden VNC / HVNC) often creates hidden desktop instances to perform banking fraud without alerting the user.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 195,
@@ -2534,7 +2533,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "HVNC creates an isolated desktop in memory via CreateDesktopA. The malware launches a browser on this hidden desktop, interacting with it programmatically while the legitimate user is unaware.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 196,
@@ -2547,7 +2546,7 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "The CPU's Memory Management Unit uses the CR3 register to walk the page directory and page tables, translating the virtual address to a physical page frame number (PFN) in RAM.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 197,
@@ -2560,7 +2559,7 @@ window.book3MCQs = [
     ],
     "answer": 0,
     "explanation": "If relocation information is stripped from a PE binary, it must load at its preferred ImageBase. Injected code without relocations cannot be placed at arbitrary memory addresses without crashing.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 198,
@@ -2573,7 +2572,7 @@ window.book3MCQs = [
     ],
     "answer": 1,
     "explanation": "When the Present bit is 0, the CPU cannot translate the address directly. It triggers a page fault (#PF), prompting the kernel memory manager to locate the page on disk (pagefile) or allocate a new page.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 199,
@@ -2586,7 +2585,7 @@ window.book3MCQs = [
     ],
     "answer": 2,
     "explanation": "Page table walking is the algorithmic translation of a virtual address into a physical address by traversing the multi-tier page table structures pointed to by the DirectoryTableBase (CR3 register).",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   },
   {
     "id": 200,
@@ -2599,6 +2598,6 @@ window.book3MCQs = [
     ],
     "answer": 3,
     "explanation": "Volatile memory is fleeting and easily modified. Maintaining a meticulous Chain of Custody—with tool hashes, timestamps, acquisition hashes, and secure storage logs—is essential for admissibility in judicial proceedings.",
-    "topic": "Incident Response, In-Memory YARA & Legal Rules"
+    "topic": "Challenges and Legal Considerations: Anti-Forensics, Footprint & Sec 65B/BSA Sec 63"
   }
 ];

@@ -3133,3 +3133,54 @@ body.theme-paper .explanation-text {
     display: none;
   }
 }
+
+/* ============================================================
+   OFFICIAL SYLLABUS HEADING HIERARCHY (MAIN HEADING & SUBTOPIC)
+   ============================================================ */
+.syllabus-header-card {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(217, 119, 6, 0.35);
+}
+
+.syllabus-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(217, 119, 6, 0.12);
+  color: #d97706;
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  margin-bottom: 4px;
+}
+
+.syllabus-main-title {
+  font-family: var(--font-title);
+  font-size: 1.16rem !important;
+  font-weight: 800 !important;
+  color: var(--text-heading);
+  line-height: 1.25 !important;
+  margin: 3px 0 4px 0 !important;
+  display: block;
+}
+
+.syllabus-subtopic-title {
+  font-family: var(--font-body);
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: var(--accent-color);
+  margin: 0 0 6px 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.syllabus-subtopic-title::before {
+  content: "↳";
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
