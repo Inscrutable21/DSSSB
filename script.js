@@ -1261,7 +1261,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let mcqCurrentSpreadFilter = 'all';
 
   function openMCQForCurrentSpread() {
-    const isMultiPage = (activeBookId === 'book3' || activeBookId === 'book4' || activeBookId === 'book5');
+    const isMultiPage = (activeBookId === 'book3' || activeBookId === 'book4');
     const targetIdx = isMultiPage ? Math.floor(currentSpread / 2) : currentSpread;
     openMCQForSpread(targetIdx);
   }
@@ -1286,7 +1286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.body.style.overflow = 'hidden';
     if (typeof showToast === 'function') {
-      const isMultiPage = (mcqActiveBook === 'book3' || mcqActiveBook === 'book4' || mcqActiveBook === 'book5');
+      const isMultiPage = (mcqActiveBook === 'book3' || mcqActiveBook === 'book4');
       const label = isMultiPage ? `Topic ${sIdx + 1}` : `Spread ${sIdx + 1}`;
       showToast(`🎯 Testing ${label} (Questions Q${sIdx * 10 + 1}–Q${sIdx * 10 + 10})`);
     }
@@ -1297,7 +1297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const list = mcqDatasets[mcqActiveBook] || [];
     const q = list[mcqCurrentIndex];
     if (!q) return;
-    const isMultiPage = (mcqActiveBook === 'book3' || mcqActiveBook === 'book4' || mcqActiveBook === 'book5');
+    const isMultiPage = (mcqActiveBook === 'book3' || mcqActiveBook === 'book4');
     const topicIdx = Math.floor((q.id - 1) / 10);
     const targetSpread = isMultiPage ? (topicIdx * 2) : topicIdx;
     const pLeft = targetSpread * 2 + 1;
@@ -1333,7 +1333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     allOpt.textContent = '📚 All 200 Questions (Full Book)';
     mcqSpreadFilterSelect.appendChild(allOpt);
 
-    const isMultiPage = (mcqActiveBook === 'book3' || mcqActiveBook === 'book4' || mcqActiveBook === 'book5');
+    const isMultiPage = (mcqActiveBook === 'book3' || mcqActiveBook === 'book4');
     const topicCount = 20;
 
     for (let s = 0; s < topicCount; s++) {
