@@ -84,7 +84,7 @@ books.forEach((bId, bIndex) => {
     allOk = false;
   }
 
-  const expectedSpreads = (bId === 'book3' || bId === 'book4') ? 40 : 20;
+  const expectedSpreads = (bId === 'book3') ? 40 : 20;
   if (!data.spreads || data.spreads.length !== expectedSpreads) {
     console.error(`FAIL: ${bId} has ${data.spreads ? data.spreads.length : 0} spreads (expected ${expectedSpreads})`);
     allOk = false;
@@ -96,7 +96,7 @@ books.forEach((bId, bIndex) => {
   }
 
   let bannerCountTotal = 0;
-  const isMulti = (bId === 'book3' || bId === 'book4');
+  const isMulti = (bId === 'book3');
   data.spreads.forEach((spread, sIdx) => {
     // Check right page content
     const rightContent = spread.right.content;
